@@ -72,7 +72,7 @@
         (first_li = $(this).children('li:first')).after(div=$("<div style='display: none'></div>"));
         $(this).children('li:not(:first)').appendTo(div);
         first_li.find('> a').click(function(e){
-          $(this).css('background-image', 'url(/images/refinery/ajax-loader.gif) !important');
+          $(this).css('background-image', "url('/images/refinery/ajax-loader.gif') !important");
           $(this).parent().next('div').animate({opacity: 'toggle', height: 'toggle'}, 250, $.proxy(function(){
             $(this).css('background-image', null);
           }, $(this)));
