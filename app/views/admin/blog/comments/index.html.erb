@@ -20,12 +20,10 @@
                         :previous_label => '&laquo;',
                         :next_label => '&raquo;' %>
     <% else %>
-      <p>
-        <strong>
-          <%= t('.no_items_yet', 
-              :type => (t("admin.blog.submenu.comments.#{action_name}").downcase unless action_name == 'index')) %>
-        </strong>
-      </p>
+      <h3>
+        <%= t('.no_items_yet', 
+           :type => (t("admin.blog.submenu.comments.#{action_name}").downcase unless action_name == 'index')) %>
+      </h3>
     <% end %>
   <% end %>
 </div>

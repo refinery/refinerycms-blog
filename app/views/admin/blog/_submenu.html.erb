@@ -6,6 +6,12 @@
                    :url => admin_blog_posts_url
                  } %>
     </li>
+  </ul>
+
+  <ul>
+    <li<%= " class='selected'" if request.path == admin_blog_posts_path %>>
+      <%= link_to t('.posts.title'), admin_blog_posts_path %>
+    </li>
     <li>
        <%= link_to t('.posts.new'), new_admin_blog_post_url,
                    :class => "add_icon" %>
@@ -13,19 +19,19 @@
   </ul>
 
   <ul>
-    <li>
-      <%= link_to t('.comments.new'), admin_blog_comments_url %>
+    <li<%= " class='selected'" if request.path == admin_blog_comments_path %>>
+      <%= link_to t('.comments.new'), admin_blog_comments_path %>
     </li>
-    <li>
-      <%= link_to t('.comments.approved'), approved_admin_blog_comments_url %>
+    <li<%= " class='selected'" if request.path == approved_admin_blog_comments_path %>>
+      <%= link_to t('.comments.approved'), approved_admin_blog_comments_path %>
     </li>
-    <li>
-      <%= link_to t('.comments.rejected'), rejected_admin_blog_comments_url %>
+    <li<%= " class='selected'" if request.path == rejected_admin_blog_comments_path %>>
+      <%= link_to t('.comments.rejected'), rejected_admin_blog_comments_path %>
     </li>
   </ul>
 
-  <ul>
-    <li>
+  <ul class='collapsible_menu'>
+    <li<%= " class='selected'" if request.path == admin_blog_categories_path %>>
       <%= link_to t('.categories.title'), admin_blog_categories_url %>
     </li>
     <li>
@@ -35,10 +41,10 @@
       <%= link_to t('.categories.new'), new_admin_blog_category_url(:dialog => true) %>
     </li>
   </ul>
-  
-  <ul>
-    <li>
-      <%= link_to t('.settings.title'), admin_blog_settings_url %>
+
+  <ul class='collapsible_menu'>
+    <li<%= " class='selected'" if request.path == admin_blog_settings_path %>>
+      <%= link_to t('.settings.title'), admin_blog_settings_path %>
     </li>
     <li>
       <%= link_to t('.settings.moderation'), moderation_admin_blog_settings_url %>
@@ -49,3 +55,17 @@
   </ul>
 
 </div>
+<% content_for :head do %>
+  <script type='text/javascript'>
+    $(document).ready(function(){
+      $('ul.collapsible_menu').each(function(i, ul) {
+        (first_li = $(this).children('li:first')).after(div=$("<div style='display: none'></div>"));
+        $(this).children('li:not(:first)').appendTo(div);
+        first_li.click(function(e){
+          $(this).next('div').animate({opacity: 'toggle', height: 'toggle'}, 250);
+          e.preventDefault();
+        });
+      });
+    });
+  </script>
+<% end %>
