@@ -11,6 +11,9 @@ en:
           view_live: View this blog post live <br/><em>(opens in a new window)</em>
           edit: Edit this blog post
           delete: Remove this blog post forever
+      comments:
+        index:
+          no_items_yet: There are no {{type}} comments yet.
       submenu:
         categories:
           title: Categories

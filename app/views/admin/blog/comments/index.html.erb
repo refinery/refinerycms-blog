@@ -22,7 +22,8 @@
     <% else %>
       <p>
         <strong>
-          <%= t('.no_items_yet') %>
+          <%= t('.no_items_yet', 
+              :type => (t("admin.blog.submenu.comments.#{action_name}").downcase unless action_name == 'index')) %>
         </strong>
       </p>
     <% end %>
