@@ -10,16 +10,50 @@
     <%= f.label :body -%>
     <%= f.text_area :body, :rows => 20, :class => 'wymeditor widest' -%>
   </div>
-
-  <div class='field'>
-    <%= f.label :draft -%>
-    <%= f.check_box :draft -%>
+  <div id='more_options_field'>
+    <p>
+      <%= link_to t('.advanced_options'), "#",
+                  :id => 'toggle_advanced_options',
+                  :title => t('.toggle_advanced_options') %>
+    </p>
+    <span id='draft_field'>
+      <%= f.check_box :draft %>
+      <%= f.label :draft, t('.save_as_draft'), :class => "stripped" %>
+    </span>
   </div>
-
+  <div id='more_options' style="display:none;">
+    <div class="hemisquare">
+      <h3><%= t('admin.blog.submenu.categories.title') %></h3>
+      <ul class='categories'>
+        <% @blog_categories.each do |category| %>
+          <li>
+            checkboxes for category <%= category.title %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+    <div class='hemisquare right_side'>
+    </div>
+  </div>
   <%= render :partial => "/shared/admin/form_actions",
               :locals => {
                 :f => f,
-                :continue_editing => false,
+                :continue_editing => true,
                 :delete_title => t('admin.blogs.blogs.delete')
               } %>
 <% end -%>
+<% content_for :head do %>
+  <script type='text/javascript'>
+    $(document).ready(function(){
+      $('#toggle_advanced_options').click(function(e){
+        e.preventDefault();
+
+        $('#more_options').animate({opacity: 'toggle', height: 'toggle'}, 250);
+
+        $('html,body').animate({
+          scrollTop: $('#toggle_advanced_options').parent().offset().top
+        }, 250);
+      });
+    });
+  </script>
+<% end %>
