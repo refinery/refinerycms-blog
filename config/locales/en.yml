@@ -3,17 +3,18 @@ en:
     refinerycms_blog:
       title: Blog
   admin:
-    blog_posts:
-      index:
-        create_new: Create new post
-        reorder: Reorder Blog Posts
-        reorder_done: Done Reordering Blog Posts
-        sorry_no_results: Sorry! There are no results found.
-        no_items_yet: There are no Blog Posts yet. Click "Create a new Blog Posts" to add your first blog posts.
-      blog_post:
-        view_live: View this blog post live <br/><em>(opens in a new window)</em>
-        edit: Edit this blog post
-        delete: Remove this blog post forever
+    blog:
+      posts:
+        index:
+          create_new: Create new post
+          reorder: Reorder Blog Posts
+          reorder_done: Done Reordering Blog Posts
+          sorry_no_results: Sorry! There are no results found.
+          no_items_yet: There are no Blog Posts yet. Click "Create a new Blog Posts" to add your first blog posts.
+        post:
+          view_live: View this blog post live <br/><em>(opens in a new window)</em>
+          edit: Edit this blog post
+          delete: Remove this blog post forever
   blog_posts:
     show:
       other: Other Blog Posts

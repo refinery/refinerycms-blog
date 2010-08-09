@@ -3,17 +3,18 @@ nl:
     refinerycms_blog:
       title: Blog
   admin:
-    blog_posts:
-      index:
-        create_new: Maak een nieuwe post
-        reorder: Wijzig de volgorde van de Blog Post
-        reorder_done: Klaar met het wijzingen van de volgorde van de Blog Post
-        sorry_no_results: Helaas! Er zijn geen resultaten gevonden.
-        no_items_yet: Er zijn nog geen Blog Post. Druk op 'Maak een nieuwe Blog Post' om de eerste aan te maken.
-      blog_post:
-        view_live: Bekijk deze blog posts op de website <br/><em>(opent een nieuw venster)</em>
-        edit: Bewerk deze blog post
-        delete: Verwijder deze blog post voor eeuwig
+    blog:
+      posts:
+        index:
+          create_new: Maak een nieuwe post
+          reorder: Wijzig de volgorde van de Blog Post
+          reorder_done: Klaar met het wijzingen van de volgorde van de Blog Post
+          sorry_no_results: Helaas! Er zijn geen resultaten gevonden.
+          no_items_yet: Er zijn nog geen Blog Post. Druk op 'Maak een nieuwe Blog Post' om de eerste aan te maken.
+        post:
+          view_live: Bekijk deze blog posts op de website <br/><em>(opent een nieuw venster)</em>
+          edit: Bewerk deze blog post
+          delete: Verwijder deze blog post voor eeuwig
   blog_posts:
     show:
       other: Andere Blog Post
