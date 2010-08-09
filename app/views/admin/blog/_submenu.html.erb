@@ -1,0 +1,51 @@
+<div id='actions'>
+  <ul>
+    <li>
+      <%= render :partial => "/shared/admin/search",
+                 :locals => {
+                   :url => admin_blog_posts_url
+                 } %>
+    </li>
+    <li>
+       <%= link_to t('.posts.new'), new_admin_blog_post_url,
+                   :class => "add_icon" %>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <%= link_to t('.comments.new'), admin_blog_comments_url %>
+    </li>
+    <li>
+      <%= link_to t('.comments.approved'), approved_admin_blog_comments_url %>
+    </li>
+    <li>
+      <%= link_to t('.comments.rejected'), rejected_admin_blog_comments_url %>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <%= link_to t('.categories.title'), admin_blog_categories_url %>
+    </li>
+    <li>
+      <%= link_to t('.categories.manage'), admin_blog_categories_url %>
+    </li>
+    <li>
+      <%= link_to t('.categories.new'), new_admin_blog_category_url(:dialog => true) %>
+    </li>
+  </ul>
+  
+  <ul>
+    <li>
+      <%= link_to t('.settings.title'), admin_blog_settings_url %>
+    </li>
+    <li>
+      <%= link_to t('.settings.moderation'), moderation_admin_blog_settings_url %>
+    </li>
+    <li>
+      <%= link_to t('.settings.update_notified'), update_notified_admin_blog_settings_url(:dialog => true) %>
+    </li>
+  </ul>
+
+</div>

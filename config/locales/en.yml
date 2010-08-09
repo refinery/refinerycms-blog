@@ -6,15 +6,26 @@ en:
     blog:
       posts:
         index:
-          create_new: Create new post
-          reorder: Reorder Blog Posts
-          reorder_done: Done Reordering Blog Posts
-          sorry_no_results: Sorry! There are no results found.
           no_items_yet: There are no Blog Posts yet. Click "Create a new Blog Posts" to add your first blog posts.
         post:
           view_live: View this blog post live <br/><em>(opens in a new window)</em>
           edit: Edit this blog post
           delete: Remove this blog post forever
+      submenu:
+        categories:
+          title: Categories
+          manage: Manage
+          new: Create new category
+        comments:
+          new: New
+          approved: Approved
+          rejected: Rejected
+        posts:
+          new: Create new post
+        settings:
+          title: Settings
+          moderation: Moderation
+          update_notified: Update who gets notified
   blog_posts:
     show:
       other: Other Blog Posts

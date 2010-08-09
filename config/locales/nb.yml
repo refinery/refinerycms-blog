@@ -6,15 +6,18 @@ nb:
     blog:
       posts:
         index:
-          create_new: Lag en ny post
-          reorder: Endre rekkefølgen på Blog Posts
-          reorder_done: Ferdig å endre rekkefølgen Blog Posts
-          sorry_no_results: Beklager! Vi fant ikke noen resultater.
           no_items_yet: Det er ingen Blog Posts enda. Klikk på "Lag en ny Blog Posts" for å legge til din første blog posts.
         post:
           view_live: Vis hvordan denne blog post ser ut offentlig <br/><em>(åpner i et nytt vindu)</em>
           edit: Rediger denne blog post
           delete: Fjern denne blog post permanent
+      submenu:
+        comments:
+          new: ny
+        posts:
+          new: Lag en ny post
+        settings:
+          update_notified: Oppdater hvem som blir informert
   blog_posts:
     show:
       other: Andre Blog Posts
