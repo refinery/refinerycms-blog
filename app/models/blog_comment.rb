@@ -1,4 +1,4 @@
-class BlogPost < ActiveRecord::Base
+class BlogComment < ActiveRecord::Base
 
   acts_as_indexed :fields => [:name, :email, :body]
 
