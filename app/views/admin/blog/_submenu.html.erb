@@ -20,37 +20,47 @@
 
   <ul>
     <li<%= " class='selected'" if request.path == admin_blog_comments_path %>>
-      <%= link_to t('.comments.new'), admin_blog_comments_path %>
+      <%= link_to t('.comments.new'), admin_blog_comments_path,
+                  :class => 'user_comment_icon' %>
     </li>
     <li<%= " class='selected'" if request.path == approved_admin_blog_comments_path %>>
-      <%= link_to t('.comments.approved'), approved_admin_blog_comments_path %>
+      <%= link_to t('.comments.approved'), approved_admin_blog_comments_path,
+                  :class => 'user_comments_add_icon' %>
     </li>
     <li<%= " class='selected'" if request.path == rejected_admin_blog_comments_path %>>
-      <%= link_to t('.comments.rejected'), rejected_admin_blog_comments_path %>
+      <%= link_to t('.comments.rejected'), rejected_admin_blog_comments_path,
+                  :class => 'user_comments_delete_icon' %>
     </li>
   </ul>
 
   <ul class='collapsible_menu'>
     <li<%= " class='selected'" if request.path == admin_blog_categories_path %>>
-      <%= link_to t('.categories.title'), admin_blog_categories_url %>
+      <%= link_to t('.categories.title'), admin_blog_categories_url,
+                  :class => 'category_icon'%>
     </li>
     <li>
-      <%= link_to t('.categories.manage'), admin_blog_categories_url %>
+      <%= link_to t('.categories.manage'), admin_blog_categories_url,
+                  :class => 'edit_icon' %>
     </li>
     <li>
-      <%= link_to t('.categories.new'), new_admin_blog_category_url(:dialog => true) %>
+      <%= link_to t('.categories.new'), new_admin_blog_category_url(:dialog => true),
+                  :class => 'add_icon' %>
     </li>
   </ul>
 
   <ul class='collapsible_menu'>
     <li<%= " class='selected'" if request.path == admin_blog_settings_path %>>
-      <%= link_to t('.settings.title'), admin_blog_settings_path %>
+      <%= link_to t('.settings.title'), admin_blog_settings_path,
+                  :class => 'settings_icon' %>
     </li>
     <li>
-      <%= link_to t('.settings.moderation'), moderation_admin_blog_settings_url %>
+      <%= link_to t('.settings.moderation'), moderation_admin_blog_settings_url,
+                  :class => 'tick_icon' # TODO: update to tick or cross later
+                  %>
     </li>
     <li>
-      <%= link_to t('.settings.update_notified'), update_notified_admin_blog_settings_url(:dialog => true) %>
+      <%= link_to t('.settings.update_notified'), update_notified_admin_blog_settings_url(:dialog => true),
+                  :class => 'user_comment_icon' %>
     </li>
   </ul>
 
