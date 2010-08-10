@@ -1,12 +1,20 @@
 class Admin::Blog::SettingsController < Admin::BaseController
 
-  def update_notified
+  def notification_recipients
+    @recipients = BlogComment::Notification.recipients
 
+    if request.post?
+      BlogComment::Notification.recipients == params[:recipients]
+    end
   end
 
   def moderation
-    BlogComment::Moderation.toggle
-    redirect_back_or_default(admin_blog_posts_path)
+    enabled = BlogComment::Moderation.toggle
+    unless request.xhr?
+      redirect_back_or_default(admin_blog_posts_path)
+    else
+      render :json => {:enabled => enabled}
+    end
   end
 
 end

@@ -34,6 +34,12 @@ en:
           title: Settings
           moderation: Moderation
           update_notified: Update who gets notified
+      settings:
+        notification_recipients:
+          value: Send notifications to
+          explanation: "Every time someone comments on a blog post, Refinery sends out an email to say there is a new comment."
+          hint: "When a new comment is added, Refinery will send an email notification to you."
+          example: "Enter your email address(es) like: jack@work.com, jill@office.com"
   blog_posts:
     show:
       other: Other Blog Posts

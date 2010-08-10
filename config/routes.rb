@@ -5,8 +5,14 @@ ActionController::Routing::Routes.draw do |map|
     admin.namespace :blog do |blog|
       blog.resources :posts
       blog.resources :categories
-      blog.resources :comments, :collection => {:approved => :get, :rejected => :get}
-      blog.resources :settings, :collection => {:update_notified => [:get, :post], :moderation => :get}
+      blog.resources :comments, :collection => {
+        :approved => :get,
+        :rejected => :get
+      }
+      blog.resources :settings, :collection => {
+        :notification_recipients => [:get, :post],
+        :moderation => :get
+      }
     end
   end
 end

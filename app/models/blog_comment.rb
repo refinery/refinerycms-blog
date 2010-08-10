@@ -17,8 +17,22 @@ class BlogComment < ActiveRecord::Base
       end
 
       def toggle
-        currently = self.enabled?
-        RefinerySetting[:comment_moderation] = !currently
+        RefinerySetting[:comment_moderation] = !(currently = self.enabled?)
+      end
+    end
+  end
+
+  module Notification
+    class << self
+      def recipients
+        RefinerySetting.find_or_set(:comment_notification_recipients, {
+          :value => (Role[:refinery].users.first.email rescue ''),
+          :scoping => :blog
+        })
+      end
+
+      def recipients=(emails)
+        RefinerySetting[:comment_notification_recipients] = emails
       end
     end
   end
