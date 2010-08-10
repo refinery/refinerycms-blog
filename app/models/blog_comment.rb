@@ -14,7 +14,7 @@ class BlogComment < ActiveRecord::Base
       end
 
       def toggle
-        RefinerySetting[:comment_moderation] = !(currently = self.enabled?)
+        RefinerySetting[:comment_moderation] = !self.enabled?
       end
     end
   end

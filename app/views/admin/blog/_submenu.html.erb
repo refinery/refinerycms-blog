@@ -50,7 +50,6 @@
   </ul>
 
   <ul class='collapsible_menu'>
-
     <li>
       <%= link_to t('.settings.title'), admin_blog_settings_path,
                   :class => 'settings_icon' %>
@@ -60,7 +59,7 @@
                   :class => "#{BlogComment::Moderation.enabled? ? 'success' : 'failure'}_icon" %>
     </li>
     <li>
-      <%= link_to t('.settings.update_notified'), 
+      <%= link_to t('.settings.update_notified'),
                   notification_recipients_admin_blog_settings_url(:dialog => true, :height => 400),
                   :class => 'user_comment_icon' %>
     </li>
