@@ -1,7 +1,7 @@
 class Admin::Blog::SettingsController < Admin::BaseController
 
   def notification_recipients
-    @recipients = BlogComment::Notification.recipients
+    @recipients = BlogComment::Notification.recipients['value']
 
     if request.post?
       BlogComment::Notification.recipients == params[:recipients]
