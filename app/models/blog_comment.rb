@@ -10,10 +10,7 @@ class BlogComment < ActiveRecord::Base
   module Moderation
     class << self
       def enabled?
-        RefinerySetting.find_or_set(:comment_moderation, {
-          :value => true,
-          :scoping => :blog
-        })
+        RefinerySetting.find_or_set(:comment_moderation, true, {:scoping => :blog})
       end
 
       def toggle
@@ -25,10 +22,9 @@ class BlogComment < ActiveRecord::Base
   module Notification
     class << self
       def recipients
-        RefinerySetting.find_or_set(:comment_notification_recipients, {
-          :value => (Role[:refinery].users.first.email rescue ''),
-          :scoping => :blog
-        })
+        RefinerySetting.find_or_set(
+          :comment_notification_recipients, (Role[:refinery].users.first.email rescue ''), {:scoping => :blog}
+        )
       end
 
       def recipients=(emails)
