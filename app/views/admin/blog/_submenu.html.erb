@@ -1,5 +1,5 @@
-<div id='actions'>
-  <ul>
+<div id='actions' class='multilist'>
+  <ul class='search_list'>
     <li>
       <%= render :partial => "/shared/admin/search",
                  :locals => {
@@ -9,54 +9,54 @@
   </ul>
 
   <ul>
-    <li<%= " class='selected'" if request.path == admin_blog_posts_path %>>
-      <%= link_to t('.posts.title'), admin_blog_posts_path %>
+    <li>
+      <%= link_to t('.posts.title'), admin_blog_posts_path,
+                   :class => 'page_icon' %>
     </li>
     <li>
        <%= link_to t('.posts.new'), new_admin_blog_post_url,
-                   :class => "add_icon" %>
+                   :class => 'add_icon' %>
     </li>
   </ul>
 
-  <ul style='margin-top: 30px'>
-    <li<%= " class='selected'" if request.path == admin_blog_comments_path %>>
+  <ul>
+    <li>
       <%= link_to t('.comments.new'), admin_blog_comments_path,
-                  :class => 'user_comment_icon' %>
+                  :class => 'comment_icon' %>
     </li>
-    <li<%= " class='selected'" if request.path == approved_admin_blog_comments_path %>>
+    <li>
       <%= link_to t('.comments.approved'), approved_admin_blog_comments_path,
-                  :class => 'user_comments_add_icon' %>
+                  :class => 'comment_tick_icon' %>
     </li>
-    <li<%= " class='selected'" if request.path == rejected_admin_blog_comments_path %>>
+    <li>
       <%= link_to t('.comments.rejected'), rejected_admin_blog_comments_path,
-                  :class => 'user_comments_delete_icon' %>
+                  :class => 'comment_cross_icon' %>
     </li>
   </ul>
 
-  <ul class='collapsible_menu' style='margin-top: 30px'>
-    <li<%= " class='selected'" if request.path == admin_blog_categories_path %>>
+  <ul class='collapsible_menu'>
+    <li>
       <%= link_to t('.categories.title'), admin_blog_categories_url,
-                  :class => 'category_icon'%>
+                  :class => 'folder_icon'%>
     </li>
     <li>
       <%= link_to t('.categories.manage'), admin_blog_categories_url,
-                  :class => 'edit_icon' %>
+                  :class => 'folder_edit_icon' %>
     </li>
     <li>
       <%= link_to t('.categories.new'), new_admin_blog_category_url(:dialog => true),
-                  :class => 'add_icon' %>
+                  :class => 'folder_add_icon' %>
     </li>
   </ul>
 
-  <ul class='collapsible_menu' style='margin-top: 30px'>
-    <li<%= " class='selected'" if request.path == admin_blog_settings_path %>>
+  <ul class='collapsible_menu'>
+    <li>
       <%= link_to t('.settings.title'), admin_blog_settings_path,
                   :class => 'settings_icon' %>
     </li>
     <li>
       <%= link_to t('.settings.moderation'), moderation_admin_blog_settings_url,
-                  :class => 'tick_icon' # TODO: update to tick or cross later
-                  %>
+                  :class => "#{BlogComment::Moderation.enabled? ? 'success' : 'failure'}_icon" %>
     </li>
     <li>
       <%= link_to t('.settings.update_notified'), update_notified_admin_blog_settings_url(:dialog => true),
@@ -68,16 +68,35 @@
 <% content_for :head do %>
   <script type='text/javascript'>
     $(document).ready(function(){
+      $('div#actions.multilist > ul:not(.search_list) li a[href$=' + window.location.pathname + ']')
+        .parent().addClass('selected');
+
+      $('div#actions.multilist > ul:not(.search_list) li > a').bind('click', function(){
+        $(this).css('background-image', "url('/images/refinery/ajax-loader.gif') !important");
+      });
+
       $('ul.collapsible_menu').each(function(i, ul) {
         (first_li = $(this).children('li:first')).after(div=$("<div style='display: none'></div>"));
         $(this).children('li:not(:first)').appendTo(div);
         first_li.find('> a').click(function(e){
-          $(this).css('background-image', "url('/images/refinery/ajax-loader.gif') !important");
-          $(this).parent().next('div').animate({opacity: 'toggle', height: 'toggle'}, 250, $.proxy(function(){
-            $(this).css('background-image', null);
-          }, $(this)));
+          $(this).parent().next('div').animate({
+              opacity: 'toggle'
+              , height: 'toggle'
+            }, 250, $.proxy(function(){
+              $(this).css('background-image', null);
+            }, $(this))
+          );
           e.preventDefault();
         });
+      });
+
+      $('.success_icon, .failure_icon').bind('click', function(e) {
+        $.get($(this).attr('href'), $.proxy(function(data){
+          $(this).css('background-image', null)
+                 .toggleClass('success_icon')
+                 .toggleClass('failure_icon');
+        }, $(this)));
+        e.preventDefault();
       });
     });
   </script>
