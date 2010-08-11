@@ -15,7 +15,7 @@ class BlogComment < ActiveRecord::Base
       end
 
       def toggle
-        RefinerySetting[:comment_moderation] = !self.enabled?
+        RefinerySetting[:comment_moderation] = {:value => !self.enabled?, :scoping => :blog}
       end
     end
   end
@@ -29,7 +29,7 @@ class BlogComment < ActiveRecord::Base
       end
 
       def recipients=(emails)
-        RefinerySetting[:comment_notification_recipients] = emails
+        RefinerySetting[:comment_notification_recipients] = {:value => emails, :scoping => :blog}
       end
     end
   end
