@@ -26,10 +26,12 @@ en:
         comments:
           title: Comments
           new: New
+          unmoderated: New
           approved: Approved
           rejected: Rejected
         posts:
           title: Posts
+          manage: Manage posts
           new: Create new post
         settings:
           title: Settings
