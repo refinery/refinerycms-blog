@@ -4,8 +4,9 @@ class BlogComment < ActiveRecord::Base
 
   acts_as_indexed :fields => [:name, :email, :body]
 
-  named_scope :approved, :conditions => {:approved => true}
-  named_scope :rejected, :conditions => {:approved => false}
+  named_scope :unmoderated, :conditions => {:state => nil}
+  named_scope :approved, :conditions => {:state => 'approved'}
+  named_scope :rejected, :conditions => {:state => 'rejected'}
 
   module Moderation
     class << self

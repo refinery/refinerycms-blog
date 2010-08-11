@@ -31,7 +31,7 @@ class RefineryBlogGenerator < Rails::Generator::NamedBase
               Rails::Generator::GeneratedAttribute.new('name', 'string'),
               Rails::Generator::GeneratedAttribute.new('email', 'string'),
               Rails::Generator::GeneratedAttribute.new('body', 'text'),
-              Rails::Generator::GeneratedAttribute.new('approved', 'boolean'),
+              Rails::Generator::GeneratedAttribute.new('state', 'string'),
               Rails::Generator::GeneratedAttribute.new('blog_post_id', 'integer')
             ], :id => true
           },{
