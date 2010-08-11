@@ -19,7 +19,11 @@
     </li>
   </ul>
 
-  <ul>
+  <ul class='collapsible_menu'>
+    <li>
+      <%= link_to t('.comments.title'), admin_blog_comments_path,
+                  :class => 'comments_icon' %>
+    </li>
     <li>
       <%= link_to t('.comments.new'), admin_blog_comments_path,
                   :class => 'comment_icon' %>

@@ -24,6 +24,7 @@ en:
           manage: Manage
           new: Create new category
         comments:
+          title: Comments
           new: New
           approved: Approved
           rejected: Rejected
