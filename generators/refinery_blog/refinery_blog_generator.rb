@@ -12,7 +12,7 @@ class RefineryBlogGenerator < Rails::Generator::NamedBase
 
   def manifest
     record do |m|
-      if Rails.version < 3
+      if Rails.version < '3.0.0'
         matches = Dir[File.expand_path('../../../public/images/**/*', __FILE__)]
         matches.reject{|d| !File.directory?(d)}.each do |dir|
           m.directory((%w(public) | dir.split('public/').last.split('/')).join('/'))
