@@ -1,13 +1,14 @@
 Gem::Specification.new do |s|
   s.name              = %q{refinerycms-blog}
-  s.version           = %q{0.9.8.dev1}
+  s.version           = %q{0.9.8.dev2}
   s.description       = %q{A really straightforward open source Ruby on Rails blog engine designed for integration with RefineryCMS.}
-  s.date              = %q{2010-08-09}
+  s.date              = %q{2010-08-18}
   s.summary           = %q{Ruby on Rails blogging engine for RefineryCMS.}
   s.email             = %q{info@refinerycms.com}
   s.homepage          = %q{http://refinerycms.com}
   s.authors           = %w(Resolve\ Digital Neoteric\ Design)
   s.require_paths     = %w(lib)
+  s.add_dependency('refinerycms',  '~> 0.9.7.12')
 
   s.files             = %w(
     app
@@ -38,6 +39,8 @@ Gem::Specification.new do |s|
     app/views/admin/blog/posts/edit.html.erb
     app/views/admin/blog/posts/index.html.erb
     app/views/admin/blog/posts/new.html.erb
+    app/views/admin/blog/settings
+    app/views/admin/blog/settings/notification_recipients.html.erb
     app/views/blog_posts
     app/views/blog_posts/index.html.erb
     app/views/blog_posts/show.html.erb
@@ -56,9 +59,26 @@ Gem::Specification.new do |s|
     lib
     lib/gemspec.rb
     lib/refinerycms-blog.rb
+    public
+    public/images
+    public/images/refinerycms-blog
+    public/images/refinerycms-blog/icons
+    public/javascripts
+    public/javascripts/refinerycms-blog.js
+    public/stylesheets
+    public/stylesheets/refinerycms-blog.css
     rails
     rails/init.rb
     readme.md
+    spec
+    spec/factories
+    spec/factories/blog_categories.rb
+    spec/factories/blog_comments.rb
+    spec/factories/blog_posts.rb
+    spec/models
+    spec/models/blog_categories_spec.rb
+    spec/models/blog_comments_spec.rb
+    spec/models/blog_posts_spec.rb
   )
   
 end

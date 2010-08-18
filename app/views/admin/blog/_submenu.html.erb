@@ -76,80 +76,9 @@
 <% content_for :head do %>
   <!-- uses famfamfam icons and a couple Dave made -->
   <style type='text/css'>
-    .comments_icon {
-      background-image: url('/images/refinery/icons/comments.png');
-    }
-    .comment_icon {
-      background-image: url('/images/refinery/icons/comment.png');
-    }
-    .comment_cross_icon {
-      background-image: url('/images/refinery/icons/comment_cross.png');
-    }
-    .comment_tick_icon {
-      background-image: url('/images/refinery/icons/comment_tick.png');
-    }
-    .folder_icon {
-      background-image: url('/images/refinery/icons/folder.png');
-    }
-    .folder_add_icon {
-      background-image: url('/images/refinery/icons/folder_add.png');
-    }
-    .folder_edit_icon {
-      background-image: url('/images/refinery/icons/folder_edit.png');
-    }
-    .settings_icon {
-      background-image: url('/images/refinery/icons/cog.png');
-    }
-    .page_icon {
-      background-image: url('/images/refinery/icons/page.png');
-    }
-    .page_copy_icon {
-      background-image: url('/images/refinery/icons/page_copy.png');
-    }
-    .page_add_icon {
-      background-image: url('/images/refinery/icons/page_add.png');
-    }
+    <%= File.open(File.expand_path('../../../../../public/stylesheets/refinerycms-blog.css', __FILE__), 'r').read %>
   </style>
   <script type='text/javascript'>
-    $(document).ready(function(){
-      $('div#actions.multilist > ul:not(.search_list) li a[href$=' + window.location.pathname + ']')
-        .parent().addClass('selected');
-
-      $('div#actions.multilist > ul:not(.search_list) li > a').each(function(i,a){
-        if ($(this).data('dialog-title') == null) {
-          $(this).bind('click', function(){
-            $(this).css('background-image', "url('/images/refinery/ajax-loader.gif') !important");
-          });
-        }
-      });
-
-      $('ul.collapsible_menu').each(function(i, ul) {
-        (first_li = $(this).children('li:first')).after(div=$("<div></div>"));
-        if (($(this).children('li.selected')).length == 0) {
-          div.hide();
-        }
-        $(this).children('li:not(:first)').appendTo(div);
-        
-        first_li.find('> a').click(function(e){
-          $(this).parent().next('div').animate({
-              opacity: 'toggle'
-              , height: 'toggle'
-            }, 250, $.proxy(function(){
-              $(this).css('background-image', null);
-            }, $(this))
-          );
-          e.preventDefault();
-        });
-      });
-
-      $('.success_icon, .failure_icon').bind('click', function(e) {
-        $.get($(this).attr('href'), $.proxy(function(data){
-          $(this).css('background-image', null)
-                 .toggleClass('success_icon')
-                 .toggleClass('failure_icon');
-        }, $(this)));
-        e.preventDefault();
-      });
-    });
+    <%= File.open(File.expand_path('../../../../../public/javascripts/refinerycms-blog.js', __FILE__), 'r').read %>
   </script>
 <% end %>
