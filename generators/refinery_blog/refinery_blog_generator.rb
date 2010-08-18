@@ -12,6 +12,17 @@ class RefineryBlogGenerator < Rails::Generator::NamedBase
 
   def manifest
     record do |m|
+      if Rails.version < 3
+        matches = Dir[File.expand_path('../../../public/images/**/*', __FILE__)]
+        matches.reject{|d| !File.directory?(d)}.each do |dir|
+          m.directory((%w(public) | dir.split('public/').last.split('/')).join('/'))
+        end
+        matches.reject{|f| File.directory?(f)}.each do |image|
+          path = (%w(public) | image.split('public/').last.split('/'))[0...-1].join('/')
+          m.template "../../../#{path}/#{image.split('/').last}", "#{path}/#{image.split('/').last}"
+        end
+      end
+      
       m.template('seed.rb', 'db/seeds/refinerycms_blog.rb')
 
       m.migration_template('migration.rb', 'db/migrate',

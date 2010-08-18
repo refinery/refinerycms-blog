@@ -1,6 +1,8 @@
 class Admin::Blog::CommentsController < Admin::BaseController
 
-  crudify :blog_comment, :title_attribute => :name, :order => 'created_at DESC'
+  crudify :blog_comment,
+          :title_attribute => :name,
+          :order => 'created_at DESC'
 
   def index
     @blog_comments = BlogComment.unmoderated
