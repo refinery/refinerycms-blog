@@ -24,11 +24,14 @@
   <div id='more_options' style="display:none;">
     <div class="hemisquare">
       <h3><%= t('admin.blog.submenu.categories.title') %></h3>
-      <ul class='categories'>
-        <% @blog_categories.each do |category| %>
-          <li>
-            checkboxes for category <%= category.title %>
-          </li>
+      <ul class='blog_categories'>
+        <% f.fields_for :categories do |c| %>
+          <% @blog_categories.each do |category| %>
+            <li>
+               <%= c.check_box :id, :value => category.id %>
+               <%= c.label :id, category.title, :class => 'stripped' %>
+            </li>
+          <% end %>
         <% end %>
       </ul>
     </div>
@@ -43,6 +46,13 @@
               } %>
 <% end -%>
 <% content_for :head do %>
+  <style type='text/css'>
+    ul.blog_categories, ul.blog_categories li {
+      list-style: none;
+      margin: 0px;
+      padding: 0px;
+    }
+  </style>
   <script type='text/javascript'>
     $(document).ready(function(){
       $('#toggle_advanced_options').click(function(e){

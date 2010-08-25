@@ -1,0 +1,15 @@
+<% form_for [:admin, @blog_category] do |f| -%>
+  <%= f.error_messages %>
+
+  <div class='field'>
+    <%= f.label :title -%>
+    <%= f.text_field :title, :class => 'larger widest' -%>
+  </div>
+
+  <%= render :partial => "/shared/admin/form_actions",
+              :locals => {
+                :f => f,
+                :continue_editing => false,
+                :delete_title => t('admin.blogs.categories.delete')
+              } %>
+<% end %>

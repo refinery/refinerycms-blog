@@ -1,0 +1,13 @@
+<li class='clearfix record <%= cycle("on", "on-hover") %>' id="<%= dom_id(category) -%>">
+  <span class='title'>
+    <%=h category.title %>
+    <span class="preview">&nbsp;</span>
+  </span>
+  <span class='actions'>
+    <%= link_to refinery_icon_tag("application_edit.png"), edit_admin_blog_category_path(category),
+         :title => t('.edit') %>
+    <%= link_to refinery_icon_tag("delete.png"), admin_blog_category_path(category),
+        :class => "cancel confirm-delete",
+        :title => t('.delete') %>
+  </span>
+</li>

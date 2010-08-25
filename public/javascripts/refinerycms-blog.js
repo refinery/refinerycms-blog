@@ -1,8 +1,8 @@
 $(document).ready(function(){
-  $('div#actions.multilist > ul:not(.search_list) li a[href$=' + window.location.pathname + ']')
+  $('nav#actions.multilist > ul:not(.search_list) li a[href$=' + window.location.pathname + ']')
     .parent().addClass('selected');
 
-  $('div#actions.multilist > ul:not(.search_list) li > a').each(function(i,a){
+  $('nav#actions.multilist > ul:not(.search_list) li > a').each(function(i,a){
     if ($(this).data('dialog-title') == null) {
       $(this).bind('click', function(){
         $(this).css('background-image', "url('/images/refinery/icons/ajax-loader.gif') !important");

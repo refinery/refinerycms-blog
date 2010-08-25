@@ -3,26 +3,28 @@
   <% if searching? %>
     <h2><%= t('admin.search_results_for', :query => params[:search]) %></h2>
     <% if @blog_comments.any? %>
-      <%= render :partial => "blog_comments",
-                 :collection => @blog_comments %>
+      <%= will_paginate @blog_comments %>
+
+      <ul>
+        <%= render :partial => "blog_comments",
+                   :collection => @blog_comments %>
+      </ul>
+
+      <%= will_paginate @blog_comments %>
     <% else %>
       <p><%= t('admin.search_no_results') %></p>
     <% end %>
   <% else %>
     <% if @blog_comments.any? %>
-      <%= will_paginate @blog_comments,
-                        :previous_label => '&laquo;',
-                        :next_label => '&raquo;' %>
+      <%= will_paginate @blog_comments %>
 
       <%= render :partial => "sortable_list" %>
 
-      <%= will_paginate @blog_comments,
-                        :previous_label => '&laquo;',
-                        :next_label => '&raquo;' %>
+      <%= will_paginate @blog_comments %>
     <% else %>
       <h3>
-        <%= t('.no_items_yet', 
-           :type => (t("admin.blog.submenu.comments.#{action_name}").downcase unless action_name == 'index')) %>
+        <%= t('.no_items_yet',
+              :type => (t("admin.blog.submenu.comments.#{action_name}").downcase unless action_name == 'index')) %>
       </h3>
     <% end %>
   <% end %>
