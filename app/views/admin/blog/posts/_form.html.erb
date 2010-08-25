@@ -25,13 +25,11 @@
     <div class="hemisquare">
       <h3><%= t('admin.blog.submenu.categories.title') %></h3>
       <ul class='blog_categories'>
-        <% f.fields_for :categories do |c| %>
-          <% @blog_categories.each do |category| %>
-            <li>
-               <%= c.check_box :id, :value => category.id %>
-               <%= c.label :id, category.title, :class => 'stripped' %>
-            </li>
-          <% end %>
+        <% @blog_categories.each do |category| %>
+          <li>
+             <%= check_box_tag 'blog_post[category_ids][]', category.id, {}, :id => (id="blog_post_category_ids_#{category.id}") %>
+             <%= label_tag 'blog_post[category_ids][]', category.title, {:class => 'stripped', :for => id} %>
+          </li>
         <% end %>
       </ul>
     </div>

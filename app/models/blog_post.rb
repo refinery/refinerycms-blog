@@ -14,4 +14,12 @@ class BlogPost < ActiveRecord::Base
 
   named_scope :live, :conditions => {:draft => false}
 
+  def category_ids=(ids)
+    self.categories.clear
+
+    self.categories += ids.reject{|id| id.blank?}.collect {|c_id|
+      category = Category.find(category_id.to_i) rescue nil
+    }.compact
+  end
+
 end
