@@ -2,7 +2,7 @@
 <ul class='categories'>
   <% @blog_categories.each do |category| %>
     <li>
-      <%= category.title %>
+      <%= link_to category.title, blog_category_url(category) %>
     </li>
   <% end %>
 </ul>
