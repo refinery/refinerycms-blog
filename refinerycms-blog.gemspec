@@ -1,8 +1,8 @@
 Gem::Specification.new do |s|
   s.name              = %q{refinerycms-blog}
-  s.version           = %q{0.9.8.dev2}
+  s.version           = %q{0.9.8.rc1}
   s.description       = %q{A really straightforward open source Ruby on Rails blog engine designed for integration with RefineryCMS.}
-  s.date              = %q{2010-08-18}
+  s.date              = %q{2010-08-26}
   s.summary           = %q{Ruby on Rails blogging engine for RefineryCMS.}
   s.email             = %q{info@refinerycms.com}
   s.homepage          = %q{http://refinerycms.com}
@@ -30,6 +30,12 @@ Gem::Specification.new do |s|
     app/views/admin/blog
     app/views/admin/blog/_submenu.html.erb
     app/views/admin/blog/categories
+    app/views/admin/blog/categories/_category.html.erb
+    app/views/admin/blog/categories/_form.html.erb
+    app/views/admin/blog/categories/_sortable_list.html.erb
+    app/views/admin/blog/categories/edit.html.erb
+    app/views/admin/blog/categories/index.html.erb
+    app/views/admin/blog/categories/new.html.erb
     app/views/admin/blog/comments
     app/views/admin/blog/comments/index.html.erb
     app/views/admin/blog/posts
@@ -42,6 +48,7 @@ Gem::Specification.new do |s|
     app/views/admin/blog/settings
     app/views/admin/blog/settings/notification_recipients.html.erb
     app/views/blog_posts
+    app/views/blog_posts/_side_bar.html.erb
     app/views/blog_posts/index.html.erb
     app/views/blog_posts/show.html.erb
     config
@@ -63,9 +70,23 @@ Gem::Specification.new do |s|
     public/images
     public/images/refinerycms-blog
     public/images/refinerycms-blog/icons
+    public/images/refinerycms-blog/icons/cog.png
+    public/images/refinerycms-blog/icons/comment.png
+    public/images/refinerycms-blog/icons/comment_cross.png
+    public/images/refinerycms-blog/icons/comment_tick.png
+    public/images/refinerycms-blog/icons/comments.png
+    public/images/refinerycms-blog/icons/folder.png
+    public/images/refinerycms-blog/icons/folder_add.png
+    public/images/refinerycms-blog/icons/folder_edit.png
+    public/images/refinerycms-blog/icons/page.png
+    public/images/refinerycms-blog/icons/page_add.png
+    public/images/refinerycms-blog/icons/page_copy.png
     public/javascripts
-    public/javascripts/refinerycms-blog.js
+    public/javascripts/refinery
+    public/javascripts/refinery/refinerycms-blog.js
     public/stylesheets
+    public/stylesheets/refinery
+    public/stylesheets/refinery/refinerycms-blog.css
     public/stylesheets/refinerycms-blog.css
     rails
     rails/init.rb
