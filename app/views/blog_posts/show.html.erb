@@ -4,21 +4,23 @@
   <%= @blog_post.body %>
 
   <% if (categories = @blog_post.categories).any? %>
-    <%= t('.filed_in') %>
-    <ul>
-      <% categories.each do |category| %>
-        <li>
-          <%= link_to category.title, blog_category_url(category) %>
-        </li>
-      <% end %>
-    </ul>
+    <div class='post_categories'>
+      <span class='filed_in'><%= t('.filed_in') %></span>
+      <ul>
+        <% categories.each_with_index do |category, index| %>
+          <li>
+            <%= link_to category.title, blog_category_url(category) -%><%= ',' if index < ((categories.length) - 1) %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
   <% end %>
 <% end %>
 
 <% content_for :body_content_right do %>
   <h2><%= t('.created_at_title') %></h2>
   <%= t('.created_at', :when => @blog_post.created_at.strftime('%d %B %Y')) %>
-  <%= render :partial => "sidebar" %>
+  <%= render :partial => "side_bar" %>
 
   <h2><%= t('.other') %></h2>
   <ul id="blog_post">
@@ -31,3 +33,6 @@
 <% end %>
 
 <%= render :partial => "/shared/content_page" %>
+<% content_for :head do %>
+  <%= stylesheet_link_tag 'refinerycms-blog' %>
+<% end %>

@@ -8,6 +8,8 @@ en:
         category:
           edit: Edit this category
           delete: Delete this category forever
+        index:
+          no_items_yet: There are no categories yet. Click "{{create}}" to add your first category.
       comments:
         index:
           no_items_yet: There are no {{type}} comments yet.
@@ -17,7 +19,7 @@ en:
           toggle_advanced_options: Click to access meta tag settings and menu options
           save_as_draft: Save as Draft
         index:
-          no_items_yet: There are no Blog Posts yet. Click "Create a new Blog Posts" to add your first blog posts.
+          no_items_yet: There are no Blog Posts yet. Click "{{create}}" to add your first blog post.
         post:
           view_live: View this blog post live <br/><em>(opens in a new window)</em>
           edit: Edit this blog post
@@ -25,8 +27,8 @@ en:
       settings:
         notification_recipients:
           value: Send notifications to
-          explanation: "Every time someone comments on a blog post, Refinery sends out an email to say there is a new comment."
-          hint: "When a new comment is added, Refinery will send an email notification to you."
+          explanation: Every time someone comments on a blog post, Refinery sends out an email to say there is a new comment.
+          hint: When a new comment is added, Refinery will send an email notification to you.
           example: "Enter your email address(es) like: jack@work.com, jill@office.com"
       submenu:
         categories:
@@ -48,5 +50,12 @@ en:
           moderation: Moderation
           update_notified: Update who gets notified
   blog_posts:
+    side_bar:
+      categories: Categories
+    index:
+      read_more: Read more
     show:
       other: Other Blog Posts
+      filed_in: Filed in
+      created_at_title: Publishing Date
+      created_at: Posted on {{when}}

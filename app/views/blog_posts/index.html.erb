@@ -18,7 +18,10 @@
 <% content_for :body_content_right do %>
   <%= @page[Page.default_parts.second.to_sym] %>
 
-  <%= render :partial => "sidebar" %>
+  <%= render :partial => "side_bar" %>
 <% end %>
 
 <%= render :partial => "/shared/content_page" %>
+<% content_for :head do %>
+  <%= stylesheet_link_tag 'refinerycms-blog' %>
+<% end %>

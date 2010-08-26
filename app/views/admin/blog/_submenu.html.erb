@@ -74,11 +74,6 @@
 
 </nav>
 <% content_for :head do %>
-  <!-- uses famfamfam icons and a couple Dave made -->
-  <style type='text/css'>
-    <%= File.open(File.expand_path('../../../../../public/stylesheets/refinerycms-blog.css', __FILE__), 'r').read %>
-  </style>
-  <script type='text/javascript'>
-    <%= File.open(File.expand_path('../../../../../public/javascripts/refinerycms-blog.js', __FILE__), 'r').read %>
-  </script>
+  <%= stylesheet_link_tag 'refinery/refinerycms-blog' %>
+  <%= javascript_include_tag 'refinery/refinerycms-blog' %>
 <% end %>

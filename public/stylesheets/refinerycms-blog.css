@@ -1,33 +1,13 @@
-.comments_icon {
-  background-image: url('/images/refinerycms-blog/icons/comments.png');
+.post_categories .filed_in {
+  display: inline;
 }
-.comment_icon {
-  background-image: url('/images/refinerycms-blog/icons/comment.png');
+.post_categories ul {
+  margin: 0px 0px 0px 6px;
+  padding: 0px;
+  display: inline;
 }
-.comment_cross_icon {
-  background-image: url('/images/refinerycms-blog/icons/comment_cross.png');
-}
-.comment_tick_icon {
-  background-image: url('/images/refinerycms-blog/icons/comment_tick.png');
-}
-.folder_icon {
-  background-image: url('/images/refinerycms-blog/icons/folder.png');
-}
-.folder_add_icon {
-  background-image: url('/images/refinerycms-blog/icons/folder_add.png');
-}
-.folder_edit_icon {
-  background-image: url('/images/refinerycms-blog/icons/folder_edit.png');
-}
-.settings_icon {
-  background-image: url('/images/refinerycms-blog/icons/cog.png');
-}
-.page_icon {
-  background-image: url('/images/refinerycms-blog/icons/page.png');
-}
-.page_copy_icon {
-  background-image: url('/images/refinerycms-blog/icons/page_copy.png');
-}
-.page_add_icon {
-  background-image: url('/images/refinerycms-blog/icons/page_add.png');
+.post_categories ul li {
+  margin: 0px;
+  padding: 0px;
+  display: inline;
 }
