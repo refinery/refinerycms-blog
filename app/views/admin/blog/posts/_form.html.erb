@@ -27,8 +27,12 @@
       <ul class='blog_categories'>
         <% @blog_categories.each do |category| %>
           <li>
-             <%= check_box_tag 'blog_post[category_ids][]', category.id, {}, :id => (id="blog_post_category_ids_#{category.id}") %>
-             <%= label_tag 'blog_post[category_ids][]', category.title, {:class => 'stripped', :for => id} %>
+             <%= check_box_tag 'blog_post[category_ids][]', category.id,
+                               @blog_post.categories.include?(category),
+                               :id => (id="blog_post_category_ids_#{category.id}") %>
+             <%= label_tag 'blog_post[category_ids][]', category.title,
+                           :class => 'stripped',
+                           :for => id %>
           </li>
         <% end %>
       </ul>
