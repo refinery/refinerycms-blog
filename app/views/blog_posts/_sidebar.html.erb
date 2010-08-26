@@ -1,0 +1,8 @@
+<h2><%= t('.categories') %></h2>
+<ul class='categories'>
+  <% @blog_categories.each do |category| %>
+    <li>
+      <%= category.title %>
+    </li>
+  <% end %>
+</ul>

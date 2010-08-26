@@ -4,6 +4,13 @@ en:
       title: Blog
   admin:
     blog:
+      categories:
+        category:
+          edit: Edit this category
+          delete: Delete this category forever
+      comments:
+        index:
+          no_items_yet: There are no {{type}} comments yet.
       posts:
         form:
           advanced_options: Advanced Options
@@ -15,9 +22,12 @@ en:
           view_live: View this blog post live <br/><em>(opens in a new window)</em>
           edit: Edit this blog post
           delete: Remove this blog post forever
-      comments:
-        index:
-          no_items_yet: There are no {{type}} comments yet.
+      settings:
+        notification_recipients:
+          value: Send notifications to
+          explanation: "Every time someone comments on a blog post, Refinery sends out an email to say there is a new comment."
+          hint: "When a new comment is added, Refinery will send an email notification to you."
+          example: "Enter your email address(es) like: jack@work.com, jill@office.com"
       submenu:
         categories:
           title: Categories
@@ -37,12 +47,6 @@ en:
           title: Settings
           moderation: Moderation
           update_notified: Update who gets notified
-      settings:
-        notification_recipients:
-          value: Send notifications to
-          explanation: "Every time someone comments on a blog post, Refinery sends out an email to say there is a new comment."
-          hint: "When a new comment is added, Refinery will send an email notification to you."
-          example: "Enter your email address(es) like: jack@work.com, jill@office.com"
   blog_posts:
     show:
       other: Other Blog Posts

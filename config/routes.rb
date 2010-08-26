@@ -1,5 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :blog_posts, :as => :blog
+  map.blog_post '/blog', :controller => :blog_posts, :action => :index
+  map.blog_post '/blog/:id', :controller => :blog_posts, :action => :show
+  map.blog_category '/blog/categories/:category_id', :controller => :blog_posts, :action => :index
 
   map.namespace(:admin, :path_prefix => 'refinery') do |admin|
     admin.namespace :blog do |blog|

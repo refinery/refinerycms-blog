@@ -1,12 +1,25 @@
 <% content_for :body_content_title, @blog_post.title %>
 
 <% content_for :body_content_left do %>
-    
   <%= @blog_post.body %>
 
+  <% if (categories = @blog_post.categories).any? %>
+    <%= t('.filed_in') %>
+    <ul>
+      <% categories.each do |category| %>
+        <li>
+          <%= link_to category.title, blog_category_url(category) %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
 <% end %>
 
 <% content_for :body_content_right do %>
+  <h2><%= t('.created_at_title') %></h2>
+  <%= t('.created_at', :when => @blog_post.created_at.strftime('%d %B %Y')) %>
+  <%= render :partial => "sidebar" %>
+
   <h2><%= t('.other') %></h2>
   <ul id="blog_post">
     <% @blog_posts.each do |blog_post| %>
