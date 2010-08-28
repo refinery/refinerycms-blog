@@ -1,3 +1,5 @@
+require 'filters_spam' if defined?(Bundler)
+
 module Refinery
   module Blog
     class << self

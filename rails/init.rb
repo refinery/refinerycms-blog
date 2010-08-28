@@ -1,3 +1,5 @@
+require File.expand_path('../../lib/refinerycms-blog', __FILE__)
+
 Refinery::Plugin.register do |plugin|
   plugin.name = "refinerycms_blog"
   plugin.url = {:controller => '/admin/blog/posts', :action => 'index'}
@@ -5,6 +7,4 @@ Refinery::Plugin.register do |plugin|
   plugin.activity = {
     :class => BlogPost
   }
-
-  plugin.directory = directory # tell refinery where this plugin is located
 end
