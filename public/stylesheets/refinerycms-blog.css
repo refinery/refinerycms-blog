@@ -11,3 +11,6 @@
   padding: 0px;
   display: inline;
 }
+.field.message_field label {
+  vertical-align: top;
+}

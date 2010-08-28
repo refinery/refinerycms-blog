@@ -59,3 +59,4 @@ en:
       filed_in: Filed in
       created_at_title: Publishing Date
       created_at: Posted on {{when}}
+      submit: Send comment

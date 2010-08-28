@@ -1,8 +1,18 @@
 class BlogComment < ActiveRecord::Base
 
+  filters_spam :author_field => :name,
+               :email_field => :email,
+               :message_field => :message
+
   belongs_to :post, :class_name => 'BlogPost'
 
-  acts_as_indexed :fields => [:name, :email, :body]
+  acts_as_indexed :fields => [:name, :email, :message]
+
+  alias_attribute :message, :body
+
+  validates_presence_of :name, :message
+  validates_format_of :email,
+                      :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i
 
   named_scope :unmoderated, :conditions => {:state => nil}
   named_scope :approved, :conditions => {:state => 'approved'}
