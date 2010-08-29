@@ -55,6 +55,10 @@ en:
     index:
       read_more: Read more
     show:
+      comments:
+        title: Comments
+        by: Posted by {{who}}
+        time_ago: '{{time}} ago'
       other: Other Blog Posts
       filed_in: Filed in
       created_at_title: Publishing Date

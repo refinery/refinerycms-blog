@@ -1,9 +1,9 @@
 GEM
   specs:
-    filters_spam (0.1)
+    filters_spam (0.2)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  filters_spam (~> 0.1)
+  filters_spam (~> 0.2)

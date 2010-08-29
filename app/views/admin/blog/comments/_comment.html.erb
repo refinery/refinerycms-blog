@@ -1,0 +1,17 @@
+<li class='clearfix record <%= cycle("on", "on-hover") %>' id="<%= dom_id(comment) -%>">
+  <span class='title'>
+    <%=h comment.name %>
+    <span class="preview"> - <%= truncate(comment.message, :length => 75) %></span>
+  </span>
+  <span class='actions'>
+    <%= link_to refinery_icon_tag("application_go.png"), blog_post_url(comment.post,
+                                                                       :anchor => "comment-#{comment.to_param}"),
+        :title => t('.view_live'),
+        :target => "_blank" %>
+    <%= link_to refinery_icon_tag("application_edit.png"), edit_admin_blog_comment_path(comment),
+         :title => t('.edit') %>
+    <%= link_to refinery_icon_tag("delete.png"), admin_blog_comment_path(comment),
+        :class => "cancel confirm-delete",
+        :title => t('.delete') %>
+  </span>
+</li>

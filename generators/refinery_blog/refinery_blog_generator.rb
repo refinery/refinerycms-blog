@@ -43,11 +43,12 @@ class RefineryBlogGenerator < Rails::Generator::NamedBase
           },{
             :table_name => 'blog_comments',
             :attributes => [
+              Rails::Generator::GeneratedAttribute.new('blog_post_id', 'integer'),
+              Rails::Generator::GeneratedAttribute.new('spam', 'boolean'),
               Rails::Generator::GeneratedAttribute.new('name', 'string'),
               Rails::Generator::GeneratedAttribute.new('email', 'string'),
               Rails::Generator::GeneratedAttribute.new('body', 'text'),
               Rails::Generator::GeneratedAttribute.new('state', 'string'),
-              Rails::Generator::GeneratedAttribute.new('blog_post_id', 'integer')
             ], :id => true
           },{
             :table_name => 'blog_categories',

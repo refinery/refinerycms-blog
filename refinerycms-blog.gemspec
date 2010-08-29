@@ -1,15 +1,15 @@
 Gem::Specification.new do |s|
   s.name              = %q{refinerycms-blog}
-  s.version           = %q{0.9.8.0.rc1}
+  s.version           = %q{0.9.8.0.rc2}
   s.description       = %q{A really straightforward open source Ruby on Rails blog engine designed for integration with RefineryCMS.}
-  s.date              = %q{2010-08-28}
+  s.date              = %q{2010-08-30}
   s.summary           = %q{Ruby on Rails blogging engine for RefineryCMS.}
   s.email             = %q{info@refinerycms.com}
   s.homepage          = %q{http://refinerycms.com}
   s.authors           = %w(Resolve\ Digital Neoteric\ Design)
   s.require_paths     = %w(lib)
   s.add_dependency    'refinerycms',  '~> 0.9.7.13'
-  s.add_dependency    'filters_spam', '~> 0.1'
+  s.add_dependency    'filters_spam', '~> 0.2'
 
   s.files             = %w(
     app
@@ -38,6 +38,8 @@ Gem::Specification.new do |s|
     app/views/admin/blog/categories/index.html.erb
     app/views/admin/blog/categories/new.html.erb
     app/views/admin/blog/comments
+    app/views/admin/blog/comments/_comment.html.erb
+    app/views/admin/blog/comments/_sortable_list.html.erb
     app/views/admin/blog/comments/index.html.erb
     app/views/admin/blog/posts
     app/views/admin/blog/posts/_form.html.erb
@@ -49,6 +51,8 @@ Gem::Specification.new do |s|
     app/views/admin/blog/settings
     app/views/admin/blog/settings/notification_recipients.html.erb
     app/views/blog_posts
+    app/views/blog_posts/_categories.html.erb
+    app/views/blog_posts/_comments.html.erb
     app/views/blog_posts/_side_bar.html.erb
     app/views/blog_posts/index.html.erb
     app/views/blog_posts/show.html.erb

@@ -2,7 +2,7 @@ class BlogComment < ActiveRecord::Base
 
   filters_spam :author_field => :name,
                :email_field => :email,
-               :message_field => :message
+               :message_field => :body
 
   belongs_to :post, :class_name => 'BlogPost'
 
@@ -17,6 +17,12 @@ class BlogComment < ActiveRecord::Base
   named_scope :unmoderated, :conditions => {:state => nil}
   named_scope :approved, :conditions => {:state => 'approved'}
   named_scope :rejected, :conditions => {:state => 'rejected'}
+
+  before_create do |comment|
+    unless BlogComment::Moderation.enabled?
+      comment.state = comment.spam? ? 'rejected' : 'approved'
+    end
+  end
 
   module Moderation
     class << self

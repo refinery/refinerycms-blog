@@ -20,4 +20,12 @@ class BlogPost < ActiveRecord::Base
     }.compact
   end
 
+  class << self
+    def comments_allowed?
+      RefinerySetting.find_or_set(:comments_allowed, true, {
+        :scoping => :blog
+      })
+    end
+  end
+
 end

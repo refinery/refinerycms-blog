@@ -3,9 +3,8 @@
 <% content_for :body_content_left do %>
   <%= @blog_post.body %>
 
-  <hr />
-
   <% if (categories = @blog_post.categories).any? %>
+    <hr />
     <div class='post_categories'>
       <span class='filed_in'><%= t('.filed_in') %></span>
       <ul>
@@ -18,9 +17,9 @@
     </div>
   <% end %>
 
-  <hr />
   <% if (comments = @blog_post.comments.approved).any? %>
-    <h2><%= t('.comments') %></h2>
+    <hr />
+    <h2><%= t('.comments.title') %></h2>
     <% comments.each do |comment| %>
       <div class='blog_comment_message'>
         <p>
@@ -28,29 +27,31 @@
         </p>
       </div>
       <p class='blog_comment_author'>
-        <%= t('.comment_by', :who => comment.name) %>
-        <%= ", #{time_ago_in_words(comment.created_at)}".html_safe %>
+        <%= t('.comments.by', :who => comment.name) %>
+        <%= t('.comments.time_ago', :time => time_ago_in_words(comment.created_at)) %>
       </p>
     <% end %>
-    <hr />
   <% end %>
 
-  <% form_for [:blog_post, @blog_comment] do |f| %>
-    <div class='field'>
-      <%= f.label :name %>
-      <%= f.text_field :name %>
-    </div>
-    <div class='field'>
-      <%= f.label :email %>
-      <%= f.text_field :email %>
-    </div>
-    <div class='field message_field'>
-      <%= f.label :message %>
-      <%= f.text_area :message, :rows => 6 %>
-    </div>
-    <div class='field form-actions'>
-      <%= f.submit t('.submit') %>
-    </div>
+  <% if BlogPost.comments_allowed? %>
+    <hr />
+    <% form_for [:blog_post, @blog_comment] do |f| %>
+      <div class='field'>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+      </div>
+      <div class='field'>
+        <%= f.label :email %>
+        <%= f.text_field :email %>
+      </div>
+      <div class='field message_field'>
+        <%= f.label :message %>
+        <%= f.text_area :message, :rows => 6 %>
+      </div>
+      <div class='field form-actions'>
+        <%= f.submit t('.submit') %>
+      </div>
+    <% end %>
   <% end %>
 <% end %>
 
