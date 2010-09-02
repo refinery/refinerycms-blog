@@ -8,11 +8,17 @@ if Rails.version < '3.0.0'
     map.namespace(:admin, :path_prefix => 'refinery') do |admin|
       admin.namespace :blog do |blog|
         blog.resources :posts
+        
         blog.resources :categories
+        
         blog.resources :comments, :collection => {
           :approved => :get,
           :rejected => :get
+        }, :member => {
+          :approved => :get,
+          :rejected => :get
         }
+        
         blog.resources :settings, :collection => {
           :notification_recipients => [:get, :post],
           :moderation => :get

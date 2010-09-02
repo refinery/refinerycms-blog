@@ -21,7 +21,7 @@
     <hr />
     <h2><%= t('.comments.title') %></h2>
     <% comments.each do |comment| %>
-      <div class='blog_comment_message'>
+      <div class='blog_comment_message' id='<%= "comment-#{comment.to_param}" %>'>
         <p>
           <%= comment.message.to_s.gsub("\r\n\r\n", "</p><p>").gsub("\r\n", "<br/>") %>
         </p>

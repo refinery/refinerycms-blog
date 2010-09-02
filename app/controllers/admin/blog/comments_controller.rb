@@ -10,13 +10,27 @@ class Admin::Blog::CommentsController < Admin::BaseController
   end
 
   def approved
-    @blog_comments = BlogComment.approved
-    render :action => 'index'
+    unless params[:id].present?
+      @blog_comments = BlogComment.approved
+      render :action => 'index'
+    else
+      @blog_comment = BlogComment.find(params[:id])
+      @blog_comment.approve!
+      flash[:notice] = t('admin.blog.comments.approved', :author => @blog_comment.name)
+      redirect_to :action => params[:return_to] || 'index'
+    end
   end
 
   def rejected
-    @blog_comments = BlogComment.rejected
-    render :action => 'index'
+    unless params[:id].present?
+      @blog_comments = BlogComment.rejected
+      render :action => 'index'
+    else
+      @blog_comment = BlogComment.find(params[:id])
+      @blog_comment.reject!
+      flash[:notice] = t('admin.blog.comments.rejected', :author => @blog_comment.name)
+      redirect_to :action => params[:return_to] || 'index'
+    end
   end
 
 end

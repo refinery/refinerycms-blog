@@ -28,7 +28,7 @@
     <% else %>
       <h3>
         <%= t('.no_items_yet',
-              :type => (t("admin.blog.submenu.comments.#{action_name}").downcase unless action_name == 'index')) %>
+              :type => t("admin.blog.submenu.comments.#{action_name.gsub('index', 'new')}").downcase) %>
       </h3>
     <% end %>
   <% end %>

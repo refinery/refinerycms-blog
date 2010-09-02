@@ -11,8 +11,22 @@ en:
         index:
           no_items_yet: There are no categories yet. Click "{{create}}" to add your first category.
       comments:
+        approved: The comment from '{{author}}' has been approved.
+        rejected: The comment from '{{author}}' has been rejected.
         index:
-          no_items_yet: There are no {{type}} comments yet.
+          no_items_yet: There are no {{type}} comments.
+        show:
+          comment: Comment
+          blog_post: Blog Post
+          from: Posted by
+          date: Posted at
+          message: Comment
+          details: Details
+          age: Age
+          actions: Actions
+          back: Back to all comments
+          reject: Reject this comment
+          approve: Approve this comment
       posts:
         form:
           advanced_options: Advanced Options
@@ -59,6 +73,8 @@ en:
         title: Comments
         by: Posted by {{who}}
         time_ago: '{{time}} ago'
+        thank_you: 'Thank you for commenting.'
+        thank_you_moderated: 'Thank you for commenting. Your message has been placed in the moderation queue and will appear shortly.'
       other: Other Blog Posts
       filed_in: Filed in
       created_at_title: Publishing Date

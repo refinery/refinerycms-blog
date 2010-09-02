@@ -4,7 +4,7 @@ class BlogComment < ActiveRecord::Base
                :email_field => :email,
                :message_field => :body
 
-  belongs_to :post, :class_name => 'BlogPost'
+  belongs_to :post, :class_name => 'BlogPost', :foreign_key => 'blog_post_id'
 
   acts_as_indexed :fields => [:name, :email, :message]
 
@@ -17,6 +17,26 @@ class BlogComment < ActiveRecord::Base
   named_scope :unmoderated, :conditions => {:state => nil}
   named_scope :approved, :conditions => {:state => 'approved'}
   named_scope :rejected, :conditions => {:state => 'rejected'}
+
+  def approve!
+    self.update_attribute(:state, 'approved')
+  end
+
+  def reject!
+    self.update_attribute(:state, 'rejected')
+  end
+
+  def rejected?
+    self.state == 'rejected'
+  end
+
+  def approved?
+    self.state == 'approved'
+  end
+
+  def unmoderated?
+    self.state.nil?
+  end
 
   before_create do |comment|
     unless BlogComment::Moderation.enabled?
