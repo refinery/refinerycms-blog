@@ -12,6 +12,11 @@ en:
           no_items_yet: There are no categories yet. Click "{{create}}" to add your first category.
       comments:
         approved: The comment from '{{author}}' has been approved.
+        comment:
+          view_live: View this comment live <br/><em>(opens in a new window)</em>
+          read: Read this comment
+          reject: Reject this comment
+          approve: Approve this comment
         rejected: The comment from '{{author}}' has been rejected.
         index:
           no_items_yet: There are no {{type}} comments.
