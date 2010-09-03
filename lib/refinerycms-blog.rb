@@ -8,7 +8,7 @@ module Refinery
   module Blog
 
     class Engine < Rails::Engine
-      initializer 'blog serves assets' do
+      initializer 'blog serves assets' do |app|
         app.middleware.insert_after ::ActionDispatch::Static, ::ActionDispatch::Static, "#{root}/public"
       end
 
