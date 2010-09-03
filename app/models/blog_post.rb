@@ -12,7 +12,11 @@ class BlogPost < ActiveRecord::Base
 
   default_scope :order => "created_at DESC"
 
-  named_scope :live, :conditions => {:draft => false}
+  if Rails.version < '3.0.0'
+    named_scope :live, :conditions => {:draft => false}
+  else
+    scope :live, :conditions => {:draft => false}
+  end
 
   def category_ids=(ids)
     self.categories = ids.reject{|id| id.blank?}.collect {|c_id|

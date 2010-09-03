@@ -1,5 +1,13 @@
 <% form_for [:admin, @blog_post] do |f| -%>
-  <%= f.error_messages %>
+  <% if Rails.version < '3.0.0'%>
+    <%= f.error_messages %>
+  <% else %>
+    <%= render :partial => "/shared/admin/error_messages",
+               :locals => {
+                 :object => f.object,
+                 :include_object_name => true
+               } %>
+  <% end %>
 
   <div class='field'>
     <%= f.label :title -%>

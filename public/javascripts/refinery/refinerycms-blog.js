@@ -1,6 +1,9 @@
 $(document).ready(function(){
   $('nav#actions.multilist > ul:not(.search_list) li a[href$=' + window.location.pathname + ']')
     .parent().addClass('selected');
+  if($('nav#actions.multilist > ul:not(.search_list) li.selected').length == 0) {
+    $('nav#actions.multilist > ul:not(.search_list) li a:nth(1)').parent().addClass('selected');
+  }
 
   $('nav#actions.multilist > ul:not(.search_list) li > a').each(function(i,a){
     if ($(this).data('dialog-title') == null) {
@@ -16,7 +19,7 @@ $(document).ready(function(){
       div.hide();
     }
     $(this).children('li:not(:first)').appendTo(div);
-    
+
     first_li.find('> a').click(function(e){
       $(this).parent().next('div').animate({
           opacity: 'toggle'
@@ -32,8 +35,8 @@ $(document).ready(function(){
   $('.success_icon, .failure_icon').bind('click', function(e) {
     $.get($(this).attr('href'), $.proxy(function(data){
       $(this).css('background-image', null)
-             .toggleClass('success_icon')
-             .toggleClass('failure_icon');
+             .removeClass('failure_icon').removeClass('success_icon')
+             .addClass(data.enabled ? 'success_icon' : 'failure_icon');
     }, $(this)));
     e.preventDefault();
   });

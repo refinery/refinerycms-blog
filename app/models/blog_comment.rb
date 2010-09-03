@@ -14,9 +14,15 @@ class BlogComment < ActiveRecord::Base
   validates_format_of :email,
                       :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i
 
-  named_scope :unmoderated, :conditions => {:state => nil}
-  named_scope :approved, :conditions => {:state => 'approved'}
-  named_scope :rejected, :conditions => {:state => 'rejected'}
+  if Rails.version < '3.0.0'
+    named_scope :unmoderated, :conditions => {:state => nil}
+    named_scope :approved, :conditions => {:state => 'approved'}
+    named_scope :rejected, :conditions => {:state => 'rejected'}
+  else
+    scope :unmoderated, :conditions => {:state => nil}
+    scope :approved, :conditions => {:state => 'approved'}
+    scope :rejected, :conditions => {:state => 'rejected'}
+  end
 
   def approve!
     self.update_attribute(:state, 'approved')
@@ -48,14 +54,18 @@ class BlogComment < ActiveRecord::Base
     class << self
       def enabled?
         RefinerySetting.find_or_set(:comment_moderation, true, {
-          :scoping => :blog
+          :scoping => :blog,
+          :restricted => false,
+          :callback_proc_as_string => nil
         })
       end
 
-      def toggle
+      def toggle!
         RefinerySetting[:comment_moderation] = {
           :value => !self.enabled?,
-          :scoping => :blog
+          :scoping => :blog,
+          :restricted => false,
+          :callback_proc_as_string => nil
         }
       end
     end
@@ -64,17 +74,21 @@ class BlogComment < ActiveRecord::Base
   module Notification
     class << self
       def recipients
-        RefinerySetting.find_or_set(
-          :comment_notification_recipients,
-          (Role[:refinery].users.first.email rescue ''),
-          {:scoping => :blog}
-        )
+        RefinerySetting.find_or_set(:comment_notification_recipients,
+                                    (Role[:refinery].users.first.email rescue ''),
+                                    {
+                                      :scoping => :blog,
+                                      :restricted => false,
+                                      :callback_proc_as_string => nil
+                                    })
       end
 
       def recipients=(emails)
         RefinerySetting[:comment_notification_recipients] = {
           :value => emails,
-          :scoping => :blog
+          :scoping => :blog,
+          :restricted => false,
+          :callback_proc_as_string => nil
         }
       end
     end

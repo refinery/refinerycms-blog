@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name              = %q{refinerycms-blog}
-  s.version           = %q{1.0.rc3}
+  s.version           = %q{1.0.rc4}
   s.description       = %q{A really straightforward open source Ruby on Rails blog engine designed for integration with RefineryCMS.}
   s.date              = %q{2010-09-03}
   s.summary           = %q{Ruby on Rails blogging engine for RefineryCMS.}
@@ -69,10 +69,22 @@ Gem::Specification.new do |s|
     generators/refinery_blog
     generators/refinery_blog/refinery_blog_generator.rb
     generators/refinery_blog/templates
-    generators/refinery_blog/templates/migration.rb
-    generators/refinery_blog/templates/seed.rb
+    generators/refinery_blog/templates/db
+    generators/refinery_blog/templates/db/migrate
+    generators/refinery_blog/templates/db/migrate/migration.rb
+    generators/refinery_blog/templates/db/seeds
+    generators/refinery_blog/templates/db/seeds/seed.rb
     lib
     lib/gemspec.rb
+    lib/generators
+    lib/generators/refinery_blog
+    lib/generators/refinery_blog/templates
+    lib/generators/refinery_blog/templates/db
+    lib/generators/refinery_blog/templates/db/migrate
+    lib/generators/refinery_blog/templates/db/migrate/migration_number_create_singular_name.rb
+    lib/generators/refinery_blog/templates/db/seeds
+    lib/generators/refinery_blog/templates/db/seeds/seed.rb
+    lib/generators/refinery_blog_generator.rb
     lib/refinerycms-blog.rb
     public
     public/images

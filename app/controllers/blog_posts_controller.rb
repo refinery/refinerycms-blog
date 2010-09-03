@@ -21,10 +21,10 @@ class BlogPostsController < ApplicationController
   def comment
     if (@blog_comment = @blog_post.comments.create(params[:blog_comment])).valid?
       if BlogComment::Moderation.enabled?
-        flash[:notice] = t('.comments.thank_you_moderated')
-        redirect_back_or_default blog_post_url(params[:id])
+        flash[:notice] = t('blog_posts.show.comments.thank_you_moderated')
+        redirect_to blog_post_url(params[:id])
       else
-        flash[:notice] = t('.comments.thank_you')
+        flash[:notice] = t('blog_posts.show.comments.thank_you')
         redirect_to blog_post_url(params[:id],
                                   :anchor => "comment-#{@blog_comment.to_param}")
       end

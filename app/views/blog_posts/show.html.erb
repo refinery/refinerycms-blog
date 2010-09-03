@@ -35,7 +35,21 @@
 
   <% if BlogPost.comments_allowed? %>
     <hr />
+    <% flash.each do |key, value| %>
+      <div id='flash' class="flash flash_<%= key %>">
+        <%= value %>
+      </div>
+    <% end %>
     <% form_for [:blog_post, @blog_comment] do |f| %>
+      <% if Rails.version < '3.0.0'%>
+        <%= f.error_messages %>
+      <% else %>
+        <%= render :partial => "/shared/admin/error_messages",
+                   :locals => {
+                     :object => f.object,
+                     :include_object_name => true
+                   } %>
+      <% end %>
       <div class='field'>
         <%= f.label :name %>
         <%= f.text_field :name %>

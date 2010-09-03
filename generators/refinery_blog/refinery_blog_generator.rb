@@ -12,24 +12,22 @@ class RefineryBlogGenerator < Rails::Generator::NamedBase
 
   def manifest
     record do |m|
-      if Rails.version < '3.0.0'
-        matches = Dir[
-          File.expand_path('../../../public/images/**/*', __FILE__),
-          File.expand_path('../../../public/stylesheets/**/*', __FILE__),
-          File.expand_path('../../../public/javascripts/**/*', __FILE__),
-        ]
-        matches.reject{|d| !File.directory?(d)}.each do |dir|
-          m.directory((%w(public) | dir.split('public/').last.split('/')).join('/'))
-        end
-        matches.reject{|f| File.directory?(f)}.each do |image|
-          path = (%w(public) | image.split('public/').last.split('/'))[0...-1].join('/')
-          m.template "../../../#{path}/#{image.split('/').last}", "#{path}/#{image.split('/').last}"
-        end
+      matches = Dir[
+        File.expand_path('../../../public/images/**/*', __FILE__),
+        File.expand_path('../../../public/stylesheets/**/*', __FILE__),
+        File.expand_path('../../../public/javascripts/**/*', __FILE__),
+      ]
+      matches.reject{|d| !File.directory?(d)}.each do |dir|
+        m.directory((%w(public) | dir.split('public/').last.split('/')).join('/'))
+      end
+      matches.reject{|f| File.directory?(f)}.each do |image|
+        path = (%w(public) | image.split('public/').last.split('/'))[0...-1].join('/')
+        m.template "../../../#{path}/#{image.split('/').last}", "#{path}/#{image.split('/').last}"
       end
 
-      m.template('seed.rb', 'db/seeds/refinerycms_blog.rb')
+      m.template('db/seeds/seed.rb', 'db/seeds/refinerycms_blog.rb')
 
-      m.migration_template('migration.rb', 'db/migrate',
+      m.migration_template('db/migrate/migration.rb', 'db/migrate',
         :migration_file_name => 'create_blog_structure',
         :assigns => {
           :migration_name => 'CreateBlogStructure',

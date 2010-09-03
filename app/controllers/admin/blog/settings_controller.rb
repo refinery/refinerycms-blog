@@ -16,7 +16,7 @@ class Admin::Blog::SettingsController < Admin::BaseController
   end
 
   def moderation
-    enabled = BlogComment::Moderation.toggle
+    enabled = BlogComment::Moderation.toggle!
     unless request.xhr?
       redirect_back_or_default(admin_blog_posts_path)
     else
