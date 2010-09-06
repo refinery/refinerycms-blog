@@ -1,8 +1,8 @@
 Gem::Specification.new do |s|
   s.name              = %q{refinerycms-blog}
-  s.version           = %q{1.0.rc4}
+  s.version           = %q{1.0.rc5}
   s.description       = %q{A really straightforward open source Ruby on Rails blog engine designed for integration with RefineryCMS.}
-  s.date              = %q{2010-09-03}
+  s.date              = %q{2010-09-06}
   s.summary           = %q{Ruby on Rails blogging engine for RefineryCMS.}
   s.email             = %q{info@refinerycms.com}
   s.homepage          = %q{http://refinerycms.com}
@@ -20,7 +20,10 @@ Gem::Specification.new do |s|
     app/controllers/admin/blog/comments_controller.rb
     app/controllers/admin/blog/posts_controller.rb
     app/controllers/admin/blog/settings_controller.rb
-    app/controllers/blog_posts_controller.rb
+    app/controllers/blog
+    app/controllers/blog/categories_controller.rb
+    app/controllers/blog/posts_controller.rb
+    app/controllers/blog_controller.rb
     app/helpers
     app/models
     app/models/blog_category.rb
@@ -51,12 +54,17 @@ Gem::Specification.new do |s|
     app/views/admin/blog/posts/new.html.erb
     app/views/admin/blog/settings
     app/views/admin/blog/settings/notification_recipients.html.erb
-    app/views/blog_posts
-    app/views/blog_posts/_categories.html.erb
-    app/views/blog_posts/_comments.html.erb
-    app/views/blog_posts/_side_bar.html.erb
-    app/views/blog_posts/index.html.erb
-    app/views/blog_posts/show.html.erb
+    app/views/blog
+    app/views/blog/categories
+    app/views/blog/categories/show.html.erb
+    app/views/blog/posts
+    app/views/blog/posts/_comment.html.erb
+    app/views/blog/posts/index.html.erb
+    app/views/blog/posts/show.html.erb
+    app/views/blog/shared
+    app/views/blog/shared/_categories.html.erb
+    app/views/blog/shared/_post.html.erb
+    app/views/blog/shared/_posts.html.erb
     config
     config/locales
     config/locales/en.yml
