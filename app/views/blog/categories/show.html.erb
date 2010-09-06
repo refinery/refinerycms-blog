@@ -1,0 +1,20 @@
+<% content_for :body_content_title, @category.title %>
+
+<% content_for :body_content_left do %>
+  <% if @category.posts.any? %>
+  <ul id="blog_posts">
+    <%= render :partial => "/blog/shared/post", :collection => @category.posts %>
+  </ul>
+  <% else %>
+    <p>
+      <%= t('.no_posts') %>
+    </p>
+  <% end %>
+<% end %>
+
+<% content_for :body_content_right do %>
+  <%= render :partial => "/blog/shared/categories" %>
+<% end %>
+
+<%= render :partial => "/shared/content_page" %>
+<% content_for :head, stylesheet_link_tag('refinerycms-blog') %>

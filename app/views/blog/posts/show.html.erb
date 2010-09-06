@@ -1,46 +1,38 @@
 <% content_for :body_content_title, @blog_post.title %>
 
 <% content_for :body_content_left do %>
-  <%= t('.created_at', :when => @blog_post.created_at.strftime('%d %B %Y')) %>
-  <%= @blog_post.body %>
-
-  <% if (categories = @blog_post.categories).any? %>
-    <hr />
-    <div class='post_categories'>
-      <span class='filed_in'><%= t('.filed_in') %></span>
-      <ul>
+  <p class='posted_at'>
+    <%= t('blog.shared.posts.created_at', :when => @blog_post.created_at.strftime('%d %B %Y')) %>.
+    
+    <% if (categories = @blog_post.categories).any? %>
+      <span class='filed_in'>
+        <%= t('.filed_in') %>
         <% categories.each_with_index do |category, index| %>
-          <li>
             <%= link_to category.title, blog_category_url(category) -%><%= ',' if index < ((categories.length) - 1) %>
-          </li>
         <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <% if (comments = @blog_post.comments.approved).any? %>
-    <hr />
+      </span>
+    <% end %>
+  </p>
+  <%= @blog_post.body %>
+  
+  <% if BlogPost.comments_allowed? %>
     <h2><%= t('.comments.title') %></h2>
-    <% comments.each do |comment| %>
-      <div class='blog_comment_message' id='<%= "comment-#{comment.to_param}" %>'>
-        <p>
-          <%= comment.message.to_s.gsub("\r\n\r\n", "</p><p>").gsub("\r\n", "<br/>") %>
-        </p>
-      </div>
-      <p class='blog_comment_author'>
-        <%= t('.comments.by', :who => comment.name) %>
-        <%= t('.comments.time_ago', :time => time_ago_in_words(comment.created_at)) %>
+  
+    <% if (comments = @blog_post.comments.approved).any? %>
+      <%= render :partial => "comment", :collection => comments %>
+    <% else %>
+      <p>
+        <%= t('blog.shared.comments.none') %>.
       </p>
     <% end %>
-  <% end %>
-
-  <% if BlogPost.comments_allowed? %>
-    <hr />
+  
     <% flash.each do |key, value| %>
       <div id='flash' class="flash flash_<%= key %>">
         <%= value %>
       </div>
     <% end %>
+  
+    <h2><%= t('.comments.add') %></h2>
     <% form_for [:blog_post, @blog_comment] do |f| %>
       <% if Rails.version < '3.0.0'%>
         <%= f.error_messages %>
@@ -71,19 +63,9 @@
 <% end %>
 
 <% content_for :body_content_right do %>
-  <%= render :partial => "side_bar" %>
-
-  <h2><%= t('.other') %></h2>
-  <ul id="blog_posts">
-    <% @blog_posts.each do |blog_post| %>
-      <li>
-        <%= link_to blog_post.title, blog_post_url(blog_post) %>
-      </li>
-    <% end %>
-  </ul>
+  <%= render :partial => "/blog/shared/categories" %>
+  <%= render :partial => "/blog/shared/posts" %>
 <% end %>
 
 <%= render :partial => "/shared/content_page" %>
-<% content_for :head do %>
-  <%= stylesheet_link_tag 'refinerycms-blog' %>
-<% end %>
+<% content_for :head, stylesheet_link_tag('refinerycms-blog') %>

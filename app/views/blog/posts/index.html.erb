@@ -1,0 +1,16 @@
+<% content_for :body_content_left do %>
+  <%= @page[Page.default_parts.first.to_sym] %>
+
+  <ul id="blog_posts">
+    <%= render :partial => "/blog/shared/post", :collection => @blog_posts %>
+  </ul>
+<% end %>
+
+<% content_for :body_content_right do %>
+  <%= @page[Page.default_parts.second.to_sym] %>
+
+  <%= render :partial => "/blog/shared/categories" %>
+<% end %>
+
+<%= render :partial => "/shared/content_page" %>
+<% content_for :head, stylesheet_link_tag('refinerycms-blog') %>

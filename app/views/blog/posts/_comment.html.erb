@@ -1,0 +1,9 @@
+<div class='blog_comment_message' id='<%= "comment-#{comment.to_param}" %>'>
+  <p>
+    <%= comment.message.to_s.gsub("\r\n\r\n", "</p><p>").gsub("\r\n", "<br/>") %>
+  </p>
+</div>
+<p class='blog_comment_author'>
+  <%= t('.by', :who => comment.name) %>
+  <%= t('.time_ago', :time => time_ago_in_words(comment.created_at)) %>
+</p>
