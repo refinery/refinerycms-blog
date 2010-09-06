@@ -1,5 +1,5 @@
 <h2><%= t('.categories') %></h2>
-<ul class='categories'>
+<ul id='categories'>
   <% @blog_categories.each do |category| %>
     <li>
       <%= link_to category.title, blog_category_url(category) %>
