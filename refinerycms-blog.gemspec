@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name              = %q{refinerycms-blog}
-  s.version           = %q{1.0.rc6}
+  s.version           = %q{1.0.rc7}
   s.description       = %q{A really straightforward open source Ruby on Rails blog engine designed for integration with RefineryCMS.}
   s.date              = %q{2010-09-07}
   s.summary           = %q{Ruby on Rails blogging engine for RefineryCMS.}
