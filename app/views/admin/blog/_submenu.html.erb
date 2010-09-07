@@ -24,7 +24,12 @@
 
   <ul class='collapsible_menu'>
     <li>
-      <%= link_to t('.comments.title'), '#',
+      <% if BlogComment.unmoderated.any? %>
+        <% title = t('.comments.title_with_count', :new_count => BlogComment.unmoderated.size) %>
+      <% else %>
+        <% title = t('.comments.title') %>
+      <% end %>
+      <%= link_to title, '#',
                   :class => 'comments_icon' %>
     </li>
     <li>

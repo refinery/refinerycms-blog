@@ -31,3 +31,9 @@
 .page_add_icon {
   background-image: url('/images/refinerycms-blog/icons/page_add.png');
 }
+.collapsible_menu li:first {
+  background-image: url('/images/refinerycms-blog/icons/up.png');  
+}
+.collapsible_menu li.closed {
+  background-image: url('/images/refinerycms-blog/icons/down.png');
+}

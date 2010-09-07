@@ -57,6 +57,7 @@ en:
           new: Create new category
         comments:
           title: Comments
+          title_with_count: 'Comments ({{new_count}} new)'
           new: New
           unmoderated: New
           approved: Approved
