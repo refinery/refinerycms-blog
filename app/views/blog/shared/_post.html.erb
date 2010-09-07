@@ -1,11 +1,13 @@
-<li class='clearfix'>
+<li>
   <h2><%= link_to post.title, blog_post_url(post) %></h2>
   <p class='posted_at'>
     <%= t('blog.shared.posts.created_at', :when => post.created_at.strftime('%d %B %Y')) %>
   </p>
-  <%= truncate(post.body, 
-               :length => RefinerySetting.find_or_set(:blog_post_teaser_length, 250), 
-               :preserve_html_tags => true) %>
+  <div clas='clearfix'>
+    <%= truncate(post.body, 
+                 :length => RefinerySetting.find_or_set(:blog_post_teaser_length, 250), 
+                 :preserve_html_tags => true) %>
+  </div>
   <p>
     <%= link_to t('blog.shared.posts.read_more'), blog_post_url(post) %>
     
