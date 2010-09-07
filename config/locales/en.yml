@@ -85,7 +85,7 @@ en:
         no_posts: There are no posts here yet.
     posts:
       comment: comment
-      comment:
+      comments:
         by: 'Posted by {{who}}'
         time_ago: '{{time}} ago'
         thank_you: 'Thank you for commenting.'
