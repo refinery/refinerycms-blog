@@ -102,12 +102,14 @@ Gem::Specification.new do |s|
     public/images/refinerycms-blog/icons/comment_cross.png
     public/images/refinerycms-blog/icons/comment_tick.png
     public/images/refinerycms-blog/icons/comments.png
+    public/images/refinerycms-blog/icons/down.gif
     public/images/refinerycms-blog/icons/folder.png
     public/images/refinerycms-blog/icons/folder_add.png
     public/images/refinerycms-blog/icons/folder_edit.png
     public/images/refinerycms-blog/icons/page.png
     public/images/refinerycms-blog/icons/page_add.png
     public/images/refinerycms-blog/icons/page_copy.png
+    public/images/refinerycms-blog/icons/up.gif
     public/javascripts
     public/javascripts/refinery
     public/javascripts/refinery/refinerycms-blog.js
