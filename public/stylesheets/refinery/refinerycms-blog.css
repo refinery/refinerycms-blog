@@ -31,9 +31,21 @@
 .page_add_icon {
   background-image: url('/images/refinerycms-blog/icons/page_add.png');
 }
-.collapsible_menu li:first {
-  background-image: url('/images/refinerycms-blog/icons/up.png');  
+ul.collapsible_menu li {
+  position: relative;
 }
-.collapsible_menu li.closed {
-  background-image: url('/images/refinerycms-blog/icons/down.png');
+ul.collapsible_menu li span.arrow {
+  background-repeat: no-repeat;
+  position: absolute;
+  right: 10px;
+  top: 13px;
+  width: 11px;
+  height: 7px;
+  cursor: pointer;
+}
+ul.collapsible_menu li span.arrow {
+  background-image: url('/images/refinerycms-blog/icons/up.gif');
+}
+ul.collapsible_menu li.closed span.arrow {
+  background-image: url('/images/refinerycms-blog/icons/down.gif');
 }

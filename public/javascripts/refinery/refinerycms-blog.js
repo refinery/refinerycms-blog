@@ -15,15 +15,19 @@ $(document).ready(function(){
 
   $('ul.collapsible_menu').each(function(i, ul) {
     (first_li = $(this).children('li:first')).after(div=$("<div></div>"));
-
+    
+    $("<span class='arrow'>&nbsp;</span>").appendTo(first_li)
+    
     if (($(this).children('li.selected')).length == 0) {
       div.hide();
       first_li.addClass("closed");
     }
     $(this).children('li:not(:first)').appendTo(div);
 
-    first_li.find('> a').click(function(e){
-      first_li.toggleClass("closed");
+    first_li.find('> a, > span.arrow').click(function(e){
+      $(this).parent().toggleClass("closed");
+      $(this).parent().toggleClass("open");
+
       $(this).parent().next('div').animate({
           opacity: 'toggle'
           , height: 'toggle'
