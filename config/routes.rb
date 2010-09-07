@@ -30,11 +30,11 @@ if Rails.version < '3.0.0'
   end
 else
   Refinery::Application.routes.draw do
-    scope(:path => 'blog') do
+    scope(:path => 'blog', :module => 'blog') do
       root :to => 'posts#index'
-      match ':id', :to => 'posts#show', :as => 'post'
-      match 'categories/:id', :to => 'categories#show', :as => 'category'
-      match ':id/comments', :to => 'posts#comment', :as => 'post_blog_comments'
+      match ':id', :to => 'posts#show', :as => 'blog_post'
+      match 'categories/:id', :to => 'categories#show', :as => 'blog_category'
+      match ':id/comments', :to => 'posts#comment', :as => 'blog_post_blog_comments'
     end
 
     scope(:path => 'refinery', :as => 'admin', :module => 'admin') do
