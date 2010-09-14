@@ -1,6 +1,11 @@
 # About
 
-Simple blog engine for [Refinery CMS](http://refinerycms.com). It supports posts, categories and comments (with the option of moderation).
+Simple blog engine for [Refinery CMS](http://refinerycms.com). It supports posts, categories and comments.
+
+Options:
+
+* Comment moderation
+* [ShareThis.com](http://sharethis.com) support on posts. Set your key in Refinery's settings area to enable this.
 
 # Install
 
