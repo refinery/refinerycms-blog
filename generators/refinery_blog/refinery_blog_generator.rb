@@ -24,7 +24,8 @@ class RefineryBlogGenerator < Rails::Generator::NamedBase
         path = (%w(public) | image.split('public/').last.split('/'))[0...-1].join('/')
         m.template "../../../#{path}/#{image.split('/').last}", "#{path}/#{image.split('/').last}"
       end
-
+      
+      m.directory('db/seeds')
       m.template('db/seeds/seed.rb', 'db/seeds/refinerycms_blog.rb')
 
       m.migration_template('db/migrate/migration.rb', 'db/migrate',
