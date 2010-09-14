@@ -42,7 +42,7 @@ module Refinery
 
     class << self
       def version
-        %q{1.0.rc9}
+        %q{1.0.rc10}
       end
     end
   end
