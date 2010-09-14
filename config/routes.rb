@@ -1,10 +1,11 @@
 if Rails.version < '3.0.0'
   ActionController::Routing::Routes.draw do |map|
     map.namespace(:blog) do |blog|
+      blog.rss_feed 'feed.rss', :controller => 'posts', :action => 'index', :format => 'rss'
       blog.root :controller => "posts", :action => 'index'
-      blog.post '/blog/:id', :controller => "posts", :action => 'show'
-      blog.category '/blog/categories/:id', :controller => "categories", :action => 'show'
-      blog.post_blog_comments '/blog/:id/comments', :controller => 'posts', :action => 'comment'
+      blog.post ':id', :controller => "posts", :action => 'show'
+      blog.category 'categories/:id', :controller => "categories", :action => 'show'
+      blog.post_blog_comments ':id/comments', :controller => 'posts', :action => 'comment'
     end
 
     map.namespace(:admin, :path_prefix => 'refinery') do |admin|
@@ -32,6 +33,7 @@ else
   Refinery::Application.routes.draw do
     scope(:path => 'blog', :module => 'blog') do
       root :to => 'posts#index'
+      match 'feed.rss', :to => 'posts#index.rss', :as => 'rss_feed'
       match ':id', :to => 'posts#show', :as => 'blog_post'
       match 'categories/:id', :to => 'categories#show', :as => 'blog_category'
       match ':id/comments', :to => 'posts#comment', :as => 'blog_post_blog_comments'

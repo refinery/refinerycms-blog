@@ -2,12 +2,16 @@ class Blog::PostsController < BlogController
 
   before_filter :find_all_blog_posts
   before_filter :find_blog_post, :only => [:show, :comment]
-
+  
+  def index
+    respond_to do |format|
+      format.html
+      format.rss
+    end
+  end
+  
   def show
     @blog_comment = BlogComment.new
-
-    # you can use meta fields from your model instead (e.g. browser_title)
-    # by swapping @page for @blogs in the line below:
     present(@page)
   end
 
