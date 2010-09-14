@@ -4,6 +4,6 @@
   </p>
 </div>
 <p class='blog_comment_author'>
-  <%= t('.by', :who => comment.name) %>
-  <%= t('.time_ago', :time => time_ago_in_words(comment.created_at)) %>
+  <%= t('blog.posts.comments.by', :who => comment.name) %>,
+  <%= t('blog.posts.comments.time_ago', :time => time_ago_in_words(comment.created_at)) %>
 </p>
