@@ -1,3 +1,12 @@
+<% content_for :head do %>
+  <% if BlogPost::ShareThis.enabled? %>
+    <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+    <script type="text/javascript">
+      stLight.options({publisher:'<%= BlogPost::ShareThis.key %>'});
+    </script>
+  <% end %>
+<% end %>
+
 <% content_for :body_content_title, @blog_post.title %>
 
 <% content_for :body_content_left do %>
@@ -15,6 +24,10 @@
   </p>
   <%= @blog_post.body %>
   
+  <% if BlogPost::ShareThis.enabled? %>
+    <span class="st_sharethis" displayText="ShareThis"></span>
+  <% end %>
+    
   <% if BlogPost.comments_allowed? %>
     <h2><%= t('.comments.title') %></h2>
   

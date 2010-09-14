@@ -31,5 +31,22 @@ class BlogPost < ActiveRecord::Base
       })
     end
   end
+  
+  module ShareThis
+    DEFAULT_KEY = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+    
+    class << self
+      def key
+        RefinerySetting.find_or_set(:share_this_key, BlogPost::ShareThis::DEFAULT_KEY, {
+          :scoping => :blog
+        })
+      end
+      
+      def enabled?
+        key = BlogPost::ShareThis.key
+        key.present? and key != BlogPost::ShareThis::DEFAULT_KEY
+      end
+    end
+  end
 
 end
