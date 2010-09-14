@@ -1,15 +1,19 @@
-Install
+# About
 
-Open up your GemFile and add at the bottom this line
+Basic blog plugin for Refinery CMS. It supports posts, categories and comments (with the option of moderation).
 
-gem 'refinerycms-blog', '= 1.0.rc6'
+# Install
+
+Open up your ``Gemfile`` and add at the bottom this line
+
+    gem 'refinerycms-blog', '= 1.0.rc9'
 
 Now run ``bundle install``
 
-Next to install it run:
+Next to install the blog plugin run:
 
-ruby script/generate refinery_blog
+    ruby script/generate refinery_blog
 
-Finally migration your database and you're done.
+Finally migrate your database and you're done.
 
-rake db:migrate
+    rake db:migrate
