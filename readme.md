@@ -1,6 +1,6 @@
 # About
 
-Basic blog plugin for Refinery CMS. It supports posts, categories and comments (with the option of moderation).
+Simple blog engine for [Refinery CMS](http://refinerycms.com). It supports posts, categories and comments (with the option of moderation).
 
 # Install
 
