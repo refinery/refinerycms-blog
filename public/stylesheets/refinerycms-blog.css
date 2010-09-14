@@ -14,3 +14,8 @@
 .field.message_field label {
   vertical-align: top;
 }
+#rss_feed_subscribe {
+  display: block;
+  padding-left: 25px;
+  background: url('/images/refinerycms-blog/rss-feed.png') no-repeat;
+}

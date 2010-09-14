@@ -74,6 +74,8 @@ en:
     shared:
       categories:
         title: Categories
+      rss_feed:
+        title: RSS Feed
       posts:
         other: Other Posts
         created_at: 'Posted on {{when}}'
