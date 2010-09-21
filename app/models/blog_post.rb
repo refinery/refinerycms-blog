@@ -10,7 +10,7 @@ class BlogPost < ActiveRecord::Base
 
   has_friendly_id :title, :use_slug => true
 
-  default_scope :order => "created_at DESC"
+  default_scope :order => "published_at DESC"
 
   if Rails.version < '3.0.0'
     named_scope :live, lambda { {:conditions => ["published_at < ? and draft = ?", Time.now, false]} }

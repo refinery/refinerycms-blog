@@ -11,7 +11,7 @@
 
 <% content_for :body_content_left do %>
   <p class='posted_at'>
-    <%= t('blog.shared.posts.created_at', :when => @blog_post.created_at.strftime('%d %B %Y')) %>.
+    <%= t('blog.shared.posts.created_at', :when => @blog_post.published_at.strftime('%d %B %Y')) %>.
     
     <% if (categories = @blog_post.categories).any? %>
       <span class='filed_in'>
