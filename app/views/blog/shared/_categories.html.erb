@@ -2,7 +2,7 @@
 <ul id='categories'>
   <% @blog_categories.each do |category| %>
     <li<%= " class='selected'" if @category.present? and @category.id == category.id %>>
-      <%= link_to "#{category.title} (#{category.posts.count})", blog_category_url(category) %>
+      <%= link_to "#{category.title} (#{category.post_count})", blog_category_url(category) %>
     </li>
   <% end %>
 </ul>

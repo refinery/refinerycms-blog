@@ -37,6 +37,7 @@ en:
           advanced_options: Advanced Options
           toggle_advanced_options: Click to access meta tag settings and menu options
           save_as_draft: Save as Draft
+          published_at: Publish Date
         index:
           no_items_yet: 'There are no Blog Posts yet. Click "{{create}}" to add your first blog post.'
         post:

@@ -13,11 +13,15 @@ class BlogPost < ActiveRecord::Base
   default_scope :order => "created_at DESC"
 
   if Rails.version < '3.0.0'
-    named_scope :live, :conditions => {:draft => false}
+    named_scope :live, lambda { {:conditions => ["published_at < ? and draft = ?", Time.now, false]} }
   else
-    scope :live, :conditions => {:draft => false}
+    scope :live, lambda { where( "published_at < ? and draft = ?", Time.now, false) }
   end
-
+  
+  def live?
+    !draft and published_at <= Time.now
+  end
+  
   def category_ids=(ids)
     self.categories = ids.reject{|id| id.blank?}.collect {|c_id|
       BlogCategory.find(c_id.to_i) rescue nil
