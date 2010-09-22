@@ -2,9 +2,9 @@
 
 <% content_for :body_content_left do %>
   <% if @category.posts.any? %>
-  <ul id="blog_posts">
+  <article id="blog_posts">
     <%= render :partial => "/blog/shared/post", :collection => @category.posts %>
-  </ul>
+  </article>
   <% else %>
     <p>
       <%= t('.no_posts') %>
