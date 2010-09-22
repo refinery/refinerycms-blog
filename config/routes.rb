@@ -32,8 +32,8 @@ if Rails.version < '3.0.0'
 else
   Refinery::Application.routes.draw do
     scope(:path => 'blog', :module => 'blog') do
-      root :to => 'posts#index'
-      match 'feed.rss', :to => 'posts#index.rss', :as => 'rss_feed'
+      root :to => 'posts#index', :as => 'blog_root'
+      match 'feed.rss', :to => 'posts#index.rss', :as => 'blog_rss_feed'
       match ':id', :to => 'posts#show', :as => 'blog_post'
       match 'categories/:id', :to => 'categories#show', :as => 'blog_category'
       match ':id/comments', :to => 'posts#comment', :as => 'blog_post_blog_comments'
