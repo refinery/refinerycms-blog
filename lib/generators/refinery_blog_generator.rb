@@ -16,7 +16,8 @@ class RefineryBlogGenerator < Rails::Generators::NamedBase
        :attributes => [
          Rails::Generators::GeneratedAttribute.new('title', 'string'),
          Rails::Generators::GeneratedAttribute.new('body', 'text'),
-         Rails::Generators::GeneratedAttribute.new('draft', 'boolean')
+         Rails::Generators::GeneratedAttribute.new('draft', 'boolean'),
+         Rails::Generators::GeneratedAttribute.new('published_at', 'datetime')
        ], :id => true
      },{
        :table_name => 'blog_comments',
