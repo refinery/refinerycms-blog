@@ -1,7 +1,7 @@
 <% content_for :head do %>
   <% if BlogPost::ShareThis.enabled? %>
-    <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
-    <script type="text/javascript">
+    <script src="http://w.sharethis.com/button/buttons.js"></script>
+    <script>
       stLight.options({publisher:'<%= BlogPost::ShareThis.key %>'});
     </script>
   <% end %>
@@ -10,68 +10,73 @@
 <% content_for :body_content_title, @blog_post.title %>
 
 <% content_for :body_content_left do %>
-  <p class='posted_at'>
-    <%= t('blog.shared.posts.created_at', :when => @blog_post.published_at.strftime('%d %B %Y')) %>.
+  <article id="show_blog_post">
+    <header>
+      <p class='posted_at'>
+        <%= t('blog.shared.posts.created_at', :when => @blog_post.published_at.strftime('%d %B %Y')) %>.
     
-    <% if (categories = @blog_post.categories).any? %>
-      <span class='filed_in'>
-        <%= t('.filed_in') %>
-        <% categories.each_with_index do |category, index| %>
-            <%= link_to category.title, blog_category_url(category) -%><%= ',' if index < ((categories.length) - 1) %>
+        <% if (categories = @blog_post.categories).any? %>
+          <span class='filed_in'>
+            <%= t('.filed_in') %>
+            <% categories.each_with_index do |category, index| %>
+                <%= link_to category.title, blog_category_url(category) -%><%= ',' if index < ((categories.length) - 1) %>
+            <% end %>
+          </span>
         <% end %>
-      </span>
-    <% end %>
-  </p>
-  <%= @blog_post.body %>
-  
-  <% if BlogPost::ShareThis.enabled? %>
-    <span class="st_sharethis" displayText="ShareThis"></span>
-  <% end %>
-    
-  <% if BlogPost.comments_allowed? %>
-    <h2><%= t('.comments.title') %></h2>
-  
-    <% if (comments = @blog_post.comments.approved).any? %>
-      <%= render :partial => "comment", :collection => comments %>
-    <% else %>
-      <p>
-        <%= t('blog.shared.comments.none') %>.
       </p>
-    <% end %>
+    </header>
+    <%=raw @blog_post.body %>
   
-    <% flash.each do |key, value| %>
-      <div id='flash' class="flash flash_<%= key %>">
-        <%= value %>
-      </div>
+    <% if BlogPost::ShareThis.enabled? %>
+      <span class="st_sharethis" displayText="ShareThis"></span>
     <% end %>
-  
-    <h2><%= t('.comments.add') %></h2>
-    <% form_for [:blog_post, @blog_comment] do |f| %>
-      <% if Rails.version < '3.0.0'%>
-        <%= f.error_messages %>
+  </article>  
+  <% if BlogPost.comments_allowed? %>
+    <aside id="comments">
+      <h2><%= t('.comments.title') %></h2>
+
+      <% if (comments = @blog_post.comments.approved).any? %>
+        <%= render :partial => "comment", :collection => comments %>
       <% else %>
-        <%= render :partial => "/shared/admin/error_messages",
-                   :locals => {
-                     :object => f.object,
-                     :include_object_name => true
-                   } %>
+        <p>
+          <%= t('blog.shared.comments.none') %>.
+        </p>
       <% end %>
-      <div class='field'>
-        <%= f.label :name %>
-        <%= f.text_field :name %>
-      </div>
-      <div class='field'>
-        <%= f.label :email %>
-        <%= f.text_field :email %>
-      </div>
-      <div class='field message_field'>
-        <%= f.label :message %>
-        <%= f.text_area :message, :rows => 6 %>
-      </div>
-      <div class='field form-actions'>
-        <%= f.submit t('.submit') %>
-      </div>
-    <% end %>
+
+      <% flash.each do |key, value| %>
+        <div id='flash' class="flash flash_<%= key %>">
+          <%= value %>
+        </div>
+      <% end %>
+
+      <h2><%= t('.comments.add') %></h2>
+      <% form_for [:blog_post, @blog_comment] do |f| %>
+        <% if Rails.version < '3.0.0'%>
+          <%= f.error_messages %>
+        <% else %>
+          <%= render :partial => "/shared/admin/error_messages",
+                     :locals => {
+                       :object => f.object,
+                       :include_object_name => true
+                     } %>
+        <% end %>
+        <div class='field'>
+          <%= f.label :name %>
+          <%= f.text_field :name %>
+        </div>
+        <div class='field'>
+          <%= f.label :email %>
+          <%= f.email_field :email %>
+        </div>
+        <div class='field message_field'>
+          <%= f.label :message %>
+          <%= f.text_area :message, :rows => 6 %>
+        </div>
+        <div class='field form-actions'>
+          <%= f.submit t('.submit') %>
+        </div>
+      <% end %>
+    </aside>
   <% end %>
 <% end %>
 

@@ -1,9 +1,9 @@
 <% content_for :body_content_left do %>
   <%= @page[Page.default_parts.first.to_sym] %>
 
-  <ul id="blog_posts">
+  <section id="blog_posts">
     <%= render :partial => "/blog/shared/post", :collection => @blog_posts %>
-  </ul>
+  </section>
 <% end %>
 
 <% content_for :body_content_right do %>

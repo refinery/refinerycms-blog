@@ -1,24 +1,28 @@
 <% if post.live? %>
-  <li>
-    <h2><%= link_to post.title, blog_post_url(post) %></h2>
-    <p class='posted_at'>
-      <%= t('blog.shared.posts.created_at', :when => post.published_at.strftime('%d %B %Y')) %>
-    </p>
-    <div clas='clearfix'>
+  <article class="blog_post" id="<%= dom_id(post) %>">
+    <header>
+      <h1><%= link_to post.title, blog_post_url(post) %></h1>
+      <p class='posted_at'>
+        <%= t('blog.shared.posts.created_at', :when => post.published_at.strftime('%d %B %Y')) %>
+      </p>
+    </header>
+    <section class='clearfix'>
       <%= truncate(post.body, 
                    :length => RefinerySetting.find_or_set(:blog_post_teaser_length, 250), 
                    :preserve_html_tags => true) %>
-    </div>
-    <p>
-      <%= link_to t('blog.shared.posts.read_more'), blog_post_url(post) %>
+    </section>
+    <footer>
+      <p> 
+        <%= link_to t('blog.shared.posts.read_more'), blog_post_url(post) %>
     
-      <span class='comment_count'>
-        <% if post.comments.any? %>
-           (<%= pluralize(post.comments.count, t('blog.shared.comments.singular')) %>)
-        <% else %>
-          (<%= t('blog.shared.comments.none') %>)
-        <% end %>
-      </span>
-    </p>
-  </li>
+        <span class='comment_count'>
+          <% if post.comments.any? %>
+             (<%= pluralize(post.comments.count, t('blog.shared.comments.singular')) %>)
+          <% else %>
+            (<%= t('blog.shared.comments.none') %>)
+          <% end %>
+        </span>
+      </p>
+    </footer>
+  </article>
 <% end %>
