@@ -1,1 +1,1 @@
-gem 'filters_spam', '~> 0.2'
+gem 'filters_spam', '~> 0.3'
