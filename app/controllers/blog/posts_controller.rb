@@ -2,14 +2,14 @@ class Blog::PostsController < BlogController
 
   before_filter :find_all_blog_posts
   before_filter :find_blog_post, :only => [:show, :comment]
-  
+
   def index
     respond_to do |format|
       format.html
       format.rss
     end
   end
-  
+
   def show
     @blog_comment = BlogComment.new
     present(@page)
@@ -37,7 +37,7 @@ protected
   end
 
   def find_all_blog_posts
-    @blog_posts = BlogPost.live
+    @blog_posts = BlogPost.live :page => params[:page], :per_page => RefinerySetting.find_or_set(:posts_per_page, 10)
   end
 
 end
