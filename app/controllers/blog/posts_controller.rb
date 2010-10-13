@@ -37,7 +37,10 @@ protected
   end
 
   def find_all_blog_posts
-    @blog_posts = BlogPost.live.paginate :page => params[:page], :per_page => RefinerySetting.find_or_set(:posts_per_page, 10)
+    @blog_posts = BlogPost.live.paginate({
+      :page => params[:page],
+      :per_page => RefinerySetting.find_or_set(:blog_posts_per_page, 10)
+    })
   end
 
 end
