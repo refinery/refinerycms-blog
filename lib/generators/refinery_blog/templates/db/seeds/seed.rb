@@ -1,5 +1,5 @@
 User.find(:all).each do |user|
-  user.plugins.create(:name => "<%= singular_name %>",
+  user.plugins.create(:name => "refinerycms_blog",
                       :position => (user.plugins.maximum(:position) || -1) +1)
 end
 
