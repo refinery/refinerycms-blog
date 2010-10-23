@@ -42,14 +42,14 @@ it:
           no_items_yet: 'Non ci sono ancora Post per questo Blog. Clicca "{{create}}" per aggiungere il tuo primo post.'
         post:
           view_live: Visualizza questo post live nel sito <br/><em>(apre una nuova finestra)</em>
-          edit: Modifica questo post
-          delete: Rimuovi questo post per sempre
+          edit: Modifica questo messaggio
+          delete: Rimuovi questo messaggio per sempre
       settings:
         notification_recipients:
           value: Inviare notifiche a
-          explanation: 'Ogni volta che qualcuno commenta un post del blog, Refinery invia una mail per avvisare che c'è un nuovo comemnto'
+          explanation: 'Ogni volta che qualcuno commenta un messaggio del blog, Refinery invia una mail per avvisare che c'è un nuovo comemnto'
           hint: 'Quando viene aggiunto un nuovo commento Refinery ti invierà una email di notifica.'
-          example: "Insierisci il tuo indirizzo email. È possibile insierire più indirizzi separati dalla virgole. Es: jack@work.com, jill@office.com"
+          example: "Inserisci il tuo indirizzo email. È possibile insierire più indirizzi separati dalla virgola. Es: jack@work.com, jill@office.com"
           updated: 'I destinatari delle notifiche sono stati impostati "{{recipients}}"'
       submenu:
         categories:
@@ -64,7 +64,7 @@ it:
           approved: Approvato
           rejected: Rifiutato
         posts:
-          title: Posts
+          title: Messaggi
           manage: Gestione post
           new: Crea nuovo post
         settings:
@@ -78,7 +78,7 @@ it:
       rss_feed:
         title: RSS Feed
       posts:
-        other: Altri Post
+        other: Altri Messaggi
         created_at: 'Pubblicato il {{when}}'
         read_more: Per saperne di più
       comments:
@@ -86,18 +86,18 @@ it:
         none: nessun commento
     categories:
       show:
-        no_posts: Nessun post ancora presente.
+        no_posts: Nessun messaggio ancora presente.
     posts:
       comment: commento
       comments:
         by: 'Pubblicato da {{who}}'
         time_ago: '{{time}} fa'
-        thank_you: 'Grazie per aver commentato.'
-        thank_you_moderated: 'Grazie per aver commentato. Il tuo messaggio è stato inserito nella coda di moderazione e sarà visibile a breve.'
+        thank_you: 'Grazie per aver scritto un commento.'
+        thank_you_moderated: 'Grazie per aver scritto un commento. Il tuo messaggio è stato inserito nella coda di moderazione e sarà visibile a breve.'
       show:
         comments:
           title: Commenti
           add: Scrivi un Commento
-        other: Altri Blog Post
+        other: Altri Messaggi del Blog
         filed_in: Archiviato in
         submit: Invia commento
