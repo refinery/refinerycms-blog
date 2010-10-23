@@ -70,7 +70,7 @@ it:
         settings:
           title: Impostazioni
           moderation: Moderazione
-          update_notified: Aggiornare destinatorio notifica
+          update_notified: Aggiornare destinatario notifica
   blog:
     shared:
       categories:
