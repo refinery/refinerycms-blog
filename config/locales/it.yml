@@ -1,0 +1,103 @@
+it:
+  plugins:
+    refinerycms_blog:
+      title: Blog
+  admin:
+    blog:
+      categories:
+        category:
+          edit: Modifica questa categoria
+          delete: Elimina questa categoria per sempre
+        index:
+          no_items_yet: 'Nessuna categoria ancora presente. Clicca "{{create}}" per aggiungere la tua prima categoria.'
+      comments:
+        approved: 'Il commento di "{{author}}" è stato approvato.'
+        comment:
+          view_live: Visualizza questo commento <em> <br/> live (apre una nuova finestra) </ em>
+          read: Leggi questo commento
+          reject: Rifiuta questo comemnto
+          approve: Approva questo commento
+        rejected: 'Il commento di "{{author}}" è stato rifiutato.'
+        index:
+          no_items_yet: 'Non ci sono {{type}} commenti.'
+        show:
+          comment: Commento
+          blog_post: Blog Post
+          from: Pubblicato da
+          date: Pubblicato il
+          message: Commento
+          details: Dettagli
+          age: età
+          actions: Azioni
+          back: Torna a tutti i commenti
+          reject: Rifiuta questo commento
+          approve: Approva questo commento
+      posts:
+        form:
+          advanced_options: Opzioni Avanzate
+          toggle_advanced_options: Clicca per accedere alle impostationi dei meta tag e del menu
+          save_as_draft: Salva come Bozza
+          published_at: Data di Pubblicazione
+        index:
+          no_items_yet: 'Non ci sono ancora Post per questo Blog. Clicca "{{create}}" per aggiungere il tuo primo post.'
+        post:
+          view_live: Visualizza questo post live nel sito <br/><em>(apre una nuova finestra)</em>
+          edit: Modifica questo post
+          delete: Rimuovi questo post per sempre
+      settings:
+        notification_recipients:
+          value: Inviare notifiche a
+          explanation: 'Ogni volta che qualcuno commenta un post del blog, Refinery invia una mail per avvisare che c'è un nuovo comemnto'
+          hint: 'Quando viene aggiunto un nuovo commento Refinery ti invierà una email di notifica.'
+          example: "Insierisci il tuo indirizzo email. È possibile insierire più indirizzi separati dalla virgole. Es: jack@work.com, jill@office.com"
+          updated: 'I destinatari delle notifiche sono stati impostati "{{recipients}}"'
+      submenu:
+        categories:
+          title: Categorie
+          manage: Gestione categorie
+          new: Crea nuova categoria
+        comments:
+          title: Commenti
+          title_with_count: 'Comment1 ({{new_count}} nuovi)'
+          new: Nuovo
+          unmoderated: Nuovo
+          approved: Approvato
+          rejected: Rifiutato
+        posts:
+          title: Posts
+          manage: Gestione post
+          new: Crea nuovo post
+        settings:
+          title: Impostazioni
+          moderation: Moderazione
+          update_notified: Aggiornare destinatorio notifica
+  blog:
+    shared:
+      categories:
+        title: Categorie
+      rss_feed:
+        title: RSS Feed
+      posts:
+        other: Altri Post
+        created_at: 'Pubblicato il {{when}}'
+        read_more: Per saperne di più
+      comments:
+        singular: commento
+        none: nessun commento
+    categories:
+      show:
+        no_posts: Nessun post ancora presente.
+    posts:
+      comment: commento
+      comments:
+        by: 'Pubblicato da {{who}}'
+        time_ago: '{{time}} fa'
+        thank_you: 'Grazie per aver commentato.'
+        thank_you_moderated: 'Grazie per aver commentato. Il tuo messaggio è stato inserito nella coda di moderazione e sarà visibile a breve.'
+      show:
+        comments:
+          title: Commenti
+          add: Scrivi un Commento
+        other: Altri Blog Post
+        filed_in: Archiviato in
+        submit: Invia commento
