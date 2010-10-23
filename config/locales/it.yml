@@ -9,20 +9,20 @@ it:
           edit: Modifica questa categoria
           delete: Elimina questa categoria per sempre
         index:
-          no_items_yet: 'Nessuna categoria ancora presente. Clicca "{{create}}" per aggiungere la tua prima categoria.'
+          no_items_yet: 'Nessuna categoria ancora presente. Fare click su "{{create}}" per aggiungere la tua prima categoria.'
       comments:
         approved: 'Il commento di "{{author}}" è stato approvato.'
         comment:
-          view_live: Visualizza questo commento <em> <br/> live (apre una nuova finestra) </ em>
+          view_live: Visualizza questo commento <em> <br/> live (si apre in una nuova finestra) </ em>
           read: Leggi questo commento
-          reject: Rifiuta questo comemnto
+          reject: Rifiuta questo commento
           approve: Approva questo commento
         rejected: 'Il commento di "{{author}}" è stato rifiutato.'
         index:
           no_items_yet: 'Non ci sono {{type}} commenti.'
         show:
           comment: Commento
-          blog_post: Blog Post
+          blog_post: Messaggio del Blog
           from: Pubblicato da
           date: Pubblicato il
           message: Commento
@@ -39,9 +39,9 @@ it:
           save_as_draft: Salva come Bozza
           published_at: Data di Pubblicazione
         index:
-          no_items_yet: 'Non ci sono ancora Post per questo Blog. Clicca "{{create}}" per aggiungere il tuo primo post.'
+          no_items_yet: 'Non ci sono ancora Messaggi per questo Blog. Clicca "{{create}}" per aggiungere il tuo primo messaggio.'
         post:
-          view_live: Visualizza questo post live nel sito <br/><em>(apre una nuova finestra)</em>
+          view_live: Visualizza questo messaggio live <br/><em>(si apre in una nuova finestra)</em>
           edit: Modifica questo messaggio
           delete: Rimuovi questo messaggio per sempre
       settings:
