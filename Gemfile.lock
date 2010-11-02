@@ -1,9 +1,11 @@
 GEM
   specs:
     filters_spam (0.3)
+    will_paginate (2.3.14)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   filters_spam (~> 0.3)
+  will_paginate (>= 2.3.14)
