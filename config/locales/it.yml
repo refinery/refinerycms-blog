@@ -47,7 +47,7 @@ it:
       settings:
         notification_recipients:
           value: Inviare notifiche a
-          explanation: 'Ogni volta che qualcuno commenta un messaggio del blog, Refinery invia una mail per avvisare che c'è un nuovo comemnto'
+          explanation: "Ogni volta che qualcuno commenta un messaggio del blog, Refinery invia una mail per avvisare che c'è un nuovo comemnto"
           hint: 'Quando viene aggiunto un nuovo commento Refinery ti invierà una email di notifica.'
           example: "Inserisci il tuo indirizzo email. È possibile insierire più indirizzi separati dalla virgola. Es: jack@work.com, jill@office.com"
           updated: 'I destinatari delle notifiche sono stati impostati "{{recipients}}"'
