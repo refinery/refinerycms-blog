@@ -7,17 +7,17 @@
       </p>
     </header>
     <section class='clearfix'>
-      <%= truncate(post.body, 
-                   :length => RefinerySetting.find_or_set(:blog_post_teaser_length, 250), 
+      <%= truncate(post.body,
+                   :length => RefinerySetting.find_or_set(:blog_post_teaser_length, 250),
                    :preserve_html_tags => true) %>
     </section>
     <footer>
-      <p> 
+      <p>
         <%= link_to t('blog.shared.posts.read_more'), blog_post_url(post) %>
-    
+
         <span class='comment_count'>
           <% if post.comments.any? %>
-             (<%= pluralize(post.comments.count, t('blog.shared.comments.singular')) %>)
+             (<%= pluralize(post.comments.approved.count, t('blog.shared.comments.singular')) %>)
           <% else %>
             (<%= t('blog.shared.comments.none') %>)
           <% end %>
