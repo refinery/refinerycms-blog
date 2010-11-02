@@ -14,7 +14,7 @@
     <header>
       <p class='posted_at'>
         <%= t('blog.shared.posts.created_at', :when => @blog_post.published_at.strftime('%d %B %Y')) %>.
-    
+
         <% if (categories = @blog_post.categories).any? %>
           <span class='filed_in'>
             <%= t('.filed_in') %>
@@ -26,11 +26,11 @@
       </p>
     </header>
     <%=raw @blog_post.body %>
-  
+
     <% if BlogPost::ShareThis.enabled? %>
       <span class="st_sharethis" displayText="ShareThis"></span>
     <% end %>
-  </article>  
+  </article>
   <% if BlogPost.comments_allowed? %>
     <aside id="comments">
       <h2><%= t('.comments.title') %></h2>
@@ -66,7 +66,11 @@
         </div>
         <div class='field'>
           <%= f.label :email %>
-          <%= f.email_field :email %>
+          <% if Rails.version > '3.0.0' %>
+            <%= f.email_field :email %>
+          <% else %>
+            <%= f.text_field :email %>
+          <% end %>
         </div>
         <div class='field message_field'>
           <%= f.label :message %>
