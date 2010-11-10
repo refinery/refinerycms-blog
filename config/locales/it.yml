@@ -83,6 +83,7 @@ it:
         read_more: Per saperne di più
       comments:
         singular: commento
+        plural: commenti
         none: nessun commento
     categories:
       show:
