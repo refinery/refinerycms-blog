@@ -25,7 +25,7 @@
         <% end %>
       </p>
     </header>
-    <%=raw @blog_post.body %>
+    <%= @blog_post.body.html_safe %>
 
     <% if BlogPost::ShareThis.enabled? %>
       <span class="st_sharethis" displayText="ShareThis"></span>
