@@ -11,7 +11,7 @@ Options:
 
 Open up your ``Gemfile`` and add at the bottom this line
 
-    gem 'refinerycms-blog', '~> 1.0.rc13'
+    gem 'refinerycms-blog', '~> 1.0.rc15'
 
 Now run ``bundle install``
 
