@@ -72,6 +72,17 @@ en:
           moderation: Moderation
           update_notified: Update who gets notified
   blog:
+    comment_mailer:
+      notification:
+        greeting: Hi there
+        you_recieved_new_comment: You just received a new comment on your website.
+        comment_starts: --- comment starts ---
+        comment_ends: --- comment ends ---
+        from: From
+        email: Email
+        message: Message
+        closing_line: Kind Regards
+        ps: P.S. All your comments are stored in the "Blog" section of Refinery under the "Comments" submenu should you ever want to view it later there.
     shared:
       categories:
         title: Categories

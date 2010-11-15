@@ -46,7 +46,7 @@ class BlogComment < ActiveRecord::Base
 
   before_create do |comment|
     unless BlogComment::Moderation.enabled?
-      comment.state = comment.spam? ? 'rejected' : 'approved'
+      comment.state = comment.ham? ? 'approved' : 'rejected'
     end
   end
 
@@ -55,8 +55,7 @@ class BlogComment < ActiveRecord::Base
       def enabled?
         RefinerySetting.find_or_set(:comment_moderation, true, {
           :scoping => :blog,
-          :restricted => false,
-          :callback_proc_as_string => nil
+          :restricted => false
         })
       end
 
@@ -64,8 +63,7 @@ class BlogComment < ActiveRecord::Base
         RefinerySetting[:comment_moderation] = {
           :value => !self.enabled?,
           :scoping => :blog,
-          :restricted => false,
-          :callback_proc_as_string => nil
+          :restricted => false
         }
       end
     end
@@ -74,21 +72,33 @@ class BlogComment < ActiveRecord::Base
   module Notification
     class << self
       def recipients
-        RefinerySetting.find_or_set(:comment_notification_recipients,
-                                    (Role[:refinery].users.first.email rescue ''),
-                                    {
-                                      :scoping => :blog,
-                                      :restricted => false,
-                                      :callback_proc_as_string => nil
-                                    })
+        RefinerySetting.find_or_set(:comment_notification_recipients, (Role[:refinery].users.first.email rescue ''),
+        {
+          :scoping => :blog,
+          :restricted => false
+        })
       end
 
       def recipients=(emails)
         RefinerySetting[:comment_notification_recipients] = {
           :value => emails,
           :scoping => :blog,
-          :restricted => false,
-          :callback_proc_as_string => nil
+          :restricted => false
+        }
+      end
+
+      def subject
+        RefinerySetting.find_or_set(:comment_notification_subject, "New inquiry from your website", {
+          :scoping => :blog,
+          :restricted => false
+        })
+      end
+
+      def subject=(subject_line)
+        RefinerySetting[:comment_notification_subject] = {
+          :value => subject_line,
+          :scoping => :blog,
+          :restricted => false
         }
       end
     end

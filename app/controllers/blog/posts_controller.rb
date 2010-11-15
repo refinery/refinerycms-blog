@@ -17,6 +17,18 @@ class Blog::PostsController < BlogController
 
   def comment
     if (@blog_comment = @blog_post.comments.create(params[:blog_comment])).valid?
+      if BlogComment::Moderation.enabled? or @blog_comment.ham?
+        begin
+          if Rails.version < '3.0.0'
+            Blog::CommentMailer.deliver_notification(@blog_comment, request)
+          else
+            Blog::CommentMailer.notification(@blog_comment, request).deliver
+          end
+        rescue
+          logger.warn "There was an error delivering a blog comment notification.\n#{$!}\n"
+        end
+      end
+
       if BlogComment::Moderation.enabled?
         flash[:notice] = t('blog.posts.comments.thank_you_moderated')
         redirect_to blog_post_url(params[:id])

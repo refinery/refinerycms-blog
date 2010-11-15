@@ -1,8 +1,8 @@
 Gem::Specification.new do |s|
   s.name              = %q{refinerycms-blog}
-  s.version           = %q{1.0.rc15}
+  s.version           = %q{1.0.rc16}
   s.description       = %q{A really straightforward open source Ruby on Rails blog engine designed for integration with RefineryCMS.}
-  s.date              = %q{2010-11-12}
+  s.date              = %q{2010-11-15}
   s.summary           = %q{Ruby on Rails blogging engine for RefineryCMS.}
   s.email             = %q{info@refinerycms.com}
   s.homepage          = %q{http://refinerycms.com}
@@ -24,7 +24,12 @@ Gem::Specification.new do |s|
     app/controllers/blog/categories_controller.rb
     app/controllers/blog/posts_controller.rb
     app/controllers/blog_controller.rb
+    app/mailers
+    app/mailers/blog
+    app/mailers/blog/comment_mailer.rb
     app/models
+    app/models/blog
+    app/models/blog/comment_mailer.rb
     app/models/blog_category.rb
     app/models/blog_comment.rb
     app/models/blog_post.rb
@@ -56,6 +61,8 @@ Gem::Specification.new do |s|
     app/views/blog
     app/views/blog/categories
     app/views/blog/categories/show.html.erb
+    app/views/blog/comment_mailer
+    app/views/blog/comment_mailer/notification.html.erb
     app/views/blog/posts
     app/views/blog/posts/_comment.html.erb
     app/views/blog/posts/index.html.erb
