@@ -15,13 +15,13 @@
       <p>
         <%= link_to t('blog.shared.posts.read_more'), blog_post_url(post) %>
 
-        <span class='comment_count'>
+        <aside class='comment_count'>
           <% if post.comments.any? %>
              (<%= pluralize(post.comments.approved.count, t('blog.shared.comments.singular')) %>)
           <% else %>
             (<%= t('blog.shared.comments.none') %>)
           <% end %>
-        </span>
+        </aside>
       </p>
     </footer>
   </article>
