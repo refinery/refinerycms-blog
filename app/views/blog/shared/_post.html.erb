@@ -2,9 +2,9 @@
   <article class="blog_post" id="<%= dom_id(post) %>">
     <header>
       <h1><%= link_to post.title, blog_post_url(post) %></h1>
-      <p class='posted_at'>
+      <time datetime="<%= post.published_at.strftime('%m-%d-%Y') %>" class='posted_at'>
         <%= t('blog.shared.posts.created_at', :when => post.published_at.strftime('%d %B %Y')) %>
-      </p>
+      </time>
     </header>
     <section class='clearfix'>
       <%= truncate(post.body,
