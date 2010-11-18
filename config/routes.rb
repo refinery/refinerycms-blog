@@ -6,6 +6,10 @@ if Rails.version < '3.0.0'
       blog.post ':id', :controller => "posts", :action => 'show'
       blog.category 'categories/:id', :controller => "categories", :action => 'show'
       blog.post_blog_comments ':id/comments', :controller => 'posts', :action => 'comment'
+      
+      
+      ## what is the rails2 syntax for this? sorry ;__;
+      # get 'archive/:year/:month', :on => :collection, :action => :archive, :as => 'archive'
     end
 
     map.namespace(:admin, :path_prefix => 'refinery') do |admin|
@@ -37,6 +41,7 @@ else
       match ':id', :to => 'posts#show', :as => 'blog_post'
       match 'categories/:id', :to => 'categories#show', :as => 'blog_category'
       match ':id/comments', :to => 'posts#comment', :as => 'blog_post_blog_comments'
+      get 'archive/:year/:month', :action => :archive, :as => 'archive_blog_posts'
     end
 
     scope(:path => 'refinery', :as => 'admin', :module => 'admin') do

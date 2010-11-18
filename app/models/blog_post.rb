@@ -11,6 +11,20 @@ class BlogPost < ActiveRecord::Base
   has_friendly_id :title, :use_slug => true
 
   default_scope :order => "published_at DESC"
+  
+  if Rails.version < '3.0.0'
+    named_scope :by_archive, lambda { |archive_date| {:conditions => ['published_at between ? and ?', archive_date.beginning_of_month, archive_date.end_of_month]} }
+  else
+    scope :by_archive, lambda { |archive_date|
+      where ['published_at between ? and ?', archive_date.beginning_of_month, archive_date.end_of_month]
+    }
+  end
+  
+  if Rails.version < '3.0.0'
+    named_scope :all_previous, :conditions => ['published_at <= ?', Time.now.beginning_of_month]
+  else
+    scope :all_previous, where(['published_at <= ?', Time.now.beginning_of_month])
+  end
 
   if Rails.version < '3.0.0'
     named_scope :live, lambda { {:conditions => ["published_at < ? and draft = ?", Time.now, false]} }

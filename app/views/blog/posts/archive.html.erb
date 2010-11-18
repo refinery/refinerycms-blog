@@ -1,16 +1,15 @@
 <% content_for :body_content_left do %>
   <%= @page[Page.default_parts.first.to_sym] %>
-
+  <h1>News Archive for <%= @archive_date.strftime('%B %Y') %></h1>
   <section id="blog_posts">
     <%= render :partial => "/blog/shared/post", :collection => @blog_posts %>
   </section>
-  <%= "<p>There are no blog articles posted yet. Stay tuned.</p>".html_safe unless @blog_posts.any? %>
+  <%= "There are no blog articles posted for #{@archive_date.strftime('%B %Y')}. Stay tuned." unless @blog_posts.any? %>
   <%# TODO: Add locale logic here - hubble is a n00b at that %>
 <% end %>
 
 <% content_for :body_content_right do %>
   <%= @page[Page.default_parts.second.to_sym] %>
-
   <%= render :partial => "/blog/shared/categories" %>
   <%= render :partial => "/blog/shared/rss_feed" %>
   <%= blog_archive_list %>
