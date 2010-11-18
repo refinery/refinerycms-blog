@@ -1,6 +1,6 @@
 <% content_for :body_content_left do %>
   <%= @page[Page.default_parts.first.to_sym] %>
-  <h1>News Archive for <%= @archive_date.strftime('%B %Y') %></h1>
+  <h1>Blog Archive for <%= @archive_date.strftime('%B %Y') %></h1>
   <section id="blog_posts">
     <%= render :partial => "/blog/shared/post", :collection => @blog_posts %>
   </section>
