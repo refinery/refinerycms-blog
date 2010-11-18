@@ -2,9 +2,19 @@
   <article class="blog_post" id="<%= dom_id(post) %>">
     <header>
       <h1><%= link_to post.title, blog_post_url(post) %></h1>
-      <time datetime="<%= post.published_at.strftime('%m-%d-%Y') %>" class='posted_at'>
-        <%= t('blog.shared.posts.created_at', :when => post.published_at.strftime('%d %B %Y')) %>
-      </time>
+      <details>
+        <time datetime="<%= post.published_at.strftime('%Y-%m-%d') %>" class='posted_at'>
+          <%= t('blog.shared.posts.created_at', :when => post.published_at.strftime('%d %B %Y')) %>.        
+        </time>
+        <% if (categories = post.categories).any? %>
+          <aside class='filed_in'>
+            <%= t('.filed_in') %>
+            <% categories.each_with_index do |category, index| %>
+                <%= link_to category.title, blog_category_url(category) -%><%= ',' if index < ((categories.length) - 1) %>
+            <% end %>
+          </aside>
+        <% end %>
+      </details>
     </header>
     <section class='clearfix'>
       <%= truncate(post.body,

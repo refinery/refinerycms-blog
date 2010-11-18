@@ -7,23 +7,23 @@
   <% end %>
 <% end %>
 
-<% content_for :body_content_title, @blog_post.title %>
-
 <% content_for :body_content_left do %>
-  <article id="show_blog_post">
+  <article class="blog_post" id="show_blog_post">
     <header>
-      <p class='posted_at'>
-        <%= t('blog.shared.posts.created_at', :when => @blog_post.published_at.strftime('%d %B %Y')) %>.
-
+      <h1><%= @blog_post.title %></h1>
+      <details>
+        <time datetime="<%= @blog_post.published_at.strftime('%Y-%m-%d') %>" class='posted_at'>
+          <%= t('blog.shared.posts.created_at', :when => @blog_post.published_at.strftime('%d %B %Y')) %>.        
+        </time>
         <% if (categories = @blog_post.categories).any? %>
-          <span class='filed_in'>
+          <aside class='filed_in'>
             <%= t('.filed_in') %>
             <% categories.each_with_index do |category, index| %>
                 <%= link_to category.title, blog_category_url(category) -%><%= ',' if index < ((categories.length) - 1) %>
             <% end %>
-          </span>
+          </aside>
         <% end %>
-      </p>
+      </details>
     </header>
     <%= @blog_post.body.html_safe %>
 
@@ -91,5 +91,5 @@
   <%= blog_archive_list %>
 <% end %>
 
-<%= render :partial => "/shared/content_page" %>
+<%= render :partial => "/shared/content_page", :locals => { :remove_automatic_sections => true }  %>
 <% content_for :head, stylesheet_link_tag('refinerycms-blog') %>
