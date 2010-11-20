@@ -1,9 +1,13 @@
-<% if @blog_post.next.present? -%>
-  <%= link_to raw(truncate(@blog_post.next.title) + "&nbsp;&#187;"), @blog_post.next, :class => 'next', :"data-nav-url" => update_blog_nav_path(@blog_post.next) %>
-<% end -%>
+<% if next_or_previous?(@blog_post) -%>
+  <nav id="next_prev_article">
+    <% if @blog_post.next.present? -%>
+      <%= link_to raw(truncate(@blog_post.next.title) + "&nbsp;&#187;"), @blog_post.next, :class => 'next', :"data-nav-url" => update_blog_nav_path(@blog_post.next) %>
+    <% end -%>
 
-<%= link_to 'Blog Home', blog_root_path, :class => 'home' %>
+    <%= link_to 'Blog Home', blog_root_path, :class => 'home' %>
 
-<% if @blog_post.prev.present? -%>
-  <%= link_to "&#171;&nbsp;".html_safe + truncate(@blog_post.prev.title), @blog_post.prev, :class => 'prev', :"data-nav-url" => update_blog_nav_path(@blog_post.prev) %>
+    <% if @blog_post.prev.present? -%>
+      <%= link_to "&#171;&nbsp;".html_safe + truncate(@blog_post.prev.title), @blog_post.prev, :class => 'prev', :"data-nav-url" => update_blog_nav_path(@blog_post.prev) %>
+    <% end -%>
+  </nav><!-- /next_prev_article -->
 <% end -%>
