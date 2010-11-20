@@ -1,12 +1,21 @@
 $(document).ready(function(){
-  $('#next_prev_article a:not(".home")').live('click',function(){
+  $('#show_blog_post').height($('#show_blog_post').height());
+  
+  $('#next_prev_article a:not(".home")').live('click', function(){
     url = this.href + ".js";
     nav_url = $(this).attr('data-nav-url');
-    $('#show_blog_post').fadeOut();
+    $('#show_blog_post > *').fadeOut();
     $.ajax({
       url: url,
       success: function(data) {
-        $('#show_blog_post').html(data).fadeIn();
+        $('#show_blog_post').html(data);
+        new_height = 0;
+        $('#show_blog_post > *').each(function(){
+          new_height += $(this).height()
+        });
+        $('#show_blog_post').animate({
+          height: new_height
+        });
       }
     });
     return false;
