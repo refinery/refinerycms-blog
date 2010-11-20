@@ -19,4 +19,8 @@ module BlogPostsHelper
     html += '</nav></section>'
     html.html_safe
   end
+  
+  def next_or_previous?(post)
+    post.next.present? or post.prev.present?
+  end
 end

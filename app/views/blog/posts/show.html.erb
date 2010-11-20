@@ -31,6 +31,13 @@
       <span class="st_sharethis" displayText="ShareThis"></span>
     <% end %>
   </article>
+  <% if next_or_previous?(@blog_post) -%>
+    <nav id="next_prev_article">
+      <%= link_to raw(truncate(@blog_post.next.title) + "&nbsp;&#187;"), @blog_post.next, :class => 'next' if @blog_post.next.present? %>
+      <%= link_to 'Blog Home', blog_root_path, :class => 'home' %>
+      <%= link_to "&#171;&nbsp;".html_safe + truncate(@blog_post.prev.title), @blog_post.prev, :class => 'prev' if @blog_post.prev.present? %>
+    </nav><!-- /next_prev_article -->
+  <% end -%>
   <% if BlogPost.comments_allowed? %>
     <aside id="comments">
       <h2><%= t('.comments.title') %></h2>

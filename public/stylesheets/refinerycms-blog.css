@@ -23,3 +23,28 @@
   padding-left: 25px;
   background: url('/images/refinerycms-blog/rss-feed.png') no-repeat;
 }
+#next_prev_article{
+  overflow:hidden;
+  margin:10px 0;
+  position:relative;
+  height:30px;
+}
+#next_prev_article a{
+  display:block;
+  width:33%;
+  height:30px;
+  line-height:30px;
+  position:absolute;
+  top:0;
+}
+#next_prev_article a.prev{
+  left:0;
+}
+#next_prev_article a.home{
+  left:33%;
+  text-align:center;
+}
+#next_prev_article a.next{
+  text-align:right;
+  right:0;
+}
