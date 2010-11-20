@@ -8,9 +8,9 @@
 <% end %>
 
 <% content_for :body_content_left do %>
-  <article class="blog_post" id="show_blog_post">
+  <div id="show_blog_post">
     <%= render 'post' %>
-  </article>
+  </div>
   <% if next_or_previous?(@blog_post) -%>
     <nav id="next_prev_article">
       <%= render 'nav' %>

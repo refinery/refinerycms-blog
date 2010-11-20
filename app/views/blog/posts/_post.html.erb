@@ -1,21 +1,23 @@
-<header>
-  <h1><%= @blog_post.title %></h1>
-  <details>
-    <time datetime="<%= @blog_post.published_at.strftime('%Y-%m-%d') %>" class='posted_at'>
-      <%= t('blog.shared.posts.created_at', :when => @blog_post.published_at.strftime('%d %B %Y')) %>.        
-    </time>
-    <% if (categories = @blog_post.categories).any? %>
-      <aside class='filed_in'>
-        <%= t('.filed_in') %>
-        <% categories.each_with_index do |category, index| %>
-            <%= link_to category.title, blog_category_url(category) -%><%= ',' if index < ((categories.length) - 1) %>
-        <% end %>
-      </aside>
-    <% end %>
-  </details>
-</header>
-<%= @blog_post.body.html_safe %>
+<article id="blog_post">
+  <header>
+    <h1><%= @blog_post.title %></h1>
+    <details>
+      <time datetime="<%= @blog_post.published_at.strftime('%Y-%m-%d') %>" class='posted_at'>
+        <%= t('blog.shared.posts.created_at', :when => @blog_post.published_at.strftime('%d %B %Y')) %>.        
+      </time>
+      <% if (categories = @blog_post.categories).any? %>
+        <aside class='filed_in'>
+          <%= t('.filed_in') %>
+          <% categories.each_with_index do |category, index| %>
+              <%= link_to category.title, blog_category_url(category) -%><%= ',' if index < ((categories.length) - 1) %>
+          <% end %>
+        </aside>
+      <% end %>
+    </details>
+  </header>
+  <%= @blog_post.body.html_safe %>
 
-<% if BlogPost::ShareThis.enabled? %>
-  <span class="st_sharethis" displayText="ShareThis"></span>
-<% end %>
+  <% if BlogPost::ShareThis.enabled? %>
+    <span class="st_sharethis" displayText="ShareThis"></span>
+  <% end %>
+</article>
