@@ -1,6 +1,5 @@
 class Blog::PostsController < BlogController
   
-  before_filter :find_page
   before_filter :find_all_blog_posts, :except => [:archive]
   before_filter :find_blog_post, :only => [:show, :comment]
 
@@ -63,10 +62,6 @@ protected
       :page => params[:page],
       :per_page => RefinerySetting.find_or_set(:blog_posts_per_page, 10)
     })
-  end
-  
-  def find_page
-    @page = Page.find_by_link_url('/blog')
   end
 
 end
