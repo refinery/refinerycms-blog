@@ -28,10 +28,6 @@ class Blog::PostsController < BlogController
       end
     end
   end
-  
-  def update_nav
-    render :partial => 'nav'
-  end
 
   def comment
     if (@blog_comment = @blog_post.comments.create(params[:blog_comment])).valid?

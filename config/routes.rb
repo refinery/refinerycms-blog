@@ -42,7 +42,6 @@ else
       match 'categories/:id', :to => 'categories#show', :as => 'blog_category'
       match ':id/comments', :to => 'posts#comment', :as => 'blog_post_blog_comments'
       get 'archive/:year/:month', :to => 'posts#archive', :as => 'archive_blog_posts'
-      get ':id/update_nav.js', :to => 'posts#update_nav', :as => 'update_blog_nav'
     end
 
     scope(:path => 'refinery', :as => 'admin', :module => 'admin') do
