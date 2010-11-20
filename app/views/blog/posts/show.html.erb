@@ -10,12 +10,13 @@
 <% content_for :body_content_left do %>
   <div id="show_blog_post">
     <%= render 'post' %>
+    <% if next_or_previous?(@blog_post) -%>
+      <nav id="next_prev_article">
+        <%= render 'nav' %>
+      </nav><!-- /next_prev_article -->
+    <% end -%>
   </div>
-  <% if next_or_previous?(@blog_post) -%>
-    <nav id="next_prev_article">
-      <%= render 'nav' %>
-    </nav><!-- /next_prev_article -->
-  <% end -%>
+  
   <% if BlogPost.comments_allowed? %>
     <aside id="comments">
       <h2><%= t('.comments.title') %></h2>
