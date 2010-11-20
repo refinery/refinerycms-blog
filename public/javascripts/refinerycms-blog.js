@@ -18,6 +18,9 @@ $(document).ready(function(){
         });
       }
     });
+    $('html, body').animate({
+      scrollTop: $('body').offset().top
+    }, 2000);
     return false;
   })
 })
