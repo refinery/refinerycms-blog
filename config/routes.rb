@@ -45,7 +45,7 @@ else
     end
 
     scope(:path => 'refinery', :as => 'admin', :module => 'admin') do
-      scope(:path => 'blog', :as => 'admin_blog', :module => 'blog') do
+      scope(:path => 'blog', :as => 'blog', :module => 'blog') do
         root :to => 'posts#index'
         resources :posts
 
