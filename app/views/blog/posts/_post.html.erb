@@ -1,3 +1,8 @@
+<% flash.each do |key, value| %>
+ <div id='flash' class="flash flash_<%= key %>">
+   <%= value %>
+ </div>
+<% end %>
 <article id="blog_post">
   <header>
     <h1><%= @blog_post.title %></h1>
