@@ -8,10 +8,7 @@ $(document).ready(function(){
     $.ajax({
       url: url,
       success: function(data) {
-        $('#blog_post').html(data).fadeIn()
-        $('#show_blog_post').animate({
-          height: 'auto'
-        });
+        $('#blog_post').html(data).fadeIn();
         $.ajax({
           url: nav_url,
           success: function(data) {
@@ -19,6 +16,9 @@ $(document).ready(function(){
           }
         })
       }
+    });
+    $('#show_blog_post').animate({
+      height: 'auto'
     });
     return false;
   })
