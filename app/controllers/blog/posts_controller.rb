@@ -1,18 +1,36 @@
 class Blog::PostsController < BlogController
   
   before_filter :find_all_blog_posts, :except => [:archive]
-  before_filter :find_blog_post, :only => [:show, :comment]
+  before_filter :find_blog_post, :only => [:show, :comment, :update_nav]
+  
+  respond_to :html, :js, :rss if Rails.version >= '3.0.0'
 
   def index
-    respond_to do |format|
-      format.html
-      format.rss
+    if Rails.version < '3.0.0'
+      # TODO: respond_to block
+    else
+      respond_with (@blog_posts) do |format|
+        format.html
+        format.rss
+      end
     end
   end
 
   def show
     @blog_comment = BlogComment.new
-    present(@page)
+    
+    if Rails.version < '3.0.0'
+      # TODO: respond_to block
+    else
+      respond_with (@blog_post) do |format|
+        format.html { present(@page) }
+        format.js { render :partial => 'post', :layout => false }
+      end
+    end
+  end
+  
+  def update_nav
+    render :partial => 'nav'
   end
 
   def comment
@@ -49,6 +67,11 @@ class Blog::PostsController < BlogController
       :page => params[:page],
       :per_page => RefinerySetting.find_or_set(:blog_posts_per_page, 10)
     })
+    if Rails.version < '3.0.0'
+      # TODO: respond_to block
+    else
+      respond_with (@blog_posts)
+    end
   end
 
 protected

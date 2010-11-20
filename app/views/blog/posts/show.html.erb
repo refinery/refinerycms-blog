@@ -13,9 +13,7 @@
   </article>
   <% if next_or_previous?(@blog_post) -%>
     <nav id="next_prev_article">
-      <%= link_to raw(truncate(@blog_post.next.title) + "&nbsp;&#187;"), @blog_post.next, :class => 'next' if @blog_post.next.present? %>
-      <%= link_to 'Blog Home', blog_root_path, :class => 'home' %>
-      <%= link_to "&#171;&nbsp;".html_safe + truncate(@blog_post.prev.title), @blog_post.prev, :class => 'prev' if @blog_post.prev.present? %>
+      <%= render 'nav' %>
     </nav><!-- /next_prev_article -->
   <% end -%>
   <% if BlogPost.comments_allowed? %>
@@ -80,3 +78,4 @@
 
 <%= render :partial => "/shared/content_page", :locals => { :remove_automatic_sections => true }  %>
 <% content_for :stylesheets, stylesheet_link_tag('refinerycms-blog') %>
+<% content_for :javascripts, javascript_include_tag('jquery','refinerycms-blog') %>
