@@ -24,6 +24,8 @@ Gem::Specification.new do |s|
     app/controllers/blog/categories_controller.rb
     app/controllers/blog/posts_controller.rb
     app/controllers/blog_controller.rb
+    app/helpers
+    app/helpers/blog_posts_helper.rb
     app/mailers
     app/mailers/blog
     app/mailers/blog/comment_mailer.rb
