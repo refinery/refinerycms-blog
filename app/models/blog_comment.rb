@@ -54,7 +54,7 @@ class BlogComment < ActiveRecord::Base
     class << self
       def enabled?
         RefinerySetting.find_or_set(:comment_moderation, true, {
-          :scoping => :blog,
+          :scoping => 'blog',
           :restricted => false
         })
       end
@@ -62,7 +62,7 @@ class BlogComment < ActiveRecord::Base
       def toggle!
         new_value = {
           :value => !BlogComment::Moderation.enabled?,
-          :scoping => :blog,
+          :scoping => 'blog',
           :restricted => false
         }
         if RefinerySetting.respond_to?(:set)
@@ -79,7 +79,7 @@ class BlogComment < ActiveRecord::Base
       def recipients
         RefinerySetting.find_or_set(:comment_notification_recipients, (Role[:refinery].users.first.email rescue ''),
         {
-          :scoping => :blog,
+          :scoping => 'blog',
           :restricted => false
         })
       end
@@ -87,7 +87,7 @@ class BlogComment < ActiveRecord::Base
       def recipients=(emails)
         new_value = {
           :value => emails,
-          :scoping => :blog,
+          :scoping => 'blog',
           :restricted => false
         }
         if RefinerySetting.respond_to?(:set)
@@ -99,7 +99,7 @@ class BlogComment < ActiveRecord::Base
 
       def subject
         RefinerySetting.find_or_set(:comment_notification_subject, "New inquiry from your website", {
-          :scoping => :blog,
+          :scoping => 'blog',
           :restricted => false
         })
       end
@@ -107,7 +107,7 @@ class BlogComment < ActiveRecord::Base
       def subject=(subject_line)
         new_value = {
           :value => subject_line,
-          :scoping => :blog,
+          :scoping => 'blog',
           :restricted => false
         }
         if RefinerySetting.respond_to?(:set)

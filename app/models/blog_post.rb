@@ -9,7 +9,7 @@ class BlogPost < ActiveRecord::Base
   validates_uniqueness_of :title
 
   has_friendly_id :title, :use_slug => true
-  
+
   if Rails.version < '3.0.0'
     named_scope :by_archive, lambda { |archive_date| {:conditions => ['published_at between ? and ?', archive_date.beginning_of_month, archive_date.end_of_month], :order => "published_at DESC"} }
   else
@@ -17,7 +17,7 @@ class BlogPost < ActiveRecord::Base
       where(['published_at between ? and ?', archive_date.beginning_of_month, archive_date.end_of_month]).order("published_at DESC")
     }
   end
-  
+
   if Rails.version < '3.0.0'
     named_scope :all_previous, :conditions => ['published_at <= ?', Time.now.beginning_of_month], :order => "published_at DESC"
   else
@@ -29,7 +29,7 @@ class BlogPost < ActiveRecord::Base
   else
     scope :live, lambda { where( "published_at < ? and draft = ?", Time.now, false).order("published_at DESC") }
   end
-  
+
   if Rails.version < '3.0.0'
     named_scope :previous, lambda { |i| { :conditions => ["published_at < ?", i.published_at], :order => "published_at DESC", :limit => 1 } }
     named_scope :next, lambda { |i| { :condtions => ["published_at > ?", i.published_at], :order => "published_at ASC", :limit => 1 } }
@@ -37,7 +37,7 @@ class BlogPost < ActiveRecord::Base
     scope :previous, lambda { |i| where(["published_at < ?", i.published_at]).order("published_at DESC").limit(1) }
     scope :next, lambda { |i| where(["published_at > ?", i.published_at]).order("published_at ASC").limit(1) }
   end
-  
+
   def next
     self.class.next(self).first
   end
@@ -45,11 +45,11 @@ class BlogPost < ActiveRecord::Base
   def prev
     self.class.previous(self).first
   end
-  
+
   def live?
     !draft and published_at <= Time.now
   end
-  
+
   def category_ids=(ids)
     self.categories = ids.reject{|id| id.blank?}.collect {|c_id|
       BlogCategory.find(c_id.to_i) rescue nil
@@ -59,21 +59,21 @@ class BlogPost < ActiveRecord::Base
   class << self
     def comments_allowed?
       RefinerySetting.find_or_set(:comments_allowed, true, {
-        :scoping => :blog
+        :scoping => 'blog'
       })
     end
   end
-  
+
   module ShareThis
     DEFAULT_KEY = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
-    
+
     class << self
       def key
         RefinerySetting.find_or_set(:share_this_key, BlogPost::ShareThis::DEFAULT_KEY, {
-          :scoping => :blog
+          :scoping => 'blog'
         })
       end
-      
+
       def enabled?
         key = BlogPost::ShareThis.key
         key.present? and key != BlogPost::ShareThis::DEFAULT_KEY
