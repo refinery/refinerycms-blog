@@ -82,7 +82,7 @@
   <% content_for :head do %>
     <%= stylesheet_link_tag('refinery/refinerycms-blog') %>
     <%# this javascript is not even required in >= 0.9.9 because we made this sort of menu core. %>
-    <%= javascript_link_tag('refinery/refinerycms-blog') %>
+    <%= javascript_include_tag('refinery/refinerycms-blog') %>
   <% end %>
 <% else %>
   <% content_for :stylesheets, stylesheet_link_tag('refinery/refinerycms-blog')%>
