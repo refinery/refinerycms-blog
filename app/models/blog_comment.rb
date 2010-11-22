@@ -60,11 +60,16 @@ class BlogComment < ActiveRecord::Base
       end
 
       def toggle!
-        RefinerySetting[:comment_moderation] = {
-          :value => !self.enabled?,
+        new_value = {
+          :value => !BlogComment::Moderation.enabled?,
           :scoping => :blog,
           :restricted => false
         }
+        if RefinerySetting.respond_to?(:set)
+          RefinerySetting.set(:comment_moderation, new_value)
+        else
+          RefinerySetting[:comment_moderation] = new_value
+        end
       end
     end
   end
@@ -80,11 +85,16 @@ class BlogComment < ActiveRecord::Base
       end
 
       def recipients=(emails)
-        RefinerySetting[:comment_notification_recipients] = {
+        new_value = {
           :value => emails,
           :scoping => :blog,
           :restricted => false
         }
+        if RefinerySetting.respond_to?(:set)
+          RefinerySetting.set(:comment_notification_recipients, new_value)
+        else
+          RefinerySetting[:comment_notification_recipients] = new_value
+        end
       end
 
       def subject
@@ -95,11 +105,16 @@ class BlogComment < ActiveRecord::Base
       end
 
       def subject=(subject_line)
-        RefinerySetting[:comment_notification_subject] = {
+        new_value = {
           :value => subject_line,
           :scoping => :blog,
           :restricted => false
         }
+        if RefinerySetting.respond_to?(:set)
+          RefinerySetting.set(:comment_notification_subject, new_value)
+        else
+          RefinerySetting[:comment_notification_subject] = new_value
+        end
       end
     end
   end

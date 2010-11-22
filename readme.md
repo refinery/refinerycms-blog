@@ -11,13 +11,17 @@ Options:
 
 Open up your ``Gemfile`` and add at the bottom this line
 
-    gem 'refinerycms-blog', '~> 1.0.rc16'
+    gem 'refinerycms-blog', '= 1.0.rc16'
 
 Now run ``bundle install``
 
-Next to install the blog plugin run:
+Next to install the blog plugin run (for Rails 2):
 
-    ruby script/generate refinery_blog
+    ruby script/generate refinerycms_blog
+
+Or, for Rails 3:
+
+    rails generate refinerycms_blog
 
 Finally migrate your database and you're done.
 

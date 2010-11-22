@@ -1,4 +1,4 @@
-class RefineryBlogGenerator < Rails::Generator::NamedBase
+class RefinerycmsBlogGenerator < Rails::Generator::NamedBase
 
   def initialize(*runtime_args)
     # set argument for the user.
@@ -7,7 +7,7 @@ class RefineryBlogGenerator < Rails::Generator::NamedBase
   end
 
   def banner
-    'Usage: script/generate refinery_blog'
+    'Usage: script/generate refinerycms_blog'
   end
 
   def manifest
@@ -24,7 +24,7 @@ class RefineryBlogGenerator < Rails::Generator::NamedBase
         path = (%w(public) | image.split('public/').last.split('/'))[0...-1].join('/')
         m.template "../../../#{path}/#{image.split('/').last}", "#{path}/#{image.split('/').last}"
       end
-      
+
       m.directory('db/seeds')
       m.template('db/seeds/seed.rb', 'db/seeds/refinerycms_blog.rb')
 

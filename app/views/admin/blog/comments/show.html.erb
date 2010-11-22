@@ -59,5 +59,8 @@
     </tr>
   </table>
 </div>
-
-<% content_for :stylesheets, stylesheet_link_tag('refinery/refinerycms-blog') %>
+<% if Refinery.version < '0.9.9' %>
+  <% content_for :head, stylesheet_link_tag('refinery/refinerycms-blog') %>
+<% else %>
+  <% content_for :stylesheets, stylesheet_link_tag('refinery/refinerycms-blog') %>
+<% end %>

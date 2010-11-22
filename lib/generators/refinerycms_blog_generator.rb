@@ -1,9 +1,9 @@
 require 'rails/generators/migration'
 
-class RefineryBlogGenerator < Rails::Generators::NamedBase
+class RefinerycmsBlogGenerator < Rails::Generators::NamedBase
   include Rails::Generators::Migration
 
-  source_root File.expand_path('../refinery_blog/templates/', __FILE__)
+  source_root File.expand_path('../refinerycms_blog/templates/', __FILE__)
   argument :name, :type => :string, :default => 'blog_structure', :banner => ''
 
   def generate

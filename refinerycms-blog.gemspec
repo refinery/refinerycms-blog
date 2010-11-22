@@ -2,7 +2,7 @@ Gem::Specification.new do |s|
   s.name              = %q{refinerycms-blog}
   s.version           = %q{1.0.rc16}
   s.description       = %q{A really straightforward open source Ruby on Rails blog engine designed for integration with RefineryCMS.}
-  s.date              = %q{2010-11-15}
+  s.date              = %q{2010-11-22}
   s.summary           = %q{Ruby on Rails blogging engine for RefineryCMS.}
   s.email             = %q{info@refinerycms.com}
   s.homepage          = %q{http://refinerycms.com}
@@ -24,6 +24,8 @@ Gem::Specification.new do |s|
     app/controllers/blog/categories_controller.rb
     app/controllers/blog/posts_controller.rb
     app/controllers/blog_controller.rb
+    app/helpers
+    app/helpers/blog_posts_helper.rb
     app/mailers
     app/mailers/blog
     app/mailers/blog/comment_mailer.rb
@@ -50,7 +52,9 @@ Gem::Specification.new do |s|
     app/views/admin/blog/comments/index.html.erb
     app/views/admin/blog/comments/show.html.erb
     app/views/admin/blog/posts
+    app/views/admin/blog/posts/_form.css.erb
     app/views/admin/blog/posts/_form.html.erb
+    app/views/admin/blog/posts/_form.js.erb
     app/views/admin/blog/posts/_post.html.erb
     app/views/admin/blog/posts/_sortable_list.html.erb
     app/views/admin/blog/posts/edit.html.erb
@@ -65,6 +69,9 @@ Gem::Specification.new do |s|
     app/views/blog/comment_mailer/notification.html.erb
     app/views/blog/posts
     app/views/blog/posts/_comment.html.erb
+    app/views/blog/posts/_nav.html.erb
+    app/views/blog/posts/_post.html.erb
+    app/views/blog/posts/archive.html.erb
     app/views/blog/posts/index.html.erb
     app/views/blog/posts/index.rss.builder
     app/views/blog/posts/show.html.erb
@@ -83,25 +90,25 @@ Gem::Specification.new do |s|
     Gemfile
     Gemfile.lock
     generators
-    generators/refinery_blog
-    generators/refinery_blog/refinery_blog_generator.rb
-    generators/refinery_blog/templates
-    generators/refinery_blog/templates/db
-    generators/refinery_blog/templates/db/migrate
-    generators/refinery_blog/templates/db/migrate/migration.rb
-    generators/refinery_blog/templates/db/seeds
-    generators/refinery_blog/templates/db/seeds/seed.rb
+    generators/refinerycms_blog
+    generators/refinerycms_blog/refinerycms_blog_generator.rb
+    generators/refinerycms_blog/templates
+    generators/refinerycms_blog/templates/db
+    generators/refinerycms_blog/templates/db/migrate
+    generators/refinerycms_blog/templates/db/migrate/migration.rb
+    generators/refinerycms_blog/templates/db/seeds
+    generators/refinerycms_blog/templates/db/seeds/seed.rb
     lib
     lib/gemspec.rb
     lib/generators
-    lib/generators/refinery_blog
-    lib/generators/refinery_blog/templates
-    lib/generators/refinery_blog/templates/db
-    lib/generators/refinery_blog/templates/db/migrate
-    lib/generators/refinery_blog/templates/db/migrate/migration_number_create_singular_name.rb
-    lib/generators/refinery_blog/templates/db/seeds
-    lib/generators/refinery_blog/templates/db/seeds/seed.rb
-    lib/generators/refinery_blog_generator.rb
+    lib/generators/refinerycms_blog
+    lib/generators/refinerycms_blog/templates
+    lib/generators/refinerycms_blog/templates/db
+    lib/generators/refinerycms_blog/templates/db/migrate
+    lib/generators/refinerycms_blog/templates/db/migrate/migration_number_create_singular_name.rb
+    lib/generators/refinerycms_blog/templates/db/seeds
+    lib/generators/refinerycms_blog/templates/db/seeds/seed.rb
+    lib/generators/refinerycms_blog_generator.rb
     lib/refinerycms-blog.rb
     public
     public/images
@@ -124,6 +131,7 @@ Gem::Specification.new do |s|
     public/javascripts
     public/javascripts/refinery
     public/javascripts/refinery/refinerycms-blog.js
+    public/javascripts/refinerycms-blog.js
     public/stylesheets
     public/stylesheets/refinery
     public/stylesheets/refinery/refinerycms-blog.css
