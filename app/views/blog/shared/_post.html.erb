@@ -4,13 +4,13 @@
       <h1><%= link_to post.title, blog_post_url(post) %></h1>
       <details>
         <time datetime="<%= post.published_at.strftime('%Y-%m-%d') %>" class='posted_at'>
-          <%= t('blog.shared.posts.created_at', :when => post.published_at.strftime('%d %B %Y')) %>.        
+          <%= t('blog.shared.posts.created_at', :when => post.published_at.strftime('%d %B %Y')) %>.
         </time>
         <% if (categories = post.categories).any? %>
           <aside class='filed_in'>
-            <%= t('.filed_in') %>
+            <%= t('filed_in', :scope => 'blog.posts.show') %>
             <% categories.each_with_index do |category, index| %>
-                <%= link_to category.title, blog_category_url(category) -%><%= ',' if index < ((categories.length) - 1) %>
+              <%= link_to category.title, blog_category_url(category) -%><%= ',' if index < ((categories.length) - 1) %>
             <% end %>
           </aside>
         <% end %>

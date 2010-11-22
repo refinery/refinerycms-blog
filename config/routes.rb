@@ -6,8 +6,8 @@ if Rails.version < '3.0.0'
       blog.post ':id', :controller => "posts", :action => 'show'
       blog.category 'categories/:id', :controller => "categories", :action => 'show'
       blog.post_blog_comments ':id/comments', :controller => 'posts', :action => 'comment'
-      
-      
+
+
       ## what is the rails2 syntax for this? sorry ;__;
       # get 'archive/:year/:month', :to => 'posts#archive', :as => 'archive_blog_posts'
     end
@@ -45,7 +45,7 @@ else
     end
 
     scope(:path => 'refinery', :as => 'admin', :module => 'admin') do
-      scope(:path => 'blog', :name_prefix => 'admin', :as => 'blog', :module => 'blog') do
+      scope(:path => 'blog', :as => 'blog', :module => 'blog') do
         root :to => 'posts#index'
         resources :posts
 
