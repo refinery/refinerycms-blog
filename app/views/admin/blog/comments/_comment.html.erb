@@ -10,10 +10,10 @@
                 :target => "_blank" unless comment.unmoderated? %>
     <%= link_to refinery_icon_tag('zoom.png'), admin_blog_comment_path(comment),
                 :title => t('.read') %>
-    <%= link_to refinery_icon_tag("cross.png"), 
+    <%= link_to refinery_icon_tag("cross.png"),
                 rejected_admin_blog_comment_path(comment, :return_to => request.path.split('/').last.gsub(/^comments$/, 'index')),
                 :title => t('.reject') unless comment.rejected? %>
-    <%= link_to refinery_icon_tag("tick.png"), 
+    <%= link_to refinery_icon_tag("tick.png"),
                 approved_admin_blog_comment_path(comment, :return_to => request.path.split('/').last.gsub(/^comments$/, 'index')),
                 :title => t('.approve') unless comment.approved? %>
   </span>

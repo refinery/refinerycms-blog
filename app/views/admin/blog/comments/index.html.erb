@@ -3,7 +3,7 @@
   <% if searching? %>
     <h2><%= t('shared.admin.search.results_for', :query => params[:search]) %></h2>
     <% if @blog_comments.any? %>
-      <%=# will_paginate @blog_comments 
+      <%=# will_paginate @blog_comments
       %>
 
       <ul>
@@ -11,19 +11,19 @@
                    :collection => @blog_comments %>
       </ul>
 
-      <%=# will_paginate @blog_comments 
+      <%=# will_paginate @blog_comments
       %>
     <% else %>
       <p><%= t('admin.search_no_results') %></p>
     <% end %>
   <% else %>
     <% if @blog_comments.any? %>
-      <%=# will_paginate @blog_comments 
+      <%=# will_paginate @blog_comments
       %>
 
       <%= render :partial => "sortable_list" %>
 
-      <%=# will_paginate @blog_comments 
+      <%=# will_paginate @blog_comments
       %>
     <% else %>
       <h3>

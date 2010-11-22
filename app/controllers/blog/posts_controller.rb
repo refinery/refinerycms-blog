@@ -1,8 +1,8 @@
 class Blog::PostsController < BlogController
-  
+
   before_filter :find_all_blog_posts, :except => [:archive]
   before_filter :find_blog_post, :only => [:show, :comment, :update_nav]
-  
+
   respond_to :html, :js, :rss if Rails.version >= '3.0.0'
 
   def index
@@ -18,7 +18,7 @@ class Blog::PostsController < BlogController
 
   def show
     @blog_comment = BlogComment.new
-    
+
     if Rails.version < '3.0.0'
       # TODO: respond_to block
     else
@@ -55,7 +55,7 @@ class Blog::PostsController < BlogController
       render :action => 'show'
     end
   end
-  
+
   def archive
     date = "#{params[:month]}/#{params[:year]}"
     @archive_date = Time.parse(date)

@@ -8,7 +8,7 @@
     <h1><%= @blog_post.title %></h1>
     <details>
       <time datetime="<%= @blog_post.published_at.strftime('%Y-%m-%d') %>" class='posted_at'>
-        <%= t('blog.shared.posts.created_at', :when => @blog_post.published_at.strftime('%d %B %Y')) %>.        
+        <%= t('blog.shared.posts.created_at', :when => @blog_post.published_at.strftime('%d %B %Y')) %>.
       </time>
       <% if (categories = @blog_post.categories).any? %>
         <aside class='filed_in'>

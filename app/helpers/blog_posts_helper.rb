@@ -4,10 +4,10 @@ module BlogPostsHelper
     return nil if posts.blank?
     html = '<section id="blog_archive_list"><h1>Archives</h1><nav>'
     links = []
-    
+
     posts.each do |e|
       links << e.published_at.strftime('%m/%Y')
-    end      
+    end
     links.uniq!
     links.each do |l|
       year = l.split('/')[1]
@@ -19,7 +19,7 @@ module BlogPostsHelper
     html += '</nav></section>'
     html.html_safe
   end
-  
+
   def next_or_previous?(post)
     post.next.present? or post.prev.present?
   end
