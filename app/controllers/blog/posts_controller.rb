@@ -73,7 +73,13 @@ class Blog::PostsController < BlogController
 protected
 
   def find_blog_post
-    @blog_post = BlogPost.live.find(params[:id])
+    unless (@blog_post = BlogPost.find(params[:id])).try(:live?)
+      if refinery_user? and current_user.authorized_plugins.include?("refinerycms_blog")
+        @blog_post = BlogPost.find(params[:id])
+      else
+        error_404
+      end
+    end
   end
 
   def find_all_blog_posts
