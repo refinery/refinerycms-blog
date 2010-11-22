@@ -71,8 +71,9 @@
     <%= stylesheet_link_tag 'refinerycms-blog' %>
     <%= javascript_include_tag('refinerycms-blog') %>
     <% if BlogPost::ShareThis.enabled? %>
-    <script src="http://w.sharethis.com/button/buttons.js"></script>
-    <script>stLight.options({publisher:'<%= BlogPost::ShareThis.key %>'});</script>
+      <script src="http://w.sharethis.com/button/buttons.js"></script>
+      <script>stLight.options({publisher:'<%= BlogPost::ShareThis.key %>'});</script>
+    <% end %>
   <% end %>
 <% else %>
   <% content_for :stylesheets, stylesheet_link_tag('refinerycms-blog') %>
