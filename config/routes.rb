@@ -7,7 +7,6 @@ if Rails.version < '3.0.0'
       blog.category 'categories/:id', :controller => "categories", :action => 'show'
       blog.post_blog_comments ':id/comments', :controller => 'posts', :action => 'comment'
 
-
       ## what is the rails2 syntax for this? sorry ;__;
       # get 'archive/:year/:month', :to => 'posts#archive', :as => 'archive_blog_posts'
     end
