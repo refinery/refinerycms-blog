@@ -2,13 +2,13 @@ Gem::Specification.new do |s|
   s.name              = %q{refinerycms-blog}
   s.version           = %q{1.0.rc16}
   s.description       = %q{A really straightforward open source Ruby on Rails blog engine designed for integration with RefineryCMS.}
-  s.date              = %q{2010-11-22}
+  s.date              = %q{2010-12-01}
   s.summary           = %q{Ruby on Rails blogging engine for RefineryCMS.}
   s.email             = %q{info@refinerycms.com}
   s.homepage          = %q{http://refinerycms.com}
   s.authors           = %w(Resolve\ Digital Neoteric\ Design)
   s.require_paths     = %w(lib)
-  s.add_dependency    'refinerycms',  '>= 0.9.7.13'
+  s.add_dependency    'refinerycms',  '>= 0.9.8'
   s.add_dependency    'filters_spam', '~> 0.2'
 
   s.files             = %w(
@@ -87,6 +87,13 @@ Gem::Specification.new do |s|
     config/locales/nb.yml
     config/locales/nl.yml
     config/routes.rb
+    features
+    features/support
+    features/support/factories
+    features/support/factories/blog_categories.rb
+    features/support/factories/blog_comments.rb
+    features/support/factories/blog_posts.rb
+    features/support/paths.rb
     Gemfile
     Gemfile.lock
     generators
