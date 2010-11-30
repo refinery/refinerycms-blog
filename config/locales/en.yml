@@ -9,17 +9,17 @@ en:
           edit: Edit this category
           delete: Delete this category forever
         index:
-          no_items_yet: 'There are no categories yet. Click "{{create}}" to add your first category.'
+          no_items_yet: 'There are no categories yet. Click "%{create}" to add your first category.'
       comments:
-        approved: 'The comment from "{{author}}" has been approved.'
+        approved: 'The comment from "%{author}" has been approved.'
         comment:
           view_live: View this comment live <br/><em>(opens in a new window)</em>
           read: Read this comment
           reject: Reject this comment
           approve: Approve this comment
-        rejected: 'The comment from "{{author}}" has been rejected.'
+        rejected: 'The comment from "%{author}" has been rejected.'
         index:
-          no_items_yet: 'There are no {{type}} comments.'
+          no_items_yet: 'There are no %{type} comments.'
         show:
           comment: Comment
           blog_post: Blog Post
@@ -39,7 +39,7 @@ en:
           save_as_draft: Save as Draft
           published_at: Publish Date
         index:
-          no_items_yet: 'There are no Blog Posts yet. Click "{{create}}" to add your first blog post.'
+          no_items_yet: 'There are no Blog Posts yet. Click "%{create}" to add your first blog post.'
         post:
           view_live: View this blog post live <br/><em>(opens in a new window)</em>
           edit: Edit this blog post
@@ -50,7 +50,7 @@ en:
           explanation: 'Every time someone comments on a blog post, Refinery sends out an email to say there is a new comment.'
           hint: 'When a new comment is added, Refinery will send an email notification to you.'
           example: "Enter your email address(es) like: jack@work.com, jill@office.com"
-          updated: 'Notification recipients have been set to "{{recipients}}"'
+          updated: 'Notification recipients have been set to "%{recipients}"'
       submenu:
         categories:
           title: Categories
@@ -58,7 +58,7 @@ en:
           new: Create new category
         comments:
           title: Comments
-          title_with_count: 'Comments ({{new_count}} new)'
+          title_with_count: 'Comments (%{new_count} new)'
           new: New
           unmoderated: New
           approved: Approved
@@ -90,7 +90,7 @@ en:
         title: RSS Feed
       posts:
         other: Other Posts
-        created_at: 'Posted on {{when}}'
+        created_at: 'Posted on %{when}'
         read_more: Read more
       comments:
         singular: comment
@@ -101,8 +101,8 @@ en:
     posts:
       comment: comment
       comments:
-        by: 'Posted by {{who}}'
-        time_ago: '{{time}} ago'
+        by: 'Posted by %{who}'
+        time_ago: '%{time} ago'
         thank_you: 'Thank you for commenting.'
         thank_you_moderated: 'Thank you for commenting. Your message has been placed in the moderation queue and will appear shortly.'
       show:

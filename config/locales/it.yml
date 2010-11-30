@@ -9,17 +9,17 @@ it:
           edit: Modifica questa categoria
           delete: Elimina questa categoria per sempre
         index:
-          no_items_yet: 'Nessuna categoria ancora presente. Fare click su "{{create}}" per aggiungere la tua prima categoria.'
+          no_items_yet: 'Nessuna categoria ancora presente. Fare click su "%{create}" per aggiungere la tua prima categoria.'
       comments:
-        approved: 'Il commento di "{{author}}" è stato approvato.'
+        approved: 'Il commento di "%{author}" è stato approvato.'
         comment:
           view_live: Visualizza questo commento <em> <br/> live (si apre in una nuova finestra) </ em>
           read: Leggi questo commento
           reject: Rifiuta questo commento
           approve: Approva questo commento
-        rejected: 'Il commento di "{{author}}" è stato rifiutato.'
+        rejected: 'Il commento di "%{author}" è stato rifiutato.'
         index:
-          no_items_yet: 'Non ci sono {{type}} commenti.'
+          no_items_yet: 'Non ci sono %{type} commenti.'
         show:
           comment: Commento
           blog_post: Messaggio del Blog
@@ -39,7 +39,7 @@ it:
           save_as_draft: Salva come Bozza
           published_at: Data di Pubblicazione
         index:
-          no_items_yet: 'Non ci sono ancora Messaggi per questo Blog. Clicca "{{create}}" per aggiungere il tuo primo messaggio.'
+          no_items_yet: 'Non ci sono ancora Messaggi per questo Blog. Clicca "%{create}" per aggiungere il tuo primo messaggio.'
         post:
           view_live: Visualizza questo messaggio live <br/><em>(si apre in una nuova finestra)</em>
           edit: Modifica questo messaggio
@@ -50,7 +50,7 @@ it:
           explanation: "Ogni volta che qualcuno commenta un messaggio del blog, Refinery invia una mail per avvisare che c'è un nuovo comemnto"
           hint: 'Quando viene aggiunto un nuovo commento Refinery ti invierà una email di notifica.'
           example: "Inserisci il tuo indirizzo email. È possibile insierire più indirizzi separati dalla virgola. Es: jack@work.com, jill@office.com"
-          updated: 'I destinatari delle notifiche sono stati impostati "{{recipients}}"'
+          updated: 'I destinatari delle notifiche sono stati impostati "%{recipients}"'
       submenu:
         categories:
           title: Categorie
@@ -58,7 +58,7 @@ it:
           new: Crea nuova categoria
         comments:
           title: Commenti
-          title_with_count: 'Comment1 ({{new_count}} nuovi)'
+          title_with_count: 'Comment1 (%{new_count} nuovi)'
           new: Nuovo
           unmoderated: Nuovo
           approved: Approvato
@@ -79,7 +79,7 @@ it:
         title: RSS Feed
       posts:
         other: Altri Messaggi
-        created_at: 'Pubblicato il {{when}}'
+        created_at: 'Pubblicato il %{when}'
         read_more: Per saperne di più
       comments:
         singular: commento
@@ -91,8 +91,8 @@ it:
     posts:
       comment: commento
       comments:
-        by: 'Pubblicato da {{who}}'
-        time_ago: '{{time}} fa'
+        by: 'Pubblicato da %{who}'
+        time_ago: '%{time} fa'
         thank_you: 'Grazie per aver scritto un commento.'
         thank_you_moderated: 'Grazie per aver scritto un commento. Il tuo messaggio è stato inserito nella coda di moderazione e sarà visibile a breve.'
       show:
