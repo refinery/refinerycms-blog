@@ -14,15 +14,9 @@ class BlogComment < ActiveRecord::Base
   validates_format_of :email,
                       :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i
 
-  if Rails.version < '3.0.0'
-    named_scope :unmoderated, :conditions => {:state => nil}
-    named_scope :approved, :conditions => {:state => 'approved'}
-    named_scope :rejected, :conditions => {:state => 'rejected'}
-  else
-    scope :unmoderated, :conditions => {:state => nil}
-    scope :approved, :conditions => {:state => 'approved'}
-    scope :rejected, :conditions => {:state => 'rejected'}
-  end
+  scope :unmoderated, :conditions => {:state => nil}
+  scope :approved, :conditions => {:state => 'approved'}
+  scope :rejected, :conditions => {:state => 'rejected'}
 
   def approve!
     self.update_attribute(:state, 'approved')
