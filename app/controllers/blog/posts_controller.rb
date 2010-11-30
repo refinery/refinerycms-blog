@@ -3,41 +3,21 @@ class Blog::PostsController < BlogController
   before_filter :find_all_blog_posts, :except => [:archive]
   before_filter :find_blog_post, :only => [:show, :comment, :update_nav]
 
-  respond_to :html, :js, :rss if Rails.version >= '3.0.0'
-
   def index
-    if Rails.version < '3.0.0'
-      # TODO: respond_to block
-    else
-      respond_with (@blog_posts) do |format|
-        format.html
-        format.rss
-      end
-    end
+    # TODO: respond_to block
   end
 
   def show
     @blog_comment = BlogComment.new
 
-    if Rails.version < '3.0.0'
-      # TODO: respond_to block
-    else
-      respond_with (@blog_post) do |format|
-        format.html { present(@page) }
-        format.js { render :partial => 'post', :layout => false }
-      end
-    end
+    # TODO: respond_to block
   end
 
   def comment
     if (@blog_comment = @blog_post.comments.create(params[:blog_comment])).valid?
       if BlogComment::Moderation.enabled? or @blog_comment.ham?
         begin
-          if Rails.version < '3.0.0'
-            Blog::CommentMailer.deliver_notification(@blog_comment, request)
-          else
-            Blog::CommentMailer.notification(@blog_comment, request).deliver
-          end
+          Blog::CommentMailer.deliver_notification(@blog_comment, request)
         rescue
           logger.warn "There was an error delivering a blog comment notification.\n#{$!}\n"
         end
@@ -63,11 +43,7 @@ class Blog::PostsController < BlogController
       :page => params[:page],
       :per_page => RefinerySetting.find_or_set(:blog_posts_per_page, 10)
     })
-    if Rails.version < '3.0.0'
-      # TODO: respond_to block
-    else
-      respond_with (@blog_posts)
-    end
+    # TODO: respond_to block
   end
 
 protected

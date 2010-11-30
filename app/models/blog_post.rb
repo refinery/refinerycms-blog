@@ -10,33 +10,14 @@ class BlogPost < ActiveRecord::Base
 
   has_friendly_id :title, :use_slug => true
 
-  if Rails.version < '3.0.0'
-    named_scope :by_archive, lambda { |archive_date| {:conditions => ['published_at between ? and ?', archive_date.beginning_of_month, archive_date.end_of_month], :order => "published_at DESC"} }
-  else
-    scope :by_archive, lambda { |archive_date|
-      where(['published_at between ? and ?', archive_date.beginning_of_month, archive_date.end_of_month]).order("published_at DESC")
-    }
-  end
+  named_scope :by_archive, lambda { |archive_date| {:conditions => ['published_at between ? and ?', archive_date.beginning_of_month, archive_date.end_of_month], :order => "published_at DESC"} }
 
-  if Rails.version < '3.0.0'
-    named_scope :all_previous, :conditions => ['published_at <= ?', Time.now.beginning_of_month], :order => "published_at DESC"
-  else
-    scope :all_previous, where(['published_at <= ?', Time.now.beginning_of_month]).order("published_at DESC")
-  end
+  named_scope :all_previous, :conditions => ['published_at <= ?', Time.now.beginning_of_month], :order => "published_at DESC"
 
-  if Rails.version < '3.0.0'
-    named_scope :live, lambda { {:conditions => ["published_at < ? and draft = ?", Time.now, false], :order => "published_at DESC"} }
-  else
-    scope :live, lambda { where( "published_at < ? and draft = ?", Time.now, false).order("published_at DESC") }
-  end
+  named_scope :live, lambda { {:conditions => ["published_at < ? and draft = ?", Time.now, false], :order => "published_at DESC"} }
 
-  if Rails.version < '3.0.0'
-    named_scope :previous, lambda { |i| { :conditions => ["published_at < ?", i.published_at], :order => "published_at DESC", :limit => 1 } }
-    named_scope :next, lambda { |i| { :condtions => ["published_at > ?", i.published_at], :order => "published_at ASC", :limit => 1 } }
-  else
-    scope :previous, lambda { |i| where(["published_at < ?", i.published_at]).order("published_at DESC").limit(1) }
-    scope :next, lambda { |i| where(["published_at > ?", i.published_at]).order("published_at ASC").limit(1) }
-  end
+  named_scope :previous, lambda { |i| { :conditions => ["published_at < ?", i.published_at], :order => "published_at DESC", :limit => 1 } }
+  named_scope :next, lambda { |i| { :condtions => ["published_at > ?", i.published_at], :order => "published_at ASC", :limit => 1 } }
 
   def next
     self.class.next(self).first

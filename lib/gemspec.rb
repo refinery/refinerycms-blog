@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.homepage          = %q{http://refinerycms.com}
   s.authors           = %w(Resolve\\ Digital Neoteric\\ Design)
   s.require_paths     = %w(lib)
-  s.add_dependency    'refinerycms',  '>= 0.9.7.13'
+  s.add_dependency    'refinerycms',  '~> 0.9.7.13'
   s.add_dependency    'filters_spam', '~> 0.2'
 
   s.files             = %w(
