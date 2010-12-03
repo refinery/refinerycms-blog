@@ -88,6 +88,7 @@ en:
         title: Categories
       rss_feed:
         title: RSS Feed
+        subscribe: Subscribe
       posts:
         other: Other Posts
         created_at: 'Posted on %{when}'
@@ -115,3 +116,6 @@ en:
         other: Other Blog Posts
         filed_in: Filed in
         submit: Send comment
+      archive:
+        blog_archive_for: Blog Archive for %{date}
+        no_blog_articles_posted: There are no blog articles posted for %{date}. Stay tuned.
