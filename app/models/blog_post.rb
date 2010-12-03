@@ -1,6 +1,6 @@
 class BlogPost < ActiveRecord::Base
 
-  has_many :comments, :class_name => 'BlogComment'
+  has_many :comments, :class_name => 'BlogComment', :dependent => :destroy
   has_and_belongs_to_many :categories, :class_name => 'BlogCategory'
 
   acts_as_indexed :fields => [:title, :body]
