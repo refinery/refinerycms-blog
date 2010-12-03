@@ -12,7 +12,7 @@
     <%= link_to refinery_icon_tag("delete.png"), admin_blog_post_path(post),
         :class => "cancel confirm-delete",
         :title => t('.delete'),
-        :'data-method' => 'delete',
-        :'data-confirm' => t('shared.admin.delete.message', :title => post.title) %>
+        :method => :delete,
+        :confirm => t('shared.admin.delete.message', :title => post.title) %>
   </span>
 </li>
