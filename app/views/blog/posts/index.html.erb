@@ -1,11 +1,13 @@
 <% content_for :body_content_left do %>
   <%= @page[Page.default_parts.first.to_sym] %>
 
-  <section id="blog_posts">
-    <%= render :partial => "/blog/shared/post", :collection => @blog_posts %>
-  </section>
-  <%= "<p>There are no blog articles posted yet. Stay tuned.</p>".html_safe unless @blog_posts.any? %>
-  <%# TODO: Add locale logic here - hubble is a n00b at that %>
+  <% if @blog_posts.any? %>
+    <section id="blog_posts">
+      <%= render :partial => "/blog/shared/post", :collection => @blog_posts %>
+    </section>
+  <% else %>
+    <p><%= t('.no_blog_articles_yet') %></p>
+  <% end %>
 <% end %>
 
 <% content_for :body_content_right do %>

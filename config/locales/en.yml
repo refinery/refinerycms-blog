@@ -105,6 +105,8 @@ en:
         time_ago: '%{time} ago'
         thank_you: 'Thank you for commenting.'
         thank_you_moderated: 'Thank you for commenting. Your message has been placed in the moderation queue and will appear shortly.'
+      index:
+        no_blog_articles_yet: There are no blog articles posted yet. Stay tuned.
       show:
         comments:
           title: Comments
