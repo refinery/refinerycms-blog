@@ -1,6 +1,6 @@
 <li class='clearfix record <%= cycle("on", "on-hover") %>' id="<%= "comment-#{comment.to_param}" -%>">
   <span class='title'>
-    <%=h comment.name %>
+    <%= comment.name %>
     <span class="preview"> - <%= truncate(comment.message, :length => 75) %></span>
   </span>
   <span class='actions'>
