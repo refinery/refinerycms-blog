@@ -8,15 +8,8 @@ class BlogCategory < ActiveRecord::Base
 
   has_friendly_id :title, :use_slug => true
 
-  # this might be able to be optimised a little more
   def post_count
-    count = 0
-
-    self.posts.each do |p|
-      count += 1 if p.live?
-    end
-
-    count
+    posts.select(&:live?).count
   end
 
 end
