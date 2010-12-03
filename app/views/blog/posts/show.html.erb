@@ -22,7 +22,7 @@
       <% end %>
 
       <h2><%= t('.comments.add') %></h2>
-      <% form_for [:blog_post, @blog_comment] do |f| %>
+      <%= form_for [:blog_post, @blog_comment] do |f| %>
         <%= render :partial => "/shared/admin/error_messages",
                    :locals => {
                      :object => f.object,

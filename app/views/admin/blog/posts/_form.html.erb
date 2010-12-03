@@ -1,4 +1,4 @@
-<% form_for [:admin, @blog_post] do |f| -%>
+<%= form_for [:admin, @blog_post] do |f| -%>
   <%= render :partial => "/shared/admin/error_messages",
              :locals => {
                :object => f.object,
