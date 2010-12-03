@@ -12,7 +12,7 @@
       </time>
       <% if (categories = @blog_post.categories).any? %>
         <aside class='filed_in'>
-          <%= t('.filed_in') %>
+          <%= t('blog.posts.show.filed_in') %>
           <% categories.each_with_index do |category, index| %>
               <%= link_to category.title, blog_category_url(category) -%><%= ',' if index < ((categories.length) - 1) %>
           <% end %>
