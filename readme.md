@@ -1,6 +1,7 @@
 # Refinery CMS Blog - Rails 2 branch
 
-Simple blog engine for [Refinery CMS](http://refinerycms.com). It supports posts, categories and comments.
+Simple blog engine for [Refinery CMS](http://refinerycms.com).
+It supports posts, categories and comments.
 
 Refinery CMS Blog supports Rails 3 on the [master branch](http://github.com/resolve/refinerycms-blog).
 
@@ -9,17 +10,22 @@ Options:
 * Comment moderation
 * [ShareThis.com](http://sharethis.com) support on posts. Set your key in Refinery's settings area to enable this.
 
-## Install
+## Requirements
 
-Open up your ``Gemfile`` and add at the bottom this line
+Please note that this requires a RefineryCMS installation between version >= 0.9.7.13
+and < 0.9.8 as it works only with the later versions of Rails 2 compatible RefineryCMS.
+Also note that any version of this engine 1.1 or greater is not compatible with Rails 2 at all
+and is meant for Rails 3 (Refinery CMS >= 0.9.8).
 
-    gem 'refinerycms-blog', '= 1.0.rc16'
+# Install
 
-Please note 1.0.rc16 is the last version of Refinery CMS Blog to support Rails 2.
+Open up your ``Gemfile`` and add at the bottom this line:
 
-Now run ``bundle install``
+    gem 'refinerycms-blog', '~> 1.0.1'
 
-Next to install the blog plugin run (for Rails 2):
+Now, run ``bundle install``
+
+Next, to install the blog plugin:
 
     ruby script/generate refinerycms_blog
 
