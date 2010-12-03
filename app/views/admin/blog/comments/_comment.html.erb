@@ -6,7 +6,7 @@
   <span class='actions'>
     <%= link_to refinery_icon_tag("application_go.png"),
                 blog_post_url(comment.post, :anchor => "comment-#{comment.to_param}"),
-                :title => t('.view_live'),
+                :title => t('.view_live_html'),
                 :target => "_blank" unless comment.unmoderated? %>
     <%= link_to refinery_icon_tag('zoom.png'), admin_blog_comment_path(comment),
                 :title => t('.read') %>

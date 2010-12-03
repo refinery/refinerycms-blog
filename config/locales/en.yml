@@ -13,7 +13,7 @@ en:
       comments:
         approved: 'The comment from "%{author}" has been approved.'
         comment:
-          view_live: View this comment live <br/><em>(opens in a new window)</em>
+          view_live_html: View this comment live <br/><em>(opens in a new window)</em>
           read: Read this comment
           reject: Reject this comment
           approve: Approve this comment
@@ -41,7 +41,7 @@ en:
         index:
           no_items_yet: 'There are no Blog Posts yet. Click "%{create}" to add your first blog post.'
         post:
-          view_live: View this blog post live <br/><em>(opens in a new window)</em>
+          view_live_html: View this blog post live <br/><em>(opens in a new window)</em>
           edit: Edit this blog post
           delete: Remove this blog post forever
       settings:
