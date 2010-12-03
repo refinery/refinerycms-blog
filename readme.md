@@ -9,15 +9,19 @@ Options:
 * Comment moderation
 * [ShareThis.com](http://sharethis.com) support on posts. Set your key in Refinery's settings area to enable this.
 
+## Requirements
+
+Refinery CMS version 0.9.8 or above.
+
 ## Install
 
-Open up your ``Gemfile`` and add at the bottom this line
+Open up your ``Gemfile`` and add at the bottom this line:
 
-    gem 'refinerycms-blog', '~> 1.0'
+    gem 'refinerycms-blog', '~> 1.1'
 
-Now run ``bundle install``
+Now, run ``bundle install``
 
-Next to install the blog plugin run:
+Next, to install the blog plugin run:
 
     rails generate refinerycms_blog
 
