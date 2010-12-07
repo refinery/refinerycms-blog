@@ -6,6 +6,7 @@ class BlogPost < ActiveRecord::Base
   acts_as_indexed :fields => [:title, :body]
 
   validates :title, :presence => true, :uniqueness => true
+  validates :body,  :presence => true
 
   has_friendly_id :title, :use_slug => true
 
