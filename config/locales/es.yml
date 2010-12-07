@@ -19,7 +19,7 @@ es:
           approve: Aprovar este comentario
         rejected: El comentario de "%{author}" ha sido rechazado.
         index:
-          no_items_yet: No hay comentarios de %{type}.
+          no_items_yet: No hay comentarios %{type}.
         show:
           comment: Comentario
           blog_post: Entrada en el Blog
@@ -48,21 +48,21 @@ es:
         notification_recipients:
           value: Enviar notificaciones a
           explanation: Cada vez que alguien comente en una entrada, Refinery envia un email para avisar de que hay un nuevo comentario.
-          hint: Cuando hay un comentario nuevo, Refinery te avisará por email.
-          example: Facilita tu(s) dirección(es) de email, p. ej.: pepe@direccionpersonal.com, jose@direccionlaboral.com
+          hint: Refinery te avisará con un email cada vez que haya un nuevo comentario en tu Blog.
+          example: 'Si deseas que las notificaciones lleguen a más de una cuenta, puedes usar comas para separarlas (pepe@direccionpersonal.com, jose@direccionlaboral.com, ...)'
           updated: Las notifiaciones han sido enviadas a "%{recipients}"
       submenu:
         categories:
           title: Categorías
           manage: Gestionar
-          new: Crear nueva categoría
+          new: Añadir categoría
         comments:
           title: Comentarios
           title_with_count: Comentarios (%{new_count} nuevos)
           new: Nuevo
-          unmoderated: Nuevo
-          approved: Aprobado
-          rejected: Rechazado
+          unmoderated: Nuevos
+          approved: Aprobados
+          rejected: Rechazados
         posts:
           title: Entradas
           manage: Gestionar entradas
@@ -70,7 +70,7 @@ es:
         settings:
           title: Configuración
           moderation: Moderación
-          update_notified: Actualizar quien recibe las notificaciones
+          update_notified: ¿Quién recibe las notificaciones?
   blog:
     comment_mailer:
       notification:
