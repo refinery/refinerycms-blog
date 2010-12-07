@@ -2,20 +2,32 @@ require 'spec_helper'
 Dir[File.expand_path('../../../features/support/factories/*.rb', __FILE__)].each{|factory| require factory}
 
 describe BlogCategory do
-  context "wiring up" do
-
+  describe "validations" do
     before(:each) do
-      @category = Factory(:blog_category)
+      @attr = { :title => "RefineryCMS" }
     end
 
-    it "saves" do
-      @category.should_not be_nil
+    it "requires title" do
+      BlogCategory.new(@attr.merge(:title => "")).should_not be_valid
     end
 
-    it "has a blog post" do
-      BlogPost.last.categories.should include(@category)
+    it "won't allow duplicate titles" do
+      BlogCategory.create!(@attr)
+      BlogCategory.new(@attr).should_not be_valid
     end
-
   end
 
+  describe "blog posts association" do
+    it "have a posts attribute" do
+      BlogCategory.new.should respond_to(:posts)
+    end
+  end
+
+  describe "#post_count" do
+    it "returns post count in category" do
+      Factory(:post, :categories => [Factory(:blog_category)])
+      Factory(:post, :categories => [Factory(:blog_category)])
+      BlogCategory.first.post_count.should == 2
+    end
+  end
 end
