@@ -9,23 +9,23 @@ es:
           edit: Editar esta categoría
           delete: Borrar esta categoría para siempre
         index:
-          no_items_yet: 'Todavía no hay categorías. Click "%{create}" to add your first category.'
+          no_items_yet: Todavía no hay categorías. Haz click en "%{create}" para añadir la primera.
       comments:
-        approved: 'El comentario de "%{author}" ha sido aprovado.'
+        approved: El comentario de "%{author}" ha sido aprobado.
         comment:
-          view_live_html: Ver este comentario<br/><em>(abre una nueva ventana)</em>
+          view_live_html:Ver este comentario<br/><em>(se abrirá en una ventana nueva)</em>
           read: Leer este comentario
           reject: Rechazar este comentario
           approve: Aprovar este comentario
-        rejected: 'El comentario de "%{author}" ha sido rechazado.'
+        rejected: El comentario de "%{author}" ha sido rechazado.
         index:
-          no_items_yet: 'No hat comentarios de %{type}.'
+          no_items_yet: No hay comentarios de %{type}.
         show:
           comment: Comentario
-          blog_post: Post del blog
+          blog_post: Entrada en el Blog
           from: Enviado por
           date: Enviado el
-          message: Comentario
+          message: Mensaje
           details: Detalles
           age: Edad
           actions: Acciones
@@ -35,54 +35,54 @@ es:
       posts:
         form:
           advanced_options: Opciones avanzadas
-          toggle_advanced_options: Click para acceder a las opciones de menu i meta tags
+          toggle_advanced_options: Click para acceder a las opciones de menú y etiquetas
           save_as_draft: Guardar Borrador
           published_at: Fecha de publicación
         index:
-          no_items_yet: 'There are no Blog Posts yet. Click "%{create}" to add your first blog post.'
+          no_items_yet: Aún no hay entradas en el Blog. Haz click en "%{create}" para añadir el primero
         post:
-          view_live_html: View this blog post live <br/><em>(opens in a new window)</em>
-          edit: Edit this blog post
-          delete: Remove this blog post forever
+          view_live_html: Ver entrada <br/><em>(se abrirá en una ventana nueva)</em>
+          edit: Editar esta entrada
+          delete: Eliminar esta entrada para siempre
       settings:
         notification_recipients:
-          value: Send notifications to
-          explanation: 'Every time someone comments on a blog post, Refinery sends out an email to say there is a new comment.'
-          hint: 'When a new comment is added, Refinery will send an email notification to you.'
-          example: "Enter your email address(es) like: jack@work.com, jill@office.com"
-          updated: 'Notification recipients have been set to "%{recipients}"'
+          value: Enviar notificaciones a
+          explanation: Cada vez que alguien comente en una entrada, Refinery envia un email para avisar de que hay un nuevo comentario.
+          hint: Cuando hay un comentario nuevo, Refinery te avisará por email.
+          example: Facilita tu(s) dirección(es) de email, p. ej.: pepe@direccionpersonal.com, jose@direccionlaboral.com
+          updated: Las notifiaciones han sido enviadas a "%{recipients}"
       submenu:
         categories:
-          title: Categories
-          manage: Manage
-          new: Create new category
+          title: Categorías
+          manage: Gestionar
+          new: Crear nueva categoría
         comments:
-          title: Comments
-          title_with_count: 'Comments (%{new_count} new)'
-          new: New
-          unmoderated: New
-          approved: Approved
-          rejected: Rejected
+          title: Comentarios
+          title_with_count: Comentarios (%{new_count} nuevos)
+          new: Nuevo
+          unmoderated: Nuevo
+          approved: Aprobado
+          rejected: Rechazado
         posts:
-          title: Posts
-          manage: Manage posts
-          new: Create new post
+          title: Entradas
+          manage: Gestionar entradas
+          new: Crear nueva entrada
         settings:
-          title: Settings
-          moderation: Moderation
-          update_notified: Update who gets notified
+          title: Configuración
+          moderation: Moderación
+          update_notified: Actualizar quien recibe las notificaciones
   blog:
     comment_mailer:
       notification:
         greeting: Hola
-        you_recieved_new_comment: Has recibido un nuevo comentario en tu web.
+        you_recieved_new_comment: Han hecho un nuevo comentario en una de las entradas de tu Blog.
         comment_starts: --- inicio comentario ---
         comment_ends: --- fin comentario ---
         from: De
         email: Email
         message: Mensaje
         closing_line: Saludos
-        ps: P.D. Todos tus comentarios se guardan en la sección "Blog" dentro del submenu "Comentarios" por si quires verlos allí.
+        ps: P.D. Recuerda que puedes ver todos los comentarios en el apartado "Comentarios" dentro de la sección "Blog".
     shared:
       categories:
         title: Categorías
@@ -90,32 +90,32 @@ es:
         title: Feed RSS
         subscribe: Suscribirse
       posts:
-        other: Otros posts
-        created_at: 'Enviado hace %{when}'
-        read_more: Leer mas
+        other: Otras entradas
+        created_at: Enviado hace %{when}
+        read_more: Leer más
       comments:
         singular: comentario
         none: no hay comentarios
     categories:
       show:
-        no_posts: Todavía no hay posts.
+        no_posts: Todavía no hay entradas.
     posts:
       comment: comentario
       comments:
-        by: 'Enviado por %{who}'
-        time_ago: 'Hace %{time}'
-        thank_you: 'Gracias por comentar.'
-        thank_you_moderated: 'Gracias por comentar. Tu mensaje se ha enviado a la cola de moderación y aparecerá dentro de poco.'
+        by: Enviado por %{who}
+        time_ago: Hace %{time}
+        thank_you: Gracias por tu comentario.
+        thank_you_moderated: Gracias por tu comentario. Ha sido enviado a la cola de moderación y, si lo aprobamos, aparecerá dentro de poco.
       index:
-        no_blog_articles_yet: Todavía no hay artículos. Estate atento.
+        no_blog_articles_yet: Todavía no hay artículos. ¡Pero vuelve pronto!
       show:
-        blog_home: Home del Blog
+        blog_home: Página principal del Blog
         comments:
           title: Comentarios
-          add: Envia un comentario
-        other: Otros posts del blog
-        filed_in: Envia en
+          add: Envía tu comentario
+        other: Otros posts
+        filed_in: Envía en
         submit: Enviar comentario
       archive:
-        blog_archive_for: Archivo del blog para %{date}
-        no_blog_articles_posted: No hay artículos para %{date}. Estate atento.
+        blog_archive_for: Archivo del blog en %{date}
+        no_blog_articles_posted: No hay entradas publicadas en %{date}.
