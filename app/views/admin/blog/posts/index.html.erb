@@ -10,15 +10,11 @@
     <% end %>
   <% else %>
     <% if @blog_posts.any? %>
-      <%= will_paginate @blog_posts,
-                        :previous_label => '&laquo;',
-                        :next_label => '&raquo;' %>
+      <%= will_paginate @blog_posts %>
 
       <%= render :partial => "sortable_list" %>
 
-      <%= will_paginate @blog_posts,
-                        :previous_label => '&laquo;',
-                        :next_label => '&raquo;' %>
+      <%= will_paginate @blog_posts %>
     <% else %>
       <p>
         <strong>
