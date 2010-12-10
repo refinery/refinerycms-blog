@@ -96,6 +96,7 @@ en:
       comments:
         singular: comment
         none: no comments
+      archives: Archives
     categories:
       show:
         no_posts: There are no posts here yet.

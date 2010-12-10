@@ -2,7 +2,9 @@ module BlogPostsHelper
   def blog_archive_list
     posts = BlogPost.select('published_at').all_previous
     return nil if posts.blank?
-    html = '<section id="blog_archive_list"><h2>Archives</h2><nav><ul>'
+    html = '<section id="blog_archive_list"><h2>'
+    html += t('blog.shared.archives')
+    html += '</h2><nav><ul>'
     links = []
 
     posts.each do |e|
