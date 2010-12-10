@@ -3,8 +3,8 @@ module BlogPostsHelper
     posts = BlogPost.select('published_at').all_previous
     return nil if posts.blank?
     html = '<section id="blog_archive_list"><h2>'
-    html += t('blog.shared.archives')
-    html += '</h2><nav><ul>'
+    html << t('blog.shared.archives')
+    html << '</h2><nav><ul>'
     links = []
 
     posts.each do |e|
@@ -16,11 +16,11 @@ module BlogPostsHelper
       month = l.split('/')[0]
       count = BlogPost.by_archive(Time.parse(l)).size
       text = "#{Date::MONTHNAMES[month.to_i]} #{year} (#{count})"
-      html += "<li>"
-      html += link_to(text, archive_blog_posts_path(:year => year, :month => month))
-      html += "</li>"
+      html << "<li>"
+      html << link_to(text, archive_blog_posts_path(:year => year, :month => month))
+      html << "</li>"
     end
-    html += '</ul></nav></section>'
+    html << '</ul></nav></section>'
     html.html_safe
   end
 
