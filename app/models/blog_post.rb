@@ -18,8 +18,8 @@ class BlogPost < ActiveRecord::Base
 
   scope :live, lambda { where( "published_at < ? and draft = ?", Time.now, false).order("published_at DESC") }
 
-  scope :previous, lambda { |i| where(["published_at < ?", i.published_at]).order("published_at DESC").limit(1) }
-  scope :next, lambda { |i| where(["published_at > ?", i.published_at]).order("published_at ASC").limit(1) }
+  scope :previous, lambda { |i| where(["published_at < ? and draft = ?", i.published_at, false]).order("published_at DESC").limit(1) }
+  scope :next, lambda { |i| where(["published_at > ? and draft = ?", i.published_at, false]).order("published_at ASC").limit(1) }
 
   def next
     self.class.next(self).first
