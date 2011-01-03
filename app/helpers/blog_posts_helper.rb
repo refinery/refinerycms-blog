@@ -15,7 +15,7 @@ module BlogPostsHelper
       year = l.split('/')[1]
       month = l.split('/')[0]
       count = BlogPost.by_archive(Time.parse(l)).size
-      text = "#{Date::MONTHNAMES[month.to_i]} #{year} (#{count})"
+      text = t("date.month_names")[month.to_i] + " #{year} (#{count})"      
       html << "<li>"
       html << link_to(text, archive_blog_posts_path(:year => year, :month => month))
       html << "</li>"
