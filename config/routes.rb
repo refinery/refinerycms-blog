@@ -5,7 +5,7 @@ Refinery::Application.routes.draw do
     match ':id', :to => 'posts#show', :as => 'blog_post'
     match 'categories/:id', :to => 'categories#show', :as => 'blog_category'
     match ':id/comments', :to => 'posts#comment', :as => 'blog_post_blog_comments'
-    get 'archive/:year/:month', :to => 'posts#archive', :as => 'archive_blog_posts'
+    get 'archive/:year(/:month)', :to => 'posts#archive', :as => 'archive_blog_posts'
   end
 
   scope(:path => 'refinery', :as => 'admin', :module => 'admin') do

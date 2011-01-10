@@ -13,6 +13,10 @@ class BlogPost < ActiveRecord::Base
   scope :by_archive, lambda { |archive_date|
     where(['published_at between ? and ?', archive_date.beginning_of_month, archive_date.end_of_month]).order("published_at DESC")
   }
+  
+  scope :by_year, lambda { |archive_year|
+    where(['published_at between ? and ?', archive_year.beginning_of_year, archive_year.end_of_year]).order("published_at DESC")
+  }
 
   scope :all_previous, where(['published_at <= ?', Time.now.beginning_of_month]).order("published_at DESC")
 

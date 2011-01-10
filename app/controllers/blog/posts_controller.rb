@@ -45,12 +45,23 @@ class Blog::PostsController < BlogController
   end
 
   def archive
-    date = "#{params[:month]}/#{params[:year]}"
-    @archive_date = Time.parse(date)
-    @blog_posts = BlogPost.live.by_archive(@archive_date).paginate({
-      :page => params[:page],
-      :per_page => RefinerySetting.find_or_set(:blog_posts_per_page, 10)
-    })
+    if params[:month].present?
+      date = "#{params[:month]}/#{params[:year]}"
+      @archive_date = Time.parse(date)
+      @date_title = @archive_date.strftime('%B %Y')
+      @blog_posts = BlogPost.live.by_archive(@archive_date).paginate({
+        :page => params[:page],
+        :per_page => RefinerySetting.find_or_set(:blog_posts_per_page, 10)
+      })
+    else
+      date = "01/#{params[:year]}"
+      @archive_date = Time.parse(date)
+      @date_title = @archive_date.strftime('%Y')
+      @blog_posts = BlogPost.live.by_year(@archive_date).paginate({
+        :page => params[:page],
+        :per_page => RefinerySetting.find_or_set(:blog_posts_per_page, 10)
+      })
+    end
     respond_with (@blog_posts)
   end
 
