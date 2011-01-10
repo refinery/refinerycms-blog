@@ -20,18 +20,18 @@ module BlogPostsHelper
     links.each do |l|
       year = l.split('/')[1]
       month = l.split('/')[0]
-      count = NewsItem.by_archive(Time.parse(l)).size
+      count = BlogPost.by_archive(Time.parse(l)).size
       text = t("date.month_names")[month.to_i] + " #{year} (#{count})"      
       html << "<li>"
-      html << link_to(text, archive_news_items_path(:year => year, :month => month))
+      html << link_to(text, archive_blog_posts_path(:year => year, :month => month))
       html << "</li>"
     end
     super_old_links.each do |l|
       year = l.split('/')[1]
-      count = NewsItem.by_year(Time.parse(l)).size
+      count = BlogPost.by_year(Time.parse(l)).size
       text = "#{year} (#{count})"
       html << "<li>"
-      html << link_to(text, archive_news_items_path(:year => year))
+      html << link_to(text, archive_blog_posts_path(:year => year))
       html << "</li>"
     end
     html << '</ul></nav></section>'
