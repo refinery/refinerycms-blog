@@ -1,0 +1,122 @@
+fr:
+  plugins:
+    refinerycms_blog:
+      title: Blog
+  admin:
+    blog:
+      categories:
+        category:
+          edit: Modifier cette catégorie
+          delete: Supprimer cett catégorie
+        index:
+          no_items_yet: 'Il n''y a aucune catégorie pour le moment. Cliquez sur "%{create}" pour ajouter votre première catégorie.'
+      comments:
+        approved: 'Le commentaire de "%{author}" a été approuvé.'
+        comment:
+          view_live_html: Voir ce commentaire <br/><em>(Ouvre une nouvelle fenêtre)</em>
+          read: Lire ce commentaire
+          reject: Rejeter ce commentaire
+          approve: Approuver ce commentaire
+        rejected: 'Le commentaire de "%{author}" a été rejeté.'
+        index:
+          no_items_yet: 'Il n''y aucun %{type} de commentaires.'
+        show:
+          comment: Commenter
+          blog_post: Article 
+          from: Écrit par
+          date: Écrit le
+          message: Commentaire
+          details: Détails
+          age: Âge
+          actions: Actions
+          back: Retour à la liste des commentaires
+          reject: Rejeter ce commentaire
+          approve: Approuver ce commentaire
+      posts:
+        form:
+          advanced_options: Options avancées
+          toggle_advanced_options: Cliquez ici pour accéder aux paramêtres des meta-tags et au menu des options
+          save_as_draft: Enregistrer comme Brouillon
+          published_at: Date de publication
+        index:
+          no_items_yet: 'Il n''y a aucun article pour l''instant. Cliquez sur "%{create}" pour ajouter votre premier article.'
+        post:
+          view_live_html: Voir cet article sur le site<br/><em>(Ouvre une nouvelle fenêtre)</em>
+          edit: Modifier cet article
+          delete: Supprimer cet article
+      settings:
+        notification_recipients:
+          value: Envoyer les notifications à
+          explanation: 'Chaque fois que quelqu''un écrit un commentaire sur un article, Refinery envoie un e-mail pour prévenir qu''il y a un nouveau commentaire.'
+          hint: 'Quand un nouveau commentaire est ajouté, Refinery vous enverra un e-mail de notifications.'
+          example: "Entrez une/des adresse(s) e-mail comme : jack@work.com, jill@office.com"
+          updated: 'Les destinataires des notifications sont définis : "%{recipients}"'
+      submenu:
+        categories:
+          title: Catégories
+          manage: Gérer
+          new: Créer une nouvelle catégorie
+        comments:
+          title: Commentaires 
+          title_with_count: 'Commentaires (%{new_count} nouveau(x))'
+          new: Nouveau
+          unmoderated: Nouveau
+          approved: Approuvé
+          rejected: Rejeté
+        posts:
+          title: Articles
+          manage: Gérer les articles
+          new: Créer un nouvel article
+        settings:
+          title: Paramêtres
+          moderation: Modération
+          update_notified: Mettre à jour les personnes à notifier
+  blog:
+    comment_mailer:
+      notification:
+        greeting: Bonjour
+        you_recieved_new_comment: Il y a un nouveau commentaire sur le blog.
+        comment_starts: --- comment starts ---
+        comment_ends: --- comment ends ---
+        from: De
+        email: Email
+        message: Message
+        closing_line: Cordialement
+        ps: P.S. Tous les commentaires sont stockés dans la section "Blog" de Refinery dans le menu "Commentaires" si vous voulez les revoir plus tard.
+    shared:
+      categories:
+        title: Catégories
+      rss_feed:
+        title: RSS Feed
+        subscribe: Souscrire
+      posts:
+        other: Autres articles
+        created_at: 'Écrit le %{when}'
+        read_more: Lire la suite
+      comments:
+        singular: commentaire
+        none: aucun commentaire
+      archives: Archives
+    categories:
+      show:
+        no_posts: 'Il n''y a aucun article pour cette catégorie.'
+    posts:
+      comment: commentaire
+      comments:
+        by: 'Écrit par %{who}'
+        time_ago: 'il y a %{time} '
+        thank_you: 'Merci pour votre commentaire.'
+        thank_you_moderated: 'Merci pour votre commentaire. Votre message a été placé en attente de validation et apparaitra bientôt.'
+      index:
+        no_blog_articles_yet: 'Il n''y a aucun article pour l''instant. Restez en alerte.'
+      show:
+        blog_home: Accueil du blog
+        comments:
+          title: Commentaires
+          add: Ajouter un commentaire
+        other: Autres articles
+        filed_in: Classé dans
+        submit: Envoyer le commentaire
+      archive:
+        blog_archive_for: Archive du blog pour le %{date}
+        no_blog_articles_posted: 'Il n''y a aucun article pour la date du %{date}. Restez à l''écoute.'
