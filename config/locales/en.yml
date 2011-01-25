@@ -101,6 +101,8 @@ en:
       show:
         no_posts: There are no posts here yet.
     posts:
+      post:
+        filed_in: Filed in
       comment: comment
       comments:
         by: 'Posted by %{who}'
