@@ -1,0 +1,124 @@
+ru:
+  plugins:
+    refinerycms_blog:
+      title: Блог
+  admin:
+    blog:
+      categories:
+        category:
+          edit: Редактировать эту категорию
+          delete: Удалить эту категорию навсегда
+        index:
+          no_items_yet: 'Категории пока не созданы. Нажмите "%{create}", чтобы добавить вашу первую категорию.'
+      comments:
+        approved: 'Комментарий от "%{author}" был опубликован.'
+        comment:
+          view_live_html: Посмотреть комментарий на сайте <br/><em>(откроется в новом окне)</em>
+          read: Прочитать комментарий
+          reject: Отклонить комментарий
+          approve: Принять комментарий
+        rejected: 'Комментарий от "%{author}" был отклонен.'
+        index:
+          no_items_yet: '%{type} комментарии: отсутствуют.'
+        show:
+          comment: Комментарий
+          blog_post: Запись в блоге
+          from: Опубликовал
+          date: Опубликовано
+          message: Комментарий
+          details: Детали
+          age: Возраст
+          actions: Действия
+          back: Вернуться к списку комментариев
+          reject: Отклонить этот комментарий
+          approve: Принять этот комментарий
+      posts:
+        form:
+          advanced_options: Дополнительные настройки
+          toggle_advanced_options: 'Нажмите, чтобы получить доступ к настройкам мета-тегов и меню'
+          save_as_draft: Сохранить как черновик
+          published_at: Дата публикации
+        index:
+          no_items_yet: 'Записи в блоге отстутствуют. Нажмите "%{create}", чтобы добавить первую запись.'
+        post:
+          view_live_html: Посмотреть запись на сайте <br/><em>(откроется в новом окне)</em>
+          edit: Редактировать запись
+          delete: Удалить запись
+      settings:
+        notification_recipients:
+          value: Отправлять уведомления
+          explanation: 'При появлении новых комментариев Refinery пришлет уведомление на email.'
+          hint: 'При появлении новых комментариев Refinery пришлет уведомление на email.'
+          example: "Введите адреса эл. почты, например: jack@work.com, jill@office.com"
+          updated: 'Получателем уведомлений является "%{recipients}"'
+      submenu:
+        categories:
+          title: Категории
+          manage: Редактировать категории
+          new: Создать новую категорию
+        comments:
+          title: Комментарии
+          title_with_count: 'Комментарии (%{new_count} новых)'
+          new: Новые
+          unmoderated: Новые
+          approved: Принятые
+          rejected: Отклоненные
+        posts:
+          title: Записи
+          manage: Редактировать записи
+          new: Создать новую запись
+        settings:
+          title: Настройки
+          moderation: Модерирование
+          update_notified: Настроить уведомления
+  blog:
+    comment_mailer:
+      notification:
+        greeting: Здравствуйте
+        you_recieved_new_comment: Новый комментарий опубликован на вашем сайте.
+        comment_starts: --- начало комментария ---
+        comment_ends: --- конец комментария ---
+        from: От
+        email: Эл. почта
+        message: Сообщение
+        closing_line: С уважением
+        ps: P.S. Все комментарии находятся в разделе "Блог" Refinery CMS в подменю "Комментарии".
+    shared:
+      categories:
+        title: Категории
+      rss_feed:
+        title: RSS-лента
+        subscribe: Подписаться
+      posts:
+        other: Другие записи
+        created_at: 'Опубликовано %{when}'
+        read_more: Читать дальше
+      comments:
+        singular: комментарий
+        none: нет комментариев
+      archives: Архивы
+    categories:
+      show:
+        no_posts: Записей пока нет.
+    posts:
+      post:
+        filed_in: Категория
+      comment: комментарий
+      comments:
+        by: 'Опубликовал %{who}'
+        time_ago: '%{time} назад'
+        thank_you: 'Спасибо за комментарий.'
+        thank_you_moderated: 'Спасибо за комментарий. Ваше сообщение модерируется и скоро появится на сайте.'
+      index:
+        no_blog_articles_yet: Пока ни одной записи не опубликовано. Следите за новостями.
+      show:
+        blog_home: Вернуться к списку записей
+        comments:
+          title: Комментарии
+          add: Написать комментарий
+        other: Другие записи
+        filed_in: Категория
+        submit: Отправить комментарий
+      archive:
+        blog_archive_for: 'Архив %{date}'
+        no_blog_articles_posted: 'Ни одной записи за %{date} не опубликовано. Следите за новостями.'
