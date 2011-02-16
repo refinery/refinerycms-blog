@@ -22,9 +22,9 @@ class BlogPost < ActiveRecord::Base
     where(['published_at between ? and ?', archive_year.beginning_of_year, archive_year.end_of_year])
   }
 
-  scope :all_previous, where(['published_at <= ?', Time.now.beginning_of_month])
+  scope :all_previous, lambda { where(['published_at <= ?', Time.now.beginning_of_month]) }
 
-  scope :live, where( "published_at <= ? and draft = ?", Time.now, false)
+  scope :live, lambda { where( "published_at <= ? and draft = ?", Time.now, false) }
 
   scope :previous, lambda { |i| where(["published_at < ? and draft = ?", i.published_at, false]).limit(1) }
   # next is now in << self
@@ -61,7 +61,7 @@ class BlogPost < ActiveRecord::Base
     end
     
     def uncategorized
-      BlogPost.all.reject { |p| p.categories.any? }
+      BlogPost.live.reject { |p| p.categories.any? }
     end
   end
 
