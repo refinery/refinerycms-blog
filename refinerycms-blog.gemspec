@@ -2,12 +2,13 @@ Gem::Specification.new do |s|
   s.name              = %q{refinerycms-blog}
   s.version           = %q{1.2}
   s.description       = %q{A really straightforward open source Ruby on Rails blog engine designed for integration with RefineryCMS.}
-  s.date              = %q{2011-01-11}
+  s.date              = %q{2011-02-17}
   s.summary           = %q{Ruby on Rails blogging engine for RefineryCMS.}
   s.email             = %q{info@refinerycms.com}
   s.homepage          = %q{http://refinerycms.com}
   s.authors           = %w(Resolve\ Digital Neoteric\ Design)
   s.require_paths     = %w(lib)
+
   s.add_dependency    'refinerycms',  '>= 0.9.8'
   s.add_dependency    'filters_spam', '~> 0.2'
 
@@ -35,6 +36,7 @@ Gem::Specification.new do |s|
     app/models/blog_category.rb
     app/models/blog_comment.rb
     app/models/blog_post.rb
+    app/models/categorization.rb
     app/views
     app/views/admin
     app/views/admin/blog
@@ -60,6 +62,7 @@ Gem::Specification.new do |s|
     app/views/admin/blog/posts/edit.html.erb
     app/views/admin/blog/posts/index.html.erb
     app/views/admin/blog/posts/new.html.erb
+    app/views/admin/blog/posts/uncategorized.html.erb
     app/views/admin/blog/settings
     app/views/admin/blog/settings/notification_recipients.html.erb
     app/views/blog
@@ -84,10 +87,12 @@ Gem::Specification.new do |s|
     config/locales
     config/locales/en.yml
     config/locales/es.yml
+    config/locales/fr.yml
     config/locales/it.yml
     config/locales/nb.yml
     config/locales/nl.yml
     config/locales/pt-BR.yml
+    config/locales/ru.yml
     config/routes.rb
     features
     features/support
