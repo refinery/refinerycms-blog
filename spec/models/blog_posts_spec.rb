@@ -94,6 +94,18 @@ describe BlogPost do
       BlogPost.next(blog_post1).should == [blog_post2]
     end
   end
+  
+  describe "uncategorized scope" do
+    it "returns uncategorized posts if they exist" do
+      uncategorized_blog_post = Factory(:post)
+      categorized_blog_post = Factory(:post)
+      
+      categorized_blog_post.categories << Factory(:blog_category)
+      
+      BlogPost.uncategorized.should include uncategorized_blog_post
+      BlogPost.uncategorized.should_not include categorized_blog_post
+    end
+  end
 
   describe "#live?" do
     it "returns true if post is not in draft and it's published" do
