@@ -126,7 +126,7 @@ describe BlogPost do
       Factory(:post)
       blog_post = Factory(:post, :published_at => Time.now + 1.minute)
       blog_posts = BlogPost.all
-      blog_posts.first.next.should == blog_post
+      blog_posts.last.next.should == blog_post
     end
   end
 
