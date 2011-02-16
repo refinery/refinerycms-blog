@@ -18,6 +18,10 @@
                    :class => 'page_icon' %>
     </li>
     <li>
+      <%= link_to t('.posts.uncategorized'), uncategorized_admin_blog_posts_url,
+                  :class => 'page_icon' %>
+    </li>
+    <li>
        <%= link_to t('.posts.new'), new_admin_blog_post_url,
                    :class => 'page_add_icon' %>
     </li>
