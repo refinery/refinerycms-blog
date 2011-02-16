@@ -40,6 +40,8 @@ en:
           published_at: Publish Date
         index:
           no_items_yet: 'There are no Blog Posts yet. Click "%{create}" to add your first blog post.'
+        uncategorized:
+          no_items_yet: 'There are no Uncategorized Blog Posts.'
         post:
           view_live_html: View this blog post live <br/><em>(opens in a new window)</em>
           edit: Edit this blog post
@@ -67,6 +69,7 @@ en:
           title: Posts
           manage: Manage posts
           new: Create new post
+          uncategorized: Uncategorized posts
         settings:
           title: Settings
           moderation: Moderation
