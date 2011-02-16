@@ -26,7 +26,7 @@ class BlogPost < ActiveRecord::Base
 
   scope :previous, lambda { |i| where(["published_at < ? and draft = ?", i.published_at, false]).order("published_at DESC").limit(1) }
   scope :next, lambda { |i| where(["published_at > ? and draft = ?", i.published_at, false]).order("published_at ASC").limit(1) }
-
+  
   def next
     self.class.next(self).first
   end
@@ -50,6 +50,10 @@ class BlogPost < ActiveRecord::Base
       RefinerySetting.find_or_set(:comments_allowed, true, {
         :scoping => 'blog'
       })
+    end
+    
+    def uncategorized
+      posts = BlogPost.live.reject { |p| p.categories.any? }
     end
   end
 
