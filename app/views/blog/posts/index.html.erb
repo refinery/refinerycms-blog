@@ -1,5 +1,5 @@
 <% content_for :body_content_left do %>
-  <%= @page[Page.default_parts.first.to_sym].html_safe if Page.default_parts.any? %>
+  <%=raw @page[Page.default_parts.first.to_sym] if Page.default_parts.any? %>
 
   <% if @blog_posts.any? %>
     <section id="blog_posts">
@@ -11,7 +11,7 @@
 <% end %>
 
 <% content_for :body_content_right do %>
-  <%= @page[Page.default_parts.second.to_sym].html_safe if Page.default_parts.many? %>
+  <%=raw @page[Page.default_parts.second.to_sym] if Page.default_parts.many? %>
 
   <%= render :partial => "/blog/shared/categories" %>
   <%= render :partial => "/blog/shared/rss_feed" %>
