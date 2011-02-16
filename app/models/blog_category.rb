@@ -1,7 +1,7 @@
 class BlogCategory < ActiveRecord::Base
 
   has_many :categorizations
-  has_many :posts, :through => :categorizations, :source => :blog_post, :order => 'published_at DESC'
+  has_many :posts, :through => :categorizations, :source => :blog_post
 
   acts_as_indexed :fields => [:title]
 
