@@ -101,8 +101,6 @@ Gem::Specification.new do |s|
     features/support/factories/blog_comments.rb
     features/support/factories/blog_posts.rb
     features/support/paths.rb
-    Gemfile
-    Gemfile.lock
     generators
     generators/refinerycms_blog
     generators/refinerycms_blog/refinerycms_blog_generator.rb
