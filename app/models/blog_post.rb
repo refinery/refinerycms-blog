@@ -30,11 +30,11 @@ class BlogPost < ActiveRecord::Base
   # next is now in << self
   
   def next
-    self.class.next(self).first
+    BlogPost.next(self).first
   end
 
   def prev
-    self.class.previous(self).first
+    BlogPost.previous(self).first
   end
 
   def live?
