@@ -11,7 +11,9 @@ Refinery::Application.routes.draw do
   scope(:path => 'refinery', :as => 'admin', :module => 'admin') do
     scope(:path => 'blog', :as => 'blog', :module => 'blog') do
       root :to => 'posts#index'
-      resources :posts
+      resources :posts do
+        get 'uncategorized', :on => :collection
+      end
 
       resources :categories
 
