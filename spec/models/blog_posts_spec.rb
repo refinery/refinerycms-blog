@@ -91,7 +91,7 @@ describe BlogPost do
     it "returns previous article based on given article" do
       blog_post1 = Factory(:post)
       blog_post2 = Factory(:post, :published_at => Time.now + 1.minute)
-      BlogPost.next(blog_post1).should == [blog_post2]
+      BlogPost.previous(blog_post2).should == [blog_post1]
     end
   end
   
