@@ -1,6 +1,6 @@
 <nav id='actions' class='multilist'>
   <ul class='search_list'>
-    <li>
+    <li class='not_a_link'>
       <%= render :partial => "/shared/admin/search",
                  :locals => {
                    :url => admin_blog_posts_url
@@ -9,7 +9,7 @@
   </ul>
 
   <ul class='collapsible_menu'>
-    <li>
+    <li class='not_a_link'>
       <%= link_to t('.posts.title'), '#',
                    :class => 'page_copy_icon' %>
     </li>
@@ -28,7 +28,7 @@
   </ul>
   <% if BlogPost.comments_allowed? %>
     <ul class='collapsible_menu'>
-      <li>
+      <li class='not_a_link'>
         <% if BlogComment.unmoderated.any? %>
           <% title = t('.comments.title_with_count', :new_count => BlogComment.unmoderated.size) %>
         <% else %>
@@ -53,7 +53,7 @@
   <% end %>
 
   <ul class='collapsible_menu'>
-    <li>
+    <li class='not_a_link'>
       <%= link_to t('.categories.title'), '#',
                   :class => 'folder_icon' %>
     </li>
@@ -68,7 +68,7 @@
   </ul>
 
   <ul class='collapsible_menu'>
-    <li>
+    <li class='not_a_link'>
       <%= link_to t('.settings.title'), admin_blog_settings_path,
                   :class => 'settings_icon' %>
     </li>
