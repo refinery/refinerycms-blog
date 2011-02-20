@@ -26,10 +26,12 @@
         <%= link_to t('blog.shared.posts.read_more'), blog_post_url(post) %>
 
         <aside class='comment_count'>
-          <% if post.comments.any? %>
-             (<%= pluralize(post.comments.approved.count, t('blog.shared.comments.singular')) %>)
-          <% else %>
-            (<%= t('blog.shared.comments.none') %>)
+          <% if BlogPost.comments_allowed? %>
+            <% if post.comments.any? %>
+               (<%= pluralize(post.comments.approved.count, t('blog.shared.comments.singular')) %>)
+            <% else %>
+                  (<%= t('blog.shared.comments.none') %>)
+            <% end %>
           <% end %>
         </aside>
       </p>

@@ -26,30 +26,31 @@
                    :class => 'page_add_icon' %>
     </li>
   </ul>
-
-  <ul class='collapsible_menu'>
-    <li>
-      <% if BlogComment.unmoderated.any? %>
-        <% title = t('.comments.title_with_count', :new_count => BlogComment.unmoderated.size) %>
-      <% else %>
-        <% title = t('.comments.title') %>
-      <% end %>
-      <%= link_to title, '#',
-                  :class => 'comments_icon' %>
-    </li>
-    <li>
-      <%= link_to t('.comments.new'), admin_blog_comments_path,
-                  :class => 'comment_icon' %>
-    </li>
-    <li>
-      <%= link_to t('.comments.approved'), approved_admin_blog_comments_path,
-                  :class => 'comment_tick_icon' %>
-    </li>
-    <li>
-      <%= link_to t('.comments.rejected'), rejected_admin_blog_comments_path,
-                  :class => 'comment_cross_icon' %>
-    </li>
-  </ul>
+  <% if BlogPost.comments_allowed? %>
+    <ul class='collapsible_menu'>
+      <li>
+        <% if BlogComment.unmoderated.any? %>
+          <% title = t('.comments.title_with_count', :new_count => BlogComment.unmoderated.size) %>
+        <% else %>
+          <% title = t('.comments.title') %>
+        <% end %>
+        <%= link_to title, '#',
+                    :class => 'comments_icon' %>
+      </li>
+      <li>
+        <%= link_to t('.comments.new'), admin_blog_comments_path,
+                    :class => 'comment_icon' %>
+      </li>
+      <li>
+        <%= link_to t('.comments.approved'), approved_admin_blog_comments_path,
+                    :class => 'comment_tick_icon' %>
+      </li>
+      <li>
+        <%= link_to t('.comments.rejected'), rejected_admin_blog_comments_path,
+                    :class => 'comment_cross_icon' %>
+      </li>
+    </ul>
+  <% end %>
 
   <ul class='collapsible_menu'>
     <li>
