@@ -22,7 +22,7 @@ fr:
           no_items_yet: 'Il n''y aucun %{type} de commentaires.'
         show:
           comment: Commenter
-          blog_post: Article 
+          blog_post: Article
           from: Écrit par
           date: Écrit le
           message: Commentaire
@@ -57,7 +57,7 @@ fr:
           manage: Gérer
           new: Créer une nouvelle catégorie
         comments:
-          title: Commentaires 
+          title: Commentaires
           title_with_count: 'Commentaires (%{new_count} nouveau(x))'
           new: Nouveau
           unmoderated: Nouveau
@@ -71,6 +71,7 @@ fr:
           title: Paramêtres
           moderation: Modération
           update_notified: Mettre à jour les personnes à notifier
+          comments: Commentaires
   blog:
     comment_mailer:
       notification:

@@ -71,6 +71,7 @@ it:
           title: Impostazioni
           moderation: Moderazione
           update_notified: Aggiornare destinatario notifica
+          comments: Commenti
   blog:
     shared:
       categories:

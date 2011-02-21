@@ -73,6 +73,10 @@
                   :class => 'settings_icon' %>
     </li>
     <li>
+      <%= link_to t('.settings.comments'), comments_admin_blog_settings_url,
+                  :class => "#{BlogPost.comments_allowed? ? 'success' : 'failure'}_icon" %>
+    </li>
+    <li>
       <%= link_to t('.settings.moderation'), moderation_admin_blog_settings_url,
                   :class => "#{BlogComment::Moderation.enabled? ? 'success' : 'failure'}_icon" %>
     </li>

@@ -74,6 +74,7 @@ en:
           title: Settings
           moderation: Moderation
           update_notified: Update who gets notified
+          comments: Comments
   blog:
     comment_mailer:
       notification:

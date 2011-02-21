@@ -10,7 +10,8 @@ class Admin::Blog::SettingsController < Admin::BaseController
       unless request.xhr? or from_dialog?
         redirect_back_or_default(admin_blog_posts_path)
       else
-        render :text => "<script type='text/javascript'>parent.window.location = '#{admin_blog_posts_path}';</script>"
+        render :text => "<script type='text/javascript'>parent.window.location = '#{admin_blog_posts_path}';</script>",
+               :layout => false
       end
     end
   end
@@ -20,7 +21,18 @@ class Admin::Blog::SettingsController < Admin::BaseController
     unless request.xhr?
       redirect_back_or_default(admin_blog_posts_path)
     else
-      render :json => {:enabled => enabled}
+      render :json => {:enabled => enabled},
+             :layout => false
+    end
+  end
+
+  def comments
+    enabled = BlogComment.toggle!
+    unless request.xhr?
+      redirect_back_or_default(admin_blog_posts_path)
+    else
+      render :json => {:enabled => enabled},
+             :layout => false
     end
   end
 

@@ -94,14 +94,14 @@ describe BlogPost do
       BlogPost.previous(blog_post2).should == [blog_post1]
     end
   end
-  
+
   describe "uncategorized scope" do
     it "returns uncategorized posts if they exist" do
       uncategorized_blog_post = Factory(:post)
       categorized_blog_post = Factory(:post)
-      
+
       categorized_blog_post.categories << Factory(:blog_category)
-      
+
       BlogPost.uncategorized.should include uncategorized_blog_post
       BlogPost.uncategorized.should_not include categorized_blog_post
     end
@@ -162,10 +162,9 @@ describe BlogPost do
       BlogPost.comments_allowed?.should be_true
     end
 
-    # TODO: fix this test
-    # it "returns false if comments_allowed setting is set to false" do
-    #   RefinerySetting.set(:comments_allowed, false)
-    #   BlogPost.comments_allowed?.should be_false
-    # end
+    it "returns false if comments_allowed setting is set to false" do
+      RefinerySetting.set(:comments_allowed, {:scoping => 'blog', :value => false})
+      BlogPost.comments_allowed?.should be_false
+    end
   end
 end

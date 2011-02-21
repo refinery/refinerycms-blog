@@ -34,6 +34,7 @@ Refinery::Application.routes.draw do
           post :notification_recipients
 
           get :moderation
+          get :comments
         end
       end
     end

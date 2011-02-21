@@ -71,6 +71,7 @@ es:
           title: Configuración
           moderation: Moderación
           update_notified: ¿Quién recibe las notificaciones?
+          comments: Comentarios
   blog:
     comment_mailer:
       notification:
