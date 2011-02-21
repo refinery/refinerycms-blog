@@ -1,8 +1,10 @@
-<h2><%= t('.title') %></h2>
-<ul id='categories'>
-  <% @blog_categories.each do |category| %>
-    <li<%= " class='selected'" if @category.present? and @category.id == category.id %>>
-      <%= link_to "#{category.title} (#{category.post_count})", blog_category_url(category) %>
-    </li>
-  <% end %>
-</ul>
+<% if @blog_categories.any? %>
+  <h2><%= t('.title') %></h2>
+  <ul id='categories'>
+    <% @blog_categories.each do |category| %>
+      <li<%= " class='selected'" if @category.present? and @category.id == category.id %>>
+        <%= link_to "#{category.title} (#{category.post_count})", blog_category_url(category) %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
