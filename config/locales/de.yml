@@ -1,0 +1,128 @@
+de:
+  plugins:
+    refinerycms_blog:
+      title: Blog
+  admin:
+    blog:
+      categories:
+        category:
+          edit: Diese Kategorie bearbeiten 
+          delete: Diese Kategorie dauerhaft entfernen 
+        index:
+          no_items_yet: 'Es sind noch keine Kategorien vorhanden. Klicken Sie auf "%{create}", um Ihre erste Kategorie hinzuzufügen.'
+      comments:
+        approved: 'Der Kommentar von "%{author}" wurde genehmigt.'
+        comment:
+          view_live: Diesen Kommentar live betrachten <br/><em>(öffnet sich in einem neuen Fenster)</em>
+          read: Kommentar lesen 
+          reject: Kommentar ablehnen 
+          approve: Kommentar genehmigen 
+        rejected: 'Der Kommentar von "%{author}" wurde abgelehnt.'
+        index:
+          no_items_yet: 'Es sind keine %{type}en Kommentare vorhanden.'
+        show:
+          comment: Kommentar 
+          blog_post: Artikel 
+          from: Verfasst von 
+          date: Verfasst am 
+          message: Kommentar 
+          details: Details
+          age: Alter
+          actions: Aktionen
+          back: Zurück zu allen Kommentaren 
+          reject: Kommentar ablehnen
+          approve: Kommentar genehmigen 
+      posts:
+        form:
+          advanced_options: Erweiterte Optionen 
+          toggle_advanced_options: Klicken, um auf Meta-Tag-Einstellungen und Menüoptionen zuzugreifen
+          save_as_draft: Als Entwurf speichern
+          published_at: Veröffentlichungsdatum 
+        index:
+          no_items_yet: 'Es sind noch keine Artikel vorhanden. Klicken Sie auf "%{create}", um Ihren ersten Artikel hinzuzufügen.'
+        uncategorized:
+          no_items_yet: 'Es sind keine unkategorisierten Artikel vorhanden.'
+        post:
+          view_live: Diesen Artikel live betrachten <br/><em>(öffnet sich in einem neuen Fenster)</em>
+          edit: Diesen Artikel bearbeiten
+          delete: Diesen Artikel dauerhaft entfernen
+      settings:
+        notification_recipients:
+          value: Sende Benachrichtigungen an 
+          explanation: 'Jedes Mal, wenn jemand einen Artikel kommentiert, sendet Refinery eine E-Mail Benachrichtigung aus, um über den neuen Kommentar zu informieren.'
+          hint: 'Refinery sendet eine E-Mail Benachrichtigung an Sie, wenn ein neuer Kommentar hinzugefügt wurde.'
+          example: "Geben Sie Ihre E-Mail-Adresse(n) wie folgt ein: jack@work.com, jill@office.com"
+          updated: 'Empfänger für Benachrichtigungen wurden auf "%{recipients}" gesetzt'
+      submenu:
+        categories:
+          title: Kategorien
+          manage: Verwalten
+          new: Neue Kategorie anlegen
+        comments:
+          title: Kommentare
+          title_with_count: 'Kommentare (%{new_count} neu)'
+          new: Neu
+          unmoderated: Neu
+          approved: Genehmigt
+          rejected: Abgelehnt
+        posts:
+          title: Artikel
+          manage: Artikel verwalten 
+          new: Neuen Artikel anlegen 
+          uncategorized: Unkategorisierte Artikel
+        settings:
+          title: Einstellungen 
+          moderation: Moderation
+          update_notified: Empfänger für Benachrichtigungen bearbeiten 
+          comments: Kommentare 
+  blog:
+    comment_mailer:
+      notification:
+        greeting: Hallo 
+        you_recieved_new_comment: Auf Ihrer Website wurde soeben ein neuer Kommentar hinzugefügt.
+        comment_starts: --- Kommentar beginnt ---
+        comment_ends: --- Kommentar endet ---
+        from: Von 
+        email: E-Mail
+        message: Nachricht
+        closing_line: Mit besten Grüßen
+        ps: P.S. Alle Kommentare sind im "Blog" Abschnitt von Refinery - im Untermenü "Kommentare" - gespeichert, falls Sie diese später dort lesen möchten.
+    shared:
+      categories:
+        title: Kategorien
+      rss_feed:
+        title: RSS Feed
+        subscribe: Abonnieren
+      posts:
+        other: Andere Artikel 
+        created_at: 'Verfasst am %{when}'
+        read_more: Mehr lesen 
+      comments:
+        singular: Kommentar 
+        none: Keine Kommentare 
+      archives: Archiv
+    categories:
+      show:
+        no_posts: Es sind noch keine Artikel vorhanden.
+    posts:
+      post:
+        filed_in: Gespeichert unter
+      comment: Kommentar 
+      comments:
+        by: 'Verfasst von %{who}'
+        time_ago: 'vor %{time}'
+        thank_you: 'Danke für den Kommentar.'
+        thank_you_moderated: 'Danke für den Kommentar. Die Nachricht wurde in die Warteschlange der Moderation gestellt und erscheint in Kürze.'
+      index:
+        no_blog_articles_yet: Es wurden noch keine Artikel verfasst.
+      show:
+        blog_home: Blog Startseite 
+        comments:
+          title: Kommentare 
+          add: Neuen Kommentar hinzufügen
+        other: Andere Artikel 
+        filed_in: Gespeichert unter 
+        submit: Kommentar senden 
+      archive:
+        blog_archive_for: Blog Archiv für %{date}
+        no_blog_articles_posted: Für %{date} wurden keine Artikel verfasst.
