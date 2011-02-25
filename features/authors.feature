@@ -1,3 +1,4 @@
+@blog
 Feature: Blog Post Authors
   Blog posts can be assigned authors through the given user model
   current_user is assumed through admin screens
