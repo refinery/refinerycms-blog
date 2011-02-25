@@ -2,6 +2,8 @@ class BlogPost < ActiveRecord::Base
   
   default_scope :order => 'published_at DESC'
   
+  belongs_to :author, :foreign_key => 'user_id'
+  
   has_many :comments, :class_name => 'BlogComment', :dependent => :destroy
   
   has_many :categorizations
