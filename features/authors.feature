@@ -7,8 +7,8 @@ Feature: Blog Post Authors
     
     When I am on the new blog post form
     And I fill in "Title" with "This is my blog post"
-    And I fill in "Body" with "And I am hubble"
+    And I fill in "Body" with "And I love it"
     And I press "Save"
     
     Then there should be 1 blog post
-    And the blog post should belong to "hubble"
+    And the blog post should belong to me
