@@ -9,7 +9,7 @@
     <details>
       <time datetime="<%=l @blog_post.published_at.to_date, :format => :default %>" class='posted_at'>
         <%= t('blog.shared.posts.created_at', :when => l(@blog_post.published_at.to_date, :format => :short)) %>.
-      </time> by <%= @blog_post.author.try :login %>
+      </time><%= " by #{@blog_post.author.username}" if @blog_post.author.present? %>
       <% if (categories = @blog_post.categories).any? %>
         <aside class='filed_in'>
           <%= t('blog.posts.show.filed_in') %>

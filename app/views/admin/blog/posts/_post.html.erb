@@ -1,7 +1,7 @@
 <li class='clearfix record <%= cycle("on", "on-hover") %>' id="<%= dom_id(post) -%>">
   <span class='title'>
     <%= post.title %>
-    <span class="preview"><%= post.published_at.try(:strftime, '%b %d, %Y') || 'draft' %></span>
+    <span class="preview"><%= post.published_at.try(:strftime, '%b %d, %Y') || 'draft' %><%= " by #{post.author.username}" if post.author.present? %></span>
   </span>
   <span class='actions'>
     <%= link_to refinery_icon_tag("application_go.png"), blog_post_url(post),
