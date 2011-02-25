@@ -3,8 +3,7 @@ Feature: Blog Post Authors
   current_user is assumed through admin screens
   
   Scenario: Saving a blog post in blog_posts#new associates the current_user as the author
-    Given there is a user named "hubble"
-    And I am logged in as "hubble"
+    Given I am a logged in refinery user
     
     When I am on the new blog post form
     And I fill in "Title" with "This is my blog post"

@@ -49,7 +49,7 @@ describe BlogPost do
   
   describe "authors" do
     it "are authored" do
-      BlogPost.new.methods.should include(:author)
+      BlogPost.instance_methods.map(&:to_sym).include? :author
     end
   end
 
