@@ -46,6 +46,12 @@ describe BlogPost do
       @blog_post.should respond_to(:categories)
     end
   end
+  
+  describe "authors" do
+    it "are authored" do
+      BlogPost.instance_methods.map(&:to_sym).include? :author
+    end
+  end
 
   describe "by_archive scope" do
     it "returns all posts from specified month" do
