@@ -2,7 +2,7 @@ Gem::Specification.new do |s|
   s.name              = %q{refinerycms-blog}
   s.version           = %q{1.2}
   s.description       = %q{A really straightforward open source Ruby on Rails blog engine designed for integration with RefineryCMS.}
-  s.date              = %q{2011-02-21}
+  s.date              = %q{2011-03-02}
   s.summary           = %q{Ruby on Rails blogging engine for RefineryCMS.}
   s.email             = %q{info@refinerycms.com}
   s.homepage          = %q{http://refinerycms.com}
@@ -85,22 +85,27 @@ Gem::Specification.new do |s|
     app/views/blog/shared/_rss_feed.html.erb
     config
     config/locales
+    config/locales/de.yml
     config/locales/en.yml
     config/locales/es.yml
     config/locales/fr.yml
     config/locales/it.yml
     config/locales/nb.yml
     config/locales/nl.yml
+    config/locales/pl.yml
     config/locales/pt-BR.yml
     config/locales/ru.yml
     config/routes.rb
     features
+    features/authors.feature
     features/support
     features/support/factories
     features/support/factories/blog_categories.rb
     features/support/factories/blog_comments.rb
     features/support/factories/blog_posts.rb
     features/support/paths.rb
+    features/support/step_definitions
+    features/support/step_definitions/authors_steps.rb
     generators
     generators/refinerycms_blog
     generators/refinerycms_blog/refinerycms_blog_generator.rb
@@ -117,6 +122,7 @@ Gem::Specification.new do |s|
     lib/generators/refinerycms_blog/templates
     lib/generators/refinerycms_blog/templates/db
     lib/generators/refinerycms_blog/templates/db/migrate
+    lib/generators/refinerycms_blog/templates/db/migrate/migration_number_add_user_id_to_blog_posts.rb
     lib/generators/refinerycms_blog/templates/db/migrate/migration_number_create_singular_name.rb
     lib/generators/refinerycms_blog/templates/db/seeds
     lib/generators/refinerycms_blog/templates/db/seeds/seed.rb
