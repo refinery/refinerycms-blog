@@ -17,7 +17,7 @@ Refinery CMS version 0.9.8 or above.
 
 Open up your ``Gemfile`` and add at the bottom this line:
 
-    gem 'refinerycms-blog', '~> 1.1'
+    gem 'refinerycms-blog', '~> 1.2'
 
 Now, run ``bundle install``
 
