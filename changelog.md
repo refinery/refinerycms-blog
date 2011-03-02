@@ -1,18 +1,18 @@
 ## 1.2 [01 March 2011]
 
-* Posts can be authored [joemsak]
-* Front-end pagination [joemsak]
-* Archives start grouping by year after 2 years [joemsak]
-* Removed ajax blog post navigation [joemsak]
-* Administrate uncategorized posts [joemsak]
-* Categories in has_many :through relationship [joemsak]
-* General bug fixing & test coverage [pardnt] [joemsak]
-* Russian translation [iband]
-* French translation [AdrienGiboire]
-* Polish translation [murbanski]
-* German translation [gern]
-* Spanish translation help [xavib]
-* Rails 3 cleanup & optimization [ugisozols]
+* Posts can be authored [joemsak](https://github.com/joemsak)
+* Front-end pagination [joemsak](https://github.com/joemsak)
+* Archives start grouping by year after 2 years [joemsak](https://github.com/joemsak)
+* Removed ajax blog post navigation [joemsak](https://github.com/joemsak)
+* Administrate uncategorized posts [joemsak](https://github.com/joemsak)
+* Categories in has_many :through relationship [joemsak](https://github.com/joemsak)
+* General bug fixing & test coverage [parndt](https://github.com/parndt) [joemsak](https://github.com/joemsak)
+* Russian translation [iband](https://github.com/iband)
+* French translation [AdrienGiboire](https://github.com/AdrienGiboire)
+* Polish translation [murbanski](https://github.com/murbanski)
+* German translation [gern](https://github.com/gern)
+* Spanish translation help [xavib](https://github.com/xavib)
+* Rails 3 cleanup & optimization [ugisozols](https://github.com/ugisozols)
 * [See full list](https://github.com/resolve/refinerycms-blog/compare/1.1...1.2)
 
 

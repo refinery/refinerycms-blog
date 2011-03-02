@@ -25,7 +25,7 @@ describe BlogCategory do
     it "returns posts by published_at date in descending order" do
       @category = BlogCategory.create!(@attr)
       @first_post = @category.posts.create!({ :title => "Breaking News: Joe Sak is hot stuff you guys!!", :body => "True story.", :published_at => Time.now.yesterday })
-      @latest_post = @category.posts.create!({ :title => "pardnt is p. okay", :body => "For a kiwi.", :published_at => Time.now })
+      @latest_post = @category.posts.create!({ :title => "parndt is p. okay", :body => "For a kiwi.", :published_at => Time.now })
       @category.posts.first.should == @latest_post
     end
       
