@@ -41,14 +41,21 @@ class RefinerycmsBlogGenerator < Rails::Generators::NamedBase
          Rails::Generators::GeneratedAttribute.new('blog_post_id', 'integer')
        ], :id => false
      }]
-    next_migration_number = ActiveRecord::Generators::Base.next_migration_number(File.dirname(__FILE__))
-    template('db/migrate/migration_number_create_singular_name.rb',
-             Rails.root.join("db/migrate/#{next_migration_number}_create_#{singular_name}.rb"))
+    unless Pathname.glob(Rails.root.join('db', 'migrate', "*_create_#{singular_name}.rb")).any?
+      next_migration_number = ActiveRecord::Generators::Base.next_migration_number(File.dirname(__FILE__))
+      template('db/migrate/migration_number_create_singular_name.rb',
+               Rails.root.join("db/migrate/#{next_migration_number}_create_#{singular_name}.rb"))
+    end
+    unless Pathname.glob(Rails.root.join('db', 'migrate', "*_add_user_id_to_blog_posts.rb")).any?
+      next_migration_number = ActiveRecord::Generators::Base.next_migration_number(File.dirname(__FILE__))
+      template('db/migrate/migration_number_add_user_id_to_blog_posts.rb',
+               Rails.root.join('db', 'migrate', "#{next_migration_number}_add_user_id_to_blog_posts.rb"))
+    end
 
-     puts "------------------------"
-     puts "Now run:"
-     puts "rake db:migrate"
-     puts "------------------------"
+    puts "------------------------"
+    puts "Now run:"
+    puts "rake db:migrate"
+    puts "------------------------"
   end
 end
 
