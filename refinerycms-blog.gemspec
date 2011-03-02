@@ -83,6 +83,7 @@ Gem::Specification.new do |s|
     app/views/blog/shared/_post.html.erb
     app/views/blog/shared/_posts.html.erb
     app/views/blog/shared/_rss_feed.html.erb
+    changelog.md
     config
     config/locales
     config/locales/de.yml
