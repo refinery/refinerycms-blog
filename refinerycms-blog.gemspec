@@ -1,8 +1,8 @@
 Gem::Specification.new do |s|
   s.name              = %q{refinerycms-blog}
-  s.version           = %q{1.2}
+  s.version           = %q{1.3}
   s.description       = %q{A really straightforward open source Ruby on Rails blog engine designed for integration with RefineryCMS.}
-  s.date              = %q{2011-03-02}
+  s.date              = %q{2011-03-04}
   s.summary           = %q{Ruby on Rails blogging engine for RefineryCMS.}
   s.email             = %q{info@refinerycms.com}
   s.homepage          = %q{http://refinerycms.com}
@@ -97,6 +97,12 @@ Gem::Specification.new do |s|
     config/locales/pt-BR.yml
     config/locales/ru.yml
     config/routes.rb
+    db
+    db/migrate
+    db/migrate/1_create_blog_structure.rb
+    db/migrate/2_add_user_id_to_blog_posts.rb
+    db/seeds
+    db/seeds/refinerycms_blog.rb
     features
     features/authors.feature
     features/support
@@ -107,26 +113,11 @@ Gem::Specification.new do |s|
     features/support/paths.rb
     features/support/step_definitions
     features/support/step_definitions/authors_steps.rb
-    generators
-    generators/refinerycms_blog
-    generators/refinerycms_blog/refinerycms_blog_generator.rb
-    generators/refinerycms_blog/templates
-    generators/refinerycms_blog/templates/db
-    generators/refinerycms_blog/templates/db/migrate
-    generators/refinerycms_blog/templates/db/migrate/migration.rb
-    generators/refinerycms_blog/templates/db/seeds
-    generators/refinerycms_blog/templates/db/seeds/seed.rb
     lib
     lib/gemspec.rb
     lib/generators
     lib/generators/refinerycms_blog
     lib/generators/refinerycms_blog/templates
-    lib/generators/refinerycms_blog/templates/db
-    lib/generators/refinerycms_blog/templates/db/migrate
-    lib/generators/refinerycms_blog/templates/db/migrate/migration_number_add_user_id_to_blog_posts.rb
-    lib/generators/refinerycms_blog/templates/db/migrate/migration_number_create_singular_name.rb
-    lib/generators/refinerycms_blog/templates/db/seeds
-    lib/generators/refinerycms_blog/templates/db/seeds/seed.rb
     lib/generators/refinerycms_blog_generator.rb
     lib/refinerycms-blog.rb
     public
@@ -155,8 +146,6 @@ Gem::Specification.new do |s|
     public/stylesheets/refinery
     public/stylesheets/refinery/refinerycms-blog.css
     public/stylesheets/refinerycms-blog.css
-    rails
-    rails/init.rb
     readme.md
     spec
     spec/models
