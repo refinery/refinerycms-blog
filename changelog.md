@@ -1,3 +1,15 @@
+
+## 1.4 [UNRELEASED]
+
+* Spanish language fixes [scambra](https://github.com/scambra)
+
+
+## 1.3 [03 March 2011]
+
+* Moved to EngineInstaller [parndt](https://github.com/parndt)
+* Off Rails 2 support [parndt](https://github.com/parndt)
+
+
 ## 1.2 [01 March 2011]
 
 * Posts can be authored [joemsak](https://github.com/joemsak)
