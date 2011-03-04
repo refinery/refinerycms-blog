@@ -13,7 +13,7 @@ pt-BR:
       comments:
         approved: 'O comentário de "%{author}" foi aprovado.'
         comment:
-          view_live_html: Ver este comentário <br/><em>(será aberto em outra janela)</em>
+          view_live_html: 'Ver este comentário <br/><em>(será aberto em outra janela)</em>'
           read: Ler este comentário
           reject: Rejeitar este comentário
           approve: Aprovar este comentário
@@ -41,7 +41,7 @@ pt-BR:
         index:
           no_items_yet: 'Ainda não há Posts no Blog. Clique em "%{create}" para adicionar o primeiro post.'
         post:
-          view_live_html: Ver este comentário <br/><em>(será aberto em outra janela)</em>
+          view_live_html: 'Ver este comentário <br/><em>(será aberto em outra janela)</em>'
           edit: Editar este post
           delete: Remover esse post para sempre
       settings:
@@ -49,7 +49,7 @@ pt-BR:
           value: Enviar notificações para
           explanation: 'Cada vez que alguém comenta em um post no blog, é enviado um e-mail para informar que há um novo comentário.'
           hint: 'Quando um novo comentário é adicionado, será enviado uma notificação por e-mail para você.'
-          example: "Entre com o(s) seu(s) endereço(s) de email, como: jack@work.com, jill@office.com"
+          example: 'Entre com o(s) seu(s) endereço(s) de email, como: jack@work.com, jill@office.com'
           updated: 'As notificações foram enviadas para "%{recipients}"'
       submenu:
         categories:
@@ -83,7 +83,7 @@ pt-BR:
         email: Email
         message: Mensagem
         closing_line: Atenciosamente
-        ps: P.S. Lembre-se que você pode ver todos os comentários em "Comentários" dentro da seção "Blog".
+        ps: 'P.S. Lembre-se que você pode ver todos os comentários em "Comentários" dentro da seção "Blog".'
     shared:
       categories:
         title: Categorias
@@ -119,7 +119,7 @@ pt-BR:
         filed_in: Arquivado em
         submit: Enviar comentário
       archive:
-        blog_archive_for: Arquivo do blog em %{date}
-        no_blog_articles_posted: Não há arquivos do blog em %{date}.
-      post: 
+        blog_archive_for: 'Arquivo do blog em %{date}'
+        no_blog_articles_posted: 'Não há arquivos do blog em %{date}.'
+      post:
         filed_in: Arquivado em

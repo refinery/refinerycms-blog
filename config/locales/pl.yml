@@ -19,7 +19,7 @@ pl:
       comments:
         approved: 'Komentarz "%{author}" został zaakceptowany.'
         comment:
-          view_live: Zobacz ten komentarz na żywo<br/><em>(otwiera w nowym oknie)</em>
+          view_live: 'Zobacz ten komentarz na żywo<br/><em>(otwiera w nowym oknie)</em>'
           read: Pokaż ten komentarz
           reject: Odrzuć ten komentarz
           approve: Zaakceptuj ten komentarz
@@ -41,7 +41,7 @@ pl:
       posts:
         form:
           advanced_options: Opcje zaawansowane
-          toggle_advanced_options: Kliknij, aby zarządzać meta-ustawieniami
+          toggle_advanced_options: 'Kliknij, aby zarządzać meta-ustawieniami'
           save_as_draft: Zapisz jako szkic
           published_at: Data publikacji
         index:
@@ -49,7 +49,7 @@ pl:
         uncategorized:
           no_items_yet: 'Brak nieskategoryzowanych wpisów na blogu.'
         post:
-          view_live: Zobacz ten post na żywo<br/><em>(otwiera w nowym oknie)</em>
+          view_live: 'Zobacz ten post na żywo<br/><em>(otwiera w nowym oknie)</em>'
           edit: Edytuj ten post
           delete: Usuń ten post na zawsze
       settings:
@@ -57,7 +57,7 @@ pl:
           value: Powiadomienia wysyłane do
           explanation: 'Gdy zostanie dodany nowy komentarz, system wyśle powiadomienie przez e-mail.'
           hint: 'Gdy zostanie dodany nowy komentarz, system wyśle powiadomienie przez e-mail.'
-          example: "Podaj adresy e-mail oddzielone przecinkiem, np: jack@work.com, jill@office.com"
+          example: 'Podaj adresy e-mail oddzielone przecinkiem, np: jack@work.com, jill@office.com'
           updated: 'Powiadomienia będą wysyłane do "%{recipients}"'
       submenu:
         categories:
@@ -92,7 +92,7 @@ pl:
         email: Email
         message: Treść
         closing_line: Pozdrawiamy
-        ps: P.S. Wszystkie komentarze przechowywane są w panelu zarządzania, w sekcji "Blog" i podmenu "Komentarze". 
+        ps: 'P.S. Wszystkie komentarze przechowywane są w panelu zarządzania, w sekcji "Blog" i podmenu "Komentarze". '
     shared:
       categories:
         title: Kategorie
@@ -130,5 +130,5 @@ pl:
         filed_in: 'kategorie:'
         submit: Dodaj komentarz
       archive:
-        blog_archive_for: Archiwum dla %{date}
-        no_blog_articles_posted: Brak wpisów dla daty %{date}. 
+        blog_archive_for: 'Archiwum dla %{date}'
+        no_blog_articles_posted: 'Brak wpisów dla daty %{date}.' 

@@ -6,9 +6,9 @@ nb:
     blog:
       posts:
         index:
-          no_items_yet: Det er ingen Blog Posts enda. Klikk på "Lag en ny Blog Posts" for å legge til din første blog posts.
+          no_items_yet: 'Det er ingen Blog Posts enda. Klikk på "Lag en ny Blog Posts" for å legge til din første blog posts.'
         post:
-          view_live: Vis hvordan denne blog post ser ut offentlig <br/><em>(åpner i et nytt vindu)</em>
+          view_live: 'Vis hvordan denne blog post ser ut offentlig <br/><em>(åpner i et nytt vindu)</em>'
           edit: Rediger denne blog post
           delete: Fjern denne blog post permanent
       submenu:

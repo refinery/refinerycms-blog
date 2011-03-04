@@ -13,7 +13,7 @@ it:
       comments:
         approved: 'Il commento di "%{author}" è stato approvato.'
         comment:
-          view_live: Visualizza questo commento <em> <br/> live (si apre in una nuova finestra) </ em>
+          view_live: 'Visualizza questo commento <em> <br/> live (si apre in una nuova finestra) </em>'
           read: Leggi questo commento
           reject: Rifiuta questo commento
           approve: Approva questo commento
@@ -41,7 +41,7 @@ it:
         index:
           no_items_yet: 'Non ci sono ancora Messaggi per questo Blog. Clicca "%{create}" per aggiungere il tuo primo messaggio.'
         post:
-          view_live: Visualizza questo messaggio live <br/><em>(si apre in una nuova finestra)</em>
+          view_live: 'Visualizza questo messaggio live <br/><em>(si apre in una nuova finestra)</em>'
           edit: Modifica questo messaggio
           delete: Rimuovi questo messaggio per sempre
       settings:
@@ -58,7 +58,7 @@ it:
           new: Crea nuova categoria
         comments:
           title: Commenti
-          title_with_count: 'Comment1 (%{new_count} nuovi)'
+          title_with_count: 'Commenti (%{new_count} nuovi)'
           new: Nuovo
           unmoderated: Nuovo
           approved: Approvato

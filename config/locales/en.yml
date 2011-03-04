@@ -13,7 +13,7 @@ en:
       comments:
         approved: 'The comment from "%{author}" has been approved.'
         comment:
-          view_live_html: View this comment live <br/><em>(opens in a new window)</em>
+          view_live_html: 'View this comment live <br/><em>(opens in a new window)</em>'
           read: Read this comment
           reject: Reject this comment
           approve: Approve this comment
@@ -43,7 +43,7 @@ en:
         uncategorized:
           no_items_yet: 'There are no Uncategorized Blog Posts.'
         post:
-          view_live_html: View this blog post live <br/><em>(opens in a new window)</em>
+          view_live_html: 'View this blog post live <br/><em>(opens in a new window)</em>'
           edit: Edit this blog post
           delete: Remove this blog post forever
       settings:
@@ -86,7 +86,7 @@ en:
         email: Email
         message: Message
         closing_line: Kind Regards
-        ps: P.S. All your comments are stored in the "Blog" section of Refinery under the "Comments" submenu should you ever want to view it later there.
+        ps: 'P.S. All your comments are stored in the "Blog" section of Refinery under the "Comments" submenu should you ever want to view it later there.'
     shared:
       categories:
         title: Categories
@@ -124,5 +124,5 @@ en:
         filed_in: Filed in
         submit: Send comment
       archive:
-        blog_archive_for: Blog Archive for %{date}
-        no_blog_articles_posted: There are no blog articles posted for %{date}. Stay tuned.
+        blog_archive_for: 'Blog Archive for %{date}'
+        no_blog_articles_posted: 'There are no blog articles posted for %{date}. Stay tuned.'
