@@ -40,6 +40,8 @@ es:
           published_at: Fecha de publicación
         index:
           no_items_yet: 'Aún no hay entradas en el Blog. Haz click en "%{create}" para añadir el primero'
+        uncategorized:
+          no_items_yet: 'No hay entradas en el Blog sin categoría.'
         post:
           view_live_html: 'Ver entrada <br/><em>(se abrirá en una ventana nueva)</em>'
           edit: Editar esta entrada
@@ -67,6 +69,7 @@ es:
           title: Entradas
           manage: Gestionar entradas
           new: Crear nueva entrada
+          uncategorized: Entradas sin categoría
         settings:
           title: Configuración
           moderation: Moderación
@@ -97,10 +100,13 @@ es:
       comments:
         singular: comentario
         none: no hay comentarios
+      archives: Archivos
     categories:
       show:
         no_posts: Todavía no hay entradas.
     posts:
+      post:
+        filed_in: Archivado en
       comment: comentario
       comments:
         by: 'Enviado por %{who}'
@@ -115,7 +121,7 @@ es:
           title: Comentarios
           add: 'Envía tu comentario'
         other: Otros posts
-        filed_in: 'Envía en'
+        filed_in: Archivado en
         submit: Enviar comentario
       archive:
         blog_archive_for: 'Archivo del blog en %{date}'
