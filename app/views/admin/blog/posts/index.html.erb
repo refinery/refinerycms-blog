@@ -6,7 +6,7 @@
       <%= render :partial => "blog_posts",
                  :collection => @blog_posts %>
     <% else %>
-      <p><%= t('admin.search_no_results') %></p>
+      <p><%= t('shared.admin.search.no_results') %></p>
     <% end %>
   <% else %>
     <% if @blog_posts.any? %>
