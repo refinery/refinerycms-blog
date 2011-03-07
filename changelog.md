@@ -2,13 +2,14 @@
 ## 1.4 [UNRELEASED]
 
 * Spanish language fixes [scambra](https://github.com/scambra)
-
+* Bug fixes [scambra](https://github.com/scambra)
+* * [See full list](https://github.com/resolve/refinerycms-blog/compare/1.3...1.4)
 
 ## 1.3 [03 March 2011]
 
 * Moved to EngineInstaller [parndt](https://github.com/parndt)
 * Off Rails 2 support [parndt](https://github.com/parndt)
-
+* * [See full list](https://github.com/resolve/refinerycms-blog/compare/1.2...1.3)
 
 ## 1.2 [01 March 2011]
 
