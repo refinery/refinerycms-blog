@@ -2,6 +2,7 @@ class Blog::PostsController < BlogController
 
   before_filter :find_all_blog_posts, :except => [:archive]
   before_filter :find_blog_post, :only => [:show, :comment, :update_nav]
+  before_filter :find_tags
 
   respond_to :html, :js, :rss
 
@@ -64,6 +65,14 @@ class Blog::PostsController < BlogController
     end
     respond_with (@blog_posts)
   end
+  
+  def tagged
+    @tag_name = params[:tag_name]
+    @blog_posts = BlogPost.tagged_with(@tag_name.titleize).paginate({
+      :page => params[:page],
+      :per_page => RefinerySetting.find_or_set(:blog_posts_per_page, 10)
+    })
+  end
 
 protected
 
@@ -82,6 +91,10 @@ protected
       :page => params[:page],
       :per_page => RefinerySetting.find_or_set(:blog_posts_per_page, 10)
     })
+  end
+  
+  def find_tags
+    @tags = BlogPost.tag_counts_on(:tags)
   end
 
 end

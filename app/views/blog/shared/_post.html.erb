@@ -9,9 +9,13 @@
         <% if (categories = post.categories).any? %>
           <aside class='filed_in'>
             <%= t('filed_in', :scope => 'blog.posts.show') %>
-            <% categories.each_with_index do |category, index| %>
-              <%= link_to category.title, blog_category_url(category) -%><%= ',' if index < ((categories.length) - 1) %>
-            <% end %>
+            <%=raw categories.collect { |category| link_to category.title, blog_category_url(category) }.to_sentence %>
+          </aside>
+        <% end %>
+        <% if (tags = post.tag_list).any? %>
+          <aside class='tagged'>
+            <%= t('tagged', :scope => 'blog.posts.show') %>
+            <%=raw tags.collect { |tag| link_to tag, tagged_posts_path(tag.parameterize) }.to_sentence %>
           </aside>
         <% end %>
       </details>

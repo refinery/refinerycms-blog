@@ -101,6 +101,8 @@ en:
         singular: comment
         none: no comments
       archives: Archives
+      tags:
+        title: "Tags"
     categories:
       show:
         no_posts: There are no posts here yet.
@@ -122,7 +124,10 @@ en:
           add: Make a Comment
         other: Other Blog Posts
         filed_in: Filed in
+        tagged: Tagged
         submit: Send comment
+      tagged:
+        no_blog_articles_yet: There are no blog articles posted yet. Stay tuned.
       archive:
         blog_archive_for: 'Blog Archive for %{date}'
         no_blog_articles_posted: 'There are no blog articles posted for %{date}. Stay tuned.'
