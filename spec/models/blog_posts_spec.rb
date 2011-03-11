@@ -47,6 +47,12 @@ describe BlogPost do
     end
   end
   
+  describe "tags" do
+    it "acts as taggable" do
+      Factory(:post).should respond_to(:tag_list)
+    end
+  end
+  
   describe "authors" do
     it "are authored" do
       BlogPost.instance_methods.map(&:to_sym).include? :author

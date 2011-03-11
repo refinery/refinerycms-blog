@@ -11,6 +11,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency    'refinerycms',  '>= 0.9.8'
   s.add_dependency    'filters_spam', '~> 0.2'
+  s.add_dependency    'acts-as-taggable-on', '~> 2.0.6'
 
   s.files             = %w(
     app
