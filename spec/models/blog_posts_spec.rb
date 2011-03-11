@@ -49,13 +49,14 @@ describe BlogPost do
   
   describe "tags" do
     it "acts as taggable" do
-      Factory(:post).should respond_to(:tag_list)
+      (post = Factory(:post)).should respond_to(:tag_list)
+      post.tag_list.should include("chicago")
     end
   end
   
   describe "authors" do
     it "are authored" do
-      BlogPost.instance_methods.map(&:to_sym).include? :author
+      BlogPost.instance_methods.map(&:to_sym).should include(:author)
     end
   end
 

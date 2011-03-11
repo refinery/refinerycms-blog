@@ -14,6 +14,12 @@
     <%= f.label :body -%>
     <%= f.text_area :body, :rows => 20, :class => 'wymeditor widest' -%>
   </div>
+  
+  <div class='field'>
+    <%= f.label :tag_list, "Tags" -%>
+    <%= f.text_field :tag_list, :class => 'larger' -%>
+  </div>
+  
   <div id='more_options_field'>
     <p>
       <%= link_to t('.advanced_options'), "#",
