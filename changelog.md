@@ -2,6 +2,9 @@
 
 * Spanish language fixes [scambra](https://github.com/scambra)
 * Bug fixes [scambra](https://github.com/scambra)
+* Tags [joemsak](https://github.com/joemsak)
+* Tagged posts route / view [joemsak](https://github.com/joemsak)
+* Tag cloud in sidebar
 * [See full list](https://github.com/resolve/refinerycms-blog/compare/1.3...1.4)
 
 ## 1.3 [03 March 2011]
