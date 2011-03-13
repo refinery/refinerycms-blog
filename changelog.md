@@ -5,6 +5,7 @@
 * Tags [joemsak](https://github.com/joemsak)
 * Tagged posts route / view [joemsak](https://github.com/joemsak)
 * Tag cloud in sidebar
+* Czech & slovak translations [karem](https://github.com/keram)
 * [See full list](https://github.com/resolve/refinerycms-blog/compare/1.3...1.4)
 
 ## 1.3 [03 March 2011]
