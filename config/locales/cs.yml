@@ -1,0 +1,128 @@
+cs:
+  plugins:
+    refinerycms_blog:
+      title: Blog
+  admin:
+    blog:
+      categories:
+        category:
+          edit: Upravit kategorii
+          delete: Smazat kategorii
+        index:
+          no_items_yet: 'Nejsou zde žádné kategorie. Klikni na "%{create}" pro přidání první.'
+      comments:
+        approved: 'Komentář od "%{author}" byl schválen.'
+        comment:
+          view_live_html: 'Zobrazit živý náhled <br/><em>(otevře nové okno)</em>'
+          read: Zobrazit komentář
+          reject: Zamítnout komentář
+          approve: Schválit 
+        rejected: 'Komentář od "%{author}" byl zamítnut.'
+        index:
+          no_items_yet: 'Nejsou zde žádné %{type} komentáře.'
+        show:
+          comment: Komentář
+          blog_post: Blog článek
+          from: Odeslal
+          date: Datum
+          message: Komentář
+          details: Detaily
+          age: Věk 
+          actions: Akce
+          back: Zpět na seznam komentářů
+          reject: Zamítnout komentář
+          approve: Schváliť komentář
+      posts:
+        form:
+          advanced_options: Pokročilé nastavení
+          toggle_advanced_options: Klikni pro přístup k nastavením meta tagů a menu 
+          save_as_draft: Uložit jako koncept 
+          published_at: Datum publikování
+        index:
+          no_items_yet: 'Nejsou žádné články na blogu. Klikni na "%{create}" pro přidání prvního.'
+        uncategorized:
+          no_items_yet: 'Nejsou žádné nekategorizované články.'
+        post:
+          view_live_html: 'Zobrazit článek <br/><em>(otevře jej v novém okně)</em>'
+          edit: Upravit článek
+          delete: Smazat článek
+      settings:
+        notification_recipients:
+          value: Poslat notifikaci pro
+          explanation: 'Vždycky když někdo přidá komentář, Refinery zašle oznámení.'
+          hint: 'Vždycky když někdo přidá komentář, Refinery ti pošle oznámení.'
+          example: "Zadej tvou emailovou adresu(y) jako například: jack@work.com, jill@office.com"
+          updated: 'Seznam příjemců notifikací "%{recipients}"'
+      submenu:
+        categories:
+          title: Kategorie
+          manage: Spravovat
+          new: Nová kategórie
+        comments:
+          title: Komentáře
+          title_with_count: 'Komentáře (%{new_count} nových)'
+          new: Nový
+          unmoderated: Nový
+          approved: Schválený
+          rejected: Zamítnutý
+        posts:
+          title: Články
+          manage: Spravovat články
+          new: Vytvořit nový článek
+          uncategorized: Nekategorizované články
+        settings:
+          title: Nastavení
+          moderation: Moderování
+          update_notified: Upravit seznam notifikovaných
+          comments: Komentáře
+  blog:
+    comment_mailer:
+      notification:
+        greeting: Ahoj
+        you_recieved_new_comment: Máš nový komentář na stránce
+        comment_starts: --- začátek komentáře ---
+        comment_ends: --- konec komentáře ---
+        from: Od
+        email: Email
+        message: Zpráva
+        closing_line: S pozdravem
+        ps: 'P.S. Všechny komentáře jsou uloženy v sekci "Blog" pod záložkou "Komentáře" v případě pokud by je bylo třeba zobrazit později.'
+    shared:
+      categories:
+        title: Kategorie
+      rss_feed:
+        title: RSS zdroj článků
+        subscribe: Přihlásit k odběru
+      posts:
+        other: Další články 
+        created_at: 'Publikován %{when}'
+        read_more: Celý článek
+      comments:
+        singular: komentář
+        none: žiadne komentáře
+      archives: Archiv
+    categories:
+      show:
+        no_posts: Nejsou zde žádné články.
+    posts:
+      post:
+        filed_in: Podaný
+      comment: komentář
+      comments:
+        by: 'Odeslal %{who}'
+        time_ago: '%{time} zpět'
+        thank_you: 'Díky za komentář.'
+        thank_you_moderated: 'Děkujeme za Váš komentář. Vaše zpráva čeká na schválení a objeví se v nejbližší době.'
+      index:
+        no_blog_articles_yet: Právě nejsou žádné články na blogu. Zůstaňte naladěni.
+      show:
+        blog_home: Hlavní stránka blogu
+        comments:
+          title: Komentáře
+          add: Přidat komentář
+        other: Další články
+        filed_in: Podaný
+        submit: Odeslat komentář
+      archive:
+        blog_archive_for: 'Blog archiv pro %{date}'
+        no_blog_articles_posted: 'Nejsou žádné články publikované %{date}.'
