@@ -40,6 +40,8 @@ pt-BR:
           published_at: Data de publicação
         index:
           no_items_yet: 'Ainda não há Posts no Blog. Clique em "%{create}" para adicionar o primeiro post.'
+        uncategorized:
+          no_items_yet: 'Ainda não há posts sem categoria.'
         post:
           view_live_html: Ver este comentário <br/><em>(será aberto em outra janela)</em>
           edit: Editar este post
@@ -67,6 +69,7 @@ pt-BR:
           title: Posts
           manage: Gerenciar posts
           new: Criar novo post
+          uncategorized: Posts sem categoria
         settings:
           title: Configurações
           moderation: Moderação
