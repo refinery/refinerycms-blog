@@ -1,6 +1,8 @@
 User.find(:all).each do |user|
-  user.plugins.create(:name => "refinerycms_blog",
-                      :position => (user.plugins.maximum(:position) || -1) +1)
+  if user.plugins.where(:name => 'refinerycms_blog').blank?
+    user.plugins.create(:name => "refinerycms_blog",
+                        :position => (user.plugins.maximum(:position) || -1) +1)
+  end
 end
 
 page = Page.create(
