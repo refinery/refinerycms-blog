@@ -1,17 +1,16 @@
 Gem::Specification.new do |s|
   s.name              = %q{refinerycms-blog}
-  s.version           = %q{1.3.2}
+  s.version           = %q{1.4}
   s.description       = %q{A really straightforward open source Ruby on Rails blog engine designed for integration with RefineryCMS.}
-  s.date              = %q{2011-03-09}
+  s.date              = %q{2011-03-28}
   s.summary           = %q{Ruby on Rails blogging engine for RefineryCMS.}
   s.email             = %q{info@refinerycms.com}
   s.homepage          = %q{http://refinerycms.com}
   s.authors           = %w(Resolve\ Digital Neoteric\ Design)
   s.require_paths     = %w(lib)
 
-  s.add_dependency    'refinerycms',  '>= 0.9.8'
+  s.add_dependency    'refinerycms-core',  '>= 0.9.9.1'
   s.add_dependency    'filters_spam', '~> 0.2'
-  s.add_dependency    'acts-as-taggable-on', '~> 2.0.6'
 
   s.files             = %w(
     app
@@ -79,14 +78,17 @@ Gem::Specification.new do |s|
     app/views/blog/posts/index.html.erb
     app/views/blog/posts/index.rss.builder
     app/views/blog/posts/show.html.erb
+    app/views/blog/posts/tagged.html.erb
     app/views/blog/shared
     app/views/blog/shared/_categories.html.erb
     app/views/blog/shared/_post.html.erb
     app/views/blog/shared/_posts.html.erb
     app/views/blog/shared/_rss_feed.html.erb
+    app/views/blog/shared/_tags.html.erb
     changelog.md
     config
     config/locales
+    config/locales/cs.yml
     config/locales/de.yml
     config/locales/en.yml
     config/locales/es.yml
@@ -97,11 +99,14 @@ Gem::Specification.new do |s|
     config/locales/pl.yml
     config/locales/pt-BR.yml
     config/locales/ru.yml
+    config/locales/sk.yml
+    config/locales/zh-CN.yml
     config/routes.rb
     db
     db/migrate
     db/migrate/1_create_blog_structure.rb
     db/migrate/2_add_user_id_to_blog_posts.rb
+    db/migrate/3_acts_as_taggable_on_migration.rb
     db/seeds
     db/seeds/refinerycms_blog.rb
     features
@@ -114,6 +119,8 @@ Gem::Specification.new do |s|
     features/support/paths.rb
     features/support/step_definitions
     features/support/step_definitions/authors_steps.rb
+    features/support/step_definitions/tags_steps.rb
+    features/tags.feature
     lib
     lib/gemspec.rb
     lib/generators

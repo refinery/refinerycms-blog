@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.authors           = %w(Resolve\\ Digital Neoteric\\ Design)
   s.require_paths     = %w(lib)
 
-  s.add_dependency    'refinerycms',  '>= 0.9.8'
+  s.add_dependency    'refinerycms-core',  '>= 0.9.9.1'
   s.add_dependency    'filters_spam', '~> 0.2'
 
   s.files             = %w(
