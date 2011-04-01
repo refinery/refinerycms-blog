@@ -14,7 +14,7 @@
         <aside class='filed_in'>
           <%= t('blog.posts.show.filed_in') %>
           <% categories.each_with_index do |category, index| %>
-              <%= link_to category.title, blog_category_url(category) -%><%= ',' if index < ((categories.length) - 1) %>
+            <%= link_to category.title, blog_category_url(category) -%><%= ',' if index < ((categories.length) - 1) %>
           <% end %>
         </aside>
       <% end %>
@@ -27,6 +27,4 @@
   <% end %>
 </article>
 <%= render :partial => '/shared/draft_page_message' unless @blog_post.nil? or @blog_post.live? -%>
-<% if next_or_previous?(@blog_post) -%>
-  <%= render 'nav' %>
-<% end -%>
+<%= render 'nav' if next_or_previous?(@blog_post) %>
