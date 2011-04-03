@@ -2,11 +2,11 @@ Gem::Specification.new do |s|
   s.name              = %q{refinerycms-blog}
   s.version           = %q{1.4}
   s.description       = %q{A really straightforward open source Ruby on Rails blog engine designed for integration with RefineryCMS.}
-  s.date              = %q{2011-03-28}
+  s.date              = %q{2011-04-03}
   s.summary           = %q{Ruby on Rails blogging engine for RefineryCMS.}
   s.email             = %q{info@refinerycms.com}
-  s.homepage          = %q{http://refinerycms.com}
-  s.authors           = %w(Resolve\ Digital Neoteric\ Design)
+  s.homepage          = %q{http://refinerycms.com/blog}
+  s.authors           = ['Resolve Digital', 'Neoteric Design']
   s.require_paths     = %w(lib)
 
   s.add_dependency    'refinerycms-core',  '>= 0.9.9.1'
