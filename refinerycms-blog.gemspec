@@ -125,8 +125,6 @@ Gem::Specification.new do |s|
     lib
     lib/gemspec.rb
     lib/generators
-    lib/generators/refinerycms_blog
-    lib/generators/refinerycms_blog/templates
     lib/generators/refinerycms_blog_generator.rb
     lib/refinerycms-blog.rb
     public
