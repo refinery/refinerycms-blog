@@ -2,7 +2,7 @@
 
 Simple blog engine for [Refinery CMS](http://refinerycms.com). It supports posts, categories and comments.
 
-Refinery CMS Blog supports Rails 2.3.x using the [Rails 2.3.x stable branch](http://github.com/resolve/refinerycms-blog/tree/rails2-stable).
+This version of `refinerycms-blog` supports Rails 3.0.x. To use Rails 2.3.x use the [refinerycms-blog "Rails 2.3.x stable branch"](http://github.com/resolve/refinerycms-blog/tree/rails2-stable).
 
 Options:
 
