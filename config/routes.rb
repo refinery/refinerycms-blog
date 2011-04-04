@@ -1,4 +1,4 @@
-Refinery::Application.routes.draw do
+::Refinery::Application.routes.draw do
   scope(:path => 'blog', :module => 'blog') do
     root :to => 'posts#index', :as => 'blog_root'
     match 'feed.rss', :to => 'posts#index.rss', :as => 'blog_rss_feed'
