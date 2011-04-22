@@ -2,46 +2,38 @@ require 'spec_helper'
 Dir[File.expand_path('../../../features/support/factories/*.rb', __FILE__)].each{|factory| require factory}
 
 describe BlogPost do
+  before(:each) do
+    @blog_post = Factory(:post)
+  end
+  
   describe "validations" do
-    before(:each) do
-      @attr = { :title => "RefineryCMS", :body => "Some random text ..." }
-    end
-
     it "requires title" do
-      BlogPost.new(@attr.merge(:title => "")).should_not be_valid
+      Factory.build(:post, :title => "").should_not be_valid
     end
 
     it "won't allow duplicate titles" do
-      BlogPost.create!(@attr)
-      BlogPost.new(@attr).should_not be_valid
+      Factory.build(:post, :title => @blog_post.title).should_not be_valid
     end
 
     it "requires body" do
-      BlogPost.new(@attr.merge(:body => nil)).should_not be_valid
+      Factory.build(:post, :body => nil).should_not be_valid
     end
   end
 
   describe "comments association" do
-    before(:each) do
-      @blog_post = Factory(:post)
-    end
 
     it "have a comments attribute" do
       @blog_post.should respond_to(:comments)
     end
 
     it "destroys associated comments" do
-      Factory(:blog_comment, :blog_post_id => @blog_post)
+      Factory(:blog_comment, :blog_post_id => @blog_post.id)
       @blog_post.destroy
-      BlogComment.find_by_blog_post_id(@blog_post).should be_nil
+      BlogComment.find_by_blog_post_id(@blog_post.id).should == nil
     end
   end
 
   describe "categories association" do
-    before(:each) do
-      @blog_post = Factory(:post)
-    end
-
     it "have categories attribute" do
       @blog_post.should respond_to(:categories)
     end
@@ -49,8 +41,10 @@ describe BlogPost do
   
   describe "tags" do
     it "acts as taggable" do
-      (post = Factory(:post)).should respond_to(:tag_list)
-      post.tag_list.should include("chicago")
+      @blog_post.should respond_to(:tag_list)
+      
+      #the factory has default tags, including 'chicago'
+      @blog_post.tag_list.should include("chicago")
     end
   end
   
@@ -62,9 +56,16 @@ describe BlogPost do
 
   describe "by_archive scope" do
     it "returns all posts from specified month" do
-      blog_post1 = Factory(:post, :published_at => Time.now.advance(:minutes => -2))
-      blog_post2 = Factory(:post, :published_at => Time.now.advance(:minutes => -1))
+      BlogPost.delete_all
+      
+      #this month
+      blog_post1 = Factory(:post, :published_at => Time.now - 2.days)
+      blog_post2 = Factory(:post, :published_at => Time.now - 1.day)
+      
+      #2 months ago
       Factory(:post, :published_at => Time.now - 2.months)
+      
+      #check for this month
       date = "#{Time.now.month}/#{Time.now.year}"
       BlogPost.by_archive(Time.parse(date)).count.should == 2
       BlogPost.by_archive(Time.parse(date)).should == [blog_post2, blog_post1]
@@ -73,8 +74,10 @@ describe BlogPost do
 
   describe "all_previous scope" do
     it "returns all posts from previous months" do
-      blog_post1 = Factory(:post, :published_at => Time.now.advance(:months => -2))
-      blog_post2 = Factory(:post, :published_at => Time.now.advance(:months => -1))
+      BlogPost.delete_all
+      
+      blog_post1 = Factory(:post, :published_at => Time.now - 2.months)
+      blog_post2 = Factory(:post, :published_at => Time.now - 1.month)
       Factory(:post, :published_at => Time.now)
       BlogPost.all_previous.count.should == 2
       BlogPost.all_previous.should == [blog_post2, blog_post1]
@@ -83,28 +86,14 @@ describe BlogPost do
 
   describe "live scope" do
     it "returns all posts which aren't in draft and pub date isn't in future" do
+      BlogPost.delete_all
+      
       blog_post1 = Factory(:post, :published_at => Time.now.advance(:minutes => -2))
       blog_post2 = Factory(:post, :published_at => Time.now.advance(:minutes => -1))
       Factory(:post, :draft => true)
       Factory(:post, :published_at => Time.now + 1.minute)
       BlogPost.live.count.should == 2
       BlogPost.live.should == [blog_post2, blog_post1]
-    end
-  end
-
-  describe "next scope" do
-    it "returns next article based on given article" do
-      blog_post1 = Factory(:post, :published_at => Time.now.advance(:minutes => -1))
-      blog_post2 = Factory(:post)
-      BlogPost.next(blog_post1).should == [blog_post2]
-    end
-  end
-
-  describe "previous scope" do
-    it "returns previous article based on given article" do
-      blog_post1 = Factory(:post, :published_at => Time.now.advance(:minutes => -1))
-      blog_post2 = Factory(:post)
-      BlogPost.previous(blog_post2).should == [blog_post1]
     end
   end
 
@@ -136,6 +125,8 @@ describe BlogPost do
 
   describe "#next" do
     it "returns next article when called on current article" do
+      BlogPost.delete_all
+      
       Factory(:post, :published_at => Time.now.advance(:minutes => -1))
       blog_post = Factory(:post)
       blog_posts = BlogPost.all
@@ -145,6 +136,8 @@ describe BlogPost do
 
   describe "#prev" do
     it "returns previous article when called on current article" do
+      BlogPost.delete_all
+      
       Factory(:post)
       blog_post = Factory(:post, :published_at => Time.now.advance(:minutes => -1))
       blog_posts = BlogPost.all
@@ -154,7 +147,6 @@ describe BlogPost do
 
   describe "#category_ids=" do
     before(:each) do
-      @blog_post = Factory(:post)
       @cat1 = Factory(:blog_category, :id => 1)
       @cat2 = Factory(:blog_category, :id => 2)
       @cat3 = Factory(:blog_category, :id => 3)

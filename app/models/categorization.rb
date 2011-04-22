@@ -4,6 +4,4 @@ class Categorization < ActiveRecord::Base
   belongs_to :blog_post
   belongs_to :blog_category
 
-  has_friendly_id :title, :use_slug => true
-
 end

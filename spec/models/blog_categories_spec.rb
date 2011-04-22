@@ -3,39 +3,39 @@ Dir[File.expand_path('../../../features/support/factories/*.rb', __FILE__)].each
 
 describe BlogCategory do
   before(:each) do
-    @attr = { :title => "RefineryCMS" }
+    @blog_category = Factory(:blog_category)
   end
 
   describe "validations" do
     it "requires title" do
-      BlogCategory.new(@attr.merge(:title => "")).should_not be_valid
+      Factory.build(:blog_category, :title => "").should_not be_valid
     end
 
     it "won't allow duplicate titles" do
-      BlogCategory.create!(@attr)
-      BlogCategory.new(@attr).should_not be_valid
+      Factory.build(:blog_category, :title => @blog_category.title).should_not be_valid
     end
   end
 
   describe "blog posts association" do
     it "has a posts attribute" do
-      BlogCategory.new.should respond_to(:posts)
+      @blog_category.should respond_to(:posts)
     end
     
     it "returns posts by published_at date in descending order" do
-      @category = BlogCategory.create!(@attr)
-      @first_post = @category.posts.create!({ :title => "Breaking News: Joe Sak is hot stuff you guys!!", :body => "True story.", :published_at => Time.now.yesterday })
-      @latest_post = @category.posts.create!({ :title => "parndt is p. okay", :body => "For a kiwi.", :published_at => Time.now })
-      @category.posts.first.should == @latest_post
+      first_post = @blog_category.posts.create!({ :title => "Breaking News: Joe Sak is hot stuff you guys!!", :body => "True story.", :published_at => Time.now.yesterday })
+      latest_post = @blog_category.posts.create!({ :title => "parndt is p. okay", :body => "For a kiwi.", :published_at => Time.now })
+
+      @blog_category.posts.first.should == latest_post
     end
       
   end
 
   describe "#post_count" do
     it "returns post count in category" do
-      Factory(:post, :categories => [Factory(:blog_category)])
-      Factory(:post, :categories => [Factory(:blog_category)])
-      BlogCategory.first.post_count.should == 2
+      2.times do
+        @blog_category.posts << Factory(:post)
+      end
+      @blog_category.post_count.should == 2
     end
   end
 end
