@@ -1,4 +1,4 @@
-## 1.4 [UNRELEASED]
+## 1.4 [22 April 2011]
 
 * Spanish language fixes [scambra](https://github.com/scambra)
 * Bug fixes [scambra](https://github.com/scambra)
