@@ -1,18 +1,21 @@
 Gem::Specification.new do |s|
   s.name              = %q{refinerycms-blog}
-  s.version           = %q{1.4}
+  s.version           = %q{1.4.0}
   s.description       = %q{A really straightforward open source Ruby on Rails blog engine designed for integration with RefineryCMS.}
-  s.date              = %q{2011-04-03}
+  s.date              = %q{2011-04-25}
   s.summary           = %q{Ruby on Rails blogging engine for RefineryCMS.}
   s.email             = %q{info@refinerycms.com}
   s.homepage          = %q{http://refinerycms.com/blog}
   s.authors           = ['Resolve Digital', 'Neoteric Design']
   s.require_paths     = %w(lib)
 
-  s.add_dependency              'refinerycms-core',  '>= 0.9.9.1'
-  s.add_dependency              'filters_spam', '~> 0.2'
-  s.add_dependency              'acts-as-taggable-on'
-  s.add_development_dependency  'factory_girl'
+  # Runtime dependencies
+  s.add_dependency    'refinerycms-core',  '>= 0.9.9.1'
+  s.add_dependency    'filters_spam', '~> 0.2'
+  s.add_dependency    'acts-as-taggable-on'
+
+  # Development dependencies
+  s.add_development_dependency 'factory_girl'
 
   s.files             = %w(
     app
@@ -127,6 +130,9 @@ Gem::Specification.new do |s|
     lib/gemspec.rb
     lib/generators
     lib/generators/refinerycms_blog_generator.rb
+    lib/refinery
+    lib/refinery/blog
+    lib/refinery/blog/version.rb
     lib/refinerycms-blog.rb
     public
     public/images
