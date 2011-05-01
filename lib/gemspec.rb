@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
-require File.expand_path('../refinerycms-blog.rb', __FILE__)
-version = ::Refinery::Blog.version
+require File.expand_path('../refinery/blog/version', __FILE__)
+version = ::Refinery::Blog::Version.to_s
 raise "Could not get version so gemspec can not be built" if version.nil?
 files = Dir.glob("**/*").flatten.reject do |file|
   file =~ /\.gem(spec)?$/
@@ -18,9 +18,13 @@ Gem::Specification.new do |s|
   s.authors           = ['Resolve Digital', 'Neoteric Design']
   s.require_paths     = %w(lib)
 
+  # Runtime dependencies
   s.add_dependency    'refinerycms-core',  '>= 0.9.9.1'
   s.add_dependency    'filters_spam', '~> 0.2'
   s.add_dependency    'acts-as-taggable-on'
+
+  # Development dependencies
+  s.add_development_dependency 'factory_girl'
 
   s.files             = %w(
     #{files.join("\n    ")}
