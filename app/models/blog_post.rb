@@ -1,15 +1,17 @@
 require 'acts-as-taggable-on'
 
 class BlogPost < ActiveRecord::Base
-  
+
+  is_seo_meta if self.respond_to?(:is_seo_meta)
+
   default_scope :order => 'published_at DESC'
   #.first & .last will be reversed -- consider a with_exclusive_scope on these?
-      
+
   belongs_to :author, :class_name => 'User', :foreign_key => :user_id
-  
+
   has_many :comments, :class_name => 'BlogComment', :dependent => :destroy
   acts_as_taggable
-  
+
   has_many :categorizations
   has_many :categories, :through => :categorizations, :source => :blog_category
 
@@ -23,7 +25,7 @@ class BlogPost < ActiveRecord::Base
   scope :by_archive, lambda { |archive_date|
     where(['published_at between ? and ?', archive_date.beginning_of_month, archive_date.end_of_month])
   }
-  
+
   scope :by_year, lambda { |archive_year|
     where(['published_at between ? and ?', archive_year.beginning_of_year, archive_year.end_of_year])
   }
@@ -34,7 +36,7 @@ class BlogPost < ActiveRecord::Base
 
   scope :previous, lambda { |i| where(["published_at < ? and draft = ?", i.published_at, false]).limit(1) }
   # next is now in << self
-  
+
   def next
     BlogPost.next(self).first
   end
@@ -59,13 +61,13 @@ class BlogPost < ActiveRecord::Base
         where(["published_at > ? and draft = ?", current_record.published_at, false]).order("published_at ASC")
       end
     end
-    
+
     def comments_allowed?
       RefinerySetting.find_or_set(:comments_allowed, true, {
         :scoping => 'blog'
       })
     end
-    
+
     def uncategorized
       BlogPost.live.reject { |p| p.categories.any? }
     end
@@ -74,7 +76,7 @@ class BlogPost < ActiveRecord::Base
   module ShareThis
     DEFAULT_KEY = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 
-    class << self      
+    class << self
       def key
         RefinerySetting.find_or_set(:share_this_key, BlogPost::ShareThis::DEFAULT_KEY, {
           :scoping => 'blog'
