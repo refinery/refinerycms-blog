@@ -1,8 +1,9 @@
 require 'acts-as-taggable-on'
+require 'seo_meta'
 
 class BlogPost < ActiveRecord::Base
 
-  is_seo_meta if self.respond_to?(:is_seo_meta)
+  is_seo_meta
 
   default_scope :order => 'published_at DESC'
   #.first & .last will be reversed -- consider a with_exclusive_scope on these?

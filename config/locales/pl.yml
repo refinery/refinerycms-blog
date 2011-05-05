@@ -44,6 +44,13 @@ pl:
           toggle_advanced_options: 'Kliknij, aby zarządzać meta-ustawieniami'
           save_as_draft: Zapisz jako szkic
           published_at: Data publikacji
+          seo: Optymalizacja dla wyszukiwarek
+          seo_override_title: Tytuł w przeglądarce
+          seo_override_title_help: Wpisz 5-10 słów które podsumowują zawartość tej strony.
+          meta_keywords_title: Słowa kluczowe meta
+          meta_keywords_help: Wpisz 5-10 słów kluczowych związanych z zawartością tej strony. Rozdziel słowa kluczowe przecinkiem.
+          meta_description_title: Opis meta
+          meta_description_help: Podaj dwu-trzyzdaniowy opis tego, o czym jest ta strona.
         index:
           no_items_yet: 'Na blogu nie ma jeszcze żadnych wpisów. Kliknij "%{create}" aby dodać pierwszy post.'
         uncategorized:

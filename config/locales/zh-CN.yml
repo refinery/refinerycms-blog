@@ -38,6 +38,13 @@ zh-CN:
           toggle_advanced_options: 点击进入标签详解设置和菜单选项
           save_as_draft: 保存为草稿
           published_at: 发布日期
+          seo: 搜索引擎优化
+          seo_override_title: 浏览标题
+          seo_override_title_help: 输入 5 到 10 个字的标题去概括这个页面的内容.
+          meta_keywords_title: Meta 关键字
+          meta_keywords_help: 输入 5 到 10 个与这个页面有关的关键字. 用逗号分开每个关键字.
+          meta_description_title: Meta 说明
+          meta_description_help: 简洁地输入两三句话来介绍这个页面.
         index:
           no_items_yet: '目前尚未发博。 点击 "%{create}" 添加您的第一篇博文。'
         uncategorized:

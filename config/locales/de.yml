@@ -38,6 +38,13 @@ de:
           toggle_advanced_options: 'Klicken, um auf Meta-Tag-Einstellungen und Menüoptionen zuzugreifen'
           save_as_draft: Als Entwurf speichern
           published_at: Veröffentlichungsdatum
+          seo: Suchmaschinenoptimierung
+          seo_override_title: Browsertitel
+          seo_override_title_help: Geben Sie einen 5-10 Wörter langen Titel an, den der Inhalt der Seite beschreibt.
+          meta_keywords_title: Meta-Schlüsselwörter
+          meta_keywords_help: Geben Sie 5-10 Schlüsselwörter für diese Seite an. Trennen Sie Schlüsselwörter mit einem Komma.
+          meta_description_title: Meta-Beschreibung
+          meta_description_help: Beschreiben Sie in knappen zwei oder drei Sätzen, um was es sich bei dieser Seite handelt.
         index:
           no_items_yet: 'Es sind noch keine Artikel vorhanden. Klicken Sie auf "%{create}", um Ihren ersten Artikel hinzuzufügen.'
         uncategorized:

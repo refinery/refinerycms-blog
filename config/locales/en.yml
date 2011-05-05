@@ -38,6 +38,13 @@ en:
           toggle_advanced_options: Click to access meta tag settings and menu options
           save_as_draft: Save as Draft
           published_at: Publish Date
+          seo: Search Engine Optimization
+          seo_override_title: Browser title
+          seo_override_title_help: Enter a 5-10 word title that summarizes the contents of this post.
+          meta_keywords_title: Meta keywords
+          meta_keywords_help: Enter 5-10 keywords that relate to this post. Separate keywords by a comma.
+          meta_description_title: Meta description
+          meta_description_help: Enter a concise two or three sentences describing what this post is about.
         index:
           no_items_yet: 'There are no Blog Posts yet. Click "%{create}" to add your first blog post.'
         uncategorized:
