@@ -1,4 +1,4 @@
-@blog_tags
+@blog @blog_tags
 Feature: Blog Post Tags
   Blog posts can be assigned tags
   
