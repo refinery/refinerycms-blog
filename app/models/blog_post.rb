@@ -3,7 +3,7 @@ require 'seo_meta'
 
 class BlogPost < ActiveRecord::Base
 
-  is_seo_meta
+  is_seo_meta if self.table_exists?
 
   default_scope :order => 'published_at DESC'
   #.first & .last will be reversed -- consider a with_exclusive_scope on these?
