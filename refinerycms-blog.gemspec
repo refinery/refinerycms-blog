@@ -164,9 +164,9 @@ Gem::Specification.new do |s|
     readme.md
     spec
     spec/models
-    spec/models/blog_categories_spec.rb
-    spec/models/blog_comments_spec.rb
-    spec/models/blog_posts_spec.rb
+    spec/models/blog_category_spec.rb
+    spec/models/blog_comment_spec.rb
+    spec/models/blog_post_spec.rb
   )
   
 end
