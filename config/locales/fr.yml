@@ -38,13 +38,6 @@ fr:
           toggle_advanced_options: Cliquez ici pour accéder aux paramêtres des meta-tags et au menu des options
           save_as_draft: Enregistrer comme Brouillon
           published_at: Date de publication
-          seo: Optimisations pour les moteurs de recherche (SEO)
-          seo_override_title: Titre du navigateur
-          seo_override_title_help: Entrez entre 5 et 10 mots qui résument votre article.
-          meta_keywords_title: Mots clefs
-          meta_keywords_help: Entrez entre 5 et 10 mots clefs en relation avec votre article (Séparer les mots clefs par des virgules).
-          meta_description_title: Description
-          meta_description_help: Entrez deux ou trois phrases concises décrivants le sujet de votre article.
         index:
           no_items_yet: 'Il n''y a aucun article pour l''instant. Cliquez sur "%{create}" pour ajouter votre premier article.'
         post:

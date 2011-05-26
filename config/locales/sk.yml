@@ -38,13 +38,6 @@ sk:
           toggle_advanced_options: Klikni pre prístup k nastaveniam meta tagov a menu
           save_as_draft: Uložiť ako koncept
           published_at: Dátum publikovania
-          seo: Optimalizácia pre vyhľadávanie
-          seo_override_title: Titulok prehliadača
-          seo_override_title_help: Vložte titulok dĺžky 5-10 slov, ktorý vystihuje obsah stránky.
-          meta_keywords_title: Kľúčové slová (Meta keywords)
-          meta_keywords_help: Vložte 5-10 kľúčových slov oddelených čiarkou, ktoré sa vzťahujú k obsahu stránky.
-          meta_description_title: Popis (Meta description)
-          meta_description_help: Vložte 2-3 krátke vety sumarizujúce obsah stránky.
         index:
           no_items_yet: 'Niesu žiadne články na blogu. Klikni na "%{create}" pre pridanie prvého.'
         uncategorized:

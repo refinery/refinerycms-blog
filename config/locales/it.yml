@@ -38,13 +38,6 @@ it:
           toggle_advanced_options: Clicca per accedere alle impostationi dei meta tag e del menu
           save_as_draft: Salva come Bozza
           published_at: Data di Pubblicazione
-          seo: Ottimizzazione Motori di Ricerca
-          seo_override_title: Titolo del Browser
-          seo_override_title_help: È possibile inserire un testo per il titolo della barra del browser che sovrascriverà il valore predefinito
-          meta_keywords_title: Parole chiave
-          meta_keywords_help: Inserisci 5-10 parole chiave che riguardano questa messaggio, separate da una virgola.
-          meta_description_title: Descrizione
-          meta_description_help: Inserire due o tre frasi concise che descrivono questa messaggio.
         index:
           no_items_yet: 'Non ci sono ancora Messaggi per questo Blog. Clicca "%{create}" per aggiungere il tuo primo messaggio.'
         post:

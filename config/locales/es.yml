@@ -38,13 +38,6 @@ es:
           toggle_advanced_options: Click para acceder a las opciones de menú y etiquetas
           save_as_draft: Guardar Borrador
           published_at: Fecha de publicación
-          seo: Optimización para motores de búsqueda (SEO)
-          seo_override_title: Título del navegador
-          seo_override_title_help: Introduce un título de 5-10 palabras que resuma los contenidos de la entrada.
-          meta_keywords_title: Palabras clave (meta keyboards)
-          meta_keywords_help: Introduce 5-10 palabras clave relacionadas con esta entrada, separadas por comas.
-          meta_description_title: Meta-descripción
-          meta_description_help: Describe en dos o tres frases de qué tema trata esta entrada.
         index:
           no_items_yet: 'Aún no hay entradas en el Blog. Haz click en "%{create}" para añadir el primero'
         uncategorized:
