@@ -2,7 +2,7 @@ module Refinery
   module Blog
     class Version
       @major = 1
-      @minor = 4
+      @minor = 5
       @tiny  = 0
 
       class << self

@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name              = %q{refinerycms-blog}
-  s.version           = %q{1.4.0}
+  s.version           = %q{1.5.0}
   s.description       = %q{A really straightforward open source Ruby on Rails blog engine designed for integration with RefineryCMS.}
   s.date              = %q{2011-05-26}
   s.summary           = %q{Ruby on Rails blogging engine for RefineryCMS.}
@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.require_paths     = %w(lib)
 
   # Runtime dependencies
-  s.add_dependency    'refinerycms-core',   '~> 0.9.9.22'
+  s.add_dependency    'refinerycms-core',   '~> 1.0.0'
   s.add_dependency    'filters_spam',       '~> 0.2'
   s.add_dependency    'acts-as-taggable-on'
   s.add_dependency    'seo_meta',           '~> 1.1.0'
