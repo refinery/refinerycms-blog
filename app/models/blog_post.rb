@@ -21,7 +21,10 @@ class BlogPost < ActiveRecord::Base
   validates :title, :presence => true, :uniqueness => true
   validates :body,  :presence => true
 
-  has_friendly_id :title, :use_slug => true
+  has_friendly_id :title, :use_slug => true,
+                  :default_locale => (::Refinery::I18n.default_frontend_locale rescue :en),
+                  :approximate_ascii => RefinerySetting.find_or_set(:approximate_ascii, false, :scoping => 'blog'),
+                  :strip_non_ascii => RefinerySetting.find_or_set(:strip_non_ascii, false, :scoping => 'blog')
 
   scope :by_archive, lambda { |archive_date|
     where(['published_at between ? and ?', archive_date.beginning_of_month, archive_date.end_of_month])
