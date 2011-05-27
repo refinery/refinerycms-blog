@@ -1,7 +1,5 @@
 <article class='blog_comment_message' id='<%= "comment-#{comment.to_param}" %>'>
-  <p>
-    <%= simple_format auto_link(comment.message.to_s) %>
-  </p>
+  <%= simple_format auto_link(comment.message.to_s) %>
   <footer class='blog_comment_author'>
     <p>
       <%= t('blog.posts.comments.by', :who => comment.name) %>,
