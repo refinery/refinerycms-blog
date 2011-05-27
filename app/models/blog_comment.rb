@@ -19,6 +19,13 @@ class BlogComment < ActiveRecord::Base
   scope :approved, :conditions => {:state => 'approved'}
   scope :rejected, :conditions => {:state => 'rejected'}
 
+  def avatar_url(options = {})
+    options = {:size => 60}
+    require 'digest/md5'
+    options[:size] = "?s=#{size}" if options[:size]
+    "http://gravatar.com/avatar/#{Digest::MD5.hexdigest(self.email.to_s.strip.downcase)}#{size}.jpg"
+  end
+
   def approve!
     self.update_attribute(:state, 'approved')
   end
