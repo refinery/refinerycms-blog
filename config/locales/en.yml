@@ -138,16 +138,16 @@ en:
         no_blog_articles_posted: 'There are no blog articles posted for %{date}. Stay tuned.'  
   activerecord:
     models:
-      blog_category: category
-      blog_comment: comment
-      blog_post: blog post
+      blog_category: Category
+      blog_comment: Comment
+      blog_post: Blog post
     attributes:
       blog_category:
-        title: title
+        title: Title
       blog_comment:
         name: Name
         email: Email
         message: Message
       blog_post:
-        title: title
-        body: body
+        title: Title
+        body: Body
