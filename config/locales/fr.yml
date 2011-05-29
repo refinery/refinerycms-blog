@@ -40,6 +40,8 @@ fr:
           published_at: Date de publication
         index:
           no_items_yet: 'Il n''y a aucun article pour l''instant. Cliquez sur "%{create}" pour ajouter votre premier article.'
+        uncategorized:
+          no_items_yet: 'Il n''y a aucun article non catégorisé.'
         post:
           view_live_html: 'Voir cet article sur le site<br/><em>(Ouvre une nouvelle fenêtre)</em>'
           edit: Modifier cet article
@@ -67,6 +69,7 @@ fr:
           title: Articles
           manage: Gérer les articles
           new: Créer un nouvel article
+          uncategorized: Aricles non catégorisés
         settings:
           title: Paramêtres
           moderation: Modération
@@ -88,16 +91,19 @@ fr:
       categories:
         title: Catégories
       rss_feed:
-        title: RSS Feed
+        title: Flux RSS
         subscribe: Souscrire
       posts:
         other: Autres articles
         created_at: 'Écrit le %{when}'
         read_more: Lire la suite
+        by: 'par'
       comments:
         singular: commentaire
         none: aucun commentaire
       archives: Archives
+      tags:
+        title: "Mots clés"
     categories:
       show:
         no_posts: 'Il n''y a aucun article pour cette catégorie.'
@@ -119,7 +125,30 @@ fr:
           add: Ajouter un commentaire
         other: Autres articles
         filed_in: Classé dans
+        tagged: Taggé
         submit: Envoyer le commentaire
+        name: Nom
+        email: Email
+        message: Message
+        by: par
+      tagged:
+        no_blog_articles_yet: "Il n'y a aucun article pour l'instant. Restez en alerte."
+        posts_tagged: Articles taggés
       archive:
         blog_archive_for: 'Archive du blog pour le %{date}'
-        no_blog_articles_posted: "Il n'y a aucun article pour la date du %{date}. Restez à l'écoute."
+        no_blog_articles_posted: "Il n'y a aucun article pour la date du %{date}. Restez en alerte."
+  activerecord:
+    models:
+      blog_category: Categorie
+      blog_comment: Commentaire
+      blog_post: Article
+    attributes:
+      blog_category:
+        title: Titre
+      blog_comment:
+        name: Nom
+        email: Email
+        message: Message
+      blog_post:
+        title: Titre
+        body: Corps
