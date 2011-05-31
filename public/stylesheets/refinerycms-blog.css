@@ -1,6 +1,9 @@
+.blog_post header, .blog_post footer {
+  width: auto;
+}
 .blog_post .posted_at{
-	display:block;
-	margin:0 0 10px;
+  display:block;
+  margin:0 0 10px;
 }
 .post_categories .filed_in {
   display: inline;
