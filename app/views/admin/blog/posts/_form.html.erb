@@ -11,8 +11,33 @@
   </div>
 
   <div class='field'>
-    <%= f.label :body -%>
-    <%= f.text_area :body, :rows => 20, :class => 'wymeditor widest' -%>
+    <div id='page-tabs' class='clearfix ui-tabs ui-widget ui-widget-content ui-corner-all'>
+      <ul id='page_parts'>
+        <li class='ui-state-default'>
+          <%= link_to "Body", "#page_part_body" %>
+        </li>
+        <% Refinery::Blog.tabs.each_with_index do |tab, tab_index| %>
+          <li class='ui-state-default' id="custom_<%= tab.name %>_tab">
+            <%= link_to tab.name.titleize, "#custom_tab_#{tab_index}" %>
+          </li>
+        <% end %>
+      </ul>
+      
+      <div id='page_part_editors'>
+      
+        <% part_index = -1 %>
+          <%= render :partial => 'form_part',
+                     :locals => {
+                       :f => f,
+                       :part_index => (part_index += 1),
+                     } -%>
+        <% Refinery::Blog.tabs.each_with_index do |tab, tab_index| %>
+          <div class='page_part' id='<%= "custom_tab_#{tab_index}" %>'>
+            <%= render :partial => tab.partial, :locals => {:f => f} %>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
   
   <div class='field'>
