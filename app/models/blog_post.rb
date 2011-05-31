@@ -22,6 +22,8 @@ class BlogPost < ActiveRecord::Base
   validates :body,  :presence => true
 
   has_friendly_id :title, :use_slug => true
+  
+  attr_accessible :title, :body, :tag_list, :draft, :published_at, :browser_title, :meta_keywords, :meta_description, :user_id
 
   scope :by_archive, lambda { |archive_date|
     where(['published_at between ? and ?', archive_date.beginning_of_month, archive_date.end_of_month])
