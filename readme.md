@@ -11,13 +11,13 @@ Options:
 
 ## Requirements
 
-Refinery CMS version 0.9.8 or above.
+Refinery CMS version 1.0.0 or above.
 
 ## Install
 
 Open up your ``Gemfile`` and add at the bottom this line:
 
-    gem 'refinerycms-blog', '~> 1.3'
+    gem 'refinerycms-blog', '~> 1.5'
 
 Now, run ``bundle install``
 

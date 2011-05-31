@@ -101,6 +101,8 @@ de:
         singular: Kommentar
         none: Keine Kommentare
       archives: Archiv
+      tags:
+        title: Kategorien
     categories:
       show:
         no_posts: Es sind noch keine Artikel vorhanden.

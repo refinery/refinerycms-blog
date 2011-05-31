@@ -1,3 +1,8 @@
+## 1.5 [28 May 2011]
+
+* Added Gravatar support. [parndt](https://github.com/parndt)
+* Added support for Refinery CMS 1.0.0 and above. [parndt](https://github.com/parndt)
+
 ## 1.4 [26 May 2011]
 
 * Spanish language fixes [scambra](https://github.com/scambra)
