@@ -126,8 +126,28 @@ en:
         filed_in: Filed in
         tagged: Tagged
         submit: Send comment
+        name: Name
+        email: Email
+        message: Message
+        by: by
       tagged:
         no_blog_articles_yet: There are no blog articles posted yet. Stay tuned.
+        posts_tagged: Posts tagged
       archive:
         blog_archive_for: 'Blog Archive for %{date}'
-        no_blog_articles_posted: 'There are no blog articles posted for %{date}. Stay tuned.'
+        no_blog_articles_posted: 'There are no blog articles posted for %{date}. Stay tuned.'  
+  activerecord:
+    models:
+      blog_category: Category
+      blog_comment: Comment
+      blog_post: Blog post
+    attributes:
+      blog_category:
+        title: Title
+      blog_comment:
+        name: Name
+        email: Email
+        message: Message
+      blog_post:
+        title: Title
+        body: Body
