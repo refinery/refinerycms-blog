@@ -3,8 +3,8 @@ require 'filters_spam'
 module Refinery
   module Blog
     autoload :Version, File.expand_path('../refinery/blog/version', __FILE__)
-    autoload :Tab, File.expand_path("../refinery/blog/tab", __FILE__)
-    
+    autoload :Tab, File.expand_path("../refinery/blog/tabs", __FILE__)
+
     class << self
       def version
         ::Refinery::Blog::Version.to_s
@@ -14,6 +14,10 @@ module Refinery
     class Engine < Rails::Engine
       initializer 'blog serves assets' do |app|
         app.middleware.insert_after ::ActionDispatch::Static, ::ActionDispatch::Static, "#{root}/public"
+      end
+
+      config.to_prepare do
+        require File.expand_path('../refinery/blog/tabs', __FILE__)
       end
 
       config.after_initialize do
