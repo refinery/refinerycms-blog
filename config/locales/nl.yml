@@ -9,7 +9,7 @@ nl:
           edit: Bewerk deze categorie
           delete: Verwijder deze categorie definitief
         index:
-          no_items_yet: 'Er zijn momenteel geen categoriën. Klik op "%{create}" om uw eerste categorie toe te voegen.'
+          no_items_yet: 'Er zijn momenteel geen categorien. Klik op "%{create}" om uw eerste categorie toe te voegen.'
       comments:
         approved: 'De reactie van "%{author}" is goedgekeurd.'
         comment:
@@ -55,7 +55,7 @@ nl:
           updated: 'De ontvanger(s) van notificaties is/zijn gewijzigd naar "%{recipients}"'
       submenu:
         categories:
-          title: Categoriën
+          title: Categorien
           manage: Beheren
           new: Voeg een nieuwe categorie toe
         comments:
@@ -89,7 +89,7 @@ nl:
         ps: 'P.S. Alle reacties worden opgeslagen in de "Blog" sectie van Refinery onder het submenu "Comments", voor als u deze reacties later wilt bekijken.'
     shared:
       categories:
-        title: Categoriën
+        title: Categorien
       rss_feed:
         title: RSS Feed
         subscribe: Aanmelden
