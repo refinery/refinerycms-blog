@@ -57,24 +57,11 @@
 
 <%= render :partial => "/shared/content_page", :locals => { :remove_automatic_sections => true }  %>
 
-<% if Refinery.version < '0.9.9' %>
-  <% content_for :head_libraries, jquery_include_tags(:jquery_ui => false) %>
-  <% content_for :head do %>
-    <%= stylesheet_link_tag 'refinerycms-blog' %>
-    <%# enable AJAX'd post nav at your own risk until html5 history API implemented. %>
-    <%#= javascript_include_tag('refinerycms-blog') %>
-    <% if BlogPost::ShareThis.enabled? %>
-      <script src="http://w.sharethis.com/button/buttons.js"></script>
-      <script>stLight.options({publisher:'<%= BlogPost::ShareThis.key %>'});</script>
-    <% end %>
-  <% end %>
-<% else %>
-  <% content_for :stylesheets, stylesheet_link_tag('refinerycms-blog') %>
-  <% content_for :before_javascript_libraries, jquery_include_tags(:jquery_ui => false) %>
-  <% content_for :javascripts do %>
-    <%# enable AJAX'd post nav at your own risk until html5 history API implemented. %>
-    <%#= javascript_include_tag('refinerycms-blog') %>
-    <script src="http://w.sharethis.com/button/buttons.js"></script>
-    <script>stLight.options({publisher:'<%= BlogPost::ShareThis.key %>'});</script>
-  <% end if BlogPost::ShareThis.enabled? %>
-<% end %>
+<% content_for :stylesheets, stylesheet_link_tag('refinerycms-blog') %>
+<% content_for :before_javascript_libraries, jquery_include_tags(:jquery_ui => false) %>
+<% content_for :javascripts do %>
+  <%# enable AJAX'd post nav at your own risk until html5 history API implemented. %>
+  <%#= javascript_include_tag('refinerycms-blog') %>
+  <script src="http://w.sharethis.com/button/buttons.js"></script>
+  <script>stLight.options({publisher:'<%= BlogPost::ShareThis.key %>'});</script>
+<% end if BlogPost::ShareThis.enabled? %>
