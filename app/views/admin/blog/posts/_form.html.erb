@@ -86,12 +86,5 @@
               } %>
 <% end -%>
 
-<% if Refinery.version < '0.9.9' %>
-  <% content_for :head do %>
-    <%= render :partial => 'form.css' %>
-    <%= render :partial => 'form.js' %>
-  <% end %>
-<% else %>
-  <% content_for :stylesheets, render(:partial => 'form.css') -%>
-  <% content_for :javascripts, render(:partial => 'form.js') -%>
-<% end %>
+<% content_for :stylesheets, render(:partial => 'form.css') -%>
+<% content_for :javascripts, render(:partial => 'form.js') -%>
