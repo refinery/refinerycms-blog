@@ -2,6 +2,14 @@ pt-BR:
   plugins:
     refinerycms_blog:
       title: Blog
+  activerecord:
+    attributes:
+      blog_post:
+        title: Título
+        body: Corpo
+      blog_comment:
+        name: Nome
+        message: Mensagem
   admin:
     blog:
       categories:
@@ -101,6 +109,8 @@ pt-BR:
         singular: comentário
         none: não há comentários
       archives: Arquivos
+      tags:
+        title: Tags
     categories:
       show:
         no_posts: Não há posts aqui ainda.
