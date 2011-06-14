@@ -7,7 +7,9 @@
       <%= will_paginate @blog_posts %>
     </section>
   <% else %>
-    <p><%= t('.no_blog_articles_yet') %></p>
+    <p>
+      <%= t('.no_posts') %>
+    </p>
   <% end %>
 <% end %>
 
