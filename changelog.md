@@ -1,3 +1,10 @@
+## 1.6 [UNRELEASED]
+* Category bug fixes and cleanup [wikyd](https://github.com/wikyd)
+* Cleaned up deprecated code [ugisozols](https://github.com/ugisozols)
+* Performance boosts (cached slugs) [joemsak](https://github.com/joemsak)
+* More translations [cerebroso](https://github.com/cerebroso), [peresleguine](https://github.com/peresleguine)
+* More testing [wakeless](https://github.com/wakeless)
+
 ## 1.5 [28 May 2011]
 
 * Added Gravatar support. [parndt](https://github.com/parndt)
