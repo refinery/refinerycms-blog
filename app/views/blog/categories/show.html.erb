@@ -1,14 +1,13 @@
 <% content_for :body_content_title, @category.title %>
 
 <% content_for :body_content_left do %>
-  <% if @category.posts.any? %>
-  <article id="blog_posts">
-    <%= render :partial => "/blog/shared/post", :collection => @category.posts %>
-  </article>
+  <% if @blog_posts.any? %>
+    <section id="blog_posts">
+      <%= render :partial => "/blog/shared/post", :collection => @blog_posts %>
+      <%= will_paginate @blog_posts %>
+    </section>
   <% else %>
-    <p>
-      <%= t('.no_posts') %>
-    </p>
+    <p><%= t('.no_blog_articles_yet') %></p>
   <% end %>
 <% end %>
 
