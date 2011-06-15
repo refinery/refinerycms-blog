@@ -4,6 +4,7 @@
 * Performance boosts (cached slugs) [joemsak](https://github.com/joemsak)
 * More translations [cerebroso](https://github.com/cerebroso), [peresleguine](https://github.com/peresleguine)
 * More testing [wakeless](https://github.com/wakeless)
+* Tag list autocomplete baked in [joemsak](https://github.com/joemsak)
 
 ## 1.5 [28 May 2011]
 
