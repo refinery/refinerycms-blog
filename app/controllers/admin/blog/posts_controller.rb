@@ -11,6 +11,14 @@ class Admin::Blog::PostsController < Admin::BaseController
     })
   end
   
+  def tags
+    @tags = BlogPost.tag_counts_on(:tags).where(["tags.name LIKE ?", "%#{params[:term].to_s.downcase}%"])
+                                             .collect { |tag|
+                                               {:id => tag.id, :value => tag.name}
+                                             }
+    render :json => @tags.flatten
+  end
+  
   def create
     # if the position field exists, set this object as last object, given the conditions of this class.
     if BlogPost.column_names.include?("position")

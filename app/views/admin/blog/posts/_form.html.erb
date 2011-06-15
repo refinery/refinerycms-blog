@@ -88,3 +88,4 @@
 
 <% content_for :stylesheets, render(:partial => 'form.css') -%>
 <% content_for :javascripts, render(:partial => 'form.js') -%>
+<%= render 'shared/admin/autocomplete', :dom_id => '#blog_post_tag_list', :url => tags_admin_blog_posts_url %>

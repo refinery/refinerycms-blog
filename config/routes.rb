@@ -13,7 +13,10 @@
     scope(:path => 'blog', :as => 'blog', :module => 'blog') do
       root :to => 'posts#index'
       resources :posts do
-        get 'uncategorized', :on => :collection
+        collection do
+          get :uncategorized
+          get :tags
+        end
       end
 
       resources :categories
