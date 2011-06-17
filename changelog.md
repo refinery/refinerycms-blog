@@ -5,6 +5,7 @@
 * More translations [cerebroso](https://github.com/cerebroso), [peresleguine](https://github.com/peresleguine)
 * More testing [wakeless](https://github.com/wakeless)
 * Tag list autocomplete baked in [joemsak](https://github.com/joemsak)
+* Customize the URL of your blog post [wikyd](https://github.com/wikyd)
 
 ## 1.5 [28 May 2011]
 
