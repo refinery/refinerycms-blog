@@ -73,6 +73,15 @@
       </ul>
       <h3><%= t('.published_at') %></h3>
       <%= f.datetime_select :published_at %>
+
+      <div class='field'>
+        <span class='label_with_help'>
+          <%= f.label :custom_url, t('.custom_url') %>
+          <%= refinery_help_tag t('.custom_url_help') %>
+        </span>
+        <%= f.text_field :custom_url, :class => "widest" %>
+      </div>
+
     </div>
     <div class='hemisquare right_side'>
       <%= render :partial => '/seo_meta/form', :locals => {:form => f} %>
