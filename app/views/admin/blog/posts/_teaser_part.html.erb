@@ -1,4 +1,11 @@
 <div class='page_part' id='page_part_teaser'>
   <%= f.text_area :custom_teaser, :rows => 20, :class => 'wymeditor widest' -%>
+  <p>
+    <span class='clearfix label_inline_with_link'>
+      <%= link_to t('admin.blog.posts.form.copy_body'), "#",
+                  :id => 'copy_body_link',
+                  :title => t('admin.blog.posts.form.copy_body_help') %>
+    </span>
+  </p>
 </div>
 
