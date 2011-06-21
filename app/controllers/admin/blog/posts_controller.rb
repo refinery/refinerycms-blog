@@ -12,10 +12,9 @@ class Admin::Blog::PostsController < Admin::BaseController
   end
   
   def tags
-    @tags = BlogPost.tag_counts_on(:tags).where(["tags.name LIKE ?", "%#{params[:term].to_s.downcase}%"])
-                                             .collect { |tag|
-                                               {:id => tag.id, :value => tag.name}
-                                             }
+    @tags = BlogPost.tag_counts_on(:tags).where(
+      ["tags.name LIKE ?", "%#{params[:term].to_s.downcase}%"]
+    ).map { |tag| {:id => tag.id, :value => tag.name}}
     render :json => @tags.flatten
   end
   
