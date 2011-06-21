@@ -26,7 +26,7 @@ class BlogPost < ActiveRecord::Base
                   :approximate_ascii => RefinerySetting.find_or_set(:approximate_ascii, false, :scoping => 'blog'),
                   :strip_non_ascii => RefinerySetting.find_or_set(:strip_non_ascii, false, :scoping => 'blog')
 
-  attr_accessible :title, :body, :tag_list, :draft, :published_at, :browser_title, :meta_keywords, :meta_description, :user_id, :category_ids, :custom_url
+  attr_accessible :title, :body, :tag_list, :draft, :published_at, :browser_title, :meta_keywords, :meta_description, :user_id, :category_ids, :custom_url, :custom_teaser
 
   scope :by_archive, lambda { |archive_date|
     where(['published_at between ? and ?', archive_date.beginning_of_month, archive_date.end_of_month])
