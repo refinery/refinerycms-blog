@@ -2,7 +2,7 @@
   <article class="blog_post" id="<%= dom_id(post) %>">
     <header>
       <h1><%= link_to post.title, blog_post_url(post) %></h1>
-      <details>
+      <section class='details'>
         <time datetime="<%=l post.published_at.to_date, :format => :default %>" class='posted_at'>
           <%= t('blog.shared.posts.created_at', :when => l(post.published_at.to_date, :format => :short)) %>
         </time><%= "#{t('blog.posts.show.by')} #{post.author.username}" if post.author.present? %>.
@@ -18,7 +18,7 @@
             <%=raw tags.collect { |tag| link_to tag, tagged_posts_path(tag.parameterize) }.to_sentence %>
           </aside>
         <% end %>
-      </details>
+      </section>
     </header>
     <section class='clearfix'>
       <%= truncate(post.body,

@@ -6,7 +6,7 @@
 <article id="blog_post">
   <header>
     <h1><%= @blog_post.title %></h1>
-    <details>
+    <section class='details'>
       <time datetime="<%=l @blog_post.published_at.to_date, :format => :default %>" class='posted_at'>
         <%= t('blog.shared.posts.created_at', :when => l(@blog_post.published_at.to_date, :format => :short)) %>
       </time><%= "#{t('blog.posts.show.by')} #{@blog_post.author.username}" if @blog_post.author.present? %>.
@@ -18,7 +18,7 @@
           <% end %>
         </aside>
       <% end %>
-    </details>
+    </section>
   </header>
   <%= @blog_post.body.html_safe %>
 
