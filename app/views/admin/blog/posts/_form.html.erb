@@ -16,6 +16,9 @@
         <li class='ui-state-default'>
           <%= link_to "Body", "#page_part_body" %>
         </li>
+        <li class='ui-state-default'>
+          <%= link_to "Teaser", "#page_part_teaser" %>
+        </li>
         <% Refinery::Blog.tabs.each_with_index do |tab, tab_index| %>
           <li class='ui-state-default' id="custom_<%= tab.name %>_tab">
             <%= link_to tab.name.titleize, "#custom_tab_#{tab_index}" %>
@@ -27,6 +30,11 @@
       
         <% part_index = -1 %>
           <%= render :partial => 'form_part',
+                     :locals => {
+                       :f => f,
+                       :part_index => (part_index += 1),
+                     } -%>
+          <%= render :partial => 'teaser_part',
                      :locals => {
                        :f => f,
                        :part_index => (part_index += 1),
