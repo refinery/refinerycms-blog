@@ -1,4 +1,4 @@
-## 1.6 [UNRELEASED]
+## 1.6 [20 June 2011]
 * Category bug fixes and cleanup [wikyd](https://github.com/wikyd)
 * Cleaned up deprecated code [ugisozols](https://github.com/ugisozols)
 * Performance boosts (cached slugs) [joemsak](https://github.com/joemsak)
