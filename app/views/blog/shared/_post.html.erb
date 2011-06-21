@@ -21,9 +21,7 @@
       </section>
     </header>
     <section class='clearfix'>
-      <%= truncate(post.body,
-                   :length => RefinerySetting.find_or_set(:blog_post_teaser_length, 250),
-                   :preserve_html_tags => true) %>
+      <%= blog_post_teaser(post) %>
     </section>
     <footer>
       <p>
