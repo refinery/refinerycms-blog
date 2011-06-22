@@ -40,6 +40,8 @@ en:
           published_at: Publish Date
           custom_url: Custom Url
           custom_url_help: Generate the url for the blog post from this text instead of the title.
+          copy_body: Copy Post Body to Teaser
+          copy_body_help: Copies the post body to the teaser.  Leave teaser blank to let Refinery automatically make the teaser.
         index:
           no_items_yet: 'There are no Blog Posts yet. Click "%{create}" to add your first blog post.'
         uncategorized:

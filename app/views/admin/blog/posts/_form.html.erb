@@ -13,8 +13,11 @@
   <div class='field'>
     <div id='page-tabs' class='clearfix ui-tabs ui-widget ui-widget-content ui-corner-all'>
       <ul id='page_parts'>
-        <li class='ui-state-default'>
+        <li class='ui-state-default ui-state-active'>
           <%= link_to "Body", "#page_part_body" %>
+        </li>
+        <li class='ui-state-default'>
+          <%= link_to "Teaser", "#page_part_teaser" %>
         </li>
         <% Refinery::Blog.tabs.each_with_index do |tab, tab_index| %>
           <li class='ui-state-default' id="custom_<%= tab.name %>_tab">
@@ -27,6 +30,11 @@
       
         <% part_index = -1 %>
           <%= render :partial => 'form_part',
+                     :locals => {
+                       :f => f,
+                       :part_index => (part_index += 1),
+                     } -%>
+          <%= render :partial => 'teaser_part',
                      :locals => {
                        :f => f,
                        :part_index => (part_index += 1),

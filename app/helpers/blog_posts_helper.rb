@@ -41,4 +41,16 @@ module BlogPostsHelper
   def next_or_previous?(post)
     post.next.present? or post.prev.present?
   end
+
+  def blog_post_teaser(post)
+    if post.custom_teaser.present?
+     post.custom_teaser.html_safe
+    else
+     truncate(
+       post.body,
+       :length => RefinerySetting.find_or_set(:blog_post_teaser_length, 250),
+       :preserve_html_tags => true
+      )
+    end
+  end
 end
