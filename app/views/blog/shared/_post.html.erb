@@ -15,7 +15,7 @@
         <% if (tags = post.tag_list).any? %>
           <aside class='tagged'>
             <%= t('tagged', :scope => 'blog.posts.show') %>
-            <%=raw tags.collect { |tag| link_to tag, tagged_posts_path(tag.parameterize) }.to_sentence %>
+            <%=raw tags.collect { |tag| link_to tag, tagged_posts_path(tag.id, tag.name.parameterize) }.to_sentence %>
           </aside>
         <% end %>
       </section>

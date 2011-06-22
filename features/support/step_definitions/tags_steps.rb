@@ -3,7 +3,7 @@ Given /^there is a blog post titled "([^"]*)" and tagged "([^"]*)"$/ do |title, 
 end
 
 When /^I visit the tagged posts page for "([^"]*)"$/ do |tag_name|
-  visit tagged_posts_path(tag_name.parameterize)
+  visit tagged_posts_path(tag.id, tag_name.parameterize)
 end
 
 Then /^the blog post should have the tags "([^"]*)"$/ do |tag_list|
