@@ -14,7 +14,7 @@ class Admin::Blog::PostsController < Admin::BaseController
   def tags
     op =  case ActiveRecord::Base.connection.adapter_name.downcase
           when 'postgresql'
-            'SIMILAR TO'
+            '~*'
           else
             'LIKE'
           end
