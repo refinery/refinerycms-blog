@@ -12,9 +12,21 @@ class Admin::Blog::PostsController < Admin::BaseController
   end
   
   def tags
+    op =  case ActiveRecord::Base.connection.adapter_name.downcase
+          when 'postgresql'
+            'SIMILAR TO'
+          else
+            'LIKE'
+          end
+    wildcard =  case ActiveRecord::Base.connection.adapter_name.downcase
+                when 'postgresql'
+                  '.*'
+                else
+                  '%'
+                end
     @tags = BlogPost.tag_counts_on(:tags).where(
-      ["tags.name LIKE ?", "%#{params[:term].to_s.downcase}%"]
-    ).map { |tag| {:id => tag.id, :value => tag.name}}
+        ["tags.name #{op} ?", "#{wildcard}#{params[:term].to_s.downcase}#{wildcard}"]
+      ).map { |tag| {:id => tag.id, :value => tag.name}}
     render :json => @tags.flatten
   end
   
