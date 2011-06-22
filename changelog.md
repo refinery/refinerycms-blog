@@ -1,3 +1,7 @@
+## 1.6.1 [21 June 2011]
+* Tagging URL strategy updated for reliability /blog/posts/tagged/ID-name-parameterized [joemsak](https://github.com/joemsak)
+* Heroku/PostgreSQL support for autocomplete tags [joemsak](https://github.com/joemsak)
+
 ## 1.6 [20 June 2011]
 * Category bug fixes and cleanup [wikyd](https://github.com/wikyd)
 * Cleaned up deprecated code [ugisozols](https://github.com/ugisozols)
