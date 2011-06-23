@@ -64,7 +64,7 @@ describe BlogPost do
     it "returns all posts from specified month" do
       #check for this month
       date = "03/2011"
-      BlogPost.by_archive(Time.parse(date)).count.should == 2
+      BlogPost.by_archive(Time.parse(date)).count.should be == 2
       BlogPost.by_archive(Time.parse(date)).should == [@blog_post2, @blog_post1]
     end
   end
@@ -77,7 +77,7 @@ describe BlogPost do
     end
 
     it "returns all posts from previous months" do
-      BlogPost.all_previous.count.should == 2
+      BlogPost.all_previous.count.should be == 2
       BlogPost.all_previous.should == [@blog_post2, @blog_post1]
     end
   end
@@ -91,7 +91,7 @@ describe BlogPost do
     end
 
     it "returns all posts which aren't in draft and pub date isn't in future" do
-      BlogPost.live.count.should == 2
+      BlogPost.live.count.should be == 2
       BlogPost.live.should == [@blog_post2, @blog_post1]
     end
   end
