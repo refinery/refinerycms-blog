@@ -50,7 +50,7 @@ module BlogPostsHelper
        post.body,
        :length => RefinerySetting.find_or_set(:blog_post_teaser_length, 250),
        :preserve_html_tags => true
-      )
+      ).html_safe
     end
   end
 end
