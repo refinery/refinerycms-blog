@@ -3,6 +3,8 @@ Given /^there is a blog post titled "([^"]*)" and tagged "([^"]*)"$/ do |title, 
 end
 
 When /^I visit the tagged posts page for "([^"]*)"$/ do |tag_name|
+  @blog_post ||= Factory(:post, :tag_list => tag_name)
+  tag = BlogPost.tag_counts_on(:tags).first
   visit tagged_posts_path(tag.id, tag_name.parameterize)
 end
 
