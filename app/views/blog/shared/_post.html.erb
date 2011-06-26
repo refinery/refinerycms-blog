@@ -12,7 +12,7 @@
             <%=raw categories.collect { |category| link_to category.title, blog_category_url(category) }.to_sentence %>
           </aside>
         <% end %>
-        <% if (tags = post.tag_list).any? %>
+        <% if (tags = post.tags).any? %>
           <aside class='tagged'>
             <%= t('tagged', :scope => 'blog.posts.show') %>
             <%=raw tags.collect { |tag| link_to tag, tagged_posts_path(tag.id, tag.name.parameterize) }.to_sentence %>
