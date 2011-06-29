@@ -2,8 +2,9 @@
 * Custom teaser field to overwrite the automatic truncation of the body [wikyd](https://github.com/wikyd)
 * Tagging URL strategy updated again [joemsak](https://github.com/joemsak)
 
-## 1.6.2 [UNRELEASED]
+## 1.6.2 [29 June 2011]
 * Tagging bug fixed [ruprict](https://github.com/ruprict)
+* Refactored specs [parndt](https://github.com/parndt)
 
 ## 1.6.1 [21 June 2011]
 * Tagging URL strategy updated for reliability /blog/posts/tagged/ID-name-parameterized [joemsak](https://github.com/joemsak)
