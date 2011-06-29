@@ -2,19 +2,19 @@ require 'spec_helper'
 Dir[File.expand_path('../../../features/support/factories/*.rb', __FILE__)].each{|factory| require factory}
 
 describe BlogPost do
-  let(:blog_post ) { Factory :post }
-  
+  let(:blog_post ) { Factory.create(:blog_post) }
+
   describe "validations" do
     it "requires title" do
-      Factory.build(:post, :title => "").should_not be_valid
+      Factory.build(:blog_post, :title => "").should_not be_valid
     end
 
     it "won't allow duplicate titles" do
-      Factory.build(:post, :title => blog_post.title).should_not be_valid
+      Factory.build(:blog_post, :title => blog_post.title).should_not be_valid
     end
 
     it "requires body" do
-      Factory.build(:post, :body => nil).should_not be_valid
+      Factory.build(:blog_post, :body => nil).should_not be_valid
     end
   end
 
@@ -25,7 +25,7 @@ describe BlogPost do
     end
 
     it "destroys associated comments" do
-      Factory(:blog_comment, :blog_post_id => blog_post.id)
+      Factory.create(:blog_comment, :blog_post_id => blog_post.id)
       blog_post.destroy
       BlogComment.find_by_blog_post_id(blog_post.id).should == nil
     end
@@ -36,16 +36,16 @@ describe BlogPost do
       blog_post.should respond_to(:categories)
     end
   end
-  
+
   describe "tags" do
     it "acts as taggable" do
       blog_post.should respond_to(:tag_list)
-      
+
       #the factory has default tags, including 'chicago'
       blog_post.tag_list.should include("chicago")
     end
   end
-  
+
   describe "authors" do
     it "are authored" do
       BlogPost.instance_methods.map(&:to_sym).should include(:author)
@@ -54,11 +54,11 @@ describe BlogPost do
 
   describe "by_archive scope" do
     before do
-      @blog_post1 = Factory(:post, :published_at => Date.new(2011, 3, 11))
-      @blog_post2 = Factory(:post, :published_at => Date.new(2011, 3, 12))
-      
+      @blog_post1 = Factory.create(:blog_post, :published_at => Date.new(2011, 3, 11))
+      @blog_post2 = Factory.create(:blog_post, :published_at => Date.new(2011, 3, 12))
+
       #2 months before
-      Factory(:post, :published_at => Date.new(2011, 1, 10))
+      Factory.create(:blog_post, :published_at => Date.new(2011, 1, 10))
     end
 
     it "returns all posts from specified month" do
@@ -71,9 +71,9 @@ describe BlogPost do
 
   describe "all_previous scope" do
     before do
-      @blog_post1 = Factory(:post, :published_at => Time.now - 2.months)
-      @blog_post2 = Factory(:post, :published_at => Time.now - 1.month)
-      Factory :post, :published_at => Time.now
+      @blog_post1 = Factory.create(:blog_post, :published_at => Time.now - 2.months)
+      @blog_post2 = Factory.create(:blog_post, :published_at => Time.now - 1.month)
+      Factory.create(:blog_post, :published_at => Time.now)
     end
 
     it "returns all posts from previous months" do
@@ -84,10 +84,10 @@ describe BlogPost do
 
   describe "live scope" do
     before do
-      @blog_post1 = Factory(:post, :published_at => Time.now.advance(:minutes => -2))
-      @blog_post2 = Factory(:post, :published_at => Time.now.advance(:minutes => -1))
-      Factory(:post, :draft => true)
-      Factory(:post, :published_at => Time.now + 1.minute)
+      @blog_post1 = Factory.create(:blog_post, :published_at => Time.now.advance(:minutes => -2))
+      @blog_post2 = Factory.create(:blog_post, :published_at => Time.now.advance(:minutes => -1))
+      Factory.create(:blog_post, :draft => true)
+      Factory.create(:blog_post, :published_at => Time.now + 1.minute)
     end
 
     it "returns all posts which aren't in draft and pub date isn't in future" do
@@ -98,10 +98,10 @@ describe BlogPost do
 
   describe "uncategorized scope" do
     before do
-      @uncategorized_blog_post = Factory(:post)
-      @categorized_blog_post = Factory(:post)
+      @uncategorized_blog_post = Factory.create(:blog_post)
+      @categorized_blog_post = Factory.create(:blog_post)
 
-      @categorized_blog_post.categories << Factory(:blog_category)
+      @categorized_blog_post.categories << Factory.create(:blog_category)
     end
 
     it "returns uncategorized posts if they exist" do
@@ -112,22 +112,22 @@ describe BlogPost do
 
   describe "#live?" do
     it "returns true if post is not in draft and it's published" do
-      Factory(:post).live?.should be_true
+      Factory.create(:blog_post).live?.should be_true
     end
 
     it "returns false if post is in draft" do
-      Factory(:post, :draft => true).live?.should be_false
+      Factory.create(:blog_post, :draft => true).live?.should be_false
     end
 
     it "returns false if post pub date is in future" do
-      Factory(:post, :published_at => Time.now.advance(:minutes => 1)).live?.should be_false
+      Factory.create(:blog_post, :published_at => Time.now.advance(:minutes => 1)).live?.should be_false
     end
   end
 
   describe "#next" do
     before do
-      Factory(:post, :published_at => Time.now.advance(:minutes => -1))
-      @blog_post = Factory(:post)
+      Factory.create(:blog_post, :published_at => Time.now.advance(:minutes => -1))
+      @blog_post = Factory.create(:blog_post)
     end
 
     it "returns next article when called on current article" do
@@ -137,8 +137,8 @@ describe BlogPost do
 
   describe "#prev" do
     before do
-      Factory(:post)
-      @blog_post = Factory(:post, :published_at => Time.now.advance(:minutes => -1))
+      Factory.create(:blog_post)
+      @blog_post = Factory.create(:blog_post, :published_at => Time.now.advance(:minutes => -1))
     end
 
     it "returns previous article when called on current article" do
@@ -148,9 +148,9 @@ describe BlogPost do
 
   describe "#category_ids=" do
     before do
-      @cat1 = Factory(:blog_category, :id => 1)
-      @cat2 = Factory(:blog_category, :id => 2)
-      @cat3 = Factory(:blog_category, :id => 3)
+      @cat1 = Factory.create(:blog_category, :id => 1)
+      @cat2 = Factory.create(:blog_category, :id => 2)
+      @cat3 = Factory.create(:blog_category, :id => 3)
       blog_post.category_ids = [1,2,"","",3]
     end
 
@@ -168,7 +168,7 @@ describe BlogPost do
       before do
         RefinerySetting.set(:comments_allowed, { :scoping => 'blog', :value => true })
       end
-      
+
       it "should be true" do
         BlogPost.comments_allowed?.should be_true
       end
@@ -178,16 +178,16 @@ describe BlogPost do
       before do
         RefinerySetting.set(:comments_allowed, { :scoping => 'blog', :value => false })
       end
-      
+
       it "should be false" do
         BlogPost.comments_allowed?.should be_false
       end
     end
   end
-  
+
   describe "custom teasers" do
     it "should allow a custom teaser" do
-      Factory.build(:blog_post, :custom_teaser => 'This is some custom content').should be_valid
+      Factory.create(:blog_post, :custom_teaser => 'This is some custom content').should be_valid
     end
   end
 end

@@ -19,5 +19,5 @@ Feature: Blog Post Categories
     And I press "Save"
 
     Then there should be 1 blog post
-    And the blog post should have "1" category
+    And the blog post should have 1 category
     And the blog post should have the category "Videos"

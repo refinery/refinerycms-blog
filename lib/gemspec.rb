@@ -2,9 +2,7 @@
 require File.expand_path('../refinery/blog/version', __FILE__)
 version = ::Refinery::Blog::Version.to_s
 raise "Could not get version so gemspec can not be built" if version.nil?
-files = Dir.glob("**/*").flatten.reject do |file|
-  file =~ /\.gem(spec)?$/
-end
+files = Dir.glob("**/*").flatten
 
 gemspec = <<EOF
 Gem::Specification.new do |s|
