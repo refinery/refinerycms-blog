@@ -14,10 +14,10 @@
     <div id='page-tabs' class='clearfix ui-tabs ui-widget ui-widget-content ui-corner-all'>
       <ul id='page_parts'>
         <li class='ui-state-default ui-state-active'>
-          <%= link_to "Body", "#page_part_body" %>
+          <%= link_to t('activerecord.attributes.blog_post.body'), "#page_part_body" %>
         </li>
         <li class='ui-state-default'>
-          <%= link_to "Teaser", "#page_part_teaser" %>
+          <%= link_to t('activerecord.attributes.blog_post.teaser'), "#page_part_teaser" %>
         </li>
         <% Refinery::Blog.tabs.each_with_index do |tab, tab_index| %>
           <li class='ui-state-default' id="custom_<%= tab.name %>_tab">
@@ -49,7 +49,7 @@
   </div>
   
   <div class='field'>
-    <%= f.label :tag_list, "Tags" -%>
+    <%= f.label :tag_list, t('blog.shared.tags.title') -%>
     <%= f.text_field :tag_list, :class => 'larger' -%>
   </div>
   
