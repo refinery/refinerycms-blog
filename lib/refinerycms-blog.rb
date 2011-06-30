@@ -29,22 +29,6 @@ module Refinery
             :class => BlogPost
           }
         end
-
-        # refinery 0.9.8 had a bug that we later found through using this engine.
-        # the bug was that the plugin urls were not :controller => '/admin/whatever'
-        if Refinery.version == '0.9.8'
-          ::Refinery::Plugin.class_eval do
-            alias_method :old_url, :url
-
-            def url
-              if (plugin_url = self.old_url).is_a?(Hash) and plugin_url[:controller] =~ %r{^admin}
-                plugin_url[:controller] = "/#{plugin_url[:controller]}"
-              end
-
-              plugin_url
-            end
-          end
-        end
       end
     end if defined?(Rails::Engine)
   end
