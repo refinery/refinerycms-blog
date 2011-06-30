@@ -70,6 +70,8 @@
       <ul class='blog_categories'>
         <% @blog_categories.each do |category| %>
           <li>
+             <%= hidden_field_tag 'blog_post[category_ids][]', category.id,
+                               :value => 0 %>
              <%= check_box_tag 'blog_post[category_ids][]', category.id,
                                @blog_post.categories.include?(category),
                                :id => (id="blog_post_category_ids_#{category.id}") %>
