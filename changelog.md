@@ -1,8 +1,10 @@
-## 1.7 [UNRELEASED]
-* Custom teaser field to overwrite the automatic truncation of the body [wikyd](https://github.com/wikyd)
-* Tagging URL strategy updated again [joemsak](https://github.com/joemsak)
+## 1.6.3 [UNRELEASED]
+* Bulgarian translations [mirosr](https://github.com/mirosr)
+* posts/tagged... params[:tag_name] is optional [joemsak](https://github.com/joemsak)
 
 ## 1.6.2 [29 June 2011]
+* Custom teaser field to overwrite the automatic truncation of the body [wikyd](https://github.com/wikyd)
+* Tagging URL strategy updated again [joemsak](https://github.com/joemsak)
 * Tagging bug fixed [ruprict](https://github.com/ruprict)
 * Refactored specs [parndt](https://github.com/parndt)
 
