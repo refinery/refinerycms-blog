@@ -2,9 +2,9 @@
   <%= f.text_area :custom_teaser, :rows => 20, :class => 'wymeditor widest' -%>
   <p>
     <span class='clearfix label_inline_with_link'>
-      <%= link_to t('admin.blog.posts.form.copy_body'), "#",
+      <%= link_to t('copy_body', :scope => 'admin.blog.posts.form'), "#",
                   :id => 'copy_body_link',
-                  :title => t('admin.blog.posts.form.copy_body_help') %>
+                  :title => t('copy_body_help', :scope => 'admin.blog.posts.form') %>
     </span>
   </p>
 </div>

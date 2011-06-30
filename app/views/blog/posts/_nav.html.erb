@@ -3,7 +3,7 @@
     <%= link_to (truncate(@blog_post.next.title) + " &#187;").html_safe, @blog_post.next, :class => 'next' %>
   <% end -%>
 
-  <%= link_to t('blog.posts.show.blog_home'), blog_root_path, :class => 'home' %>
+  <%= link_to t('blog_home', :scope => 'blog.posts.show'), blog_root_path, :class => 'home' %>
 
   <% if @blog_post.prev.present? -%>
     <%= link_to ("&#171; " + truncate(@blog_post.prev.title)).html_safe, @blog_post.prev, :class => 'prev' %>

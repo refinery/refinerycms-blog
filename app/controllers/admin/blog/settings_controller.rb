@@ -5,7 +5,7 @@ class Admin::Blog::SettingsController < Admin::BaseController
 
     if request.post?
       BlogComment::Notification.recipients = params[:recipients]
-      flash[:notice] = t('admin.blog.settings.notification_recipients.updated',
+      flash[:notice] = t('updated', :scope => 'admin.blog.settings.notification_recipients'
                          :recipients => BlogComment::Notification.recipients)
       unless request.xhr? or from_dialog?
         redirect_back_or_default(admin_blog_posts_path)

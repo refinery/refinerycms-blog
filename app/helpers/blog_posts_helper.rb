@@ -3,7 +3,7 @@ module BlogPostsHelper
     posts = BlogPost.select('published_at').all_previous
     return nil if posts.blank?
     html = '<section id="blog_archive_list"><h2>'
-    html << t('blog.shared.archives')
+    html << t('archives', :scope => 'blog.shared')
     html << '</h2><nav><ul>'
     links = []
     super_old_links = []

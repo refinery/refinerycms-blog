@@ -33,10 +33,10 @@ class Blog::PostsController < BlogController
       end
 
       if BlogComment::Moderation.enabled?
-        flash[:notice] = t('blog.posts.comments.thank_you_moderated')
+        flash[:notice] = t('thank_you_moderated', :scope => 'blog.posts.comments')
         redirect_to blog_post_url(params[:id])
       else
-        flash[:notice] = t('blog.posts.comments.thank_you')
+        flash[:notice] = t('thank_you', :scope => 'blog.posts.comments')
         redirect_to blog_post_url(params[:id],
                                   :anchor => "comment-#{@blog_comment.to_param}")
       end

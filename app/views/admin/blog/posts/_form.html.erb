@@ -14,10 +14,10 @@
     <div id='page-tabs' class='clearfix ui-tabs ui-widget ui-widget-content ui-corner-all'>
       <ul id='page_parts'>
         <li class='ui-state-default ui-state-active'>
-          <%= link_to t('activerecord.attributes.blog_post.body'), "#page_part_body" %>
+          <%= link_to t('body', :scope => 'activerecord.attributes.blog_post'), "#page_part_body" %>
         </li>
         <li class='ui-state-default'>
-          <%= link_to t('activerecord.attributes.blog_post.teaser'), "#page_part_teaser" %>
+          <%= link_to t('teaser', :scope => 'activerecord.attributes.blog_post'), "#page_part_teaser" %>
         </li>
         <% Refinery::Blog.tabs.each_with_index do |tab, tab_index| %>
           <li class='ui-state-default' id="custom_<%= tab.name %>_tab">
@@ -66,7 +66,7 @@
   </div>
   <div id='more_options' style="display:none;">
     <div class="hemisquare">
-      <h3><%= t('admin.blog.submenu.categories.title') %></h3>
+      <h3><%= t('title', :scope => 'admin.blog.submenu.categories') %></h3>
       <ul class='blog_categories'>
         <% @blog_categories.each do |category| %>
           <li>
@@ -99,7 +99,7 @@
               :locals => {
                 :f => f,
                 :continue_editing => true,
-                :delete_title => t('admin.blog.posts.post.delete')
+                :delete_title => t('delete', :scope => 'admin.blog.posts.post')
               } %>
 <% end -%>
 

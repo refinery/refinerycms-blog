@@ -16,7 +16,7 @@ class Admin::Blog::CommentsController < Admin::BaseController
     else
       @blog_comment = BlogComment.find(params[:id])
       @blog_comment.approve!
-      flash[:notice] = t('admin.blog.comments.approved', :author => @blog_comment.name)
+      flash[:notice] = t('approved', :scope => 'admin.blog.comments', :author => @blog_comment.name)
       redirect_to :action => params[:return_to] || 'index'
     end
   end
@@ -28,7 +28,7 @@ class Admin::Blog::CommentsController < Admin::BaseController
     else
       @blog_comment = BlogComment.find(params[:id])
       @blog_comment.reject!
-      flash[:notice] = t('admin.blog.comments.rejected', :author => @blog_comment.name)
+      flash[:notice] = t('rejected', :scope => 'admin.blog.comments', :author => @blog_comment.name)
       redirect_to :action => params[:return_to] || 'index'
     end
   end

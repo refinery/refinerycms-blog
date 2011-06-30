@@ -10,7 +10,7 @@
         <%= render :partial => "comment", :collection => comments %>
       <% else %>
         <p>
-          <%= t('blog.shared.comments.none') %>.
+          <%= t('none', :scope => 'blog.shared.comments') %>.
         </p>
       <% end %>
 
