@@ -6,6 +6,10 @@ module Refinery
     autoload :Tab, File.expand_path("../refinery/blog/tabs", __FILE__)
 
     class << self
+      attr_accessor :root
+      def root
+	@root ||= Pathname.new(File.expand_path('../../', __FILE__))
+      end
       def version
         ::Refinery::Blog::Version.to_s
       end
@@ -22,6 +26,7 @@ module Refinery
 
       config.after_initialize do
         Refinery::Plugin.register do |plugin|
+	  plugin.pathname = root
           plugin.name = "refinerycms_blog"
           plugin.url = {:controller => '/admin/blog/posts', :action => 'index'}
           plugin.menu_match = /^\/?(admin|refinery)\/blog\/?(posts|comments|categories)?/
