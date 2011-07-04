@@ -42,6 +42,10 @@ module BlogPostsHelper
     post.next.present? or post.prev.present?
   end
 
+  def blog_post_teaser_enabled?
+    BlogPost.teasers_enabled?
+  end
+
   def blog_post_teaser(post)
     if post.respond_to?(:custom_teaser) && post.custom_teaser.present?
      post.custom_teaser.html_safe

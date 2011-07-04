@@ -22,11 +22,15 @@
       </section>
     </header>
     <section class='clearfix'>
-      <%= blog_post_teaser(post) %>
+      <% if blog_post_teaser_enabled? %>
+        <%= blog_post_teaser(post) %>
+      <% else %>
+        <%= post.body.html_safe %>
+      <% end %>
     </section>
     <footer>
       <p>
-        <%= link_to t('read_more', :scope => 'blog.shared.posts'), blog_post_url(post) %>
+        <%= link_to t('read_more', :scope => 'blog.shared.posts'), blog_post_url(post) if blog_post_teaser_enabled? %>
       </p>
       <aside class='comment_count'>
         <% if BlogPost.comments_allowed? %>

@@ -190,4 +190,28 @@ describe BlogPost do
       Factory.create(:blog_post, :custom_teaser => 'This is some custom content').should be_valid
     end
   end
+  
+  describe ".teasers_enabled?" do
+    context "with RefinerySetting teasers_enabled set to true" do
+      before do
+        RefinerySetting.set(:teasers_enabled, { :scoping => 'blog', :value => true })
+      end
+
+      it "should be true" do
+        BlogPost.teasers_enabled?.should be_true
+      end
+    end
+    
+    context "with RefinerySetting teasers_enabled set to true" do
+      before do
+        RefinerySetting.set(:teasers_enabled, { :scoping => 'blog', :value => false })
+      end
+
+      it "should be false" do
+        BlogPost.teasers_enabled?.should be_false
+      end
+    end
+    
+  end
+  
 end

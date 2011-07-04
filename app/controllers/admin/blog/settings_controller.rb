@@ -37,6 +37,16 @@ module Admin
                  :layout => false
         end
       end
+      
+      def teasers
+        enabled = BlogPost.teaser_enabled_toggle!
+        unless request.xhr?
+          redirect_back_or_default(admin_blog_posts_path)
+        else
+          render :json => {:enabled => enabled},
+                 :layout => false
+        end
+      end
 
     end
   end
