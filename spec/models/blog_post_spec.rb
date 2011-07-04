@@ -202,7 +202,7 @@ describe BlogPost do
       end
     end
     
-    context "with RefinerySetting teasers_enabled set to true" do
+    context "with RefinerySetting teasers_enabled set to false" do
       before do
         RefinerySetting.set(:teasers_enabled, { :scoping => 'blog', :value => false })
       end
