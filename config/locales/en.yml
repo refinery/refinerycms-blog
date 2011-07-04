@@ -79,6 +79,7 @@ en:
           moderation: Moderation
           update_notified: Update who gets notified
           comments: Comments
+          teasers: Teasers
   blog:
     comment_mailer:
       notification:

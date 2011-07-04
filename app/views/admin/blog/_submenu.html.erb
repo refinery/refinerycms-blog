@@ -85,6 +85,10 @@
                   notification_recipients_admin_blog_settings_url(:dialog => true, :height => 400),
                   :class => 'user_comment_icon' %>
     </li>
+    <li>
+      <%= link_to t('.settings.teasers'),
+                  teasers_admin_blog_settings_url, :class => "#{BlogPost.teasers_enabled? ? 'success' : 'failure'}_icon" %>
+    </li>
   </ul>
 
 </nav>
