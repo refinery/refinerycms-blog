@@ -75,6 +75,19 @@ class BlogPost < ActiveRecord::Base
         :scoping => 'blog'
       })
     end
+    
+    def teasers_enabled?
+      RefinerySetting.find_or_set(:teasers_enabled, true, {
+        :scoping => 'blog'
+      })
+    end
+    
+    def teaser_enabled_toggle!
+      currently = RefinerySetting.find_or_set(:teasers_enabled, true, {
+        :scoping => 'blog'
+      })
+      RefinerySetting.set(:teasers_enabled, {:value => !currently, :scoping => 'blog'})
+    end
 
     def uncategorized
       BlogPost.live.reject { |p| p.categories.any? }

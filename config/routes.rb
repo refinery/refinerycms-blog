@@ -39,6 +39,7 @@
 
           get :moderation
           get :comments
+          get :teasers
         end
       end
     end

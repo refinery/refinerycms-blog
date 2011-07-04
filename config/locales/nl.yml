@@ -75,6 +75,7 @@ nl:
           moderation: Stuur notificaties
           update_notified: Wijzig wie notificaties ontvangt
           comments: Reacties
+          teasers: Teasers
   blog:
     comment_mailer:
       notification:
