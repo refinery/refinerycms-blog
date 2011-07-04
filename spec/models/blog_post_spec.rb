@@ -174,7 +174,7 @@ describe BlogPost do
       end
     end
 
-    context "with RefinerySetting comments_allowed set to true" do
+    context "with RefinerySetting comments_allowed set to false" do
       before do
         RefinerySetting.set(:comments_allowed, { :scoping => 'blog', :value => false })
       end
