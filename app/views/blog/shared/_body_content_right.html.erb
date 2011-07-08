@@ -1,0 +1,9 @@
+<% content_for :body_content_right do %>
+  <%= raw(prepend) if !local_assigns[:prepend].blank? %>
+  <%= render :partial => "/blog/shared/rss_feed" %>
+  <%= render :partial => "/blog/shared/categories" %>
+  <%= render :partial => "/blog/shared/tags" %>
+  <%= render :partial => "/blog/shared/posts" %>
+  <%= blog_archive_list %>
+  <%= raw(append) if !local_assigns[:append].blank? %>
+<% end %>

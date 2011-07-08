@@ -9,12 +9,7 @@
   <% end %>
 <% end %>
 
-<% content_for :body_content_right do %>
-  <%= render :partial => "/blog/shared/categories" %>
-  <%= render :partial => "/blog/shared/tags" %>
-  <%= render :partial => "/blog/shared/rss_feed" %>
-  <%= blog_archive_list %>
-<% end %>
+<%= render :partial => 'blog/shared/body_content_right' %>
 
 <%= render :partial => "/shared/content_page" %>
 <% content_for :stylesheets, stylesheet_link_tag('refinerycms-blog') %>
