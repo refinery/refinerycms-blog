@@ -1,9 +1,9 @@
 <% content_for :body_content_right do %>
-  <%= raw(prepend) if !local_assigns[:prepend].blank? %>
+  <%= yield(:body_content_right_prepend) if content_for?(:body_content_right_prepend) %>
   <%= render :partial => "/blog/shared/rss_feed" %>
   <%= render :partial => "/blog/shared/categories" %>
   <%= render :partial => "/blog/shared/tags" %>
   <%= render :partial => "/blog/shared/posts" %>
   <%= blog_archive_list %>
-  <%= raw(append) if !local_assigns[:append].blank? %>
+  <%= yield(:body_content_right_append) if content_for?(:body_content_right_append) %>
 <% end %>

@@ -11,7 +11,11 @@
   <% end %>
 <% end %>
 
-<%= render :partial => 'blog/shared/body_content_right', :locals => {:prepend => (@page[Page.default_parts.second.to_sym] if Page.default_parts.many?)} %>
+<% content_for :body_content_right_prepend do -%>
+  <%= @page[Page.default_parts.second.to_sym] if Page.default_parts.many? %>
+<% end -%>
+
+<%= render :partial => 'blog/shared/body_content_right' %>
 
 <%= render :partial => "/shared/content_page" %>
 <% content_for :stylesheets, stylesheet_link_tag('refinerycms-blog') %>
