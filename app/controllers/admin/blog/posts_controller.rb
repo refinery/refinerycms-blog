@@ -1,7 +1,8 @@
 module Admin
   module Blog
     class PostsController < Admin::BaseController
-
+      before_filter :check_category_ids, :only => :update
+      
       crudify :blog_post,
               :title_attribute => :title,
               :order => 'published_at DESC'
@@ -84,6 +85,10 @@ module Admin
     protected
       def find_all_categories
         @blog_categories = BlogCategory.find(:all)
+      end
+
+      def check_category_ids
+        params[:blog_post][:category_ids] ||= []
       end
     end
   end
