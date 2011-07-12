@@ -1,7 +1,7 @@
 module Admin
   module Blog
     class PostsController < Admin::BaseController
-      before_filter :check_category_ids, :only => :update
+      
       
       crudify :blog_post,
               :title_attribute => :title,
@@ -81,6 +81,8 @@ module Admin
 
       before_filter :find_all_categories,
                     :only => [:new, :edit, :create, :update]
+
+      before_filter :check_category_ids, :only => :update
 
     protected
       def find_all_categories
