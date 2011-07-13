@@ -91,7 +91,7 @@ en:
         email: Email
         message: Message
         closing_line: Kind Regards
-        ps: 'P.S. All your comments are stored in the "Blog" section of Refinery under the "Comments" submenu should you ever want to view it later there.'
+        ps: 'P.S. All your comments are stored in the "Blog" section of Refinery under the "Comments" submenu should you ever want to view it there later.'
     shared:
       categories:
         title: Categories

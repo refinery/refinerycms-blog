@@ -1,17 +1,17 @@
-<%= t('.greeting') %>,
+<%=raw t('.greeting') %>,
 
-<%= t('.you_recieved_new_comment') %>
+<%=raw t('.you_recieved_new_comment') %>
 
-<%= t('.comment_starts') %>
+<%=raw t('.comment_starts') %>
 
-<%= t('.from') %>: <%= @comment.name %>
-<%= t('.email') %>: <%= @comment.email %>
-<%= t('.message') %>:
-<%= @comment.body %>
+<%=raw t('.from') %>: <%= @comment.name %>
+<%=raw t('.email') %>: <%= @comment.email %>
+<%=raw t('.message') %>:
+<%=simple_format strip_tags(@comment.body) %>
 
-<%= t('.comment_ends') %>
+<%=raw t('.comment_ends') %>
 
-<%= t('.closing_line') %>,
-<%= RefinerySetting[:site_name] %>
+<%=raw t('.closing_line') %>,
+<%=raw RefinerySetting[:site_name] %>
 
-<%= t('.ps') %>
+<%=raw t('.ps') %>
