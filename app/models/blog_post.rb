@@ -13,7 +13,7 @@ class BlogPost < ActiveRecord::Base
   has_many :comments, :class_name => 'BlogComment', :dependent => :destroy
   acts_as_taggable
 
-  has_many :categorizations
+  has_many :categorizations, :dependent => :destroy
   has_many :categories, :through => :categorizations, :source => :blog_category
 
   acts_as_indexed :fields => [:title, :body]
