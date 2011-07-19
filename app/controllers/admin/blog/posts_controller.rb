@@ -1,7 +1,7 @@
 module Admin
   module Blog
     class PostsController < Admin::BaseController
-      
+      helper :blog_editor
       
       crudify :blog_post,
               :title_attribute => :title,

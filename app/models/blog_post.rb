@@ -1,5 +1,6 @@
 require 'acts-as-taggable-on'
 require 'seo_meta'
+require 'RedCloth'
 
 class BlogPost < ActiveRecord::Base
 
@@ -17,6 +18,9 @@ class BlogPost < ActiveRecord::Base
   has_many :categories, :through => :categorizations, :source => :blog_category
 
   acts_as_indexed :fields => [:title, :body]
+
+  # ensure we have a body (if we're using textile)
+  before_validation :process_textile
 
   validates :title, :presence => true, :uniqueness => true
   validates :body,  :presence => true
@@ -61,6 +65,12 @@ class BlogPost < ActiveRecord::Base
 
   def friendly_id_source
     custom_url.present? ? custom_url : title
+  end
+
+  def process_textile
+    if RefinerySetting.find_or_set(:use_textile_for_blog_posting, false, {:scoping => 'blog'})
+      self.body = RedCloth.new(self.textile_body).to_html unless self.textile_body.nil?
+    end
   end
 
   class << self
