@@ -3,7 +3,7 @@ Dir[File.expand_path('../../../features/support/factories/*.rb', __FILE__)].each
 
 describe BlogPost do
   let(:blog_post ) { Factory.create(:blog_post) }
-
+  
   describe "validations" do
     it "requires title" do
       Factory.build(:blog_post, :title => "").should_not be_valid
@@ -14,7 +14,7 @@ describe BlogPost do
     end
 
     it "requires body" do
-      Factory.build(:blog_post, :body => nil).should_not be_valid
+      Factory.build(:blog_post, :body_source => nil).should_not be_valid
     end
   end
 
@@ -187,7 +187,7 @@ describe BlogPost do
 
   describe "custom teasers" do
     it "should allow a custom teaser" do
-      Factory.create(:blog_post, :custom_teaser => 'This is some custom content').should be_valid
+      Factory.create(:blog_post, :custom_teaser_source => 'This is some custom content').should be_valid
     end
   end
   
@@ -212,6 +212,34 @@ describe BlogPost do
       end
     end
     
+  end
+  
+  describe "custom_teaser_source" do
+    before do
+      RefinerySetting.set(:teasers_enabled, { :scoping => 'blog', :value => true })
+    end
+    it "should have a custom_teaser_source field" do
+      blog_post.should respond_to(:custom_teaser_source)
+    end
+    context "when blog_post_editor setting is markdown" do
+      before :each do
+        RefinerySetting.set(:blog_post_editor, {:scoping => 'blog', :value => "markdown"})
+        blog_post.custom_teaser_source = '# markdown h1'
+        blog_post.save
+      end
+      
+      it "should be valid" do
+        blog_post.should be_valid
+      end
+      
+      it "has processed markdown in custom teaser string" do
+        blog_post.custom_teaser.strip.should eq '<h1>markdown h1</h1>'
+      end
+      
+      it "retains the custom teaser source for later edits" do
+        blog_post.custom_teaser_source.strip.should eq '# markdown h1'
+      end
+    end
   end
   
 end

@@ -1,5 +1,6 @@
 require 'acts-as-taggable-on'
 require 'seo_meta'
+require 'RedCloth'
 
 class BlogPost < ActiveRecord::Base
 
@@ -17,6 +18,9 @@ class BlogPost < ActiveRecord::Base
   has_many :categories, :through => :categorizations, :source => :blog_category
 
   acts_as_indexed :fields => [:title, :body]
+
+  # render our body and teaser (if it exists)
+  before_validation :render_page_parts
 
   validates :title, :presence => true, :uniqueness => true
   validates :body,  :presence => true
@@ -61,6 +65,17 @@ class BlogPost < ActiveRecord::Base
 
   def friendly_id_source
     custom_url.present? ? custom_url : title
+  end
+
+  # As this is a before_validation filter, it is expected that validation (specifically the presence_of :body)
+  # will catch the issues here (assuming something doesn't throw an exception)
+  def render_page_parts
+    editor = RefinerySetting.get(:blog_post_editor, :scoping => 'blog') 
+    editor ||= "wymeditor"
+    self.body = "Refinery::Blog::PostProcessor::#{editor.camelize}".constantize.process(self.body_source) if not self.body_source.nil? and not self.body_source.empty?
+    if RefinerySetting.get(:teasers_enabled, :scoping => 'blog')
+      self.custom_teaser = "Refinery::Blog::PostProcessor::#{editor.camelize}".constantize.process(self.custom_teaser_source) if not self.custom_teaser_source.nil? and not self.custom_teaser_source.empty?
+    end
   end
 
   class << self

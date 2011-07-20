@@ -3,18 +3,27 @@
     $(function() {
       $('#page-tabs').tabs();
       $('#copy_body_link').click(function(event) {
-        // Find the WYMEditor that maps to the custom_teaser field
-        var teaserTextArea = $('#blog_post_custom_teaser')[0];
-        var teaserEditor = null;
-        $.each(WYMeditor.INSTANCES, function(index, editor) {
-          if (editor._element[0] == teaserTextArea) {
-            teaserEditor = editor;
-          }
-        });
 
-        if (teaserEditor) {
-          teaserEditor.html($('#blog_post_body').attr('value'));
-        }
+        var teaserTextArea = $('#blog_post_custom_teaser_source')[0];
+        <% if RefinerySetting.get(:blog_post_editor, {:scoping => 'blog'}) == 'wymeditor' %>
+            // Find the WYMEditor that maps to the custom_teaser field
+            var teaserEditor = null;
+            $.each(WYMeditor.INSTANCES, function(index, editor) {
+              if (editor._element[0] == teaserTextArea) {
+                teaserEditor = editor;
+              }
+            });
+
+            if (teaserEditor) {
+              teaserEditor.html($('#blog_post_body_source').attr('value'));
+            }
+
+        <% else %>
+            // Just use the text area for the other possible editors
+            if (teaserTextArea) {
+              teaserTextArea.value = $('#blog_post_body_source').attr('value');
+            }
+        <% end %>
 
         event.preventDefault();
       });
