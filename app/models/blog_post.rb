@@ -19,8 +19,8 @@ class BlogPost < ActiveRecord::Base
 
   acts_as_indexed :fields => [:title, :body]
 
-  # ensure we have a body (if we're using textile)
-  before_validation :process_textile
+  # render our body and teaser (if it exists)
+  before_validation :render_page_parts
 
   validates :title, :presence => true, :uniqueness => true
   validates :body,  :presence => true
@@ -67,9 +67,14 @@ class BlogPost < ActiveRecord::Base
     custom_url.present? ? custom_url : title
   end
 
-  def process_textile
-    if RefinerySetting.find_or_set(:use_textile_for_blog_posting, false, {:scoping => 'blog'})
-      self.body = RedCloth.new(self.textile_body).to_html unless self.textile_body.nil?
+  # As this is a before_validation filter, it is expected that validation (specifically the presence_of :body)
+  # will catch the issues here (assuming something doesn't throw an exception)
+  def render_page_parts
+    editor = RefinerySetting.get(:blog_post_editor, :scoping => 'blog') 
+    editor ||= "wymeditor"
+    self.body = "Refinery::Blog::PostProcessor::#{editor.camelize}".constantize.process(self.body_source) if not self.body_source.nil? and not self.body_source.empty?
+    if RefinerySetting.get(:teasers_enabled, :scoping => 'blog')
+      self.custom_teaser = "Refinery::Blog::PostProcessor::#{editor.camelize}".constantize.process(self.custom_teaser_source) if not self.custom_teaser_source.nil? and not self.custom_teaser_source.empty?
     end
   end
 

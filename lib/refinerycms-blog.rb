@@ -23,6 +23,7 @@ module Refinery
 
       config.to_prepare do
         require File.expand_path('../refinery/blog/tabs', __FILE__)
+        require File.expand_path('../refinery/blog/post_processor', __FILE__)
       end
 
       config.after_initialize do

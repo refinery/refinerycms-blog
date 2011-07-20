@@ -1,5 +1,3 @@
 <div class='page_part' id='page_part_body'>
-  <% field = use_textile? ? :textile_body : :body %>
-  <%= f.text_area field, :rows => 20, :class => "#{use_textile? ? '' : 'wymeditor '}widest" -%>
+  <%= f.text_area :body_source, :rows => 20, :class => "#{blog_post_editor} widest" -%>
 </div>
-<% if use_textile? %><div id="textile_reference">Using <a href="http://redcloth.org/textile">RedCloth Textile</a>.</div><% end %>

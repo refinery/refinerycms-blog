@@ -15,6 +15,7 @@ Gem::Specification.new do |s|
   s.add_dependency    'acts-as-taggable-on'
   s.add_dependency    'seo_meta',           '~> 1.1.0'
   s.add_dependency    'RedCloth'
+  s.add_dependency    'redcarpet'
 
   # Development dependencies
   s.add_development_dependency 'factory_girl'
