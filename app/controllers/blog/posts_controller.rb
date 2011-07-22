@@ -8,6 +8,8 @@ module Blog
     respond_to :html, :js, :rss
 
     def index
+      # Rss feeders are greedy. Let's give them every blog post instead of paginating.
+      (@blog_posts = BlogPost.live.includes(:comments, :categories).all) if request.format.rss? 
       respond_with (@blog_posts) do |format|
         format.html
         format.rss
