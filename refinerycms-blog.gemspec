@@ -80,6 +80,7 @@ Gem::Specification.new do |s|
     app/views/blog/comment_mailer/notification.html.erb
     app/views/blog/posts
     app/views/blog/posts/_comment.html.erb
+    app/views/blog/posts/_comments.html.erb
     app/views/blog/posts/_nav.html.erb
     app/views/blog/posts/_post.html.erb
     app/views/blog/posts/archive.html.erb
@@ -88,6 +89,7 @@ Gem::Specification.new do |s|
     app/views/blog/posts/show.html.erb
     app/views/blog/posts/tagged.html.erb
     app/views/blog/shared
+    app/views/blog/shared/_body_content_right.html.erb
     app/views/blog/shared/_categories.html.erb
     app/views/blog/shared/_post.html.erb
     app/views/blog/shared/_posts.html.erb
