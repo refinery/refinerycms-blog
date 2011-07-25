@@ -1,7 +1,11 @@
-class Admin::Blog::CategoriesController < Admin::BaseController
+module Admin
+  module Blog
+    class CategoriesController < Admin::BaseController
 
-  crudify :blog_category,
-          :title_attribute => :title,
-          :order => 'title ASC'
+      crudify :blog_category,
+              :title_attribute => :title,
+              :order => 'title ASC'
 
+    end
+  end
 end

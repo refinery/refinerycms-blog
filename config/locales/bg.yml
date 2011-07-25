@@ -1,0 +1,158 @@
+bg:
+  plugins:
+    refinerycms_blog:
+      title: Блог
+  admin:
+    blog:
+      categories:
+        category:
+          edit: Редактиране на тази категория
+          delete: Изтриване на тази категория завинаги
+        index:
+          no_items_yet: 'Все още няма категории. Натиснете "%{create}", за да въведете нова.'
+      comments:
+        approved: 'Коментара от "%{author}" бе одобрен.'
+        comment:
+          view_live_html: 'Преглед на този коментар <br/><em>(ще се отвори се в нов прозорец)</em>'
+          read: Прочитане на този коментар
+          reject: Отхвърляне на този коментар
+          approve: Одобряване на този коментар
+        rejected: 'Коментара от "%{author}" бе отхвърлен.'
+        index:
+          no_items_yet: '%{type} коментари не бяха намерени.'
+        show:
+          comment: Коментар
+          blog_post: Публикация
+          from: Публикувано от
+          date: Публикувано на
+          message: Коментар
+          details: Детайли
+          age: Възраст
+          actions: Действия
+          back: Обратно към всички коментари
+          reject: Отхвърляне на този коментар
+          approve: Одобряване на този коментар
+      posts:
+        form:
+          advanced_options: Разширени настройки
+          toggle_advanced_options: Натиснете, за да достъпите настройките за етикета "meta" и менюто
+          save_as_draft: Запис като чернова
+          published_at: Дата на публикуване
+          custom_url: Уеб адрес по избор
+          custom_url_help: Вместо от заглавието, генерирайте уеб адреса за тази публикация чрез този текст.
+          copy_body: Копиране на съдържанието на публикацията като извадка
+          copy_body_help: Съдържанието на публикацията ще се копира като извадка. Оставете извадката празна и Refinery автоматично ще я сглоби.
+        index:
+          no_items_yet: 'Все още няма публикации. Натиснете "%{create}", за да въведете нова.'
+        uncategorized:
+          no_items_yet: 'Не съществуват некатегоризирани публикации.'
+        post:
+          view_live_html: 'Преглед на този публикация <br/><em>(ще се отвори се в нов прозорец)</em>'
+          edit: Редактиране на тази публикация
+          delete: Изтриване на тази публикация завинаги
+      settings:
+        notification_recipients:
+          value: Изпращане на уведомления до
+          explanation: 'Всеки път, когато някой коментира публикация, Refinery ще изпраща е-писмо, за да уведоми, че съществува нов коментар.'
+          hint: 'При добавяне на коментар, Refinery ще Ви уведоми по е-пощата.'
+          example: "Въведете адреса(ите) на Вашата е-поща. Например: jack@work.com, jill@office.com"
+          updated: 'Уведомления бяха изпратени до "%{recipients}"'
+      submenu:
+        categories:
+          title: Категории
+          manage: Управление
+          new: Добавяне на нова категория
+        comments:
+          title: Коментари
+          title_with_count: 'Коментари (%{new_count} нови)'
+          new: Нови
+          unmoderated: Нови
+          approved: Одобрени
+          rejected: Отхвърлени
+        posts:
+          title: Публикации
+          manage: Управление на публикации
+          new: Добавяне на нова публикация
+          uncategorized: Некатегоризирани публикации
+        settings:
+          title: Настройки
+          moderation: Модерация
+          update_notified: Получатели на уведомления
+          comments: Коментари
+  blog:
+    comment_mailer:
+      notification:
+        greeting: Здравейте
+        you_recieved_new_comment: Току що получихте нов коментар на Вашия уебсайт.
+        comment_starts: --- Начало на коментара ---
+        comment_ends: --- Край на коментара ---
+        from: От
+        email: Е-поща
+        message: Съобщение
+        closing_line: Поздрави
+        ps: 'П.П. Всички Ваши коментари се съхраняват от Refinery в секция "Блог" в подменю "Коментари" и могат да бъдат прегледани по-късно.'
+    shared:
+      categories:
+        title: Категории
+      rss_feed:
+        title: RSS хранилка
+        subscribe: Абониране
+      posts:
+        other: Други публикации
+        created_at: 'Публикувано на %{when}'
+        read_more: Цялата публикация
+      comments:
+        singular: коментар
+        none: няма коментари
+      archives: Архиви
+      tags:
+        title: "Етикети"
+    categories:
+      show:
+        no_posts: Тук все още няма публикации.
+    posts:
+      post:
+        filed_in: Категория
+      comment: коментар
+      comments:
+        by: 'Публикувано от %{who}'
+        time_ago: 'преди %{time}'
+        thank_you: 'Благодаря за Вашия коментар.'
+        thank_you_moderated: 'Благодаря за Вашия коментар. Съобщението Ви е в опашката за модерация и скоро ще бъде показано.'
+      index:
+        no_blog_articles_yet: Все още няма публикувани статии. Очаквайте скоро.
+      show:
+        blog_home: Обратно към началото на блога
+        comments:
+          title: Коментари
+          add: Вашият коментар
+        other: Други публикации
+        filed_in: Категория
+        tagged: Отбелязано с
+        submit: Изпращане на коментар
+        name: Име
+        email: Е-поща
+        message: Съобщение
+        by: от
+      tagged:
+        no_blog_articles_yet: Все още няма публикувани статии. Очаквайте скоро.
+        posts_tagged: Публикации отбелязани с
+      archive:
+        blog_archive_for: 'Архив на блога за %{date}'
+        no_blog_articles_posted: 'Все още няма публикувани статии за %{date}. Очаквайте скоро.'
+  activerecord:
+    models:
+      blog_category: Категория
+      blog_comment: Коментар
+      blog_post: Публикация
+    attributes:
+      blog_category:
+        title: Заглавие
+      blog_comment:
+        name: Име
+        email: Е-поща
+        message: Съобщение
+      blog_post:
+        title: Заглавие
+        body: Съдържание
+        teaser: Извадка

@@ -1,16 +1,23 @@
 <script>
   (function($) {
-    $(document).ready(function(){
-      $('#toggle_advanced_options').click(function(e){
-        e.preventDefault();
+    $(function() {
+      $('#page-tabs').tabs();
+      $('#copy_body_link').click(function(event) {
+        // Find the WYMEditor that maps to the custom_teaser field
+        var teaserTextArea = $('#blog_post_custom_teaser')[0];
+        var teaserEditor = null;
+        $.each(WYMeditor.INSTANCES, function(index, editor) {
+          if (editor._element[0] == teaserTextArea) {
+            teaserEditor = editor;
+          }
+        });
 
-        $('#more_options').animate({opacity: 'toggle', height: 'toggle'}, 250);
+        if (teaserEditor) {
+          teaserEditor.html($('#blog_post_body').attr('value'));
+        }
 
-        $('html,body').animate({
-          scrollTop: $('#toggle_advanced_options').parent().offset().top
-        }, 250);
+        event.preventDefault();
       });
     });
-    $('#page-tabs').tabs();
   })(jQuery);
 </script>

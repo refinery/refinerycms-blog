@@ -6,7 +6,7 @@ describe BlogComment do
   context "wiring up" do
 
     before(:each) do
-      @comment = Factory(:blog_comment)
+      @comment = Factory.create(:blog_comment)
     end
 
     it "saves" do

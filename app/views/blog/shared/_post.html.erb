@@ -2,39 +2,42 @@
   <article class="blog_post" id="<%= dom_id(post) %>">
     <header>
       <h1><%= link_to post.title, blog_post_url(post) %></h1>
-      <details>
+      <section class='details'>
         <time datetime="<%=l post.published_at.to_date, :format => :default %>" class='posted_at'>
-          <%= t('blog.shared.posts.created_at', :when => l(post.published_at.to_date, :format => :short)) %>
-        </time><%= "#{t('blog.posts.show.by')} #{post.author.username}" if post.author.present? %>.
+          <%= t('created_at', :scope => 'blog.shared.posts', :when => l(post.published_at.to_date, :format => :short)) %>
+        </time>
+        <%= "#{t('by', :scope => 'blog.posts.show')} #{post.author.username}" if post.author.present? %>.
         <% if (categories = post.categories).any? %>
           <aside class='filed_in'>
             <%= t('filed_in', :scope => 'blog.posts.show') %>
             <%=raw categories.collect { |category| link_to category.title, blog_category_url(category) }.to_sentence %>
           </aside>
         <% end %>
-        <% if (tags = post.tag_list).any? %>
+        <% if (tags = post.tags).any? %>
           <aside class='tagged'>
             <%= t('tagged', :scope => 'blog.posts.show') %>
-            <%=raw tags.collect { |tag| link_to tag, tagged_posts_path(tag.parameterize) }.to_sentence %>
+            <%=raw tags.collect { |tag| link_to tag, tagged_posts_path(tag.id, tag.name.parameterize) }.to_sentence %>
           </aside>
         <% end %>
-      </details>
+      </section>
     </header>
     <section class='clearfix'>
-      <%= truncate(post.body,
-                   :length => RefinerySetting.find_or_set(:blog_post_teaser_length, 250),
-                   :preserve_html_tags => true) %>
+      <% if blog_post_teaser_enabled? %>
+        <%= blog_post_teaser(post) %>
+      <% else %>
+        <%= post.body.html_safe %>
+      <% end %>
     </section>
     <footer>
       <p>
-        <%= link_to t('blog.shared.posts.read_more'), blog_post_url(post) %>
+        <%= link_to t('read_more', :scope => 'blog.shared.posts'), blog_post_url(post) if blog_post_teaser_enabled? %>
       </p>
       <aside class='comment_count'>
         <% if BlogPost.comments_allowed? %>
           <% if post.comments.any? %>
-             (<%= pluralize(post.comments.approved.count, t('blog.shared.comments.singular')) %>)
+             (<%= pluralize(post.comments.approved.count, t('singular', :scope => 'blog.shared.comments')) %>)
           <% else %>
-                (<%= t('blog.shared.comments.none') %>)
+                (<%= t('none', :scope => 'blog.shared.comments') %>)
           <% end %>
         <% end %>
       </aside>

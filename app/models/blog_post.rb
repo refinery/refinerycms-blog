@@ -8,12 +8,12 @@ class BlogPost < ActiveRecord::Base
   default_scope :order => 'published_at DESC'
   #.first & .last will be reversed -- consider a with_exclusive_scope on these?
 
-  belongs_to :author, :class_name => 'User', :foreign_key => :user_id
+  belongs_to :author, :class_name => 'User', :foreign_key => :user_id, :readonly => true
 
   has_many :comments, :class_name => 'BlogComment', :dependent => :destroy
   acts_as_taggable
 
-  has_many :categorizations
+  has_many :categorizations, :dependent => :destroy
   has_many :categories, :through => :categorizations, :source => :blog_category
 
   acts_as_indexed :fields => [:title, :body]
@@ -21,12 +21,10 @@ class BlogPost < ActiveRecord::Base
   validates :title, :presence => true, :uniqueness => true
   validates :body,  :presence => true
 
-  has_friendly_id :title, :use_slug => true,
+  has_friendly_id :friendly_id_source, :use_slug => true,
                   :default_locale => (::Refinery::I18n.default_frontend_locale rescue :en),
                   :approximate_ascii => RefinerySetting.find_or_set(:approximate_ascii, false, :scoping => 'blog'),
                   :strip_non_ascii => RefinerySetting.find_or_set(:strip_non_ascii, false, :scoping => 'blog')
-
-  attr_accessible :title, :body, :tag_list, :draft, :published_at, :browser_title, :meta_keywords, :meta_description, :user_id
 
   scope :by_archive, lambda { |archive_date|
     where(['published_at between ? and ?', archive_date.beginning_of_month, archive_date.end_of_month])
@@ -61,6 +59,10 @@ class BlogPost < ActiveRecord::Base
     }.compact
   end
 
+  def friendly_id_source
+    custom_url.present? ? custom_url : title
+  end
+
   class << self
     def next current_record
       self.send(:with_exclusive_scope) do
@@ -72,6 +74,19 @@ class BlogPost < ActiveRecord::Base
       RefinerySetting.find_or_set(:comments_allowed, true, {
         :scoping => 'blog'
       })
+    end
+    
+    def teasers_enabled?
+      RefinerySetting.find_or_set(:teasers_enabled, true, {
+        :scoping => 'blog'
+      })
+    end
+    
+    def teaser_enabled_toggle!
+      currently = RefinerySetting.find_or_set(:teasers_enabled, true, {
+        :scoping => 'blog'
+      })
+      RefinerySetting.set(:teasers_enabled, {:value => !currently, :scoping => 'blog'})
     end
 
     def uncategorized

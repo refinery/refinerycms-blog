@@ -1,3 +1,26 @@
+## 1.6.3 [UNRELEASED]
+* Bulgarian translations [mirosr](https://github.com/mirosr)
+* posts/tagged... params[:tag_name] is optional [joemsak](https://github.com/joemsak)
+
+## 1.6.2 [29 June 2011]
+* Custom teaser field to overwrite the automatic truncation of the body [wikyd](https://github.com/wikyd)
+* Tagging URL strategy updated again [joemsak](https://github.com/joemsak)
+* Tagging bug fixed [ruprict](https://github.com/ruprict)
+* Refactored specs [parndt](https://github.com/parndt)
+
+## 1.6.1 [21 June 2011]
+* Tagging URL strategy updated for reliability /blog/posts/tagged/ID-name-parameterized [joemsak](https://github.com/joemsak)
+* Heroku/PostgreSQL support for autocomplete tags [joemsak](https://github.com/joemsak)
+
+## 1.6 [20 June 2011]
+* Category bug fixes and cleanup [wikyd](https://github.com/wikyd)
+* Cleaned up deprecated code [ugisozols](https://github.com/ugisozols)
+* Performance boosts (cached slugs) [joemsak](https://github.com/joemsak)
+* More translations [cerebroso](https://github.com/cerebroso), [peresleguine](https://github.com/peresleguine)
+* More testing [wakeless](https://github.com/wakeless)
+* Tag list autocomplete baked in [joemsak](https://github.com/joemsak)
+* Customize the URL of your blog post [wikyd](https://github.com/wikyd)
+
 ## 1.5 [28 May 2011]
 
 * Added Gravatar support. [parndt](https://github.com/parndt)

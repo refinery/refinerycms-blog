@@ -38,6 +38,10 @@ en:
           toggle_advanced_options: Click to access meta tag settings and menu options
           save_as_draft: Save as Draft
           published_at: Publish Date
+          custom_url: Custom Url
+          custom_url_help: Generate the url for the blog post from this text instead of the title.
+          copy_body: Copy Post Body to Teaser
+          copy_body_help: Copies the post body to the teaser.  Leave teaser blank to let Refinery automatically make the teaser.
         index:
           no_items_yet: 'There are no Blog Posts yet. Click "%{create}" to add your first blog post.'
         uncategorized:
@@ -75,6 +79,7 @@ en:
           moderation: Moderation
           update_notified: Update who gets notified
           comments: Comments
+          teasers: Teasers
   blog:
     comment_mailer:
       notification:
@@ -86,7 +91,7 @@ en:
         email: Email
         message: Message
         closing_line: Kind Regards
-        ps: 'P.S. All your comments are stored in the "Blog" section of Refinery under the "Comments" submenu should you ever want to view it later there.'
+        ps: 'P.S. All your comments are stored in the "Blog" section of Refinery under the "Comments" submenu should you ever want to view it there later.'
     shared:
       categories:
         title: Categories
@@ -151,3 +156,4 @@ en:
       blog_post:
         title: Title
         body: Body
+        teaser: Teaser

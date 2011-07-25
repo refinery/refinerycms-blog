@@ -1,8 +1,8 @@
 Gem::Specification.new do |s|
   s.name              = %q{refinerycms-blog}
-  s.version           = %q{1.6.0}
+  s.version           = %q{1.6.2}
   s.description       = %q{A really straightforward open source Ruby on Rails blog engine designed for integration with RefineryCMS.}
-  s.date              = %q{2011-05-31}
+  s.date              = %q{2011-06-29}
   s.summary           = %q{Ruby on Rails blogging engine for RefineryCMS.}
   s.email             = %q{info@refinerycms.com}
   s.homepage          = %q{http://refinerycms.com/blog}
@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.require_paths     = %w(lib)
 
   # Runtime dependencies
-  s.add_dependency    'refinerycms-core',   '~> 1.0.0'
+  s.add_dependency    'refinerycms-core',   '~> 1.0.3'
   s.add_dependency    'filters_spam',       '~> 0.2'
   s.add_dependency    'acts-as-taggable-on'
   s.add_dependency    'seo_meta',           '~> 1.1.0'
@@ -66,6 +66,7 @@ Gem::Specification.new do |s|
     app/views/admin/blog/posts/_form_part.html.erb
     app/views/admin/blog/posts/_post.html.erb
     app/views/admin/blog/posts/_sortable_list.html.erb
+    app/views/admin/blog/posts/_teaser_part.html.erb
     app/views/admin/blog/posts/edit.html.erb
     app/views/admin/blog/posts/index.html.erb
     app/views/admin/blog/posts/new.html.erb
@@ -92,6 +93,9 @@ Gem::Specification.new do |s|
     app/views/blog/shared/_posts.html.erb
     app/views/blog/shared/_rss_feed.html.erb
     app/views/blog/shared/_tags.html.erb
+    app/views/shared
+    app/views/shared/admin
+    app/views/shared/admin/_autocomplete.html.erb
     changelog.md
     config
     config/locales
@@ -115,10 +119,14 @@ Gem::Specification.new do |s|
     db/migrate/2_add_user_id_to_blog_posts.rb
     db/migrate/3_acts_as_taggable_on_migration.rb
     db/migrate/4_create_seo_meta_for_blog.rb
+    db/migrate/5_add_cached_slugs.rb
+    db/migrate/6_add_custom_url_field_to_blog_posts.rb
+    db/migrate/7_add_custom_teaser_field_to_blog_posts.rb
     db/seeds
     db/seeds/refinerycms_blog.rb
     features
     features/authors.feature
+    features/category.feature
     features/support
     features/support/factories
     features/support/factories/blog_categories.rb
@@ -127,6 +135,7 @@ Gem::Specification.new do |s|
     features/support/paths.rb
     features/support/step_definitions
     features/support/step_definitions/authors_steps.rb
+    features/support/step_definitions/category_steps.rb
     features/support/step_definitions/tags_steps.rb
     features/tags.feature
     lib
@@ -164,7 +173,25 @@ Gem::Specification.new do |s|
     public/stylesheets/refinery
     public/stylesheets/refinery/refinerycms-blog.css
     public/stylesheets/refinerycms-blog.css
+    public/stylesheets/ui-lightness
+    public/stylesheets/ui-lightness/images
+    public/stylesheets/ui-lightness/images/ui-bg_diagonals-thick_18_b81900_40x40.png
+    public/stylesheets/ui-lightness/images/ui-bg_diagonals-thick_20_666666_40x40.png
+    public/stylesheets/ui-lightness/images/ui-bg_flat_10_000000_40x100.png
+    public/stylesheets/ui-lightness/images/ui-bg_glass_100_f6f6f6_1x400.png
+    public/stylesheets/ui-lightness/images/ui-bg_glass_100_fdf5ce_1x400.png
+    public/stylesheets/ui-lightness/images/ui-bg_glass_65_ffffff_1x400.png
+    public/stylesheets/ui-lightness/images/ui-bg_gloss-wave_35_f6a828_500x100.png
+    public/stylesheets/ui-lightness/images/ui-bg_highlight-soft_100_eeeeee_1x100.png
+    public/stylesheets/ui-lightness/images/ui-bg_highlight-soft_75_ffe45c_1x100.png
+    public/stylesheets/ui-lightness/images/ui-icons_222222_256x240.png
+    public/stylesheets/ui-lightness/images/ui-icons_228ef1_256x240.png
+    public/stylesheets/ui-lightness/images/ui-icons_ef8c08_256x240.png
+    public/stylesheets/ui-lightness/images/ui-icons_ffd27a_256x240.png
+    public/stylesheets/ui-lightness/images/ui-icons_ffffff_256x240.png
+    public/stylesheets/ui-lightness/jquery-ui-1.8.13.custom.css
     readme.md
+    refinerycms-blog.gemspec
     spec
     spec/models
     spec/models/blog_category_spec.rb

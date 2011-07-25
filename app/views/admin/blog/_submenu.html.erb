@@ -85,15 +85,12 @@
                   notification_recipients_admin_blog_settings_url(:dialog => true, :height => 400),
                   :class => 'user_comment_icon' %>
     </li>
+    <li>
+      <%= link_to t('.settings.teasers'),
+                  teasers_admin_blog_settings_url, :class => "#{BlogPost.teasers_enabled? ? 'success' : 'failure'}_icon" %>
+    </li>
   </ul>
 
 </nav>
-<% if Refinery.version < '0.9.9' %>
-  <% content_for :head do %>
-    <%= stylesheet_link_tag('refinery/refinerycms-blog') %>
-    <%# this javascript is not even required in >= 0.9.9 because we made this sort of menu core. %>
-    <%= javascript_include_tag('refinery/refinerycms-blog') %>
-  <% end %>
-<% else %>
-  <% content_for :stylesheets, stylesheet_link_tag('refinery/refinerycms-blog')%>
-<% end %>
+
+<% content_for :stylesheets, stylesheet_link_tag('refinery/refinerycms-blog')%>
