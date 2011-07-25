@@ -2,14 +2,6 @@ pt-BR:
   plugins:
     refinerycms_blog:
       title: Blog
-  activerecord:
-    attributes:
-      blog_post:
-        title: Título
-        body: Corpo
-      blog_comment:
-        name: Nome
-        message: Mensagem
   admin:
     blog:
       categories:
@@ -115,6 +107,8 @@ pt-BR:
       show:
         no_posts: Não há posts aqui ainda.
     posts:
+      post:
+        filed_in: Arquivado em
       comment: commentário
       comments:
         by: 'Postado por %{who}'
@@ -130,9 +124,29 @@ pt-BR:
           add: Fazer um comentário
         other: Outros posts
         filed_in: Arquivado em
+        tagged: Marcado
         submit: Enviar comentário
+        by: por
+      tagged:
+        no_blog_articles_yet: Ainda não existem artigos postados no blog. Fique ligado.
+        posts_tagged: Posts marcados
       archive:
         blog_archive_for: 'Arquivo do blog em %{date}'
         no_blog_articles_posted: 'Não há arquivos do blog em %{date}.'
       post:
         filed_in: Arquivado em
+  activerecord:
+    models:
+      blog_category: Categoria
+      blog_comment: Comentário
+      blog_post: Post
+    attributes:
+      blog_category:
+        title: Título
+      blog_comment:
+        name: Nome
+        email: Email
+        message: Mensagem
+      blog_post:
+        title: Título
+        body: Corpo
