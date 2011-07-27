@@ -1,22 +1,22 @@
 <%= render :partial => '/refinery/admin/blog/submenu' %>
 <div id='records'>
   <% if searching? %>
-    <h2><%= t('results_for', :scope => 'shared.admin.search', :query => params[:search]) %></h2>
+    <h2><%= t('results_for', :scope => 'refinery.admin.search', :query => params[:search]) %></h2>
     <% if @blog_posts.any? %>
     <ul>
       <%= render :partial => "post",
                  :collection => @blog_posts %>
     </ul>
     <% else %>
-      <p><%= t('no_results', :scope => 'shared.admin.search') %></p>
+      <p><%= t('no_results', :scope => 'refinery.admin.search') %></p>
     <% end %>
   <% else %>
     <% if @blog_posts.any? %>
-      <%= will_paginate @blog_posts %>
+      <%= paginate @blog_posts %>
 
       <%= render :partial => "sortable_list" %>
 
-      <%= will_paginate @blog_posts %>
+      <%= paginate @blog_posts %>
     <% else %>
       <p>
         <strong>

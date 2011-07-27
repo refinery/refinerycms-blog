@@ -7,15 +7,15 @@
     </span>
   </span>
   <span class='actions'>
-    <%= link_to refinery_icon_tag("application_go.png"), blog_post_url(post),
+    <%= link_to refinery_icon_tag("application_go.png"), main_app.blog_post_path(post),
         :title => t('.view_live_html'),
         :target => "_blank" %>
-    <%= link_to refinery_icon_tag("application_edit.png"), edit_admin_blog_post_path(post),
+    <%= link_to refinery_icon_tag("application_edit.png"), main_app.edit_refinery_admin_blog_post_path(post),
          :title => t('.edit') %>
-    <%= link_to refinery_icon_tag("delete.png"), admin_blog_post_path(post),
+    <%= link_to refinery_icon_tag("delete.png"), main_app.refinery_admin_blog_post_path(post),
         :class => "cancel confirm-delete",
         :title => t('.delete'),
         :method => :delete,
-        :confirm => t('message', :scope => 'shared.admin.delete', :title => post.title) %>
+        :confirm => t('message', :scope => 'refinery.admin.delete', :title => post.title) %>
   </span>
 </li>
