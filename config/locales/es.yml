@@ -1,128 +1,129 @@
 es:
-  plugins:
-    refinerycms_blog:
-      title: Blog
-  admin:
+  refinery:
+    plugins:
+      refinerycms_blog:
+        title: Blog
+    admin:
+      blog:
+        categories:
+          category:
+            edit: Editar esta categoría
+            delete: Borrar esta categoría para siempre
+          index:
+            no_items_yet: 'Todavía no hay categorías. Haz click en "%{create}" para añadir la primera.'
+        comments:
+          approved: 'El comentario de "%{author}" ha sido aprobado.'
+          comment:
+            view_live_html: 'Ver este comentario<br/><em>(se abrirá en una ventana nueva)</em>'
+            read: Leer este comentario
+            reject: Rechazar este comentario
+            approve: Aprovar este comentario
+          rejected: 'El comentario de "%{author}" ha sido rechazado.'
+          index:
+            no_items_yet: 'No hay comentarios %{type}.'
+          show:
+            comment: Comentario
+            blog_post: Entrada en el Blog
+            from: Enviado por
+            date: Enviado el
+            message: Mensaje
+            details: Detalles
+            age: Edad
+            actions: Acciones
+            back: Volver a todos los comentarios
+            reject: Rechazar este comentario
+            approve: Aprovar este comentario
+        posts:
+          form:
+            advanced_options: Opciones avanzadas
+            toggle_advanced_options: Click para acceder a las opciones de menú y etiquetas
+            save_as_draft: Guardar Borrador
+            published_at: Fecha de publicación
+          index:
+            no_items_yet: 'Aún no hay entradas en el Blog. Haz click en "%{create}" para añadir el primero'
+          uncategorized:
+            no_items_yet: 'No hay entradas en el Blog sin categoría.'
+          post:
+            view_live_html: 'Ver entrada <br/><em>(se abrirá en una ventana nueva)</em>'
+            edit: Editar esta entrada
+            delete: Eliminar esta entrada para siempre
+        settings:
+          notification_recipients:
+            value: Enviar notificaciones a
+            explanation: 'Cada vez que alguien comente en una entrada, Refinery envia un email para avisar de que hay un nuevo comentario.'
+            hint: 'Refinery te avisará con un email cada vez que haya un nuevo comentario en tu Blog.'
+            example: 'Si deseas que las notificaciones lleguen a más de una cuenta, puedes usar comas para separarlas (pepe@direccionpersonal.com, jose@direccionlaboral.com, ...)'
+            updated: 'Las notifiaciones han sido enviadas a "%{recipients}"'
+        submenu:
+          categories:
+            title: Categorías
+            manage: Gestionar
+            new: Añadir categoría
+          comments:
+            title: Comentarios
+            title_with_count: 'Comentarios (%{new_count} nuevos)'
+            new: Nuevo
+            unmoderated: Nuevos
+            approved: Aprobados
+            rejected: Rechazados
+          posts:
+            title: Entradas
+            manage: Gestionar entradas
+            new: Crear nueva entrada
+            uncategorized: Entradas sin categoría
+          settings:
+            title: Configuración
+            moderation: Moderación
+            update_notified: '¿Quién recibe las notificaciones?'
+            comments: Comentarios
     blog:
-      categories:
-        category:
-          edit: Editar esta categoría
-          delete: Borrar esta categoría para siempre
-        index:
-          no_items_yet: 'Todavía no hay categorías. Haz click en "%{create}" para añadir la primera.'
-      comments:
-        approved: 'El comentario de "%{author}" ha sido aprobado.'
-        comment:
-          view_live_html: 'Ver este comentario<br/><em>(se abrirá en una ventana nueva)</em>'
-          read: Leer este comentario
-          reject: Rechazar este comentario
-          approve: Aprovar este comentario
-        rejected: 'El comentario de "%{author}" ha sido rechazado.'
-        index:
-          no_items_yet: 'No hay comentarios %{type}.'
-        show:
-          comment: Comentario
-          blog_post: Entrada en el Blog
-          from: Enviado por
-          date: Enviado el
+      comment_mailer:
+        notification:
+          greeting: Hola
+          you_recieved_new_comment: Han hecho un nuevo comentario en una de las entradas de tu Blog.
+          comment_starts: --- inicio comentario ---
+          comment_ends: --- fin comentario ---
+          from: De
+          email: Email
           message: Mensaje
-          details: Detalles
-          age: Edad
-          actions: Acciones
-          back: Volver a todos los comentarios
-          reject: Rechazar este comentario
-          approve: Aprovar este comentario
-      posts:
-        form:
-          advanced_options: Opciones avanzadas
-          toggle_advanced_options: Click para acceder a las opciones de menú y etiquetas
-          save_as_draft: Guardar Borrador
-          published_at: Fecha de publicación
-        index:
-          no_items_yet: 'Aún no hay entradas en el Blog. Haz click en "%{create}" para añadir el primero'
-        uncategorized:
-          no_items_yet: 'No hay entradas en el Blog sin categoría.'
-        post:
-          view_live_html: 'Ver entrada <br/><em>(se abrirá en una ventana nueva)</em>'
-          edit: Editar esta entrada
-          delete: Eliminar esta entrada para siempre
-      settings:
-        notification_recipients:
-          value: Enviar notificaciones a
-          explanation: 'Cada vez que alguien comente en una entrada, Refinery envia un email para avisar de que hay un nuevo comentario.'
-          hint: 'Refinery te avisará con un email cada vez que haya un nuevo comentario en tu Blog.'
-          example: 'Si deseas que las notificaciones lleguen a más de una cuenta, puedes usar comas para separarlas (pepe@direccionpersonal.com, jose@direccionlaboral.com, ...)'
-          updated: 'Las notifiaciones han sido enviadas a "%{recipients}"'
-      submenu:
+          closing_line: Saludos
+          ps: 'P.D. Recuerda que puedes ver todos los comentarios en el apartado "Comentarios" dentro de la sección "Blog".'
+      shared:
         categories:
           title: Categorías
-          manage: Gestionar
-          new: Añadir categoría
-        comments:
-          title: Comentarios
-          title_with_count: 'Comentarios (%{new_count} nuevos)'
-          new: Nuevo
-          unmoderated: Nuevos
-          approved: Aprobados
-          rejected: Rechazados
+        rss_feed:
+          title: Feed RSS
+          subscribe: Suscribirse
         posts:
-          title: Entradas
-          manage: Gestionar entradas
-          new: Crear nueva entrada
-          uncategorized: Entradas sin categoría
-        settings:
-          title: Configuración
-          moderation: Moderación
-          update_notified: '¿Quién recibe las notificaciones?'
-          comments: Comentarios
-  blog:
-    comment_mailer:
-      notification:
-        greeting: Hola
-        you_recieved_new_comment: Han hecho un nuevo comentario en una de las entradas de tu Blog.
-        comment_starts: --- inicio comentario ---
-        comment_ends: --- fin comentario ---
-        from: De
-        email: Email
-        message: Mensaje
-        closing_line: Saludos
-        ps: 'P.D. Recuerda que puedes ver todos los comentarios en el apartado "Comentarios" dentro de la sección "Blog".'
-    shared:
-      categories:
-        title: Categorías
-      rss_feed:
-        title: Feed RSS
-        subscribe: Suscribirse
-      posts:
-        other: Otras entradas
-        created_at: 'Enviado hace %{when}'
-        read_more: Leer más
-      comments:
-        singular: comentario
-        none: no hay comentarios
-      archives: Archivos
-    categories:
-      show:
-        no_posts: Todavía no hay entradas.
-    posts:
-      post:
-        filed_in: Archivado en
-      comment: comentario
-      comments:
-        by: 'Enviado por %{who}'
-        time_ago: 'Hace %{time}'
-        thank_you: Gracias por tu comentario.
-        thank_you_moderated: 'Gracias por tu comentario. Ha sido enviado a la cola de moderación y, si lo aprobamos, aparecerá dentro de poco.'
-      index:
-        no_blog_articles_yet: 'Todavía no hay artículos. ¡Pero vuelve pronto!'
-      show:
-        blog_home: 'Página principal del Blog'
+          other: Otras entradas
+          created_at: 'Enviado hace %{when}'
+          read_more: Leer más
         comments:
-          title: Comentarios
-          add: 'Envía tu comentario'
-        other: Otros posts
-        filed_in: Archivado en
-        submit: Enviar comentario
-      archive:
-        blog_archive_for: 'Archivo del blog en %{date}'
-        no_blog_articles_posted: 'No hay entradas publicadas en %{date}.'
+          singular: comentario
+          none: no hay comentarios
+        archives: Archivos
+      categories:
+        show:
+          no_posts: Todavía no hay entradas.
+      posts:
+        post:
+          filed_in: Archivado en
+        comment: comentario
+        comments:
+          by: 'Enviado por %{who}'
+          time_ago: 'Hace %{time}'
+          thank_you: Gracias por tu comentario.
+          thank_you_moderated: 'Gracias por tu comentario. Ha sido enviado a la cola de moderación y, si lo aprobamos, aparecerá dentro de poco.'
+        index:
+          no_blog_articles_yet: 'Todavía no hay artículos. ¡Pero vuelve pronto!'
+        show:
+          blog_home: 'Página principal del Blog'
+          comments:
+            title: Comentarios
+            add: 'Envía tu comentario'
+          other: Otros posts
+          filed_in: Archivado en
+          submit: Enviar comentario
+        archive:
+          blog_archive_for: 'Archivo del blog en %{date}'
+          no_blog_articles_posted: 'No hay entradas publicadas en %{date}.'

@@ -1,159 +1,162 @@
 en:
-  plugins:
-    refinerycms_blog:
-      title: Blog
-  admin:
+  refinery:
+    plugins:
+      refinerycms_blog:
+        title: Blog
+    admin:
+      blog:
+        categories:
+          category:
+            edit: Edit this category
+            delete: Delete this category forever
+          index:
+            no_items_yet: 'There are no categories yet. Click "%{create}" to add your first category.'
+        comments:
+          approved: 'The comment from "%{author}" has been approved.'
+          comment:
+            view_live_html: 'View this comment live <br/><em>(opens in a new window)</em>'
+            read: Read this comment
+            reject: Reject this comment
+            approve: Approve this comment
+          rejected: 'The comment from "%{author}" has been rejected.'
+          index:
+            no_items_yet: 'There are no %{type} comments.'
+          show:
+            comment: Comment
+            blog_post: Blog Post
+            from: Posted by
+            date: Posted at
+            message: Comment
+            details: Details
+            age: Age
+            actions: Actions
+            back: Back to all comments
+            reject: Reject this comment
+            approve: Approve this comment
+        posts:
+          form:
+            advanced_options: Advanced Options
+            toggle_advanced_options: Click to access meta tag settings and menu options
+            save_as_draft: Save as Draft
+            published_at: Publish Date
+            custom_url: Custom Url
+            custom_url_help: Generate the url for the blog post from this text instead of the title.
+            copy_body: Copy Post Body to Teaser
+            copy_body_help: Copies the post body to the teaser.  Leave teaser blank to let Refinery automatically make the teaser.
+          index:
+            no_items_yet: 'There are no Blog Posts yet. Click "%{create}" to add your first blog post.'
+          uncategorized:
+            no_items_yet: 'There are no Uncategorized Blog Posts.'
+          post:
+            view_live_html: 'View this blog post live <br/><em>(opens in a new window)</em>'
+            edit: Edit this blog post
+            delete: Remove this blog post forever
+        settings:
+          notification_recipients:
+            value: Send notifications to
+            explanation: 'Every time someone comments on a blog post, Refinery sends out an email to say there is a new comment.'
+            hint: 'When a new comment is added, Refinery will send an email notification to you.'
+            example: "Enter your email address(es) like: jack@work.com, jill@office.com"
+            updated: 'Notification recipients have been set to "%{recipients}"'
+        submenu:
+          categories:
+            title: Categories
+            manage: Manage
+            new: Create new category
+          comments:
+            title: Comments
+            title_with_count: 'Comments (%{new_count} new)'
+            new: New
+            unmoderated: New
+            approved: Approved
+            rejected: Rejected
+          posts:
+            title: Posts
+            manage: Manage posts
+            new: Create new post
+            uncategorized: Uncategorized posts
+          settings:
+            title: Settings
+            moderation: Moderation
+            update_notified: Update who gets notified
+            comments: Comments
+            teasers: Teasers
     blog:
-      categories:
-        category:
-          edit: Edit this category
-          delete: Delete this category forever
-        index:
-          no_items_yet: 'There are no categories yet. Click "%{create}" to add your first category.'
-      comments:
-        approved: 'The comment from "%{author}" has been approved.'
-        comment:
-          view_live_html: 'View this comment live <br/><em>(opens in a new window)</em>'
-          read: Read this comment
-          reject: Reject this comment
-          approve: Approve this comment
-        rejected: 'The comment from "%{author}" has been rejected.'
-        index:
-          no_items_yet: 'There are no %{type} comments.'
-        show:
-          comment: Comment
-          blog_post: Blog Post
-          from: Posted by
-          date: Posted at
-          message: Comment
-          details: Details
-          age: Age
-          actions: Actions
-          back: Back to all comments
-          reject: Reject this comment
-          approve: Approve this comment
-      posts:
-        form:
-          advanced_options: Advanced Options
-          toggle_advanced_options: Click to access meta tag settings and menu options
-          save_as_draft: Save as Draft
-          published_at: Publish Date
-          custom_url: Custom Url
-          custom_url_help: Generate the url for the blog post from this text instead of the title.
-          copy_body: Copy Post Body to Teaser
-          copy_body_help: Copies the post body to the teaser.  Leave teaser blank to let Refinery automatically make the teaser.
-        index:
-          no_items_yet: 'There are no Blog Posts yet. Click "%{create}" to add your first blog post.'
-        uncategorized:
-          no_items_yet: 'There are no Uncategorized Blog Posts.'
-        post:
-          view_live_html: 'View this blog post live <br/><em>(opens in a new window)</em>'
-          edit: Edit this blog post
-          delete: Remove this blog post forever
-      settings:
-        notification_recipients:
-          value: Send notifications to
-          explanation: 'Every time someone comments on a blog post, Refinery sends out an email to say there is a new comment.'
-          hint: 'When a new comment is added, Refinery will send an email notification to you.'
-          example: "Enter your email address(es) like: jack@work.com, jill@office.com"
-          updated: 'Notification recipients have been set to "%{recipients}"'
-      submenu:
+      comment_mailer:
+        notification:
+          greeting: Hi there
+          you_recieved_new_comment: You just received a new comment on your website.
+          comment_starts: --- comment starts ---
+          comment_ends: --- comment ends ---
+          from: From
+          email: Email
+          message: Message
+          closing_line: Kind Regards
+          ps: 'P.S. All your comments are stored in the "Blog" section of Refinery under the "Comments" submenu should you ever want to view it there later.'
+      shared:
         categories:
           title: Categories
-          manage: Manage
-          new: Create new category
-        comments:
-          title: Comments
-          title_with_count: 'Comments (%{new_count} new)'
-          new: New
-          unmoderated: New
-          approved: Approved
-          rejected: Rejected
+        rss_feed:
+          title: RSS Feed
+          subscribe: Subscribe
         posts:
-          title: Posts
-          manage: Manage posts
-          new: Create new post
-          uncategorized: Uncategorized posts
-        settings:
-          title: Settings
-          moderation: Moderation
-          update_notified: Update who gets notified
-          comments: Comments
-          teasers: Teasers
-  blog:
-    comment_mailer:
-      notification:
-        greeting: Hi there
-        you_recieved_new_comment: You just received a new comment on your website.
-        comment_starts: --- comment starts ---
-        comment_ends: --- comment ends ---
-        from: From
-        email: Email
-        message: Message
-        closing_line: Kind Regards
-        ps: 'P.S. All your comments are stored in the "Blog" section of Refinery under the "Comments" submenu should you ever want to view it there later.'
-    shared:
-      categories:
-        title: Categories
-      rss_feed:
-        title: RSS Feed
-        subscribe: Subscribe
-      posts:
-        other: Other Posts
-        created_at: 'Posted on %{when}'
-        read_more: Read more
-      comments:
-        singular: comment
-        none: no comments
-      archives: Archives
-      tags:
-        title: "Tags"
-    categories:
-      show:
-        no_posts: There are no posts here yet.
-    posts:
-      post:
-        filed_in: Filed in
-      comment: comment
-      comments:
-        by: 'Posted by %{who}'
-        time_ago: '%{time} ago'
-        thank_you: 'Thank you for commenting.'
-        thank_you_moderated: 'Thank you for commenting. Your message has been placed in the moderation queue and will appear shortly.'
-      index:
-        no_blog_articles_yet: There are no blog articles posted yet. Stay tuned.
-      show:
-        blog_home: Blog Home
+          other: Other Posts
+          created_at: 'Posted on %{when}'
+          read_more: Read more
         comments:
-          title: Comments
-          add: Make a Comment
-        other: Other Blog Posts
-        filed_in: Filed in
-        tagged: Tagged
-        submit: Send comment
-        name: Name
-        email: Email
-        message: Message
-        by: by
-      tagged:
-        no_blog_articles_yet: There are no blog articles posted yet. Stay tuned.
-        posts_tagged: Posts tagged
-      archive:
-        blog_archive_for: 'Blog Archive for %{date}'
-        no_blog_articles_posted: 'There are no blog articles posted for %{date}. Stay tuned.'  
+          singular: comment
+          none: no comments
+        archives: Archives
+        tags:
+          title: "Tags"
+      categories:
+        show:
+          no_posts: There are no posts here yet.
+      posts:
+        post:
+          filed_in: Filed in
+        comment: comment
+        comments:
+          by: 'Posted by %{who}'
+          time_ago: '%{time} ago'
+          thank_you: 'Thank you for commenting.'
+          thank_you_moderated: 'Thank you for commenting. Your message has been placed in the moderation queue and will appear shortly.'
+        index:
+          no_blog_articles_yet: There are no blog articles posted yet. Stay tuned.
+        show:
+          blog_home: Blog Home
+          comments:
+            title: Comments
+            add: Make a Comment
+          other: Other Blog Posts
+          filed_in: Filed in
+          tagged: Tagged
+          submit: Send comment
+          name: Name
+          email: Email
+          message: Message
+          by: by
+        tagged:
+          no_blog_articles_yet: There are no blog articles posted yet. Stay tuned.
+          posts_tagged: Posts tagged
+        archive:
+          blog_archive_for: 'Blog Archive for %{date}'
+          no_blog_articles_posted: 'There are no blog articles posted for %{date}. Stay tuned.'  
   activerecord:
     models:
-      blog_category: Category
-      blog_comment: Comment
-      blog_post: Blog post
+      refinery:
+        blog_category: Category
+        blog_comment: Comment
+        blog_post: Blog post
     attributes:
-      blog_category:
-        title: Title
-      blog_comment:
-        name: Name
-        email: Email
-        message: Message
-      blog_post:
-        title: Title
-        body: Body
-        teaser: Teaser
+      refinery:
+        blog_category:
+          title: Title
+        blog_comment:
+          name: Name
+          email: Email
+          message: Message
+        blog_post:
+          title: Title
+          body: Body
+          teaser: Teaser

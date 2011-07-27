@@ -1,134 +1,135 @@
 nl:
-  plugins:
-    refinerycms_blog:
-      title: Blog
-  admin:
+  refinery:
+    plugins:
+      refinerycms_blog:
+        title: Blog
+    admin:
+      blog:
+        categories:
+          category:
+            edit: Bewerk deze categorie
+            delete: Verwijder deze categorie definitief
+          index:
+            no_items_yet: 'Er zijn momenteel geen categorien. Klik op "%{create}" om uw eerste categorie toe te voegen.'
+        comments:
+          approved: 'De reactie van "%{author}" is goedgekeurd.'
+          comment:
+            view_live_html: 'Bekijk deze reactie op de website <br/><em>(opent in een nieuw venster)</em>'
+            read: Lees deze reactie
+            reject: Keur deze reactie af
+            approve: Keur deze reactie goed
+          rejected: 'De reactie van "%{author}" is afgekeurd.'
+          index:
+            no_items_yet: 'Er zijn geen %{type} reacties.'
+          show:
+            comment: Reactie
+            blog_post: Blogpost
+            from: Gepost door
+            date: Gepost op
+            message: Reactie
+            details: Details
+            age: Leeftijd
+            actions: Acties
+            back: Terug naar alle reacties
+            reject: Keur deze reactie af
+            approve: Keur deze reactie goed
+        posts:
+          form:
+            advanced_options: Geavanceerde eigenschappen
+            toggle_advanced_options: Klik voor toegang tot meta tag instellingen en menu opties
+            save_as_draft: Sla op als concept
+            published_at: Publicatiedatum 
+          index:
+            no_items_yet: 'Er zijn momenteel geen blogposts. Klik op "%{create}" om uw eerste blogpost toe te voegen.'
+          uncategorized:
+            no_items_yet: 'Er zijn geen ongecategoriseerde blogposts.'
+          post:
+            view_live_html: 'Bekijk deze blogpost op de website <br/><em>(opent in een nieuw venster)</em>'
+            edit: Bewerk deze blogpost
+            delete: Verwijder deze blogpost definitief
+        settings:
+          notification_recipients:
+            value: Stuur notificaties naar
+            explanation: 'Bij elke nieuwe reactie op een blogpost stuurt Refinery u een e-mail om dit te melden.'
+            hint: 'Als er een reactie is toegevoegd stuurt Refinery een e-mail notificatie naar u.'
+            example: "Voer uw e-mailadres(sen) in, bijvoorbeeld: jack@work.com, jill@office.com"
+            updated: 'De ontvanger(s) van notificaties is/zijn gewijzigd naar "%{recipients}"'
+        submenu:
+          categories:
+            title: Categorien
+            manage: Beheren
+            new: Voeg een nieuwe categorie toe
+          comments:
+            title: Reacties
+            title_with_count: 'Reacties (%{new_count} nieuwe)'
+            new: Nieuw
+            unmoderated: Nieuw
+            approved: Goedgekeurd
+            rejected: Afgekeurd
+          posts:
+            title: Posts
+            manage: Beheer posts
+            new: Voeg een nieuwe post toe
+            uncategorized: Ongecategoriseerde posts
+          settings:
+            title: Instellingen
+            moderation: Stuur notificaties
+            update_notified: Wijzig wie notificaties ontvangt
+            comments: Reacties
+            teasers: Teasers
     blog:
-      categories:
-        category:
-          edit: Bewerk deze categorie
-          delete: Verwijder deze categorie definitief
-        index:
-          no_items_yet: 'Er zijn momenteel geen categorien. Klik op "%{create}" om uw eerste categorie toe te voegen.'
-      comments:
-        approved: 'De reactie van "%{author}" is goedgekeurd.'
-        comment:
-          view_live_html: 'Bekijk deze reactie op de website <br/><em>(opent in een nieuw venster)</em>'
-          read: Lees deze reactie
-          reject: Keur deze reactie af
-          approve: Keur deze reactie goed
-        rejected: 'De reactie van "%{author}" is afgekeurd.'
-        index:
-          no_items_yet: 'Er zijn geen %{type} reacties.'
-        show:
-          comment: Reactie
-          blog_post: Blogpost
-          from: Gepost door
-          date: Gepost op
-          message: Reactie
-          details: Details
-          age: Leeftijd
-          actions: Acties
-          back: Terug naar alle reacties
-          reject: Keur deze reactie af
-          approve: Keur deze reactie goed
-      posts:
-        form:
-          advanced_options: Geavanceerde eigenschappen
-          toggle_advanced_options: Klik voor toegang tot meta tag instellingen en menu opties
-          save_as_draft: Sla op als concept
-          published_at: Publicatiedatum 
-        index:
-          no_items_yet: 'Er zijn momenteel geen blogposts. Klik op "%{create}" om uw eerste blogpost toe te voegen.'
-        uncategorized:
-          no_items_yet: 'Er zijn geen ongecategoriseerde blogposts.'
-        post:
-          view_live_html: 'Bekijk deze blogpost op de website <br/><em>(opent in een nieuw venster)</em>'
-          edit: Bewerk deze blogpost
-          delete: Verwijder deze blogpost definitief
-      settings:
-        notification_recipients:
-          value: Stuur notificaties naar
-          explanation: 'Bij elke nieuwe reactie op een blogpost stuurt Refinery u een e-mail om dit te melden.'
-          hint: 'Als er een reactie is toegevoegd stuurt Refinery een e-mail notificatie naar u.'
-          example: "Voer uw e-mailadres(sen) in, bijvoorbeeld: jack@work.com, jill@office.com"
-          updated: 'De ontvanger(s) van notificaties is/zijn gewijzigd naar "%{recipients}"'
-      submenu:
+      comment_mailer:
+        notification:
+          greeting: Hallo
+          you_recieved_new_comment: Er is zojuist een reactie geplaatst op uw website.
+          comment_starts: --- begin reactie ---
+          comment_ends: --- einde reactie ---
+          from: Van
+          email: E-mail
+          message: Bericht
+          closing_line: Met vriendelijke groet
+          ps: 'P.S. Alle reacties worden opgeslagen in de "Blog" sectie van Refinery onder het submenu "Comments", voor als u deze reacties later wilt bekijken.'
+      shared:
         categories:
           title: Categorien
-          manage: Beheren
-          new: Voeg een nieuwe categorie toe
-        comments:
-          title: Reacties
-          title_with_count: 'Reacties (%{new_count} nieuwe)'
-          new: Nieuw
-          unmoderated: Nieuw
-          approved: Goedgekeurd
-          rejected: Afgekeurd
+        rss_feed:
+          title: RSS Feed
+          subscribe: Aanmelden
         posts:
-          title: Posts
-          manage: Beheer posts
-          new: Voeg een nieuwe post toe
-          uncategorized: Ongecategoriseerde posts
-        settings:
-          title: Instellingen
-          moderation: Stuur notificaties
-          update_notified: Wijzig wie notificaties ontvangt
-          comments: Reacties
-          teasers: Teasers
-  blog:
-    comment_mailer:
-      notification:
-        greeting: Hallo
-        you_recieved_new_comment: Er is zojuist een reactie geplaatst op uw website.
-        comment_starts: --- begin reactie ---
-        comment_ends: --- einde reactie ---
-        from: Van
-        email: E-mail
-        message: Bericht
-        closing_line: Met vriendelijke groet
-        ps: 'P.S. Alle reacties worden opgeslagen in de "Blog" sectie van Refinery onder het submenu "Comments", voor als u deze reacties later wilt bekijken.'
-    shared:
-      categories:
-        title: Categorien
-      rss_feed:
-        title: RSS Feed
-        subscribe: Aanmelden
-      posts:
-        other: Andere posts
-        created_at: 'Gepost op %{when}'
-        read_more: Lees verder
-      comments:
-        singular: Reactie
-        none: Geen reacties
-      archives: Archief
-      tags:
-        title: "Tags"
-    categories:
-      show:
-        no_posts: Er zijn momenteel geen posts.
-    posts:
-      post:
-        filed_in: Toegevoegd aan
-      comment: Reactie
-      comments:
-        by: 'Gepost door %{who}'
-        time_ago: '%{time} geleden'
-        thank_you: 'Bedankt voor uw reactie.'
-        thank_you_moderated: 'Bedankt voor uw reactie. Uw reactie is in de wachtrij geplaatst en zal binnenkort verschijnen.'
-      index:
-        no_blog_articles_yet: Er zijn momenteel nog geen blogposts. Neem regelmatig een kijkje.
-      show:
-        blog_home: Blog Home
+          other: Andere posts
+          created_at: 'Gepost op %{when}'
+          read_more: Lees verder
         comments:
-          title: Reacties
-          add: Plaats een reactie
-        other: Andere blogposts
-        filed_in: Toegevoegd aan
-        tagged: Tagged
-        submit: Verstuur reactie
-      tagged:
-        no_blog_articles_yet: Er zijn momenteel nog geen blogposts. Neem regelmatig een kijkje.
-      archive:
-        blog_archive_for: 'Blog archief voor %{date}'
-        no_blog_articles_posted: 'Er zijn geen blogposts voor %{date}. Neem regelmatig een kijkje.'
+          singular: Reactie
+          none: Geen reacties
+        archives: Archief
+        tags:
+          title: "Tags"
+      categories:
+        show:
+          no_posts: Er zijn momenteel geen posts.
+      posts:
+        post:
+          filed_in: Toegevoegd aan
+        comment: Reactie
+        comments:
+          by: 'Gepost door %{who}'
+          time_ago: '%{time} geleden'
+          thank_you: 'Bedankt voor uw reactie.'
+          thank_you_moderated: 'Bedankt voor uw reactie. Uw reactie is in de wachtrij geplaatst en zal binnenkort verschijnen.'
+        index:
+          no_blog_articles_yet: Er zijn momenteel nog geen blogposts. Neem regelmatig een kijkje.
+        show:
+          blog_home: Blog Home
+          comments:
+            title: Reacties
+            add: Plaats een reactie
+          other: Andere blogposts
+          filed_in: Toegevoegd aan
+          tagged: Tagged
+          submit: Verstuur reactie
+        tagged:
+          no_blog_articles_yet: Er zijn momenteel nog geen blogposts. Neem regelmatig een kijkje.
+        archive:
+          blog_archive_for: 'Blog archief voor %{date}'
+          no_blog_articles_posted: 'Er zijn geen blogposts voor %{date}. Neem regelmatig een kijkje.'

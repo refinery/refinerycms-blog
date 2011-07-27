@@ -1,128 +1,129 @@
 zh-CN:
-  plugins:
-    refinerycms_blog:
-      title: 博客
-  admin:
+  refinery:
+    plugins:
+      refinerycms_blog:
+        title: 博客
+    admin:
+      blog:
+        categories:
+          category:
+            edit: 编辑此类别
+            delete: 永久删除此类别
+          index:
+            no_items_yet: '没有此类别。 点击 "%{create}" 添加第一次类别。'
+        comments:
+          approved: '评论来自 "%{author}" 已被审批。'
+          comment:
+            view_live_html: '查看此评论 <br/><em>(opens in a new window)</em>'
+            read: 阅读此评论
+            reject: 驳回此评论
+            approve: 批准此评论
+          rejected: '评论来自 "%{author}" 已被驳回。'
+          index:
+            no_items_yet: '没有 %{type} 评论。'
+          show:
+            comment: 评论
+            blog_post: 发博
+            from: 发布由
+            date: 发布在
+            message: 评论
+            details: 详情
+            age: 年龄
+            actions: 行动
+            back: 返回至所有评论
+            reject: 驳回此评论
+            approve: 批准此评论
+        posts:
+          form:
+            advanced_options: 高级选项
+            toggle_advanced_options: 点击进入标签详解设置和菜单选项
+            save_as_draft: 保存为草稿
+            published_at: 发布日期
+          index:
+            no_items_yet: '目前尚未发博。 点击 "%{create}" 添加您的第一篇博文。'
+          uncategorized:
+            no_items_yet: '没有未归类的博文。'
+          post:
+            view_live_html: '查看此博 <br/><em>(opens in a new window)</em>'
+            edit: 编辑此博
+            delete: 永久删除此博
+        settings:
+          notification_recipients:
+            value: 发送通知
+            explanation: '每次有人发表评论，发送邮件告知有新评论。'
+            hint: '增加新评论时，将会发送邮件告知您。'
+            example: "输入您的邮件地址，如: jack@work.com, jill@office.com"
+            updated: '通知收件人已被设为 "%{recipients}"'
+        submenu:
+          categories:
+            title: 分类
+            manage: 管理
+            new: 创建新的类别
+          comments:
+            title: 评论
+            title_with_count: '评论 (%{new_count} new)'
+            new: 新
+            unmoderated: 新
+            approved: 批准
+            rejected: 驳回
+          posts:
+            title: 博文
+            manage: 管理博文
+            new: 创建新博文
+            uncategorized: 未归类博文
+          settings:
+            title: 设置
+            moderation: 等待审核
+            update_notified: 更新获得通知的人
+            comments: 评论
     blog:
-      categories:
-        category:
-          edit: 编辑此类别
-          delete: 永久删除此类别
-        index:
-          no_items_yet: '没有此类别。 点击 "%{create}" 添加第一次类别。'
-      comments:
-        approved: '评论来自 "%{author}" 已被审批。'
-        comment:
-          view_live_html: '查看此评论 <br/><em>(opens in a new window)</em>'
-          read: 阅读此评论
-          reject: 驳回此评论
-          approve: 批准此评论
-        rejected: '评论来自 "%{author}" 已被驳回。'
-        index:
-          no_items_yet: '没有 %{type} 评论。'
-        show:
-          comment: 评论
-          blog_post: 发博
-          from: 发布由
-          date: 发布在
-          message: 评论
-          details: 详情
-          age: 年龄
-          actions: 行动
-          back: 返回至所有评论
-          reject: 驳回此评论
-          approve: 批准此评论
-      posts:
-        form:
-          advanced_options: 高级选项
-          toggle_advanced_options: 点击进入标签详解设置和菜单选项
-          save_as_draft: 保存为草稿
-          published_at: 发布日期
-        index:
-          no_items_yet: '目前尚未发博。 点击 "%{create}" 添加您的第一篇博文。'
-        uncategorized:
-          no_items_yet: '没有未归类的博文。'
-        post:
-          view_live_html: '查看此博 <br/><em>(opens in a new window)</em>'
-          edit: 编辑此博
-          delete: 永久删除此博
-      settings:
-        notification_recipients:
-          value: 发送通知
-          explanation: '每次有人发表评论，发送邮件告知有新评论。'
-          hint: '增加新评论时，将会发送邮件告知您。'
-          example: "输入您的邮件地址，如: jack@work.com, jill@office.com"
-          updated: '通知收件人已被设为 "%{recipients}"'
-      submenu:
+      comment_mailer:
+        notification:
+          greeting: 您好
+          you_recieved_new_comment: 您刚收到来自网站的一条新评论
+          comment_starts: --- 评论开始 ---
+          comment_ends: --- 评论结束 ---
+          from: 来自
+          email: 邮件
+          message: 信息
+          closing_line: 亲切问候
+          ps: 'P.S. All your comments are stored in the "Blog" section of Refinery under the "Comments" submenu should you ever want to view it later there.'
+      shared:
         categories:
           title: 分类
-          manage: 管理
-          new: 创建新的类别
-        comments:
-          title: 评论
-          title_with_count: '评论 (%{new_count} new)'
-          new: 新
-          unmoderated: 新
-          approved: 批准
-          rejected: 驳回
+        rss_feed:
+          title: RSS源
+          subscribe: 订阅
         posts:
-          title: 博文
-          manage: 管理博文
-          new: 创建新博文
-          uncategorized: 未归类博文
-        settings:
-          title: 设置
-          moderation: 等待审核
-          update_notified: 更新获得通知的人
-          comments: 评论
-  blog:
-    comment_mailer:
-      notification:
-        greeting: 您好
-        you_recieved_new_comment: 您刚收到来自网站的一条新评论
-        comment_starts: --- 评论开始 ---
-        comment_ends: --- 评论结束 ---
-        from: 来自
-        email: 邮件
-        message: 信息
-        closing_line: 亲切问候
-        ps: 'P.S. All your comments are stored in the "Blog" section of Refinery under the "Comments" submenu should you ever want to view it later there.'
-    shared:
-      categories:
-        title: 分类
-      rss_feed:
-        title: RSS源
-        subscribe: 订阅
-      posts:
-        other: 其他博文
-        created_at: '发表于 %{when}'
-        read_more: 阅读更多
-      comments:
-        singular: 评论
-        none: 没有评论
-      archives: 档案
-    categories:
-      show:
-        no_posts: 此处没有文章。
-    posts:
-      post:
-        filed_in: 用户体验
-      comment: 评论
-      comments:
-        by: '发布由 %{who}'
-        time_ago: '%{time} 之前'
-        thank_you: '感谢您的评论。'
-        thank_you_moderated: '感谢您的评论。 您的信息已被列入等待审核队列，并会在短期内出现。'
-      index:
-        no_blog_articles_yet: 尚未发布文章。敬请关注。
-      show:
-        blog_home: 博客首页
+          other: 其他博文
+          created_at: '发表于 %{when}'
+          read_more: 阅读更多
         comments:
-          title: 评论
-          add: 发表评论
-        other: 其他博文
-        filed_in: 用户体验
-        submit: 发送评论
-      archive:
-        blog_archive_for: '博客存档 %{date}'
-        no_blog_articles_posted: '没有发布文章 %{date}。敬请关注。'
+          singular: 评论
+          none: 没有评论
+        archives: 档案
+      categories:
+        show:
+          no_posts: 此处没有文章。
+      posts:
+        post:
+          filed_in: 用户体验
+        comment: 评论
+        comments:
+          by: '发布由 %{who}'
+          time_ago: '%{time} 之前'
+          thank_you: '感谢您的评论。'
+          thank_you_moderated: '感谢您的评论。 您的信息已被列入等待审核队列，并会在短期内出现。'
+        index:
+          no_blog_articles_yet: 尚未发布文章。敬请关注。
+        show:
+          blog_home: 博客首页
+          comments:
+            title: 评论
+            add: 发表评论
+          other: 其他博文
+          filed_in: 用户体验
+          submit: 发送评论
+        archive:
+          blog_archive_for: '博客存档 %{date}'
+          no_blog_articles_posted: '没有发布文章 %{date}。敬请关注。'

@@ -1,134 +1,136 @@
 pl:
-  activerecord:
-    attributes:
-      blog_comment:
-        name: "Imię"
-        email: "Email"
-        message: "Treść"
-  plugins:
-    refinerycms_blog:
-      title: Blog
-  admin:
+  refinery:
+    plugins:
+      refinerycms_blog:
+        title: Blog
+    admin:
+      blog:
+        categories:
+          category:
+            edit: Edytuj tą kategorię
+            delete: Usuń na zawsze
+          index:
+            no_items_yet: 'W tej chwili nie ma żadnych kategorii. Kliknij "%{create}" aby dodać pierwszą.'
+        comments:
+          approved: 'Komentarz "%{author}" został zaakceptowany.'
+          comment:
+            view_live: 'Zobacz ten komentarz na żywo<br/><em>(otwiera w nowym oknie)</em>'
+            read: Pokaż ten komentarz
+            reject: Odrzuć ten komentarz
+            approve: Zaakceptuj ten komentarz
+          rejected: 'Komentarz "%{author}" został odrzucony.'
+          index:
+            no_items_yet: 'Nie ma więcej komentarzy typu "%{type}".'
+          show:
+            comment: Komentarz
+            blog_post: Post
+            from: Autor
+            date: Data
+            message: Komentarz
+            details: Szczegóły
+            age: Wiek
+            actions: Akcje
+            back: Powrót do listy komentarzy
+            reject: Odrzuć ten komentarz
+            approve: Zaakceptuj ten komentarz
+        posts:
+          form:
+            advanced_options: Opcje zaawansowane
+            toggle_advanced_options: 'Kliknij, aby zarządzać meta-ustawieniami'
+            save_as_draft: Zapisz jako szkic
+            published_at: Data publikacji
+          index:
+            no_items_yet: 'Na blogu nie ma jeszcze żadnych wpisów. Kliknij "%{create}" aby dodać pierwszy post.'
+          uncategorized:
+            no_items_yet: 'Brak nieskategoryzowanych wpisów na blogu.'
+          post:
+            view_live: 'Zobacz ten post na żywo<br/><em>(otwiera w nowym oknie)</em>'
+            edit: Edytuj ten post
+            delete: Usuń ten post na zawsze
+        settings:
+          notification_recipients:
+            value: Powiadomienia wysyłane do
+            explanation: 'Gdy zostanie dodany nowy komentarz, system wyśle powiadomienie przez e-mail.'
+            hint: 'Gdy zostanie dodany nowy komentarz, system wyśle powiadomienie przez e-mail.'
+            example: 'Podaj adresy e-mail oddzielone przecinkiem, np: jack@work.com, jill@office.com'
+            updated: 'Powiadomienia będą wysyłane do "%{recipients}"'
+        submenu:
+          categories:
+            title: Kategorie
+            manage: Zarządzaj kategoriami
+            new: Dodaj nową kategorię
+          comments:
+            title: Komentarze
+            title_with_count: 'Komentarze (%{new_count} nowych)'
+            new: Nowe
+            unmoderated: Nowe
+            approved: Zaakceptowane
+            rejected: Odrzucone
+          posts:
+            title: Posty
+            manage: Zarządzaj postami
+            new: Dodaj nowy post
+            uncategorized: Posty bez kategorii
+          settings:
+            title: Ustawienia
+            moderation: Wł./wył. moderację
+            update_notified: Powiadamianie przez e-mail
+            comments: Komentarze
     blog:
-      categories:
-        category:
-          edit: Edytuj tą kategorię
-          delete: Usuń na zawsze
-        index:
-          no_items_yet: 'W tej chwili nie ma żadnych kategorii. Kliknij "%{create}" aby dodać pierwszą.'
-      comments:
-        approved: 'Komentarz "%{author}" został zaakceptowany.'
-        comment:
-          view_live: 'Zobacz ten komentarz na żywo<br/><em>(otwiera w nowym oknie)</em>'
-          read: Pokaż ten komentarz
-          reject: Odrzuć ten komentarz
-          approve: Zaakceptuj ten komentarz
-        rejected: 'Komentarz "%{author}" został odrzucony.'
-        index:
-          no_items_yet: 'Nie ma więcej komentarzy typu "%{type}".'
-        show:
-          comment: Komentarz
-          blog_post: Post
-          from: Autor
-          date: Data
-          message: Komentarz
-          details: Szczegóły
-          age: Wiek
-          actions: Akcje
-          back: Powrót do listy komentarzy
-          reject: Odrzuć ten komentarz
-          approve: Zaakceptuj ten komentarz
-      posts:
-        form:
-          advanced_options: Opcje zaawansowane
-          toggle_advanced_options: 'Kliknij, aby zarządzać meta-ustawieniami'
-          save_as_draft: Zapisz jako szkic
-          published_at: Data publikacji
-        index:
-          no_items_yet: 'Na blogu nie ma jeszcze żadnych wpisów. Kliknij "%{create}" aby dodać pierwszy post.'
-        uncategorized:
-          no_items_yet: 'Brak nieskategoryzowanych wpisów na blogu.'
-        post:
-          view_live: 'Zobacz ten post na żywo<br/><em>(otwiera w nowym oknie)</em>'
-          edit: Edytuj ten post
-          delete: Usuń ten post na zawsze
-      settings:
-        notification_recipients:
-          value: Powiadomienia wysyłane do
-          explanation: 'Gdy zostanie dodany nowy komentarz, system wyśle powiadomienie przez e-mail.'
-          hint: 'Gdy zostanie dodany nowy komentarz, system wyśle powiadomienie przez e-mail.'
-          example: 'Podaj adresy e-mail oddzielone przecinkiem, np: jack@work.com, jill@office.com'
-          updated: 'Powiadomienia będą wysyłane do "%{recipients}"'
-      submenu:
+      comment_mailer:
+        notification:
+          greeting: Witaj:)
+          you_recieved_new_comment: Właśnie otrzymałeś nowy komentarz na swojej stronie!
+          comment_starts: --- początek komentarza ---
+          comment_ends: --- koniec komentarza ---
+          from: Od
+          email: Email
+          message: Treść
+          closing_line: Pozdrawiamy
+          ps: 'P.S. Wszystkie komentarze przechowywane są w panelu zarządzania, w sekcji "Blog" i podmenu "Komentarze". '
+      shared:
         categories:
           title: Kategorie
-          manage: Zarządzaj kategoriami
-          new: Dodaj nową kategorię
-        comments:
-          title: Komentarze
-          title_with_count: 'Komentarze (%{new_count} nowych)'
-          new: Nowe
-          unmoderated: Nowe
-          approved: Zaakceptowane
-          rejected: Odrzucone
+        rss_feed:
+          title: RSS Feed
+          subscribe: Sukskrybuj
         posts:
-          title: Posty
-          manage: Zarządzaj postami
-          new: Dodaj nowy post
-          uncategorized: Posty bez kategorii
-        settings:
-          title: Ustawienia
-          moderation: Wł./wył. moderację
-          update_notified: Powiadamianie przez e-mail
-          comments: Komentarze
-  blog:
-    comment_mailer:
-      notification:
-        greeting: Witaj:)
-        you_recieved_new_comment: Właśnie otrzymałeś nowy komentarz na swojej stronie!
-        comment_starts: --- początek komentarza ---
-        comment_ends: --- koniec komentarza ---
-        from: Od
-        email: Email
-        message: Treść
-        closing_line: Pozdrawiamy
-        ps: 'P.S. Wszystkie komentarze przechowywane są w panelu zarządzania, w sekcji "Blog" i podmenu "Komentarze". '
-    shared:
-      categories:
-        title: Kategorie
-      rss_feed:
-        title: RSS Feed
-        subscribe: Sukskrybuj
-      posts:
-        other: Pozostałe posty
-        created_at: 'Data: %{when}'
-        read_more: Więcej
-      comments:
-        singular: komentarz
-        none: brak komentarzy
-      archives: Archiwum
-    categories:
-      show:
-        no_posts: Nie ma jeszcze żadnych postów.
-    posts:
-      post:
-        filed_in: 'kategorie:'
-      comment: komentarz
-      comments:
-        by: 'Autor: %{who}'
-        time_ago: '%{time} temu'
-        thank_you: 'Dziękujemy za Twój komentarz.'
-        thank_you_moderated: 'Dziękujemy za Twój komentarz. Został on przekazany do moderacji i niedługo pojawi się na stronie.'
-      index:
-        no_blog_articles_yet: W tej chwili nie ma jeszcze żadnych postów. Cierpliwości:)
-      show:
-        blog_home: Blog 
+          other: Pozostałe posty
+          created_at: 'Data: %{when}'
+          read_more: Więcej
         comments:
-          title: Komentarze
-          add: Dodaj komentarz
-        other: Pozostałe wpisy
-        filed_in: 'kategorie:'
-        submit: Dodaj komentarz
-      archive:
-        blog_archive_for: 'Archiwum dla %{date}'
-        no_blog_articles_posted: 'Brak wpisów dla daty %{date}.' 
+          singular: komentarz
+          none: brak komentarzy
+        archives: Archiwum
+      categories:
+        show:
+          no_posts: Nie ma jeszcze żadnych postów.
+      posts:
+        post:
+          filed_in: 'kategorie:'
+        comment: komentarz
+        comments:
+          by: 'Autor: %{who}'
+          time_ago: '%{time} temu'
+          thank_you: 'Dziękujemy za Twój komentarz.'
+          thank_you_moderated: 'Dziękujemy za Twój komentarz. Został on przekazany do moderacji i niedługo pojawi się na stronie.'
+        index:
+          no_blog_articles_yet: W tej chwili nie ma jeszcze żadnych postów. Cierpliwości:)
+        show:
+          blog_home: Blog 
+          comments:
+            title: Komentarze
+            add: Dodaj komentarz
+          other: Pozostałe wpisy
+          filed_in: 'kategorie:'
+          submit: Dodaj komentarz
+        archive:
+          blog_archive_for: 'Archiwum dla %{date}'
+          no_blog_articles_posted: 'Brak wpisów dla daty %{date}.'
+  activerecord:
+    attributes:
+      refinery:
+        blog_comment:
+          name: "Imię"
+          email: "Email"
+          message: "Treść"

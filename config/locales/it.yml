@@ -1,156 +1,159 @@
 it:
-  plugins:
-    refinerycms_blog:
-      title: Blog
-  admin:
+  refinery:
+    plugins:
+      refinerycms_blog:
+        title: Blog
+    admin:
+      blog:
+        categories:
+          category:
+            edit: Modifica questa categoria
+            delete: Elimina questa categoria per sempre
+          index:
+            no_items_yet: 'Nessuna categoria ancora presente. Fare click su "%{create}" per aggiungere la tua prima categoria.'
+        comments:
+          approved: 'Il commento di "%{author}" è stato approvato.'
+          comment:
+            view_live_html: 'Visualizza questo commento <em> <br/> live (si apre in una nuova finestra) </em>'
+            read: Leggi questo commento
+            reject: Rifiuta questo commento
+            approve: Approva questo commento
+          rejected: 'Il commento di "%{author}" è stato rifiutato.'
+          index:
+            no_items_yet: 'Non ci sono %{type} commenti.'
+          show:
+            comment: Commento
+            blog_post: Articolo
+            from: Pubblicato da
+            date: Pubblicato il
+            message: Commento
+            details: Dettagli
+            age: età
+            actions: Azioni
+            back: Torna a tutti i commenti
+            reject: Rifiuta questo commento
+            approve: Approva questo commento
+        posts:
+          form:
+            advanced_options: Opzioni Avanzate
+            toggle_advanced_options: Clicca per accedere alle impostationi dei meta tag e del menu
+            save_as_draft: Salva come Bozza
+            published_at: Data di Pubblicazione
+            custom_url: Url personalizzato
+            custom_url_help: Puoi scegliere un url specifico per questo articolo. Lasciando questo campo vuoto verrà utilizzato il titolo.
+            copy_body: Copia il testo dell'articolo nel teaser
+            copy_body_help: Lascia il teaser bianco per creare il teaser automaticamente.
+          index:
+            no_items_yet: 'Non ci sono ancora articoli in questo Blog. Clicca su "%{create}" per aggiungerne uno.'
+          uncategorized:
+            no_items_yet: 'Non ci sono articoli senza categoria.'
+          post:
+            view_live_html: 'Visualizza questo articolo sul sito <br/><em>(si aprirà in una nuova finestra)</em>'
+            edit: Modifica questo articolo
+            delete: Rimuovi questo articolo per sempre
+        settings:
+          notification_recipients:
+            value: Inviare notifiche a
+            explanation: "Ogni volta che qualcuno commenta un articolo, Refinery invia una mail per avvisare che c'è un nuovo comemnto"
+            hint: 'Quando viene aggiunto un nuovo commento Refinery ti invierà una email di notifica.'
+            example: "Inserisci il tuo indirizzo email. È possibile insierire più indirizzi separati dalla virgola. Es: jack@work.com, jill@office.com"
+            updated: 'I destinatari delle notifiche sono stati impostati "%{recipients}"'
+        submenu:
+          categories:
+            title: Categorie
+            manage: Gestione categorie
+            new: Crea una nuova categoria
+          comments:
+            title: Commenti
+            title_with_count: 'Commenti (%{new_count} nuovi)'
+            new: Nuovo
+            unmoderated: Nuovo
+            approved: Approvato
+            rejected: Rifiutato
+          posts:
+            title: Articoli
+            manage: Gestione articoli
+            new: Crea un nuovo articolo
+            uncategorized: Articoli senza categoria
+          settings:
+            title: Impostazioni
+            moderation: Moderazione
+            update_notified: Aggiornare i destinatari delle notifiche
+            comments: Commenti
     blog:
-      categories:
-        category:
-          edit: Modifica questa categoria
-          delete: Elimina questa categoria per sempre
-        index:
-          no_items_yet: 'Nessuna categoria ancora presente. Fare click su "%{create}" per aggiungere la tua prima categoria.'
-      comments:
-        approved: 'Il commento di "%{author}" è stato approvato.'
-        comment:
-          view_live_html: 'Visualizza questo commento <em> <br/> live (si apre in una nuova finestra) </em>'
-          read: Leggi questo commento
-          reject: Rifiuta questo commento
-          approve: Approva questo commento
-        rejected: 'Il commento di "%{author}" è stato rifiutato.'
-        index:
-          no_items_yet: 'Non ci sono %{type} commenti.'
-        show:
-          comment: Commento
-          blog_post: Articolo
-          from: Pubblicato da
-          date: Pubblicato il
-          message: Commento
-          details: Dettagli
-          age: età
-          actions: Azioni
-          back: Torna a tutti i commenti
-          reject: Rifiuta questo commento
-          approve: Approva questo commento
-      posts:
-        form:
-          advanced_options: Opzioni Avanzate
-          toggle_advanced_options: Clicca per accedere alle impostationi dei meta tag e del menu
-          save_as_draft: Salva come Bozza
-          published_at: Data di Pubblicazione
-          custom_url: Url personalizzato
-          custom_url_help: Puoi scegliere un url specifico per questo articolo. Lasciando questo campo vuoto verrà utilizzato il titolo.
-          copy_body: Copia il testo dell'articolo nel teaser
-          copy_body_help: Lascia il teaser bianco per creare il teaser automaticamente.
-        index:
-          no_items_yet: 'Non ci sono ancora articoli in questo Blog. Clicca su "%{create}" per aggiungerne uno.'
-        uncategorized:
-          no_items_yet: 'Non ci sono articoli senza categoria.'
-        post:
-          view_live_html: 'Visualizza questo articolo sul sito <br/><em>(si aprirà in una nuova finestra)</em>'
-          edit: Modifica questo articolo
-          delete: Rimuovi questo articolo per sempre
-      settings:
-        notification_recipients:
-          value: Inviare notifiche a
-          explanation: "Ogni volta che qualcuno commenta un articolo, Refinery invia una mail per avvisare che c'è un nuovo comemnto"
-          hint: 'Quando viene aggiunto un nuovo commento Refinery ti invierà una email di notifica.'
-          example: "Inserisci il tuo indirizzo email. È possibile insierire più indirizzi separati dalla virgola. Es: jack@work.com, jill@office.com"
-          updated: 'I destinatari delle notifiche sono stati impostati "%{recipients}"'
-      submenu:
+      comment_mailer:
+        notification:
+          greeting: Ciao
+          you_recieved_new_comment: Hai ricevuto un commento sul tuo sito.
+          comment_starts: --- inizio commento ---
+          comment_ends: --- fine commento ---
+          from: Da
+          email: Email
+          message: Testo
+          closing_line: Saluti
+          ps: 'P.S. Tutti i commenti sono memorizzati nella sezione "Blog di Refinery sotto la voce "Commenti" se mai volessi visualizzarli lì.'
+      shared:
         categories:
           title: Categorie
-          manage: Gestione categorie
-          new: Crea una nuova categoria
-        comments:
-          title: Commenti
-          title_with_count: 'Commenti (%{new_count} nuovi)'
-          new: Nuovo
-          unmoderated: Nuovo
-          approved: Approvato
-          rejected: Rifiutato
+        rss_feed:
+          title: RSS Feed
+          subscribe: Iscriviti
         posts:
-          title: Articoli
-          manage: Gestione articoli
-          new: Crea un nuovo articolo
-          uncategorized: Articoli senza categoria
-        settings:
-          title: Impostazioni
-          moderation: Moderazione
-          update_notified: Aggiornare i destinatari delle notifiche
-          comments: Commenti
-  blog:
-    comment_mailer:
-      notification:
-        greeting: Ciao
-        you_recieved_new_comment: Hai ricevuto un commento sul tuo sito.
-        comment_starts: --- inizio commento ---
-        comment_ends: --- fine commento ---
-        from: Da
-        email: Email
-        message: Testo
-        closing_line: Saluti
-        ps: 'P.S. Tutti i commenti sono memorizzati nella sezione "Blog di Refinery sotto la voce "Commenti" se mai volessi visualizzarli lì.'
-    shared:
-      categories:
-        title: Categorie
-      rss_feed:
-        title: RSS Feed
-        subscribe: Iscriviti
-      posts:
-        other: Altri Articoli
-        created_at: 'Pubblicato il %{when}'
-        read_more: Continua a leggere
-      comments:
-        singular: commento
-        plural: commenti
-        none: nessun commento
-      tags:
-        title: "Tags"
-    categories:
-      show:
-        no_posts: Non sono ancora presenti articoli.
-    posts:
-      post:
-        filed_in: Archiviato in
-      comment: commento
-      comments:
-        by: 'Pubblicato da %{who}'
-        time_ago: '%{time} fa'
-        thank_you: 'Grazie per aver scritto un commento.'
-        thank_you_moderated: 'Grazie per aver scritto un commento. Il tuo messaggio è stato inserito nella coda di moderazione e sarà visibile a breve.'
-      index:
-        no_blog_articles_yet: Non sono stati ancora pubblicati articoli nel blog. Continuate a seguirci.
-      show:
+          other: Altri Articoli
+          created_at: 'Pubblicato il %{when}'
+          read_more: Continua a leggere
         comments:
-          title: Commenti
-          add: Scrivi un Commento
-        other: Altri Articoli
-        filed_in: Archiviato in
-        submit: Invia commento
-        tagged: Taggato
-        name: Nome
-        email: Email
-        message: Articolo
-        by: da
-      tagged:
-        no_blog_articles_yet: Non sono stati ancora pubblicati articoli nel blog. Continuate a seguirci.
-        posts_tagged: Articoli taggati
-      archive:
-        blog_archive_for: 'Articoli pubblicati il %{date}'
-        no_blog_articles_posted: Non sono stati pubblicati articoli nel blog il %{date}. Continuate a seguirci.
+          singular: commento
+          plural: commenti
+          none: nessun commento
+        tags:
+          title: "Tags"
+      categories:
+        show:
+          no_posts: Non sono ancora presenti articoli.
+      posts:
+        post:
+          filed_in: Archiviato in
+        comment: commento
+        comments:
+          by: 'Pubblicato da %{who}'
+          time_ago: '%{time} fa'
+          thank_you: 'Grazie per aver scritto un commento.'
+          thank_you_moderated: 'Grazie per aver scritto un commento. Il tuo messaggio è stato inserito nella coda di moderazione e sarà visibile a breve.'
+        index:
+          no_blog_articles_yet: Non sono stati ancora pubblicati articoli nel blog. Continuate a seguirci.
+        show:
+          comments:
+            title: Commenti
+            add: Scrivi un Commento
+          other: Altri Articoli
+          filed_in: Archiviato in
+          submit: Invia commento
+          tagged: Taggato
+          name: Nome
+          email: Email
+          message: Articolo
+          by: da
+        tagged:
+          no_blog_articles_yet: Non sono stati ancora pubblicati articoli nel blog. Continuate a seguirci.
+          posts_tagged: Articoli taggati
+        archive:
+          blog_archive_for: 'Articoli pubblicati il %{date}'
+          no_blog_articles_posted: Non sono stati pubblicati articoli nel blog il %{date}. Continuate a seguirci.
   activerecord:
     models:
-      blog_category: Categoria
-      blog_comment: Commento
-      blog_post: Articolo
+      refinery:
+        blog_category: Categoria
+        blog_comment: Commento
+        blog_post: Articolo
     attributes:
-      blog_category:
-        title: Titolo
-      blog_comment:
-        name: Nome
-        email: Email
-        message: Testo
-      blog_post:
-        title: Titolo
-        body: Testo
+      refinery:
+        blog_category:
+          title: Titolo
+        blog_comment:
+          name: Nome
+          email: Email
+          message: Testo
+        blog_post:
+          title: Titolo
+          body: Testo
