@@ -73,10 +73,9 @@ module Refinery
       def tagged
         @tag = ActsAsTaggableOn::Tag.find(params[:tag_id])
         @tag_name = @tag.name
-        @blog_posts = Refinery::BlogPost.tagged_with(@tag_name).paginate({
-          :page => params[:page],
-          :per_page => Refinery::Setting.find_or_set(:blog_posts_per_page, 10)
-        })
+        @blog_posts = Refinery::BlogPost.tagged_with(@tag_name)
+                                        .page(params[:page])
+                                        .per(Refinery::Setting.find_or_set(:blog_posts_per_page, 10))
       end
 
     protected
@@ -92,10 +91,10 @@ module Refinery
       end
 
       def find_all_blog_posts
-        @blog_posts = Refinery::BlogPost.live.includes(:comments, :categories).paginate({
-          :page => params[:page],
-          :per_page => Refinery::Setting.find_or_set(:blog_posts_per_page, 10)
-        })
+        @blog_posts = Refinery::BlogPost.live
+                                        .includes(:comments, :categories)
+                                        .page(params[:page])
+                                        .per(Refinery::Setting.find_or_set(:blog_posts_per_page, 10))
       end
 
       def find_tags

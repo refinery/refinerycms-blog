@@ -33,7 +33,8 @@ Gem::Specification.new do |s|
     app/controllers/refinery/blog/posts_controller.rb
     app/controllers/refinery/blog_controller.rb
     app/helpers
-    app/helpers/blog_posts_helper.rb
+    app/helpers/refinery
+    app/helpers/refinery/blog_posts_helper.rb
     app/mailers
     app/mailers/refinery
     app/mailers/refinery/blog
