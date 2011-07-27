@@ -10,11 +10,11 @@
     <% end %>
   <% else %>
     <% if @blog_posts.any? %>
-      <%= will_paginate @blog_posts %>
+      <%= paginate @blog_posts %>
 
       <%= render :partial => "sortable_list" %>
 
-      <%= will_paginate @blog_posts %>
+      <%= paginate @blog_posts %>
     <% else %>
       <p>
         <strong>

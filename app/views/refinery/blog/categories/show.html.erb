@@ -4,7 +4,7 @@
   <% if @blog_posts.any? %>
     <section id="blog_posts">
       <%= render :partial => "/blog/shared/post", :collection => @blog_posts %>
-      <%= will_paginate @blog_posts %>
+      <%= paginate @blog_posts %>
     </section>
   <% else %>
     <p>
