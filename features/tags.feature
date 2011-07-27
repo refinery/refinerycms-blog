@@ -12,7 +12,7 @@ Feature: Blog Post Tags
   Scenario: The blog post new/edit form saves tag_list
     When I am on the new blog post form
     And I fill in "Title" with "This is my blog post"
-    And I fill in "blog_post_body" with "And I love it"
+    And I fill in "blog_post_body_source" with "And I love it"
     And I fill in "Tags" with "chicago, bikes, beers, babes"
     And I press "Save"
 
