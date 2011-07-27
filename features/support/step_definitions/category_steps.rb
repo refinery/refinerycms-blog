@@ -3,9 +3,9 @@ Given /^there is a category titled "([^"]*)"$/ do |title|
 end
 
 Then /^the blog post should have ([\d]*) categor[yies]{1,3}$/ do |num_category|
-  BlogPost.last.categories.count.should == num_category.to_i
+  ::Refinery::BlogPost.last.categories.count.should == num_category.to_i
 end
 
 Then /^the blog post should have the category "([^"]*)"$/ do |category|
-  BlogPost.last.categories.first.title.should == category
+  ::Refinery::BlogPost.last.categories.first.title.should == category
 end
