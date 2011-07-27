@@ -16,6 +16,9 @@ module Refinery
     def post_count
       posts.select(&:live?).count
     end
+    
+    # how many items to show per page
+    paginates_per Refinery::Setting.find_or_set(:blog_posts_per_page, 10)
 
   end
 end
