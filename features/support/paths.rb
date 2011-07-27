@@ -4,9 +4,9 @@ module NavigationHelpers
       def path_to(page_name)
         case page_name
         when /the list of blog posts/
-          admin_blog_posts_path
+          refinery_admin_blog_posts_path
         when /the new blog posts? form/
-          new_admin_blog_post_path
+          new_refinery_admin_blog_post_path
         else
           begin
             if page_name =~ /the blog post titled "?([^\"]*)"?/ and (page = BlogPost.find_by_title($1)).present?

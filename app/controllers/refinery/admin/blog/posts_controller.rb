@@ -56,7 +56,7 @@ module Refinery
 
             unless from_dialog?
               unless params[:continue_editing] =~ /true|on|1/
-                redirect_back_or_default(admin_blog_posts_url)
+                redirect_back_or_default(main_app.refinery_admin_blog_posts_path)
               else
                 unless request.xhr?
                   redirect_to :back
