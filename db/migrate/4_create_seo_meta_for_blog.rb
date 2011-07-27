@@ -1,6 +1,6 @@
 class CreateSeoMetaForBlog < ActiveRecord::Migration
 
-  def self.up
+  def up
     unless ::SeoMetum.table_exists?
       create_table ::SeoMetum.table_name do |t|
         t.integer :seo_meta_id
@@ -18,7 +18,7 @@ class CreateSeoMetaForBlog < ActiveRecord::Migration
     end
   end
 
-  def self.down
+  def down
     # can't drop the table because someone else might be using it.
   end
 

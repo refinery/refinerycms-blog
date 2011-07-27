@@ -1,10 +1,6 @@
 class AddCustomTeaserFieldToBlogPosts < ActiveRecord::Migration
-  def self.up
-    add_column :blog_posts, :custom_teaser, :text
-  end
-
-  def self.down
-    remove_column :blog_posts, :custom_teaser
+  def change
+    add_column Refinery::BlogPost.table_name, :custom_teaser, :text
   end
 end
 

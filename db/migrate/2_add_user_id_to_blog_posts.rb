@@ -1,11 +1,7 @@
 class AddUserIdToBlogPosts < ActiveRecord::Migration
-  
-  def self.up
-    add_column :blog_posts, :user_id, :integer
+
+  def change
+    add_column Refinery::BlogPost.table_name, :user_id, :integer
   end
-  
-  def self.down
-    remove_column :blog_posts, :user_id
-  end
-  
+
 end

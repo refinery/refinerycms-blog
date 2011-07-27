@@ -1,8 +1,8 @@
 Gem::Specification.new do |s|
   s.name              = %q{refinerycms-blog}
-  s.version           = %q{1.6.2}
+  s.version           = %q{2.0.0}
   s.description       = %q{A really straightforward open source Ruby on Rails blog engine designed for integration with RefineryCMS.}
-  s.date              = %q{2011-06-29}
+  s.date              = %q{2011-07-27}
   s.summary           = %q{Ruby on Rails blogging engine for RefineryCMS.}
   s.email             = %q{info@refinerycms.com}
   s.homepage          = %q{http://refinerycms.com/blog}
@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.require_paths     = %w(lib)
 
   # Runtime dependencies
-  s.add_dependency    'refinerycms-core',   '~> 1.0.3'
+  s.add_dependency    'refinerycms-core',   '~> 1.1.0'
   s.add_dependency    'filters_spam',       '~> 0.2'
   s.add_dependency    'acts-as-taggable-on'
   s.add_dependency    'seo_meta',           '~> 1.1.0'
@@ -21,28 +21,31 @@ Gem::Specification.new do |s|
   s.files             = %w(
     app
     app/controllers
-    app/controllers/admin
-    app/controllers/admin/blog
-    app/controllers/admin/blog/categories_controller.rb
-    app/controllers/admin/blog/comments_controller.rb
-    app/controllers/admin/blog/posts_controller.rb
-    app/controllers/admin/blog/settings_controller.rb
-    app/controllers/blog
-    app/controllers/blog/categories_controller.rb
-    app/controllers/blog/posts_controller.rb
-    app/controllers/blog_controller.rb
+    app/controllers/refinery
+    app/controllers/refinery/admin
+    app/controllers/refinery/admin/blog
+    app/controllers/refinery/admin/blog/categories_controller.rb
+    app/controllers/refinery/admin/blog/comments_controller.rb
+    app/controllers/refinery/admin/blog/posts_controller.rb
+    app/controllers/refinery/admin/blog/settings_controller.rb
+    app/controllers/refinery/blog
+    app/controllers/refinery/blog/categories_controller.rb
+    app/controllers/refinery/blog/posts_controller.rb
+    app/controllers/refinery/blog_controller.rb
     app/helpers
     app/helpers/blog_posts_helper.rb
     app/mailers
-    app/mailers/blog
-    app/mailers/blog/comment_mailer.rb
+    app/mailers/refinery
+    app/mailers/refinery/blog
+    app/mailers/refinery/blog/comment_mailer.rb
     app/models
-    app/models/blog
-    app/models/blog/comment_mailer.rb
-    app/models/blog_category.rb
-    app/models/blog_comment.rb
-    app/models/blog_post.rb
-    app/models/categorization.rb
+    app/models/refinery
+    app/models/refinery/blog
+    app/models/refinery/blog/comment_mailer.rb
+    app/models/refinery/blog_category.rb
+    app/models/refinery/blog_comment.rb
+    app/models/refinery/blog_post.rb
+    app/models/refinery/categorization.rb
     app/views
     app/views/admin
     app/views/admin/blog
@@ -99,12 +102,14 @@ Gem::Specification.new do |s|
     changelog.md
     config
     config/locales
+    config/locales/bg.yml
     config/locales/cs.yml
     config/locales/de.yml
     config/locales/en.yml
     config/locales/es.yml
     config/locales/fr.yml
     config/locales/it.yml
+    config/locales/jp.yml
     config/locales/nb.yml
     config/locales/nl.yml
     config/locales/pl.yml
@@ -122,6 +127,7 @@ Gem::Specification.new do |s|
     db/migrate/5_add_cached_slugs.rb
     db/migrate/6_add_custom_url_field_to_blog_posts.rb
     db/migrate/7_add_custom_teaser_field_to_blog_posts.rb
+    db/migrate/8_add_primary_key_to_categorizations.rb
     db/seeds
     db/seeds/refinerycms_blog.rb
     features
@@ -141,7 +147,7 @@ Gem::Specification.new do |s|
     lib
     lib/gemspec.rb
     lib/generators
-    lib/generators/refinerycms_blog_generator.rb
+    lib/generators/blog_generator.rb
     lib/refinery
     lib/refinery/blog
     lib/refinery/blog/tabs.rb
@@ -194,9 +200,11 @@ Gem::Specification.new do |s|
     refinerycms-blog.gemspec
     spec
     spec/models
-    spec/models/blog_category_spec.rb
-    spec/models/blog_comment_spec.rb
-    spec/models/blog_post_spec.rb
+    spec/models/refinery
+    spec/models/refinery/blog_category_spec.rb
+    spec/models/refinery/blog_comment_spec.rb
+    spec/models/refinery/blog_post_spec.rb
+    todo.md
   )
   
 end
