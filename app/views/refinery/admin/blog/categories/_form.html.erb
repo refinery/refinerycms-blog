@@ -1,5 +1,5 @@
-<%= form_for [:admin, @blog_category] do |f| -%>
-  <%= render :partial => "/shared/admin/error_messages",
+<%= form_for [main_app, :refinery_admin, @blog_category] do |f| -%>
+  <%= render :partial => "/refinery/admin/error_messages",
              :locals => {
                :object => f.object,
                :include_object_name => true
@@ -10,10 +10,10 @@
     <%= f.text_field :title, :class => 'larger widest' -%>
   </div>
 
-  <%= render :partial => "/shared/admin/form_actions",
+  <%= render :partial => "/refinery/admin/form_actions",
               :locals => {
                 :f => f,
                 :continue_editing => false,
-                :delete_title => t('delete', :scope => 'admin.blog.categories.category')
+                :delete_title => t('delete', :scope => 'refinery.admin.blog.categories.category')
               } %>
 <% end %>
