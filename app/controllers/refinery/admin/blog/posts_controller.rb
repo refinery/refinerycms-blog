@@ -9,8 +9,9 @@ module Refinery
                 :order => 'published_at DESC'
 
         def uncategorized
-          @blog_posts = Refinery::BlogPost.uncategorized
-                                          .page(params[:page])
+          @blog_posts = Refinery::BlogPost.page(params[:page])
+                                          .uncategorized
+                                          
         end
 
         def tags
