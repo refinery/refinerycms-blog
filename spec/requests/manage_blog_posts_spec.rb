@@ -33,8 +33,6 @@ describe "manage blog posts" do
       click_button "Save"
 
       page.should have_content("'Another Refinery CMS blog post' was successfully added.")
-      # this probably is matching the same 'Another Refinery CMS blog post' in flash message!?
-      page.should have_content("Another Refinery CMS blog post")
     end
   end
   
@@ -51,21 +49,18 @@ describe "manage blog posts" do
 
       page.should_not have_content(blog_post.title)
       page.should have_content("'hax0r' was successfully updated.")
-      # this probably is matching the same 'hax0r' in flash message!?
-      page.should have_content("hax0r")
     end
   end
 
   context "when deleting blog post" do
     it "should succeed" do
-      pending "need to figure out how to accept js popup"
 
       visit refinery_admin_blog_posts_path
       page.should have_content(blog_post.title)
 
       click_link "Remove this blog post forever"
 
-      page.should_not have_content(blog_post.title)
+      page.should have_content("'#{blog_post.title}' was successfully removed.")
     end
   end
 
