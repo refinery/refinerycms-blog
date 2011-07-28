@@ -41,7 +41,7 @@ describe "manage blog posts" do
   context "when editing blog post" do
     it "should succeed" do
       visit refinery_admin_blog_posts_path
-      page.should have_content("Refinery CMS blog post")
+      page.should have_content(blog_post.title)
 
       click_link("Edit this blog post")
       current_path.should == edit_refinery_admin_blog_post_path(blog_post)
@@ -49,23 +49,50 @@ describe "manage blog posts" do
       fill_in "Title", :with => "hax0r"
       click_button "Save"
 
-      page.should_not have_content("Refinery CMS blog post")
+      page.should_not have_content(blog_post.title)
       page.should have_content("'hax0r' was successfully updated.")
       # this probably is matching the same 'hax0r' in flash message!?
       page.should have_content("hax0r")
     end
   end
-  
+
   context "when deleting blog post" do
     it "should succeed" do
       pending "need to figure out how to accept js popup"
 
       visit refinery_admin_blog_posts_path
-      page.should have_content("Refinery CMS blog post")
+      page.should have_content(blog_post.title)
 
       click_link "Remove this blog post forever"
 
-      page.should_not have_content("Refinery CMS blog post")
+      page.should_not have_content(blog_post.title)
+    end
+  end
+
+  context "uncategorized post" do
+    it "shows up in the list" do
+      visit uncategorized_refinery_admin_blog_posts_path
+      page.should have_content(blog_post.title)
+    end
+  end
+
+  context "categorized post" do
+    it "won't show up in the list" do
+      blog_post.categories << Factory(:blog_category)
+      blog_post.save!
+
+      visit uncategorized_refinery_admin_blog_posts_path
+      page.should_not have_content(blog_post.title)
+    end
+  end
+
+  describe "view live" do
+    it "redirects to blog post in the frontend" do
+      visit refinery_admin_blog_posts_path
+      click_link "View this blog post live"
+
+      current_path.should == blog_post_path(blog_post)
+      page.should have_content(blog_post.title)
     end
   end
 end
