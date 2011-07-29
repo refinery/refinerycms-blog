@@ -1,0 +1,10 @@
+<section id="blog_archive_widget">
+  <h2><%= t('archives', :scope => 'refinery.blog.shared') %></h2>
+  <nav>
+    <ul>
+      <% posts.each do |post| %>
+      <li><%= archive_link(post) %></li>
+      <% end %>
+    </ul>
+  </nav>
+</section> 
