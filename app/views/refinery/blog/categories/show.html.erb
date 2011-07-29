@@ -3,7 +3,7 @@
 <% content_for :body_content_left do %>
   <% if @blog_posts.any? %>
     <section id="blog_posts">
-      <%= render :partial => "/blog/shared/post", :collection => @blog_posts %>
+      <%= render :partial => "/refinery/blog/shared/post", :collection => @blog_posts %>
       <%= paginate @blog_posts %>
     </section>
   <% else %>
@@ -14,8 +14,8 @@
 <% end %>
 
 <% content_for :body_content_right do %>
-  <%= render :partial => "/blog/shared/categories" %>
+  <%= render :partial => "/refinery/blog/shared/categories" %>
 <% end %>
 
-<%= render :partial => "/shared/content_page" %>
+<%= render :partial => "/refinery/content_page" %>
 <% content_for :stylesheets, stylesheet_link_tag('refinerycms-blog') %>
