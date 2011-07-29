@@ -1,6 +1,8 @@
 require "spec_helper"
 
 describe "blog categories" do
+  before(:all) { Factory(:refinery_user) }
+
   before(:each) do
     @blog_post = Factory(:blog_post, :title => "Refinery CMS blog post")
     @blog_category = Factory(:blog_category, :title => "Video Games")
@@ -15,5 +17,5 @@ describe "blog categories" do
       page.should have_content("Video Games")
     end
   end
-  
+
 end
