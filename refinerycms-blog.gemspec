@@ -85,6 +85,7 @@ Gem::Specification.new do |s|
     app/views/refinery/blog/comment_mailer/notification.html.erb
     app/views/refinery/blog/posts
     app/views/refinery/blog/posts/_comment.html.erb
+    app/views/refinery/blog/posts/_comments.html.erb
     app/views/refinery/blog/posts/_nav.html.erb
     app/views/refinery/blog/posts/_post.html.erb
     app/views/refinery/blog/posts/archive.html.erb
@@ -93,6 +94,7 @@ Gem::Specification.new do |s|
     app/views/refinery/blog/posts/show.html.erb
     app/views/refinery/blog/posts/tagged.html.erb
     app/views/refinery/blog/shared
+    app/views/refinery/blog/shared/_body_content_right.html.erb
     app/views/refinery/blog/shared/_categories.html.erb
     app/views/refinery/blog/shared/_post.html.erb
     app/views/refinery/blog/shared/_posts.html.erb
