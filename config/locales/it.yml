@@ -142,18 +142,16 @@ it:
           no_blog_articles_posted: Non sono stati pubblicati articoli nel blog il %{date}. Continuate a seguirci.
   activerecord:
     models:
-      refinery:
-        blog_category: Categoria
-        blog_comment: Commento
-        blog_post: Articolo
+      refinery/blog_category: Categoria
+      refinery/blog_comment: Commento
+      refinery/blog_post: Articolo
     attributes:
-      refinery:
-        blog_category:
-          title: Titolo
-        blog_comment:
-          name: Nome
-          email: Email
-          message: Testo
-        blog_post:
-          title: Titolo
-          body: Testo
+      refinery/blog_category:
+        title: Titolo
+      refinery/blog_comment:
+        name: Nome
+        email: Email
+        message: Testo
+      refinery/blog_post:
+        title: Titolo
+        body: Testo

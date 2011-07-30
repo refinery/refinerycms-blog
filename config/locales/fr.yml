@@ -140,18 +140,16 @@ fr:
           no_blog_articles_posted: "Il n'y a aucun article pour la date du %{date}. Restez en alerte."
   activerecord:
     models:
-      refinery:
-        blog_category: Categorie
-        blog_comment: Commentaire
-        blog_post: Article
+      refinery/blog_category: Categorie
+      refinery/blog_comment: Commentaire
+      refinery/blog_post: Article
     attributes:
-      refinery:
-        blog_category:
-          title: Titre
-        blog_comment:
-          name: Nom
-          email: Email
-          message: Message
-        blog_post:
-          title: Titre
-          body: Corps
+      refinery/blog_category:
+        title: Titre
+      refinery/blog_comment:
+        name: Nom
+        email: Email
+        message: Message
+      refinery/blog_post:
+        title: Titre
+        body: Corps

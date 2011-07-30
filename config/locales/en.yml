@@ -144,19 +144,17 @@ en:
           no_blog_articles_posted: 'There are no blog articles posted for %{date}. Stay tuned.'  
   activerecord:
     models:
-      refinery:
-        blog_category: Category
-        blog_comment: Comment
-        blog_post: Blog post
+      refinery/blog_category: Category
+      refinery/blog_comment: Comment
+      refinery/blog_post: Blog post
     attributes:
-      refinery:
-        blog_category:
-          title: Title
-        blog_comment:
-          name: Name
-          email: Email
-          message: Message
-        blog_post:
-          title: Title
-          body: Body
-          teaser: Teaser
+      refinery/blog_category:
+        title: Title
+      refinery/blog_comment:
+        name: Name
+        email: Email
+        message: Message
+      refinery/blog_post:
+        title: Title
+        body: Body
+        teaser: Teaser
