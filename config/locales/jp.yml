@@ -143,19 +143,17 @@ jp:
           no_blog_articles_posted: '%{date}付のブログ記事が投稿されてません。'
   activerecord:
     models:
-      refinery:
-        blog_category: カテゴリ
-        blog_comment: コメント
-        blog_post: 投稿
+      refinery/blog_category: カテゴリ
+      refinery/blog_comment: コメント
+      refinery/blog_post: 投稿
     attributes:
-      refinery:
-        blog_category:
-          title: 題名
-        blog_comment:
-          name: 名前
-          email: メール
-          message: メッセージ
-        blog_post:
-          title: 題名
-          body: 本文
-          teaser: 短紹介文
+      refinery/blog_category:
+        title: 題名
+      refinery/blog_comment:
+        name: 名前
+        email: メール
+        message: メッセージ
+      refinery/blog_post:
+        title: 題名
+        body: 本文
+        teaser: 短紹介文
