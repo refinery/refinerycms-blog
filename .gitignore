@@ -42,3 +42,6 @@ nbproject
 
 # Capybara Bug
 capybara-*html
+
+.rvmrc
+Gemfile.lock

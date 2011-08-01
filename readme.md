@@ -28,3 +28,18 @@ Next, to install the blog plugin run:
 Finally migrate your database and you're done.
 
     rake db:migrate
+    
+## Developing & Contributing
+
+### Testing
+
+Setup the test environment
+
+    $ bundle install
+    $ bundle exec rake app:db:migrate
+    $ bundle exec rake app:db:test:prepare
+
+Run the test suite with [Guard](https://github.com/guard/guard)
+
+    $ bundle exec guard start
+    

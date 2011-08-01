@@ -37,7 +37,7 @@ class CreateBlogStructure < ActiveRecord::Migration
 
     add_index Refinery::Categorization.table_name, [:blog_category_id, :blog_post_id], :name => 'index_blog_categories_blog_posts_on_bc_and_bp'
 
-    load(Rails.root.join('db', 'seeds', 'refinerycms_blog.rb').to_s)
+    load(File.expand_path('../../seeds/refinerycms_blog.rb', __FILE__))
   end
 
   def down

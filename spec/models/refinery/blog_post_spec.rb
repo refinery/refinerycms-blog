@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 module Refinery
-  describe BlogPost do
-    let(:blog_post ) { Factory.create(:blog_post) }
+  describe BlogPost do    
+    let(:blog_post) { Factory.create(:blog_post) }
 
     describe "validations" do
       it "requires title" do
