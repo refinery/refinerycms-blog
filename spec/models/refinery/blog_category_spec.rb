@@ -1,5 +1,4 @@
 require 'spec_helper'
-Dir[File.expand_path('../../../features/support/factories/*.rb', __FILE__)].each{|factory| require factory}
 
 module Refinery
   describe BlogCategory do

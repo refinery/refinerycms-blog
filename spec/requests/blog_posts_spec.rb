@@ -1,11 +1,7 @@
 require "spec_helper"
 
 describe "blog" do
-  before(:all) do
-    # destroy all existing (if any) users before creating new one
-    Refinery::User.destroy_all
-    Factory(:refinery_user)
-  end
+  login_refinery_user
 
   it "displays the blog rss feed" do
     get blog_rss_feed_path

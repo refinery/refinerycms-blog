@@ -1,16 +1,7 @@
 require "spec_helper"
 
 describe "manage blog posts" do
-  # TODO: share this with other request specs
-  before(:each) do
-    Factory(:refinery_user, :username => "refinerycms",
-                            :password => "123456",
-                            :password_confirmation => "123456")
-    visit new_refinery_user_session_url
-    fill_in "Login", :with => "refinerycms"
-    fill_in "Password", :with => "123456"
-    click_button "Sign in"
-  end
+  login_refinery_user
 
   let!(:blog_post) { Factory(:blog_post, :title => "Refinery CMS blog post") }
 
