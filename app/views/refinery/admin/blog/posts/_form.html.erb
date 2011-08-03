@@ -103,6 +103,6 @@
               } %>
 <% end -%>
 
-<% content_for :stylesheets, render(:partial => 'form.css') -%>
-<% content_for :javascripts, render(:partial => 'form.js') -%>
+<% content_for :stylesheets, stylesheet_link_tag('refinery/blog/backend') %>
+<% content_for :javascripts, javascript_include_tag('refinery/blog/backend') %>
 <%= render 'refinery/shared/admin/autocomplete', :dom_id => '#blog_post_tag_list', :url => main_app.tags_refinery_admin_blog_posts_url %>

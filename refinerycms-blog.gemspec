@@ -2,7 +2,7 @@ Gem::Specification.new do |s|
   s.name              = %q{refinerycms-blog}
   s.version           = %q{2.0.0}
   s.description       = %q{A really straightforward open source Ruby on Rails blog engine designed for integration with RefineryCMS.}
-  s.date              = %q{2011-07-27}
+  s.date              = %q{2011-08-03}
   s.summary           = %q{Ruby on Rails blogging engine for RefineryCMS.}
   s.email             = %q{info@refinerycms.com}
   s.homepage          = %q{http://refinerycms.com/blog}
@@ -20,6 +20,52 @@ Gem::Specification.new do |s|
 
   s.files             = %w(
     app
+    app/assets
+    app/assets/images
+    app/assets/images/refinery
+    app/assets/images/refinery/blog
+    app/assets/images/refinery/blog/icons
+    app/assets/images/refinery/blog/icons/cog.png
+    app/assets/images/refinery/blog/icons/comment.png
+    app/assets/images/refinery/blog/icons/comment_cross.png
+    app/assets/images/refinery/blog/icons/comment_tick.png
+    app/assets/images/refinery/blog/icons/comments.png
+    app/assets/images/refinery/blog/icons/down.gif
+    app/assets/images/refinery/blog/icons/folder.png
+    app/assets/images/refinery/blog/icons/folder_add.png
+    app/assets/images/refinery/blog/icons/folder_edit.png
+    app/assets/images/refinery/blog/icons/page.png
+    app/assets/images/refinery/blog/icons/page_add.png
+    app/assets/images/refinery/blog/icons/page_copy.png
+    app/assets/images/refinery/blog/icons/up.gif
+    app/assets/images/refinery/blog/rss-feed.png
+    app/assets/javascripts
+    app/assets/javascripts/refinery
+    app/assets/javascripts/refinery/blog
+    app/assets/javascripts/refinery/blog/backend.js
+    app/assets/javascripts/refinery/blog/frontend.js
+    app/assets/stylesheets
+    app/assets/stylesheets/refinery
+    app/assets/stylesheets/refinery/blog
+    app/assets/stylesheets/refinery/blog/backend.css.scss
+    app/assets/stylesheets/refinery/blog/frontend.css.scss
+    app/assets/stylesheets/refinery/blog/ui-lightness
+    app/assets/stylesheets/refinery/blog/ui-lightness/images
+    app/assets/stylesheets/refinery/blog/ui-lightness/images/ui-bg_diagonals-thick_18_b81900_40x40.png
+    app/assets/stylesheets/refinery/blog/ui-lightness/images/ui-bg_diagonals-thick_20_666666_40x40.png
+    app/assets/stylesheets/refinery/blog/ui-lightness/images/ui-bg_flat_10_000000_40x100.png
+    app/assets/stylesheets/refinery/blog/ui-lightness/images/ui-bg_glass_100_f6f6f6_1x400.png
+    app/assets/stylesheets/refinery/blog/ui-lightness/images/ui-bg_glass_100_fdf5ce_1x400.png
+    app/assets/stylesheets/refinery/blog/ui-lightness/images/ui-bg_glass_65_ffffff_1x400.png
+    app/assets/stylesheets/refinery/blog/ui-lightness/images/ui-bg_gloss-wave_35_f6a828_500x100.png
+    app/assets/stylesheets/refinery/blog/ui-lightness/images/ui-bg_highlight-soft_100_eeeeee_1x100.png
+    app/assets/stylesheets/refinery/blog/ui-lightness/images/ui-bg_highlight-soft_75_ffe45c_1x100.png
+    app/assets/stylesheets/refinery/blog/ui-lightness/images/ui-icons_222222_256x240.png
+    app/assets/stylesheets/refinery/blog/ui-lightness/images/ui-icons_228ef1_256x240.png
+    app/assets/stylesheets/refinery/blog/ui-lightness/images/ui-icons_ef8c08_256x240.png
+    app/assets/stylesheets/refinery/blog/ui-lightness/images/ui-icons_ffd27a_256x240.png
+    app/assets/stylesheets/refinery/blog/ui-lightness/images/ui-icons_ffffff_256x240.png
+    app/assets/stylesheets/refinery/blog/ui-lightness/jquery-ui-1.8.13.custom.css.scss
     app/controllers
     app/controllers/refinery
     app/controllers/refinery/admin
@@ -65,9 +111,7 @@ Gem::Specification.new do |s|
     app/views/refinery/admin/blog/comments/index.html.erb
     app/views/refinery/admin/blog/comments/show.html.erb
     app/views/refinery/admin/blog/posts
-    app/views/refinery/admin/blog/posts/_form.css.erb
     app/views/refinery/admin/blog/posts/_form.html.erb
-    app/views/refinery/admin/blog/posts/_form.js.erb
     app/views/refinery/admin/blog/posts/_form_part.html.erb
     app/views/refinery/admin/blog/posts/_post.html.erb
     app/views/refinery/admin/blog/posts/_sortable_list.html.erb
@@ -100,6 +144,8 @@ Gem::Specification.new do |s|
     app/views/refinery/blog/shared/_posts.html.erb
     app/views/refinery/blog/shared/_rss_feed.html.erb
     app/views/refinery/blog/shared/_tags.html.erb
+    app/views/refinery/blog/widgets
+    app/views/refinery/blog/widgets/_blog_archive.html.erb
     app/views/refinery/shared
     app/views/refinery/shared/admin
     app/views/refinery/shared/admin/_autocomplete.html.erb
@@ -158,48 +204,6 @@ Gem::Specification.new do |s|
     lib/refinery/blog/version.rb
     lib/refinerycms-blog.rb
     public
-    public/images
-    public/images/refinerycms-blog
-    public/images/refinerycms-blog/icons
-    public/images/refinerycms-blog/icons/cog.png
-    public/images/refinerycms-blog/icons/comment.png
-    public/images/refinerycms-blog/icons/comment_cross.png
-    public/images/refinerycms-blog/icons/comment_tick.png
-    public/images/refinerycms-blog/icons/comments.png
-    public/images/refinerycms-blog/icons/down.gif
-    public/images/refinerycms-blog/icons/folder.png
-    public/images/refinerycms-blog/icons/folder_add.png
-    public/images/refinerycms-blog/icons/folder_edit.png
-    public/images/refinerycms-blog/icons/page.png
-    public/images/refinerycms-blog/icons/page_add.png
-    public/images/refinerycms-blog/icons/page_copy.png
-    public/images/refinerycms-blog/icons/up.gif
-    public/images/refinerycms-blog/rss-feed.png
-    public/javascripts
-    public/javascripts/refinery
-    public/javascripts/refinery/refinerycms-blog.js
-    public/javascripts/refinerycms-blog.js
-    public/stylesheets
-    public/stylesheets/refinery
-    public/stylesheets/refinery/refinerycms-blog.css
-    public/stylesheets/refinerycms-blog.css
-    public/stylesheets/ui-lightness
-    public/stylesheets/ui-lightness/images
-    public/stylesheets/ui-lightness/images/ui-bg_diagonals-thick_18_b81900_40x40.png
-    public/stylesheets/ui-lightness/images/ui-bg_diagonals-thick_20_666666_40x40.png
-    public/stylesheets/ui-lightness/images/ui-bg_flat_10_000000_40x100.png
-    public/stylesheets/ui-lightness/images/ui-bg_glass_100_f6f6f6_1x400.png
-    public/stylesheets/ui-lightness/images/ui-bg_glass_100_fdf5ce_1x400.png
-    public/stylesheets/ui-lightness/images/ui-bg_glass_65_ffffff_1x400.png
-    public/stylesheets/ui-lightness/images/ui-bg_gloss-wave_35_f6a828_500x100.png
-    public/stylesheets/ui-lightness/images/ui-bg_highlight-soft_100_eeeeee_1x100.png
-    public/stylesheets/ui-lightness/images/ui-bg_highlight-soft_75_ffe45c_1x100.png
-    public/stylesheets/ui-lightness/images/ui-icons_222222_256x240.png
-    public/stylesheets/ui-lightness/images/ui-icons_228ef1_256x240.png
-    public/stylesheets/ui-lightness/images/ui-icons_ef8c08_256x240.png
-    public/stylesheets/ui-lightness/images/ui-icons_ffd27a_256x240.png
-    public/stylesheets/ui-lightness/images/ui-icons_ffffff_256x240.png
-    public/stylesheets/ui-lightness/jquery-ui-1.8.13.custom.css
     readme.md
     refinerycms-blog.gemspec
     spec
@@ -208,6 +212,10 @@ Gem::Specification.new do |s|
     spec/models/refinery/blog_category_spec.rb
     spec/models/refinery/blog_comment_spec.rb
     spec/models/refinery/blog_post_spec.rb
+    spec/requests
+    spec/requests/blog_categories_spec.rb
+    spec/requests/blog_posts_spec.rb
+    spec/requests/manage_blog_posts_spec.rb
     todo.md
   )
   

@@ -1,0 +1,73 @@
+.comments_icon {
+  background-image: image_url('refinery/blog/icons/comments.png');
+}
+.comment_icon {
+  background-image: image_url('refinery/blog/icons/comment.png');
+}
+.comment_cross_icon {
+  background-image: image_url('refinery/blog/icons/comment_cross.png');
+}
+.comment_tick_icon {
+  background-image: image_url('refinery/blog/icons/comment_tick.png');
+}
+.folder_icon {
+  background-image: image_url('refinery/blog/icons/folder.png');
+}
+.folder_add_icon {
+  background-image: image_url('refinery/blog/icons/folder_add.png');
+}
+.folder_edit_icon {
+  background-image: image_url('refinery/blog/icons/folder_edit.png');
+}
+.settings_icon {
+  background-image: image_url('refinery/blog/icons/cog.png');
+}
+.page_icon {
+  background-image: image_url('refinery/blog/icons/page.png');
+}
+.page_copy_icon {
+  background-image: image_url('refinery/blog/icons/page_copy.png');
+}
+.page_add_icon {
+  background-image: image_url('refinery/blog/icons/page_add.png');
+}
+ul.collapsible_menu li {
+  position: relative;
+}
+ul.collapsible_menu li span.arrow {
+  background-repeat: no-repeat;
+  position: absolute;
+  right: 10px;
+  top: 13px;
+  width: 11px;
+  height: 7px;
+  cursor: pointer;
+}
+ul.collapsible_menu li span.arrow {
+  background-image: image_url('refinery/blog/icons/up.gif');
+}
+ul.collapsible_menu li.closed span.arrow {
+  background-image: image_url('refinery/blog/icons/down.gif');
+}
+ul.collapsible_menu > div {
+  width: 93%;
+  margin: 0px auto;
+}
+ul.blog_categories{
+  height:200px;
+  overflow:auto;
+  border:1px solid #ccc;
+  padding:5px;
+}
+ul.blog_categories, ul.blog_categories li {
+  list-style: none;
+  margin:5px 0;
+}
+a#copy_body_link {
+  background: image_url('refinery/blog/icons/add.png') no-repeat scroll 0 6px transparent;
+  border-bottom: 0 none;
+  display: inline;
+  line-height: 29px;
+  margin-top: 0;
+  padding-left: 20px;
+}

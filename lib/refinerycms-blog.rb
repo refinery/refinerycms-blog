@@ -18,10 +18,6 @@ module Refinery
     end
 
     class Engine < Rails::Engine
-      initializer 'blog serves assets' do |app|
-        app.middleware.insert_after ::ActionDispatch::Static, ::ActionDispatch::Static, "#{root}/public"
-      end
-
       config.to_prepare do
         require File.expand_path('../refinery/blog/tabs', __FILE__)
       end
