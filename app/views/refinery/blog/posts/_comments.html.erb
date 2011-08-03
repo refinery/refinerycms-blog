@@ -1,5 +1,5 @@
 <aside id="comments">
-  <h2><%= t('.comments.title') %></h2>
+  <h2><%= t('title', :scope => 'refinery.blog.posts.show.comments') %></h2>
   <% if (comments = @blog_post.comments.approved).any? %>
     <%= render :partial => "comment", :collection => comments %>
   <% else %>
@@ -14,7 +14,7 @@
     </div>
   <% end %>
 
-  <h2><%= t('.comments.add') %></h2>
+  <h2><%= t('add', :scope => 'refinery.blog.posts.show.comments') %></h2>
   <%= form_for [main_app, :blog_post, @blog_comment] do |f| %>
     <%= render :partial => "/refinery/admin/error_messages",
                :locals => {

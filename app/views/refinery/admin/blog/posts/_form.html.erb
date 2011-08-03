@@ -14,10 +14,10 @@
     <div id='page-tabs' class='clearfix ui-tabs ui-widget ui-widget-content ui-corner-all'>
       <ul id='page_parts'>
         <li class='ui-state-default ui-state-active'>
-          <%= link_to t('body', :scope => 'activerecord.attributes.refinery.blog_post'), "#page_part_body" %>
+          <%= link_to t('body', :scope => 'activerecord.attributes.refinery/blog_post'), "#page_part_body" %>
         </li>
         <li class='ui-state-default'>
-          <%= link_to t('teaser', :scope => 'activerecord.attributes.refinery.blog_post'), "#page_part_teaser" %>
+          <%= link_to t('teaser', :scope => 'activerecord.attributes.refinery/blog_post'), "#page_part_teaser" %>
         </li>
         <% Refinery::Blog.tabs.each_with_index do |tab, tab_index| %>
           <li class='ui-state-default' id="custom_<%= tab.name %>_tab">
