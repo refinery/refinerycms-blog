@@ -3,18 +3,18 @@ development: &development
   host: localhost
   username: root
   password:
-  database: your_local_database
+  database: refinerycms_blog_development
 
 test: &test
   adapter: mysql2
   host: localhost
   username: root
   password:
-  database: your_test_database
+  database: refinerycms_blog_test
 
 production: &production
   adapter: mysql2
   host: localhost
-  database: your_production_database
+  database: refinerycms_blog_production
   username: your_production_database_login
   password: your_production_database_password
