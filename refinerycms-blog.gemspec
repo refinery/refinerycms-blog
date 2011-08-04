@@ -157,8 +157,6 @@ Gem::Specification.new do |s|
     app/views/refinery/shared/admin/_autocomplete.html.erb
     changelog.md
     config
-    config/cucumber.yml
-    config/environment.rb
     config/locales
     config/locales/bg.yml
     config/locales/cs.yml
@@ -188,20 +186,6 @@ Gem::Specification.new do |s|
     db/migrate/20110803223529_add_primary_key_to_categorizations.rb
     db/seeds
     db/seeds/refinerycms_blog.rb
-    features
-    features/authors.feature
-    features/category.feature
-    features/step_definitions
-    features/step_definitions/authors_steps.rb
-    features/step_definitions/category_steps.rb
-    features/step_definitions/tags_steps.rb
-    features/step_definitions/user_steps.rb
-    features/step_definitions/web_steps.rb
-    features/support
-    features/support/env.rb
-    features/support/paths.rb
-    features/support/selectors.rb
-    features/tags.feature
     Gemfile
     Gemfile.lock
     Guardfile
@@ -215,6 +199,7 @@ Gem::Specification.new do |s|
     lib/refinery/blog/tabs.rb
     lib/refinery/blog/version.rb
     lib/refinerycms-blog.rb
+    lib/tasks
     Rakefile
     readme.md
     refinerycms-blog.gemspec
@@ -353,6 +338,8 @@ Gem::Specification.new do |s|
     spec/dummy/script
     spec/dummy/script/rails
     spec/dummy/tmp
+    spec/dummy/tmp/capybara
+    spec/dummy/tmp/capybara/capybara-20110804121811333867014.html
     spec/dummy/tmp/dragonfly
     spec/dummy/tmp/dragonfly/cache
     spec/dummy/tmp/dragonfly/cache/body
@@ -497,9 +484,36 @@ Gem::Specification.new do |s|
     spec/dummy/tmp/index/test/Refinery::BlogCategory/49_49.ind
     spec/dummy/tmp/index/test/Refinery::BlogCategory/49_50.ind
     spec/dummy/tmp/index/test/Refinery::BlogCategory/49_51.ind
+    spec/dummy/tmp/index/test/Refinery::BlogCategory/49_52.ind
+    spec/dummy/tmp/index/test/Refinery::BlogCategory/49_53.ind
+    spec/dummy/tmp/index/test/Refinery::BlogCategory/49_54.ind
+    spec/dummy/tmp/index/test/Refinery::BlogCategory/49_55.ind
+    spec/dummy/tmp/index/test/Refinery::BlogCategory/49_56.ind
+    spec/dummy/tmp/index/test/Refinery::BlogCategory/49_57.ind
     spec/dummy/tmp/index/test/Refinery::BlogCategory/50.ind
+    spec/dummy/tmp/index/test/Refinery::BlogCategory/50_48.ind
+    spec/dummy/tmp/index/test/Refinery::BlogCategory/50_49.ind
+    spec/dummy/tmp/index/test/Refinery::BlogCategory/50_50.ind
+    spec/dummy/tmp/index/test/Refinery::BlogCategory/50_51.ind
+    spec/dummy/tmp/index/test/Refinery::BlogCategory/50_52.ind
+    spec/dummy/tmp/index/test/Refinery::BlogCategory/50_53.ind
+    spec/dummy/tmp/index/test/Refinery::BlogCategory/50_54.ind
+    spec/dummy/tmp/index/test/Refinery::BlogCategory/50_55.ind
+    spec/dummy/tmp/index/test/Refinery::BlogCategory/50_56.ind
+    spec/dummy/tmp/index/test/Refinery::BlogCategory/50_57.ind
     spec/dummy/tmp/index/test/Refinery::BlogCategory/51.ind
+    spec/dummy/tmp/index/test/Refinery::BlogCategory/51_48.ind
+    spec/dummy/tmp/index/test/Refinery::BlogCategory/51_49.ind
+    spec/dummy/tmp/index/test/Refinery::BlogCategory/51_50.ind
+    spec/dummy/tmp/index/test/Refinery::BlogCategory/51_51.ind
+    spec/dummy/tmp/index/test/Refinery::BlogCategory/51_52.ind
+    spec/dummy/tmp/index/test/Refinery::BlogCategory/51_53.ind
+    spec/dummy/tmp/index/test/Refinery::BlogCategory/51_54.ind
+    spec/dummy/tmp/index/test/Refinery::BlogCategory/51_55.ind
+    spec/dummy/tmp/index/test/Refinery::BlogCategory/51_56.ind
+    spec/dummy/tmp/index/test/Refinery::BlogCategory/51_57.ind
     spec/dummy/tmp/index/test/Refinery::BlogCategory/52.ind
+    spec/dummy/tmp/index/test/Refinery::BlogCategory/52_48.ind
     spec/dummy/tmp/index/test/Refinery::BlogCategory/53.ind
     spec/dummy/tmp/index/test/Refinery::BlogCategory/54.ind
     spec/dummy/tmp/index/test/Refinery::BlogCategory/55.ind
@@ -558,6 +572,7 @@ Gem::Specification.new do |s|
     spec/dummy/tmp/index/test/Refinery::BlogPost/116_111.ind
     spec/dummy/tmp/index/test/Refinery::BlogPost/116_111_112.ind
     spec/dummy/tmp/index/test/Refinery::BlogPost/116_114_117.ind
+    spec/dummy/tmp/index/test/Refinery::BlogPost/116_97_103.ind
     spec/dummy/tmp/index/test/Refinery::BlogPost/119_105_116.ind
     spec/dummy/tmp/index/test/Refinery::BlogPost/121_111_117.ind
     spec/dummy/tmp/index/test/Refinery::BlogPost/49.ind
@@ -587,12 +602,18 @@ Gem::Specification.new do |s|
     spec/dummy/tmp/index/test/Refinery::BlogPost/51_49.ind
     spec/dummy/tmp/index/test/Refinery::BlogPost/51_50.ind
     spec/dummy/tmp/index/test/Refinery::BlogPost/51_51.ind
+    spec/dummy/tmp/index/test/Refinery::BlogPost/51_52.ind
+    spec/dummy/tmp/index/test/Refinery::BlogPost/51_53.ind
+    spec/dummy/tmp/index/test/Refinery::BlogPost/51_54.ind
+    spec/dummy/tmp/index/test/Refinery::BlogPost/51_55.ind
+    spec/dummy/tmp/index/test/Refinery::BlogPost/51_56.ind
     spec/dummy/tmp/index/test/Refinery::BlogPost/52.ind
     spec/dummy/tmp/index/test/Refinery::BlogPost/53.ind
     spec/dummy/tmp/index/test/Refinery::BlogPost/55.ind
     spec/dummy/tmp/index/test/Refinery::BlogPost/56.ind
     spec/dummy/tmp/index/test/Refinery::BlogPost/57.ind
     spec/dummy/tmp/index/test/Refinery::BlogPost/97.ind
+    spec/dummy/tmp/index/test/Refinery::BlogPost/97_108_115.ind
     spec/dummy/tmp/index/test/Refinery::BlogPost/97_110_100.ind
     spec/dummy/tmp/index/test/Refinery::BlogPost/97_110_111.ind
     spec/dummy/tmp/index/test/Refinery::BlogPost/97_114_101.ind
