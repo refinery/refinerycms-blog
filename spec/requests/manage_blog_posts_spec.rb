@@ -55,6 +55,28 @@ describe "manage blog posts" do
           ::Refinery::BlogPost.last.categories.first.title.should eq(blog_category.title)
         end
       end
+      
+      describe "create blog post with tags" do
+        before(:each) do
+          @tag_list = "chicago, bikes, beers, babes"
+          fill_in "Title", :with => "This is a tagged blog post"
+          fill_in "blog_post_body", :with => "And I also love it"
+          fill_in "Tags", :with => @tag_list
+          click_button "Save"
+        end
+        
+        it "should succeed" do
+          page.should have_content("was successfully added.")
+        end
+        
+        it "should be the only blog post" do
+          ::Refinery::BlogPost.all.size.should eq(1)
+        end
+        
+        it "should have the specified tags" do
+          ::Refinery::BlogPost.last.tag_list.should eq(@tag_list.split(', '))
+        end
+      end
     end
   end
   
