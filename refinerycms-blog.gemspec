@@ -16,6 +16,7 @@ Gem::Specification.new do |s|
   s.add_dependency    'seo_meta',           '~> 1.1.0'
 
   # Development dependencies
+  s.add_development_dependency 'refinerycms-testing', '~> 1.1.0'
   s.add_development_dependency 'rake', '~> 0.9.2'
   s.add_development_dependency 'rails', '3.1.0.rc5'
   s.add_development_dependency 'factory_girl'
