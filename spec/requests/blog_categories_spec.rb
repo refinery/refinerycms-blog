@@ -1,8 +1,9 @@
 require "spec_helper"
 
 describe "blog categories" do
+  login_refinery_user
+  
   before(:each) do
-    Factory.create(:refinery_user)
     @blog_post = Factory(:blog_post, :title => "Refinery CMS blog post")
     @blog_category = Factory(:blog_category, :title => "Video Games")
     @blog_post.categories << @blog_category

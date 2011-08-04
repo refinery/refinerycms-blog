@@ -1,9 +1,7 @@
 require "spec_helper"
 
 describe "blog posts" do
-  before(:each) do
-    Factory.create(:refinery_user)
-  end
+  login_refinery_user
   
   context "when has blog posts" do    
     let(:blog_post) { Factory(:blog_post, :title => "Refinery CMS blog post") }

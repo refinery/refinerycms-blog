@@ -42,6 +42,8 @@ Spork.prefork do
     end
     
     config.include Devise::TestHelpers, :type => :controller
+    config.extend Refinery::ControllerMacros::Authentication, :type => :controller
+    config.extend Refinery::RequestMacros::Authentication, :type => :request
   end
 end
 
