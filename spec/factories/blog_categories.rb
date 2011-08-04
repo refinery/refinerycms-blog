@@ -1,3 +1,5 @@
-Factory.define :blog_category, :class => 'refinery/blog_category' do |f|
-  f.sequence(:title) { |n| "Shopping #{n}" }
+FactoryGirl.define do
+  factory :blog_category, :class => 'refinery/blog_category' do
+    sequence(:title) { |n| "Shopping #{n}" }
+  end
 end
