@@ -31,6 +31,8 @@ Finally migrate your database and you're done.
     
 ## Developing & Contributing
 
+The version of Refinery to develop this engine against is defined in the gemspec. To override the version of refinery to develop against, edit the project Gemfile to point to a local path containing a clone of refinerycms.
+
 ### Testing
 
 Setup the test environment
