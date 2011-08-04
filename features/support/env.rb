@@ -8,10 +8,11 @@ Spork.prefork do
   require 'capybara/cucumber'
   require 'capybara/session'
   
-  require 'factory_girl'
+  require 'refinery/testing/factories'
+  
   require 'database_cleaner'
   require 'database_cleaner/cucumber'
-  
+
   Dir[File.expand_path("../../../spec/factories/*.rb", __FILE__)].each {|f| require f}
 
   include ::Devise::Controllers::UrlHelpers
