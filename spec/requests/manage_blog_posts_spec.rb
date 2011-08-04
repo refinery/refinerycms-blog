@@ -14,20 +14,32 @@ describe "manage blog posts" do
     end
   end
   
-  context "when creating blog post" do
-    it "should succeed" do
+  describe "when creating first blog post" do
+    before(:each) do
+      Refinery::BlogPost.destroy_all
+      
       visit refinery_admin_blog_posts_path
       click_link "Create new post"
 
       fill_in "Title", :with => "Another Refinery CMS blog post"
       fill_in "blog_post_body", :with => "Bla bla"
       click_button "Save"
-
+    end
+    
+    it "should succeed" do
       page.should have_content("'Another Refinery CMS blog post' was successfully added.")
+    end
+    
+    it "should be the only blog post" do
+      ::Refinery::BlogPost.all.size.should eq(1)
+    end
+    
+    it "should belong to me" do
+      ::Refinery::BlogPost.first.author.login.should eq(::Refinery::User.last.login)
     end
   end
   
-  context "when editing blog post" do
+  context "when editing blog post" do    
     it "should succeed" do
       visit refinery_admin_blog_posts_path
       page.should have_content(blog_post.title)
