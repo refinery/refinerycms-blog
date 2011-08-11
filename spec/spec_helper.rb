@@ -12,38 +12,18 @@ Spork.prefork do
     
   require 'rspec/rails'
   require 'capybara/rspec'
-  require 'database_cleaner'
-  
-  require 'refinery/testing/factories'
-  require 'refinery/testing/controller_macros'
-  require 'refinery/testing/request_macros'
+  require 'factory_girl'
 
   Rails.backtrace_cleaner.remove_silencers!
 
   Dir[
-    File.expand_path("../support/*.rb", __FILE__),
-    File.expand_path("../factories/*.rb", __FILE__)
+    File.expand_path("../support/**/*.rb", __FILE__),
+    File.expand_path("../factories/**/*.rb", __FILE__)
   ].each {|f| require f}
 
   RSpec.configure do |config|
     config.mock_with :rspec
     config.use_transactional_fixtures = false
-    
-    config.before(:suite) do
-      DatabaseCleaner.strategy = :truncation
-    end
-    
-    config.before(:each) do
-      DatabaseCleaner.start
-    end
-    
-    config.after(:each) do
-      DatabaseCleaner.clean
-    end
-    
-    config.include Devise::TestHelpers, :type => :controller
-    config.extend Refinery::ControllerMacros::Authentication, :type => :controller
-    config.extend Refinery::RequestMacros::Authentication, :type => :request
   end
 end
 

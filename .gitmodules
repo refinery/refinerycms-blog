@@ -1,3 +1,0 @@
-[submodule "spec/dummy"]
-	path = spec/dummy
-	url = git://github.com/enmasse-entertainment/refinerycms-engine-dummy.git
