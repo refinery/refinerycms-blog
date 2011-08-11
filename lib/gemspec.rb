@@ -2,7 +2,7 @@
 require File.expand_path('../refinery/blog/version', __FILE__)
 version = ::Refinery::Blog::Version.to_s
 raise "Could not get version so gemspec can not be built" if version.nil?
-files = Dir.glob("**/*").flatten.reject{|f| f =~ %r{.gem$}}
+files = Dir.glob("**/*").flatten.reject{|f| f =~ %r{.gem$} or f =~ %r{^spec/dummy}}
 
 gemspec = <<EOF
 # Encoding: UTF-8
@@ -20,13 +20,13 @@ Gem::Specification.new do |s|
   s.require_paths     = %w(lib)
 
   # Runtime dependencies
-  s.add_dependency    'refinerycms-core',   '~> 1.1.0'
+  s.add_dependency    'refinerycms-core',   '~> 2.0.0'
   s.add_dependency    'filters_spam',       '~> 0.2'
   s.add_dependency    'acts-as-taggable-on'
   s.add_dependency    'seo_meta',           '~> 1.1.0'
 
   # Development dependencies
-  s.add_development_dependency 'refinerycms-testing', '~> 1.1.0'
+  s.add_development_dependency 'refinerycms-testing', '~> 2.0.0'
 
   s.files             = %w(
     #{files.join("\n    ")}
