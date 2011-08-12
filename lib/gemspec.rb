@@ -31,9 +31,6 @@ Gem::Specification.new do |s|
   s.files             = %w(
     #{files.join("\n    ")}
   )
-  #{"s.test_files        = %w(
-    #{Dir.glob("test/**/*.rb").join("\n    ")}
-  )" if File.directory?("test")}
 end
 EOF
 

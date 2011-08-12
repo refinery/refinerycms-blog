@@ -187,6 +187,7 @@ Gem::Specification.new do |s|
     db/seeds
     db/seeds/refinerycms_blog.rb
     Gemfile
+    Gemfile.lock
     Guardfile
     lib
     lib/gemspec.rb
@@ -225,5 +226,4 @@ Gem::Specification.new do |s|
     spec/support/refinery.rb
     todo.md
   )
-  
 end
