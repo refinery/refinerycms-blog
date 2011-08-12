@@ -19,3 +19,5 @@ group :assets do
   gem 'coffee-rails', "~> 3.1.0.rc.5"
   gem 'uglifier'
 end
+
+gem 'arel', '2.1.4' # 2.1.5 is broken. see https://github.com/rails/arel/issues/72
