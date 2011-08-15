@@ -187,7 +187,6 @@ Gem::Specification.new do |s|
     db/seeds
     db/seeds/refinerycms_blog.rb
     Gemfile
-    Gemfile.lock
     Guardfile
     lib
     lib/gemspec.rb
@@ -199,6 +198,7 @@ Gem::Specification.new do |s|
     lib/refinery/blog/tabs.rb
     lib/refinery/blog/version.rb
     lib/refinerycms-blog.rb
+    lib/tasks
     Rakefile
     readme.md
     refinerycms-blog.gemspec
