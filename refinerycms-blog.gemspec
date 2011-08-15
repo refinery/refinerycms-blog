@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.name              = %q{refinerycms-blog}
   s.version           = %q{2.0.0}
   s.description       = %q{A really straightforward open source Ruby on Rails blog engine designed for integration with RefineryCMS.}
-  s.date              = %q{2011-08-13}
+  s.date              = %q{2011-08-14}
   s.summary           = %q{Ruby on Rails blogging engine for RefineryCMS.}
   s.email             = %q{info@refinerycms.com}
   s.homepage          = %q{http://refinerycms.com/blog}
@@ -187,7 +187,6 @@ Gem::Specification.new do |s|
     db/seeds
     db/seeds/refinerycms_blog.rb
     Gemfile
-    Gemfile.lock
     Guardfile
     lib
     lib/gemspec.rb
