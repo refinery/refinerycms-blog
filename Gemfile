@@ -1,5 +1,7 @@
 source "http://rubygems.org"
 
+gemspec
+
 ## Uncomment the following lines to develop against edge refinery
 gem 'refinerycms', :git => 'git://github.com/resolve/refinerycms.git'
 gem 'seo_meta', :git => 'git://github.com/parndt/seo_meta.git'
@@ -18,5 +20,3 @@ group :assets do
 end
 
 gem 'arel', '2.1.4' # 2.1.5 is broken. see https://github.com/rails/arel/issues/72
-
-gemspec
