@@ -2,9 +2,8 @@ source "http://rubygems.org"
 
 gemspec
 
-## Uncomment the following lines to develop against a local clone of refinery
+## Uncomment the following lines to develop against edge refinery
 gem 'refinerycms', :git => 'git://github.com/resolve/refinerycms.git'
-gem 'refinerycms-generators', :git => 'git://github.com/resolve/refinerycms-generators.git'
 gem 'seo_meta', :git => 'git://github.com/parndt/seo_meta.git'
 
 gem 'jquery-rails'

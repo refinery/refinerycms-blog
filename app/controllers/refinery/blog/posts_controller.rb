@@ -54,16 +54,12 @@ module Refinery
           date = "#{params[:month]}/#{params[:year]}"
           @archive_date = Time.parse(date)
           @date_title = @archive_date.strftime('%B %Y')
-          @blog_posts = Refinery::BlogPost.live
-                                          .by_archive(@archive_date)
-                                          .page(params[:page])
+          @blog_posts = Refinery::BlogPost.live.by_archive(@archive_date).page(params[:page])
         else
           date = "01/#{params[:year]}"
           @archive_date = Time.parse(date)
           @date_title = @archive_date.strftime('%Y')
-          @blog_posts = Refinery::BlogPost.live
-                                          .by_year(@archive_date)
-                                          .page(params[:page])
+          @blog_posts = Refinery::BlogPost.live.by_year(@archive_date).page(params[:page])
         end
         respond_with (@blog_posts)
       end
@@ -71,8 +67,7 @@ module Refinery
       def tagged
         @tag = ActsAsTaggableOn::Tag.find(params[:tag_id])
         @tag_name = @tag.name
-        @blog_posts = Refinery::BlogPost.tagged_with(@tag_name)
-                                        .page(params[:page])
+        @blog_posts = Refinery::BlogPost.tagged_with(@tag_name).page(params[:page])
       end
 
     protected
@@ -88,9 +83,7 @@ module Refinery
       end
 
       def find_all_blog_posts
-        @blog_posts = Refinery::BlogPost.live
-                                        .includes(:comments, :categories)
-                                        .page(params[:page])
+        @blog_posts = Refinery::BlogPost.live.includes(:comments, :categories).page(params[:page])
       end
 
       def find_tags
