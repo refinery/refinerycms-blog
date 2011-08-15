@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.name              = %q{refinerycms-blog}
   s.version           = %q{2.0.0}
   s.description       = %q{A really straightforward open source Ruby on Rails blog engine designed for integration with RefineryCMS.}
-  s.date              = %q{2011-08-12}
+  s.date              = %q{2011-08-14}
   s.summary           = %q{Ruby on Rails blogging engine for RefineryCMS.}
   s.email             = %q{info@refinerycms.com}
   s.homepage          = %q{http://refinerycms.com/blog}
@@ -198,7 +198,6 @@ Gem::Specification.new do |s|
     lib/refinery/blog/tabs.rb
     lib/refinery/blog/version.rb
     lib/refinerycms-blog.rb
-    lib/tasks
     Rakefile
     readme.md
     refinerycms-blog.gemspec
