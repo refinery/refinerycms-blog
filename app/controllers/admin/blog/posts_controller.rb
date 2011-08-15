@@ -1,7 +1,7 @@
 module Admin
   module Blog
     class PostsController < Admin::BaseController
-      
+      require 'will_paginate/array'
       
       crudify :blog_post,
               :title_attribute => :title,
