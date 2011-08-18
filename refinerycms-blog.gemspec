@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.name              = %q{refinerycms-blog}
   s.version           = %q{2.0.0}
   s.description       = %q{A really straightforward open source Ruby on Rails blog engine designed for integration with RefineryCMS.}
-  s.date              = %q{2011-08-14}
+  s.date              = %q{2011-08-18}
   s.summary           = %q{Ruby on Rails blogging engine for RefineryCMS.}
   s.email             = %q{info@refinerycms.com}
   s.homepage          = %q{http://refinerycms.com/blog}
@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.add_dependency    'refinerycms-core',   '~> 2.0.0'
   s.add_dependency    'filters_spam',       '~> 0.2'
   s.add_dependency    'acts-as-taggable-on'
-  s.add_dependency    'seo_meta',           '~> 1.1.0'
+  s.add_dependency    'seo_meta',           '~> 1.2.0.rc1'
 
   # Development dependencies
   s.add_development_dependency 'refinerycms-testing', '~> 2.0.0'
@@ -204,7 +204,6 @@ Gem::Specification.new do |s|
     script
     script/rails
     spec
-    spec/factories
     spec/models
     spec/models/refinery
     spec/models/refinery/blog_category_spec.rb
