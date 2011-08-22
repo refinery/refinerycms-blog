@@ -9,7 +9,7 @@ sk:
           edit: Upraviť kategóriu
           delete: Zmazať kategóriu
         index:
-          no_items_yet: 'Niesu tu žiadne kategórie. Klikni "%{create}" pre pridanie prvej.'
+          no_items_yet: 'Nie sú tu žiadne kategórie. Klikni "%{create}" pre pridanie prvej.'
       comments:
         approved: 'Komentár od "%{author}" bol schválený.'
         comment:
@@ -19,7 +19,7 @@ sk:
           approve: Schváliť
         rejected: 'Komentár od "%{author}" bol zamietnutý.'
         index:
-          no_items_yet: 'Niesu tu žiadne %{type} komentáre.'
+          no_items_yet: 'Nie sú tu žiadne %{type} komentáre.'
         show:
           comment: Komentár
           blog_post: Blog článok
@@ -39,9 +39,9 @@ sk:
           save_as_draft: Uložiť ako koncept
           published_at: Dátum publikovania
         index:
-          no_items_yet: 'Niesu žiadne články na blogu. Klikni na "%{create}" pre pridanie prvého.'
+          no_items_yet: 'Nie sú žiadne články na blogu. Klikni na "%{create}" pre pridanie prvého.'
         uncategorized:
-          no_items_yet: 'Niesu žiadne nekategorizované články.'
+          no_items_yet: 'Nie sú žiadne nekategorizované články.'
         post:
           view_live_html: 'Zobraziť článok<br/><em>(otvorí ho v novom okne)</em>'
           edit: Upraviť článok
@@ -99,11 +99,11 @@ sk:
         read_more: Celý článok
       comments:
         singular: komentár
-        none: Niesu tu žiadne komentáre
+        none: Nie sú tu žiadne komentáre
       archives: Archív
     categories:
       show:
-        no_posts: Niesu tu žiadne články momentálne.
+        no_posts: Nie sú tu žiadne články momentálne.
     posts:
       post:
         filed_in: Podaný
@@ -114,7 +114,7 @@ sk:
         thank_you: 'Vďaka za komentár.'
         thank_you_moderated: 'Ďakujeme za Váš komentár. Vaša správa čaká na schválenie a objaví sa v najbližšej dobe.'
       index:
-        no_blog_articles_yet: Práve niesu žiadne články na blogu. Zostante naladení.
+        no_blog_articles_yet: Práve Nie sú žiadne články na blogu. Zostante naladení.
       show:
         blog_home: Hlavná stránka blogu
         comments:
@@ -125,4 +125,4 @@ sk:
         submit: Odoslať komentár
       archive:
         blog_archive_for: 'Blog archív pre %{date}'
-        no_blog_articles_posted: 'Niesu žiadne články publikované %{date}.'
+        no_blog_articles_posted: 'Nie sú žiadne články publikované %{date}.'
