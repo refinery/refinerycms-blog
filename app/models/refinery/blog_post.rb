@@ -96,7 +96,7 @@ module Refinery
       
       # how many items to show per page
       def per_page
-        paginates_per Refinery::Setting.find_or_set(:blog_posts_per_page, 10)
+        Refinery::Setting.find_or_set(:blog_posts_per_page, 10)
       end
     end
 

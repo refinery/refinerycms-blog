@@ -1,3 +1,5 @@
+require 'will_paginate/array'
+
 module Refinery
   module Admin
     module Blog
@@ -9,7 +11,8 @@ module Refinery
                 :order => 'published_at DESC'
 
         def uncategorized
-          @blog_posts = Kaminari.paginate_array(Refinery::BlogPost.uncategorized).page(params[:page]).per(Refinery::BlogPost.per_page)
+          @blog_posts = Refinery::BlogPost.uncategorized.paginate(:page => params[:page], 
+                                                                  :per_page => Refinery::BlogPost.per_page)
         end
 
         def tags
