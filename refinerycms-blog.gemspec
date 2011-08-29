@@ -14,9 +14,9 @@ Gem::Specification.new do |s|
 
   # Runtime dependencies
   s.add_dependency    'refinerycms-core',   '~> 2.0.0'
+  s.add_dependency    'refinerycms-pages',  '~> 2.0.0'
   s.add_dependency    'filters_spam',       '~> 0.2'
   s.add_dependency    'acts-as-taggable-on'
-  s.add_dependency    'seo_meta',           '~> 1.2.0.rc1'
 
   # Development dependencies
   s.add_development_dependency 'refinerycms-testing', '~> 2.0.0'
