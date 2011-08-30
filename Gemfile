@@ -3,14 +3,12 @@ source "http://rubygems.org"
 gemspec
 
 ## Uncomment the following lines to develop against edge refinery
-# gem 'refinerycms', :git => 'git://github.com/resolve/refinerycms.git'
-# gem 'seo_meta', :git => 'git://github.com/parndt/seo_meta.git'
+gem 'refinerycms', :git => 'git://github.com/resolve/refinerycms.git'
 
-gem 'jquery-rails'
+# Use edge Devise for now: https://github.com/resolve/refinerycms/commit/10ab4db773d9f94b374b0a4bfb2050cb70ff4353
+gem 'devise', :git => 'git://github.com/plataformatec/devise.git'
 
-group :development, :test do
-  gem 'refinerycms-testing', '~> 2.0.0'
-  
+group :development, :test do  
   require 'rbconfig'
   
   platforms :mswin, :mingw do
@@ -44,10 +42,12 @@ group :development, :test do
   end
 end
 
+# Gems used only for assets and not required
+# in production environments by default.
 group :assets do
-  gem 'sass-rails', "~> 3.1.0.rc.5"
-  gem 'coffee-rails', "~> 3.1.0.rc.5"
+  gem 'sass-rails'
+  gem 'coffee-rails'
   gem 'uglifier'
 end
 
-gem 'arel', '2.1.4' # 2.1.5 is broken. see https://github.com/rails/arel/issues/72
+gem 'jquery-rails'
