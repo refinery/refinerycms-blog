@@ -5,9 +5,6 @@ gemspec
 ## Uncomment the following lines to develop against edge refinery
 gem 'refinerycms', :git => 'git://github.com/resolve/refinerycms.git'
 
-# Use edge Devise for now: https://github.com/resolve/refinerycms/commit/10ab4db773d9f94b374b0a4bfb2050cb70ff4353
-gem 'devise', :git => 'git://github.com/plataformatec/devise.git'
-
 group :development, :test do  
   require 'rbconfig'
   
