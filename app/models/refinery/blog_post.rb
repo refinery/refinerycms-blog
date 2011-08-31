@@ -42,6 +42,8 @@ module Refinery
     scope :previous, lambda { |i| where(["published_at < ? and draft = ?", i.published_at, false]).limit(1) }
     # next is now in << self
 
+    attr_accessible :title, :body, :custom_teaser, :tag_list, :draft, :published_at, :custom_url, :browser_title, :meta_keywords, :meta_description, :user_id, :category_ids
+    
     def next
       BlogPost.next(self).first
     end
