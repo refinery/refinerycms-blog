@@ -22,7 +22,7 @@ describe "blog posts" do
     context "when has tagged blog posts" do      
       before(:each) do
         @tag_name = "chicago"
-        @blog_post = Factory.create(:blog_post,
+        @blog_post = FactoryGirl.create(:blog_post,
                                     :title => "I Love my city",
                                     :tag_list => @tag_name)
         tag = ::Refinery::BlogPost.tag_counts_on(:tags).first

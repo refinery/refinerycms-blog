@@ -3,7 +3,7 @@ require "spec_helper"
 describe "manage blog posts" do
   login_refinery_user
   
-  let!(:blog_category) { Factory.create(:blog_category, :title => "Video Games") }
+  let!(:blog_category) { FactoryGirl.create(:blog_category, :title => "Video Games") }
 
   context "when no blog posts" do
     before(:each) { Refinery::BlogPost.destroy_all }

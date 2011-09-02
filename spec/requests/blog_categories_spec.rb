@@ -5,8 +5,8 @@ describe "blog categories" do
     
   context "has one category and post" do
     before(:each) do
-      @blog_post = Factory.create(:blog_post, :title => "Refinery CMS blog post")
-      @blog_category = Factory.create(:blog_category, :title => "Video Games")
+      @blog_post = FactoryGirl.create(:blog_post, :title => "Refinery CMS blog post")
+      @blog_category = FactoryGirl.create(:blog_category, :title => "Video Games")
       @blog_post.categories << @blog_category
       @blog_post.save!
     end
