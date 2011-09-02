@@ -12,6 +12,7 @@ def setup_environment
   require 'rspec/rails'
   require 'capybara/rspec'
   require 'factory_girl'
+  require 'refinerycms-testing'
 
   Rails.backtrace_cleaner.remove_silencers!
 
@@ -23,6 +24,8 @@ def setup_environment
   RSpec.configure do |config|
     config.mock_with :rspec
     config.use_transactional_fixtures = false
+    
+    config.extend ActionController::Testing::Caching, :type => :controller
   end
 end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110803223529) do
+ActiveRecord::Schema.define(:version => 20110812055013) do
 
   create_table "refinery_blog_categories", :force => true do |t|
     t.string   "title"
@@ -95,7 +95,8 @@ ActiveRecord::Schema.define(:version => 20110803223529) do
     t.integer  "refinery_page_id"
     t.string   "locale"
     t.string   "title"
-    t.string   "custom_title"
+    t.string   "custom_slug"
+    t.string   "menu_title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -112,7 +113,7 @@ ActiveRecord::Schema.define(:version => 20110803223529) do
     t.string   "link_url"
     t.string   "menu_match"
     t.boolean  "deletable",           :default => true
-    t.string   "custom_title_type",   :default => "none"
+    t.string   "custom_title"
     t.boolean  "draft",               :default => false
     t.boolean  "skip_to_first_child", :default => false
     t.integer  "lft"
