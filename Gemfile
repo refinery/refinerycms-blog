@@ -5,19 +5,22 @@ gemspec
 ## Uncomment the following lines to develop against edge refinery
 gem 'refinerycms', :git => 'git://github.com/resolve/refinerycms.git'
 
-group :development, :test do  
+group :development, :test do
   require 'rbconfig'
-  
+  gem 'sqlite3'
+  gem 'mysql2'
+  gem 'pg'
+
   platforms :mswin, :mingw do
     gem 'win32console'
     gem 'rb-fchange', '~> 0.0.5'
     gem 'rb-notifu', '~> 0.0.4'
   end
-  
+
   platforms :ruby do
     gem 'spork', '0.9.0.rc9'
     gem 'guard-spork'
-    
+
     unless ENV['TRAVIS']
       if Config::CONFIG['target_os'] =~ /darwin/i
         gem 'rb-fsevent', '>= 0.3.9'
