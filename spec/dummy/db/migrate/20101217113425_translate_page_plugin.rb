@@ -13,7 +13,9 @@ class TranslatePagePlugin < ActiveRecord::Migration
         :title => :string,
         :meta_keywords => :string,
         :meta_description => :text,
-        :browser_title => :string
+        :browser_title => :string,
+        :custom_slug => :string,
+        :menu_title => :string
       }, {
         :migrate_data => true
       })
