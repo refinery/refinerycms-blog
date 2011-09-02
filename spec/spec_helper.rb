@@ -24,8 +24,6 @@ def setup_environment
   RSpec.configure do |config|
     config.mock_with :rspec
     config.use_transactional_fixtures = false
-    
-    config.extend ActionController::Testing::Caching, :type => :controller
   end
 end
 
