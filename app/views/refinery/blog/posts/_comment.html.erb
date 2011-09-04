@@ -3,8 +3,8 @@
   <%= simple_format auto_link(comment.message.to_s) %>
   <footer class='blog_comment_author'>
     <p>
-      <%= t('by', :scope => 'blog.posts.comments', :who => comment.name) %>,
-      <%= t('time_ago', :scope => 'blog.posts.comments', :time => time_ago_in_words(comment.created_at)) %>
+      <%= t('by', :scope => 'refinery.blog.posts.comments', :who => comment.name) %>,
+      <%= t('time_ago', :scope => 'refinery.blog.posts.comments', :time => time_ago_in_words(comment.created_at)) %>
     </p>
   </footer>
 </article>

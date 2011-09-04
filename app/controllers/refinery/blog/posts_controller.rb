@@ -40,10 +40,10 @@ module Refinery
           end
 
           if Refinery::BlogComment::Moderation.enabled?
-            flash[:notice] = t('thank_you_moderated', :scope => 'blog.posts.comments')
+            flash[:notice] = t('thank_you_moderated', :scope => 'refinery.blog.posts.comments')
             redirect_to main_app.blog_post_url(params[:id])
           else
-            flash[:notice] = t('thank_you', :scope => 'blog.posts.comments')
+            flash[:notice] = t('thank_you', :scope => 'refinery.blog.posts.comments')
             redirect_to main_app.blog_post_url(params[:id],
                                       :anchor => "comment-#{@blog_comment.to_param}")
           end

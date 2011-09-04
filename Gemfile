@@ -3,11 +3,12 @@ source "http://rubygems.org"
 gemspec
 
 ## Uncomment the following lines to develop against edge refinery
-gem 'refinerycms', :git => 'git://github.com/resolve/refinerycms.git'
+gem 'refinerycms', :path => "~/Code/refinerycms" # :git => 'git://github.com/resolve/refinerycms.git'
 gem 'awesome_nested_set', :git => 'git://github.com/collectiveidea/awesome_nested_set.git'
 
 group :development, :test do
   require 'rbconfig'
+  
   gem 'sqlite3'
   gem 'mysql2'
   gem 'pg'
