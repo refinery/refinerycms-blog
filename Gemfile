@@ -8,6 +8,7 @@ gem 'awesome_nested_set', :git => 'git://github.com/collectiveidea/awesome_neste
 
 group :development, :test do
   require 'rbconfig'
+  
   gem 'sqlite3'
   gem 'mysql2'
   gem 'pg'

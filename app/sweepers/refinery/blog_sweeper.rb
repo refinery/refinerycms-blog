@@ -17,8 +17,8 @@ module Refinery
     private
     
       def expire_cache_for(record)
-        expire_page '/blog'
-        expire_page '/blog/feed.rss'
+        expire_page main_app.blog_root_path
+        expire_page main_app.blog_rss_feed_path
       end
       
   end

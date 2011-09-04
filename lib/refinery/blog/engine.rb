@@ -1,6 +1,8 @@
 module Refinery
   module Blog
     class Engine < Rails::Engine
+      require 'rails_autolink'
+      
       config.to_prepare do
         require 'refinery/blog/tabs'
       end

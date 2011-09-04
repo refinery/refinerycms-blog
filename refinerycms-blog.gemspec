@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.name              = %q{refinerycms-blog}
   s.version           = %q{2.0.0}
   s.description       = %q{A really straightforward open source Ruby on Rails blog engine designed for integration with RefineryCMS.}
-  s.date              = %q{2011-08-18}
+  s.date              = %q{2011-09-04}
   s.summary           = %q{Ruby on Rails blogging engine for RefineryCMS.}
   s.email             = %q{info@refinerycms.com}
   s.homepage          = %q{http://refinerycms.com/blog}
@@ -14,9 +14,10 @@ Gem::Specification.new do |s|
 
   # Runtime dependencies
   s.add_dependency    'refinerycms-core',   '~> 2.0.0'
-  s.add_dependency    'refinerycms-pages',  '~> 2.0.0'
   s.add_dependency    'filters_spam',       '~> 0.2'
   s.add_dependency    'acts-as-taggable-on'
+  s.add_dependency    'seo_meta',           '~> 1.2.0.rc1'
+  s.add_dependency    'rails_autolink'
 
   # Development dependencies
   s.add_development_dependency 'refinerycms-testing', '~> 2.0.0'
@@ -99,6 +100,9 @@ Gem::Specification.new do |s|
     app/models/refinery/blog_comment.rb
     app/models/refinery/blog_post.rb
     app/models/refinery/categorization.rb
+    app/sweepers
+    app/sweepers/refinery
+    app/sweepers/refinery/blog_sweeper.rb
     app/views
     app/views/refinery
     app/views/refinery/admin
@@ -204,6 +208,10 @@ Gem::Specification.new do |s|
     script
     script/rails
     spec
+    spec/factories
+    spec/factories/blog_categories.rb
+    spec/factories/blog_comments.rb
+    spec/factories/blog_posts.rb
     spec/models
     spec/models/refinery
     spec/models/refinery/blog_category_spec.rb
@@ -211,17 +219,18 @@ Gem::Specification.new do |s|
     spec/models/refinery/blog_post_spec.rb
     spec/rcov.opts
     spec/requests
-    spec/requests/blog_categories_spec.rb
-    spec/requests/blog_posts_spec.rb
-    spec/requests/manage_blog_posts_spec.rb
+    spec/requests/refinery
+    spec/requests/refinery/admin
+    spec/requests/refinery/admin/blog
+    spec/requests/refinery/admin/blog/comments_spec.rb
+    spec/requests/refinery/admin/blog/posts_spec.rb
+    spec/requests/refinery/blog
+    spec/requests/refinery/blog/categories_spec.rb
+    spec/requests/refinery/blog/posts_spec.rb
     spec/spec_helper.rb
     spec/support
     spec/support/database_cleaner.rb
     spec/support/devise.rb
-    spec/support/factories
-    spec/support/factories/blog_categories.rb
-    spec/support/factories/blog_comments.rb
-    spec/support/factories/blog_posts.rb
     spec/support/refinery.rb
     todo.md
   )
