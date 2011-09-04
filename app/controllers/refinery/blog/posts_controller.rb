@@ -3,7 +3,6 @@ module Refinery
     class PostsController < BlogController
       
       caches_page :index
-      # cache_sweeper Refinery::BlogSweeper, :only => [:comment]
 
       before_filter :find_all_blog_posts, :except => [:archive]
       before_filter :find_blog_post, :only => [:show, :comment, :update_nav]
