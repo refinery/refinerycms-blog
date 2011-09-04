@@ -17,8 +17,9 @@ module Refinery
     private
     
       def expire_cache_for(record)
-        expire_page main_app.blog_root_path
-        expire_page main_app.blog_rss_feed_path
+        # TODO: Convert these to url helpers
+        expire_page '/blog'
+        expire_page '/blog/feed.rss'
       end
       
   end
