@@ -42,7 +42,7 @@ module Refinery
     
     describe "#show" do
       context "when has no comments" do
-        let!(:blog_post) { FactoryGirl.create(:blog_post) }
+        let(:blog_post) { FactoryGirl.create(:blog_post) }
         
         it "should display the blog post" do
           visit blog_post_path(blog_post)
@@ -53,7 +53,7 @@ module Refinery
       end
       
       context "when has approved comments" do
-        let!(:approved_comment) { FactoryGirl.create(:approved_comment) }
+        let(:approved_comment) { FactoryGirl.create(:approved_comment) }
         
         it "should display the comments" do
           visit blog_post_path(approved_comment.post)
@@ -64,7 +64,7 @@ module Refinery
       end
       
       context "when has rejected comments" do
-        let!(:rejected_comment) { FactoryGirl.create(:rejected_comment) }
+        let(:rejected_comment) { FactoryGirl.create(:rejected_comment) }
         
         it "should not display the comments" do          
           visit blog_post_path(rejected_comment.post)
@@ -74,7 +74,7 @@ module Refinery
       end
       
       context "when has new comments" do
-        let!(:blog_comment) { FactoryGirl.create(:blog_comment) }
+        let(:blog_comment) { FactoryGirl.create(:blog_comment) }
         
         it "should not display the comments" do
           visit blog_post_path(blog_comment.post)
