@@ -19,6 +19,8 @@ module Refinery
     scope :unmoderated, :conditions => {:state => nil}
     scope :approved, :conditions => {:state => 'approved'}
     scope :rejected, :conditions => {:state => 'rejected'}
+    
+    self.per_page = Setting.find_or_set(:blog_comments_per_page, 10)
 
     def avatar_url(options = {})
       options = {:size => 60}
@@ -55,7 +57,7 @@ module Refinery
     end
 
     before_create do |comment|
-      unless BlogComment::Moderation.enabled?
+      unless Moderation.enabled?
         comment.state = comment.ham? ? 'approved' : 'rejected'
       end
     end

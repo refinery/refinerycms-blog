@@ -1,30 +1,30 @@
-<%= render :partial => '/admin/blog/submenu' %>
+<%= render :partial => '/refinery/admin/blog/submenu' %>
 <div id='records'>
   <% if searching? %>
     <h2><%= t('results_for', :scope => 'shared.admin.search', :query => params[:search]) %></h2>
     <% if @blog_comments.any? %>
-      <%=# will_paginate @blog_comments %>
+      <%= will_paginate @blog_comments %>
 
       <ul>
         <%= render :partial => "blog_comments",
                    :collection => @blog_comments %>
       </ul>
 
-      <%=# will_paginate @blog_comments %>
+      <%= will_paginate @blog_comments %>
     <% else %>
       <p><%= t('search_no_results', :scope => 'admin') %></p>
     <% end %>
   <% else %>
     <% if @blog_comments.any? %>
-      <%=# will_paginate @blog_comments %>
+      <%= will_paginate @blog_comments %>
 
       <%= render :partial => "sortable_list" %>
 
-      <%=# will_paginate @blog_comments %>
+      <%= will_paginate @blog_comments %>
     <% else %>
       <h3>
         <%= t('.no_items_yet',
-              :type => t(action_name.gsub('index', 'new'), :scope => 'admin.blog.submenu.comments').downcase) %>
+              :type => action_name.gsub('index', 'new')).downcase %>
       </h3>
     <% end %>
   <% end %>
