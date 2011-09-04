@@ -40,9 +40,15 @@ module Refinery
     scope :live, lambda { where( "published_at <= ? and draft = ?", Time.now, false) }
 
     scope :previous, lambda { |i| where(["published_at < ? and draft = ?", i.published_at, false]).limit(1) }
-    # next is now in << self
+    
+    scope :uncategorized, lambda { 
+      live.includes(:categories).where(:categories => { Refinery::Categorization.table_name => { :blog_category_id => nil } })
+    }
 
-    attr_accessible :title, :body, :custom_teaser, :tag_list, :draft, :published_at, :custom_url, :browser_title, :meta_keywords, :meta_description, :user_id, :category_ids
+    attr_accessible :title, :body, :custom_teaser, :tag_list, :draft, :published_at, :custom_url
+    attr_accessible :browser_title, :meta_keywords, :meta_description, :user_id, :category_ids
+    
+    self.per_page = Refinery::Setting.find_or_set(:blog_posts_per_page, 10)
     
     def next
       BlogPost.next(self).first
@@ -67,38 +73,23 @@ module Refinery
     end
 
     class << self
-      def next current_record
+      def next(current_record)
         self.send(:with_exclusive_scope) do
           where(["published_at > ? and draft = ?", current_record.published_at, false]).order("published_at ASC")
         end
       end
 
       def comments_allowed?
-        Refinery::Setting.find_or_set(:comments_allowed, true, {
-          :scoping => 'blog'
-        })
+        Refinery::Setting.find_or_set(:comments_allowed, true, :scoping => 'blog')
       end
 
       def teasers_enabled?
-        Refinery::Setting.find_or_set(:teasers_enabled, true, {
-          :scoping => 'blog'
-        })
+        Refinery::Setting.find_or_set(:teasers_enabled, true, :scoping => 'blog')
       end
 
       def teaser_enabled_toggle!
-        currently = Refinery::Setting.find_or_set(:teasers_enabled, true, {
-          :scoping => 'blog'
-        })
-        Refinery::Setting.set(:teasers_enabled, {:value => !currently, :scoping => 'blog'})
-      end
-
-      def uncategorized
-        BlogPost.live.reject { |p| p.categories.any? }
-      end
-      
-      # how many items to show per page
-      def per_page
-        Refinery::Setting.find_or_set(:blog_posts_per_page, 10)
+        currently = Refinery::Setting.find_or_set(:teasers_enabled, true, :scoping => 'blog')
+        Refinery::Setting.set(:teasers_enabled, :value => !currently, :scoping => 'blog')
       end
     end
 
@@ -107,9 +98,7 @@ module Refinery
 
       class << self
         def key
-          Refinery::Setting.find_or_set(:share_this_key, BlogPost::ShareThis::DEFAULT_KEY, {
-            :scoping => 'blog'
-          })
+          Refinery::Setting.find_or_set(:share_this_key, BlogPost::ShareThis::DEFAULT_KEY, :scoping => 'blog')
         end
 
         def enabled?
