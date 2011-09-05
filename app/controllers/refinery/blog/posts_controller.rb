@@ -1,4 +1,4 @@
-module Refinery
+module ::Refinery
   module Blog
     class PostsController < BlogController
       

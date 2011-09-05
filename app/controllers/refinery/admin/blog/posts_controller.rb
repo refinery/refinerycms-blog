@@ -1,8 +1,7 @@
-module Refinery
+module ::Refinery
   module Admin
     module Blog
-      class PostsController < ::Admin::BaseController
-        
+      class PostsController < ::Refinery::AdminController
         cache_sweeper Refinery::BlogSweeper
 
         crudify :'refinery/blog_post',
