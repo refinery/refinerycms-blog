@@ -1,4 +1,4 @@
-module Refinery
+module ::Refinery
   class BlogController < ::ApplicationController
 
     helper :'refinery/blog_posts'
