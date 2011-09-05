@@ -3,16 +3,16 @@ require 'spec_helper'
 module Refinery
   describe BlogCategory do
     before(:each) do
-      @blog_category = Factory.create(:blog_category)
+      @blog_category = FactoryGirl.create(:blog_category)
     end
 
     describe "validations" do
       it "requires title" do
-        Factory.build(:blog_category, :title => "").should_not be_valid
+        FactoryGirl.build(:blog_category, :title => "").should_not be_valid
       end
 
       it "won't allow duplicate titles" do
-        Factory.build(:blog_category, :title => @blog_category.title).should_not be_valid
+        FactoryGirl.build(:blog_category, :title => @blog_category.title).should_not be_valid
       end
     end
 
@@ -33,7 +33,7 @@ module Refinery
     describe "#post_count" do
       it "returns post count in category" do
         2.times do
-          @blog_category.posts << Factory.create(:blog_post)
+          @blog_category.posts << FactoryGirl.create(:blog_post)
         end
         @blog_category.post_count.should == 2
       end

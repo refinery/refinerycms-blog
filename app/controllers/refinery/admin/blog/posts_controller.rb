@@ -1,18 +1,21 @@
-require 'will_paginate/array'
-
 module Refinery
   module Admin
     module Blog
       class PostsController < ::Admin::BaseController
-
+        
+        cache_sweeper Refinery::BlogSweeper
 
         crudify :'refinery/blog_post',
                 :title_attribute => :title,
                 :order => 'published_at DESC'
+                
+        before_filter :find_all_categories,
+                      :only => [:new, :edit, :create, :update]
+
+        before_filter :check_category_ids, :only => :update        
 
         def uncategorized
-          @blog_posts = Refinery::BlogPost.uncategorized.paginate(:page => params[:page], 
-                                                                  :per_page => Refinery::BlogPost.per_page)
+          @blog_posts = Refinery::BlogPost.uncategorized.page(params[:page])
         end
 
         def tags
@@ -71,7 +74,7 @@ module Refinery
             unless request.xhr?
               render :action => 'new'
             else
-              render :partial => "/shared/admin/error_messages",
+              render :partial => "/refinery/admin/error_messages",
                      :locals => {
                        :object => @blog_post,
                        :include_object_name => true
@@ -79,11 +82,6 @@ module Refinery
             end
           end
         end
-
-        before_filter :find_all_categories,
-                      :only => [:new, :edit, :create, :update]
-
-        before_filter :check_category_ids, :only => :update
 
       protected
         def find_all_categories

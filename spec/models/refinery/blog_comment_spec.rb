@@ -6,7 +6,7 @@ module Refinery
     context "wiring up" do
 
       before(:each) do
-        @comment = Factory.create(:blog_comment)
+        @comment = FactoryGirl.create(:blog_comment)
       end
 
       it "saves" do

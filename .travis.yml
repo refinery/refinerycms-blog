@@ -4,6 +4,7 @@ notifications:
     - parndt@gmail.com
     - ugis.ozolss@gmail.com
     - joe@joesak.com
+    - jamie@enmasse.com
 env:
   - DB=postgres
   - DB=mysql
