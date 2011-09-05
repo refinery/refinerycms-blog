@@ -1,7 +1,7 @@
 module Refinery
   module Admin
     module Blog
-      class SettingsController < ::Admin::BaseController
+      class SettingsController < ::Refinery::AdminController
 
         def notification_recipients
           @recipients = Refinery::BlogComment::Notification.recipients
