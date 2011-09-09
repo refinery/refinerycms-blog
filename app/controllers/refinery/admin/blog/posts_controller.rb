@@ -1,7 +1,7 @@
 module Refinery
   module Admin
     module Blog
-      class PostsController < ::Refinery::AdminController
+      class PostsController < ::Admin::BaseController
         
         cache_sweeper Refinery::BlogSweeper
 
