@@ -1,7 +1,7 @@
 module Refinery
   module Admin
     module Blog
-      class CategoriesController < ::Refinery::AdminController
+      class CategoriesController < ::Admin::BaseController
 
         crudify :'refinery/blog_category',
                 :title_attribute => :title,
