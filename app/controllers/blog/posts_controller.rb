@@ -9,7 +9,7 @@ module Blog
 
     def index
       # Rss feeders are greedy. Let's give them every blog post instead of paginating.
-      (@blog_posts = BlogPost.live.includes(:comments, :categories).all) if request.format.rss? 
+      (@blog_posts = BlogPost.live.includes(:comments, :categories).all) if request.format.rss?
       respond_with (@blog_posts) do |format|
         format.html
         format.rss
@@ -18,7 +18,8 @@ module Blog
 
     def show
       @blog_comment = BlogComment.new
-
+      @canonical = url_for(:locale => ::Refinery::I18n.default_frontend_locale) if canonical?
+      
       respond_with (@blog_post) do |format|
         format.html { present(@blog_post) }
         format.js { render :partial => 'post', :layout => false }
@@ -100,6 +101,9 @@ module Blog
     def find_tags
       @tags = BlogPost.tag_counts_on(:tags)
     end
-
+    
+    def canonical?
+      ::Refinery.i18n_enabled? && ::Refinery::I18n.default_frontend_locale != ::Refinery::I18n.current_frontend_locale
+    end
   end
 end
