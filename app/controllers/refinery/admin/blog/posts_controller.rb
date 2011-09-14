@@ -47,7 +47,7 @@ module Refinery
 
           if Refinery::BlogPost.column_names.include?("user_id")
             params[:blog_post].merge!({
-              :user_id => current_user.id
+              :user_id => current_refinery_user.id
             })
           end
 
