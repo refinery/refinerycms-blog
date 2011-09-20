@@ -1,6 +1,6 @@
 module Refinery
   module Blog
-    class CategoriesController < BlogController
+    class CategoriesController < BaseController
 
       def show
         @category = Refinery::BlogCategory.find(params[:id])

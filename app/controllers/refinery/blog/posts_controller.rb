@@ -1,6 +1,6 @@
 module Refinery
   module Blog
-    class PostsController < BlogController
+    class PostsController < BaseController
       
       caches_page :index
 
@@ -71,27 +71,6 @@ module Refinery
         @tag_name = @tag.name
         @blog_posts = Refinery::BlogPost.tagged_with(@tag_name).page(params[:page])
       end
-
-    protected
-
-      def find_blog_post
-        unless (@blog_post = Refinery::BlogPost.find(params[:id])).try(:live?)
-          if refinery_user? and current_user.authorized_plugins.include?("refinerycms_blog")
-            @blog_post = Refinery::BlogPost.find(params[:id])
-          else
-            error_404
-          end
-        end
-      end
-
-      def find_all_blog_posts
-        @blog_posts = Refinery::BlogPost.live.includes(:comments, :categories).page(params[:page])
-      end
-
-      def find_tags
-        @tags = Refinery::BlogPost.tag_counts_on(:tags)
-      end
-
     end
   end
 end
