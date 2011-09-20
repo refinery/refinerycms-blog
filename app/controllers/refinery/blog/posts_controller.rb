@@ -1,6 +1,6 @@
 module Refinery
   module Blog
-    class PostsController < BlogController
+    class PostsController < BaseController
       
       caches_page :index
 
