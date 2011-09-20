@@ -9,9 +9,9 @@ module Refinery
 
       protected
 
-      def find_page
-        @page = Refinery::Page.find_by_link_url("/blog")
-      end
+        def find_page
+          @page = Refinery::Page.find_by_link_url("/blog")
+        end
     end
   end
 end
