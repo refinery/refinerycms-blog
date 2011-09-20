@@ -1,8 +1,6 @@
 module Refinery
   module Blog
     class PostsController < BlogController
-
-      include BlogControllerHelper
       
       caches_page :index
 
