@@ -6,7 +6,7 @@ module Refinery
     
         def find_blog_post
           unless (@blog_post = Refinery::BlogPost.find(params[:id])).try(:live?)
-            if refinery_user? and current_user.authorized_plugins.include?("refinerycms_blog")
+            if refinery_user? and current_refinery_user.authorized_plugins.include?("refinerycms_blog")
               @blog_post = Refinery::BlogPost.find(params[:id])
             else
               error_404

@@ -27,5 +27,5 @@
     <span class="st_sharethis" displayText="ShareThis"></span>
   <% end %>
 </article>
-<%= render :partial => '/shared/draft_page_message' unless @blog_post.nil? or @blog_post.live? -%>
+<%= render :partial => '/refinery/draft_page_message' unless @blog_post.nil? or @blog_post.live? -%>
 <%= render 'nav' if next_or_previous?(@blog_post) %>

@@ -5,5 +5,9 @@ FactoryGirl.define do
     draft false
     tag_list "chicago, shopping, fun times"
     published_at Time.now
+    
+    factory :blog_post_draft do
+      draft true
+    end
   end
 end
