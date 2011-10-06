@@ -38,6 +38,10 @@ es:
           toggle_advanced_options: Click para acceder a las opciones de menú y etiquetas
           save_as_draft: Guardar Borrador
           published_at: Fecha de publicación
+          custom_url: Url personalizada
+          custom_url_help: Generar la url de la entrada en el blog de este texto en lugar del título.
+          copy_body: Copia el cuerpo de la publicación a teaser.
+          copy_body_help: Copia el cuerpo de la publicación a teaser. Deja teaser en blanco para que Refinery automaticamente genere el teaser.
         index:
           no_items_yet: 'Aún no hay entradas en el Blog. Haz click en "%{create}" para añadir el primero'
         uncategorized:
@@ -75,6 +79,7 @@ es:
           moderation: Moderación
           update_notified: '¿Quién recibe las notificaciones?'
           comments: Comentarios
+          teasers: Teasers
   blog:
     comment_mailer:
       notification:
@@ -101,6 +106,8 @@ es:
         singular: comentario
         none: no hay comentarios
       archives: Archivos
+      tags:
+        title: "Etiquetas"  
     categories:
       show:
         no_posts: Todavía no hay entradas.
@@ -123,6 +130,30 @@ es:
         other: Otros posts
         filed_in: Archivado en
         submit: Enviar comentario
+        tagged: Etiquetado en
+        name: Nombre
+        email: Email
+        message: Mensaje
+        by: por
+      tagged:
+        no_blog_articles_yet: Todavía no hay artículos. ¡Pero vuelve pronto!.
+        posts_tagged: Publicaciones etiquetadas
       archive:
         blog_archive_for: 'Archivo del blog en %{date}'
         no_blog_articles_posted: 'No hay entradas publicadas en %{date}.'
+  activerecord:
+    models:
+      blog_category: Categoría
+      blog_comment: Comentario
+      blog_post: Publicación
+    attributes:
+      blog_category:
+        title: Título
+      blog_comment:
+        name: Nombre
+        email: Email
+        message: Mensaje
+      blog_post:
+        title: Título
+        body: Cuerpo
+        teaser: Teaser
