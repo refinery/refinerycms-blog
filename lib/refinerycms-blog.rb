@@ -19,6 +19,10 @@ module Refinery
       def version
         ::Refinery::Blog::Version.to_s
       end
+      
+      def factory_paths
+        @factory_paths ||= [ File.expand_path("../../spec/factories", __FILE__) ]
+      end
     end
   end
 end
