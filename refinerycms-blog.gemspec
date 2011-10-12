@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.name              = %q{refinerycms-blog}
   s.version           = %q{2.0.0}
   s.description       = %q{A really straightforward open source Ruby on Rails blog engine designed for integration with RefineryCMS.}
-  s.date              = %q{2011-09-19}
+  s.date              = %q{2011-10-11}
   s.summary           = %q{Ruby on Rails blogging engine for RefineryCMS.}
   s.email             = %q{info@refinerycms.com}
   s.homepage          = %q{http://refinerycms.com/blog}
@@ -171,7 +171,7 @@ Gem::Specification.new do |s|
     config/locales/es.yml
     config/locales/fr.yml
     config/locales/it.yml
-    config/locales/jp.yml
+    config/locales/ja.yml
     config/locales/nb.yml
     config/locales/nl.yml
     config/locales/pl.yml
