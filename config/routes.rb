@@ -1,4 +1,4 @@
-::Refinery::Application.routes.draw do
+Rails.application.routes.draw do
   scope(:module => 'refinery') do
     scope(:path => 'blog', :module => 'blog') do
       root :to => 'posts#index', :as => 'blog_root'
