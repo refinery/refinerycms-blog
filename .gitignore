@@ -14,6 +14,7 @@ doc/*
 *.autobackupbyrefinery.*
 /refinerycms-blog*.gem
 .autotest
+spec/dummy
 
 # Mac
 .DS_Store
