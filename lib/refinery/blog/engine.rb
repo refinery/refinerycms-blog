@@ -1,22 +1,31 @@
+require 'rails_autolink'
+      
 module Refinery
   module Blog
     class Engine < Rails::Engine
-      require 'rails_autolink'
+      include Refinery::Engine
+
+      isolate_namespace Refinery
+      engine_name :refinery_resources
       
       config.to_prepare do
         require 'refinery/blog/tabs'
       end
 
-      initializer "init plugin", :after => :set_routes_reloader do |app|
+      initializer "register refinerycms_blog plugin", :after => :set_routes_reloader do |app|
         Refinery::Plugin.register do |plugin|
           plugin.pathname = root
           plugin.name = "refinerycms_blog"
           plugin.url = app.routes.url_helpers.refinery_admin_blog_posts_path
           plugin.menu_match = /^\/refinery\/blog\/?(posts|comments|categories)?/
           plugin.activity = {
-            :class => Refinery::BlogPost
+            :class_name => :'refinery/blog_post'
           }
         end
+      end
+      
+      config.after_initialize do
+        Refinery.register_engine(Refinery::Blog)
       end
     end
   end
