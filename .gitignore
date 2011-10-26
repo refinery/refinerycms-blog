@@ -43,5 +43,10 @@ nbproject
 # Capybara Bug
 capybara-*html
 
+# rvm
 .rvmrc
+
+#rbenv
+.rbenv-version
+
 Gemfile.lock
