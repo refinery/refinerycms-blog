@@ -6,7 +6,7 @@ module Refinery
       include Refinery::Engine
 
       isolate_namespace Refinery
-      engine_name :refinery_resources
+      engine_name :refinery_blog
       
       config.to_prepare do
         require 'refinery/blog/tabs'
