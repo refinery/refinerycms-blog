@@ -1,4 +1,6 @@
-script: "bundle exec rake && bundle exec rspec spec/"
+before_script:
+  - "bundle exec rake refinery:testing:dummy_app"
+script: "bundle exec rake spec"
 notifications:
   email:
     - parndt@gmail.com
