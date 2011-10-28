@@ -12,9 +12,15 @@ module Refinery
     autoload :Tab, 'refinery/blog/tabs'
 
     class << self
-      attr_accessor :root
+      attr_writer :root
+      attr_writer :tabs
+
       def root
         @root ||= Pathname.new(File.expand_path('../../', __FILE__))
+      end
+      
+      def tabs
+        @tabs ||= []
       end
 
       def version
