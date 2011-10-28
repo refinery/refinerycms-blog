@@ -8,10 +8,6 @@ module Refinery
 
       isolate_namespace Refinery
       engine_name :refinery_blog
-      
-      config.to_prepare do
-        require 'refinery/blog/tabs'
-      end
 
       initializer "register refinerycms_blog plugin", :after => :set_routes_reloader do |app|
         Refinery::Plugin.register do |plugin|
