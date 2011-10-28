@@ -1,4 +1,5 @@
-require 'rails_autolink'
+require 'refinerycms-blog'
+require 'rails'
       
 module Refinery
   module Blog
