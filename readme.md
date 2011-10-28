@@ -35,11 +35,14 @@ The version of Refinery to develop this engine against is defined in the gemspec
 
 ### Testing
 
-Setup the test environment
+Generate the dummy application to test against
 
-    $ bundle exec rake refinery:testing:engine:setup
+    $ bundle exec rake refinery:testing:dummy_app
 
 Run the test suite with [Guard](https://github.com/guard/guard)
 
     $ bundle exec guard start
-    
+
+Or just with rake spec
+
+    $ bundle exec rake spec
