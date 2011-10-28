@@ -3,9 +3,10 @@ require 'bundler'
 Bundler.require
 
 require 'filters_spam'
-require File.expand_path('../generators/blog_generator', __FILE__)
 
 module Refinery
+  autoload :BlogGenerator, 'generators/refinery/blog/blog_generator'
+  
   module Blog
     autoload :Version, 'refinery/blog/version'
     autoload :Tab, 'refinery/blog/tabs'
