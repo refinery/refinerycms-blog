@@ -1,11 +1,5 @@
 module Refinery
-  module Blog
-    attr_accessor :tabs
-
-    def self.tabs
-      @tabs ||= []
-    end
-    
+  module Blog    
     class Tab
       attr_accessor :name, :partial
 
@@ -18,11 +12,11 @@ module Refinery
         raise "A tab MUST have a partial!: #{tab.inspect}" if tab.partial.blank?
       end
 
-    protected
+      protected
 
-      def initialize
-        ::Refinery::Blog.tabs << self # add me to the collection of registered page tabs
-      end
+        def initialize
+          ::Refinery::Blog.tabs << self # add me to the collection of registered page tabs
+        end
     end
   end
 end
