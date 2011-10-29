@@ -15,4 +15,6 @@ end
 require "refinerycms-testing"
 Refinery::Testing::Railtie.load_tasks
 
+Bundler::GemHelper.install_tasks
+
 load File.expand_path('../tasks/rspec.rake', __FILE__)
