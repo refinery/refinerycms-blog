@@ -28,7 +28,7 @@ module Refinery
       end
       
       def factory_paths
-        @factory_paths ||= [ File.expand_path("../../spec/factories", __FILE__) ]
+        @factory_paths ||= [ File.expand_path("../../../spec/factories", __FILE__) ]
       end
     end
   end
