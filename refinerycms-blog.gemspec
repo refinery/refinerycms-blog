@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.name              = %q{refinerycms-blog}
   s.version           = %q{2.0.0}
   s.description       = %q{A really straightforward open source Ruby on Rails blog engine designed for integration with RefineryCMS.}
-  s.date              = %q{2011-10-11}
+  s.date              = %q{2011-11-06}
   s.summary           = %q{Ruby on Rails blogging engine for RefineryCMS.}
   s.email             = %q{info@refinerycms.com}
   s.homepage          = %q{http://refinerycms.com/blog}
@@ -185,24 +185,25 @@ Gem::Specification.new do |s|
     db/migrate/20110803223522_create_blog_structure.rb
     db/migrate/20110803223523_add_user_id_to_blog_posts.rb
     db/migrate/20110803223524_acts_as_taggable_on_migration.rb
-    db/migrate/20110803223525_create_seo_meta_for_blog.rb
     db/migrate/20110803223526_add_cached_slugs.rb
     db/migrate/20110803223527_add_custom_url_field_to_blog_posts.rb
     db/migrate/20110803223528_add_custom_teaser_field_to_blog_posts.rb
     db/migrate/20110803223529_add_primary_key_to_categorizations.rb
-    db/seeds
-    db/seeds/refinerycms_blog.rb
+    db/seeds.rb
     Gemfile
     Guardfile
     lib
     lib/gemspec.rb
     lib/generators
-    lib/generators/blog_generator.rb
+    lib/generators/refinery
+    lib/generators/refinery/blog
+    lib/generators/refinery/blog/blog_generator.rb
     lib/refinery
     lib/refinery/blog
     lib/refinery/blog/engine.rb
     lib/refinery/blog/tabs.rb
     lib/refinery/blog/version.rb
+    lib/refinery/blog.rb
     lib/refinerycms-blog.rb
     Rakefile
     readme.md
@@ -234,6 +235,8 @@ Gem::Specification.new do |s|
     spec/support/database_cleaner.rb
     spec/support/devise.rb
     spec/support/refinery.rb
+    tasks
+    tasks/rspec.rake
     todo.md
   )
 end
