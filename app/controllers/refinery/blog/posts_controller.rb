@@ -12,7 +12,7 @@ module Refinery
 
       def index
         # Rss feeders are greedy. Let's give them every blog post instead of paginating.
-        (@blog_posts = Refinery::BlogPost.live.includes(:comments, :categories).all) if request.format.rss? 
+        (@blog_posts = Refinery::Blog::Post.live.includes(:comments, :categories).all) if request.format.rss? 
         respond_with (@blog_posts) do |format|
           format.html
           format.rss
@@ -20,7 +20,7 @@ module Refinery
       end
 
       def show
-        @blog_comment = Refinery::BlogComment.new
+        @blog_comment = Refinery::Blog::Comment.new
 
         respond_with (@blog_post) do |format|
           format.html { present(@blog_post) }
@@ -30,7 +30,7 @@ module Refinery
 
       def comment
         if (@blog_comment = @blog_post.comments.create(params[:blog_comment])).valid?
-          if Refinery::BlogComment::Moderation.enabled? or @blog_comment.ham?
+          if Refinery::Blog::Comment::Moderation.enabled? or @blog_comment.ham?
             begin
               Refinery::Blog::CommentMailer.notification(@blog_comment, request).deliver
             rescue
@@ -38,7 +38,7 @@ module Refinery
             end
           end
 
-          if Refinery::BlogComment::Moderation.enabled?
+          if Refinery::Blog::Comment::Moderation.enabled?
             flash[:notice] = t('thank_you_moderated', :scope => 'refinery.blog.posts.comments')
             redirect_to main_app.blog_post_url(params[:id])
           else
@@ -56,12 +56,12 @@ module Refinery
           date = "#{params[:month]}/#{params[:year]}"
           @archive_date = Time.parse(date)
           @date_title = @archive_date.strftime('%B %Y')
-          @blog_posts = Refinery::BlogPost.live.by_archive(@archive_date).page(params[:page])
+          @blog_posts = Refinery::Blog::Post.live.by_archive(@archive_date).page(params[:page])
         else
           date = "01/#{params[:year]}"
           @archive_date = Time.parse(date)
           @date_title = @archive_date.strftime('%Y')
-          @blog_posts = Refinery::BlogPost.live.by_year(@archive_date).page(params[:page])
+          @blog_posts = Refinery::Blog::Post.live.by_year(@archive_date).page(params[:page])
         end
         respond_with (@blog_posts)
       end
@@ -69,7 +69,7 @@ module Refinery
       def tagged
         @tag = ActsAsTaggableOn::Tag.find(params[:tag_id])
         @tag_name = @tag.name
-        @blog_posts = Refinery::BlogPost.tagged_with(@tag_name).page(params[:page])
+        @blog_posts = Refinery::Blog::Post.tagged_with(@tag_name).page(params[:page])
       end
     end
   end

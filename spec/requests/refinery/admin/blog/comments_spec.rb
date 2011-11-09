@@ -1,13 +1,13 @@
 require "spec_helper"
 
 module Refinery
-  describe "AdminBlogComments" do
+  describe "AdminBlog::Comments" do
     login_refinery_user
     
     describe "#index" do      
       context "when has no new unapproved comments" do
         before(:each) do 
-          BlogComment.delete_all
+          Blog::Comment.delete_all
           visit refinery_admin_blog_comments_path
         end          
         
@@ -44,7 +44,7 @@ module Refinery
     describe "#approved" do      
       context "when has no approved comments" do
         before(:each) do
-          BlogComment.delete_all
+          Blog::Comment.delete_all
           visit approved_refinery_admin_blog_comments_path
         end
         
@@ -76,7 +76,7 @@ module Refinery
     describe "#rejected" do      
       context "when has no rejected comments" do
         before(:each) do
-          BlogComment.delete_all
+          Blog::Comment.delete_all
           visit rejected_refinery_admin_blog_comments_path
         end
         

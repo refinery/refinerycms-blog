@@ -33,7 +33,7 @@
         <%= link_to t('read_more', :scope => 'refinery.blog.shared.posts'), main_app.blog_post_path(post) if blog_post_teaser_enabled? %>
       </p>
       <aside class='comment_count'>
-        <% if Refinery::BlogPost.comments_allowed? %>
+        <% if Refinery::Blog::Post.comments_allowed? %>
           <% if post.comments.any? %>
              (<%= pluralize(post.comments.approved.count, t('singular', :scope => 'refinery.blog.shared.comments')) %>)
           <% else %>

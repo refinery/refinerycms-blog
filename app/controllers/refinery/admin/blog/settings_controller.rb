@@ -4,12 +4,12 @@ module Refinery
       class SettingsController < ::Refinery::AdminController
 
         def notification_recipients
-          @recipients = Refinery::BlogComment::Notification.recipients
+          @recipients = Refinery::Blog::Comment::Notification.recipients
 
           if request.post?
-            Refinery::BlogComment::Notification.recipients = params[:recipients]
+            Refinery::Blog::Comment::Notification.recipients = params[:recipients]
             flash[:notice] = t('updated', :scope => 'admin.blog.settings.notification_recipients',
-                               :recipients => Refinery::BlogComment::Notification.recipients)
+                               :recipients => Refinery::Blog::Comment::Notification.recipients)
             unless request.xhr? or from_dialog?
               redirect_back_or_default(admin_blog_posts_path)
             else
@@ -20,7 +20,7 @@ module Refinery
         end
 
         def moderation
-          enabled = Refinery::BlogComment::Moderation.toggle!
+          enabled = Refinery::Blog::Comment::Moderation.toggle!
           unless request.xhr?
             redirect_back_or_default(admin_blog_posts_path)
           else
@@ -30,7 +30,7 @@ module Refinery
         end
 
         def comments
-          enabled = Refinery::BlogComment.toggle!
+          enabled = Refinery::Blog::Comment.toggle!
           unless request.xhr?
             redirect_back_or_default(admin_blog_posts_path)
           else
@@ -40,7 +40,7 @@ module Refinery
         end
 
         def teasers
-          enabled = Refinery::BlogPost.teaser_enabled_toggle!
+          enabled = Refinery::Blog::Post.teaser_enabled_toggle!
           unless request.xhr?
             redirect_back_or_default(admin_blog_posts_path)
           else

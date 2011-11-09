@@ -26,11 +26,11 @@
                    :class => 'page_add_icon' %>
     </li>
   </ul>
-  <% if Refinery::BlogPost.comments_allowed? %>
+  <% if Refinery::Blog::Post.comments_allowed? %>
     <ul class='collapsible_menu'>
       <li class='not_a_link'>
-        <% if Refinery::BlogComment.unmoderated.any? %>
-          <% title = t('.comments.title_with_count', :new_count => Refinery::BlogComment.unmoderated.size) %>
+        <% if Refinery::Blog::Comment.unmoderated.any? %>
+          <% title = t('.comments.title_with_count', :new_count => Refinery::Blog::Comment.unmoderated.size) %>
         <% else %>
           <% title = t('.comments.title') %>
         <% end %>
@@ -74,11 +74,11 @@
     </li>
     <li>
       <%= link_to t('.settings.comments'), main_app.comments_refinery_admin_blog_settings_path,
-                  :class => "#{Refinery::BlogPost.comments_allowed? ? 'success' : 'failure'}_icon" %>
+                  :class => "#{Refinery::Blog::Post.comments_allowed? ? 'success' : 'failure'}_icon" %>
     </li>
     <li>
       <%= link_to t('.settings.moderation'), main_app.moderation_refinery_admin_blog_settings_path,
-                  :class => "#{Refinery::BlogComment::Moderation.enabled? ? 'success' : 'failure'}_icon" %>
+                  :class => "#{Refinery::Blog::Comment::Moderation.enabled? ? 'success' : 'failure'}_icon" %>
     </li>
     <li>
       <%= link_to t('.settings.update_notified'),
@@ -87,7 +87,7 @@
     </li>
     <li>
       <%= link_to t('.settings.teasers'),
-                  main_app.teasers_refinery_admin_blog_settings_path, :class => "#{Refinery::BlogPost.teasers_enabled? ? 'success' : 'failure'}_icon" %>
+                  main_app.teasers_refinery_admin_blog_settings_path, :class => "#{Refinery::Blog::Post.teasers_enabled? ? 'success' : 'failure'}_icon" %>
     </li>
   </ul>
 

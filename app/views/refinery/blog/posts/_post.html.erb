@@ -23,7 +23,7 @@
   </header>
   <%= @blog_post.body.html_safe %>
 
-  <% if Refinery::BlogPost::ShareThis.enabled? %>
+  <% if Refinery::Blog::Post::ShareThis.enabled? %>
     <span class="st_sharethis" displayText="ShareThis"></span>
   <% end %>
 </article>

@@ -16,7 +16,7 @@ module Refinery
           plugin.url = app.routes.url_helpers.refinery_admin_blog_posts_path
           plugin.menu_match = /^\/refinery\/blog\/?(posts|comments|categories)?/
           plugin.activity = {
-            :class_name => :'refinery/blog_post'
+            :class_name => :'refinery/blog/post'
           }
         end
       end

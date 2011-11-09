@@ -1,22 +1,22 @@
 require "spec_helper"
 
 module Refinery
-  describe "AdminBlogPosts" do
+  describe "AdminBlog::Posts" do
     login_refinery_user
-  
+
     let!(:blog_category) { FactoryGirl.create(:blog_category, :title => "Video Games") }
 
     context "when no blog posts" do
-      before(:each) { Refinery::BlogPost.destroy_all }
-    
+      before(:each) { Refinery::Blog::Post.destroy_all }
+
       describe "blog post listing" do
         before(:each) { visit refinery_admin_blog_posts_path }
-      
+
         it "invites to create new post" do
           page.should have_content("There are no Blog Posts yet. Click \"Create new post\" to add your first blog post.")
         end
       end
-    
+
       describe "new blog post form" do
         before(:each) do
           visit refinery_admin_blog_posts_path
@@ -30,7 +30,7 @@ module Refinery
         it "should have Video Games" do
           page.should have_content(blog_category.title)
         end
-      
+
         describe "create blog post" do
           before(:each) do
             fill_in "Title", :with => "This is my blog post"
@@ -38,25 +38,25 @@ module Refinery
             check blog_category.title
             click_button "Save"
           end
-        
+
           it "should succeed" do
             page.should have_content("was successfully added.")
           end
 
           it "should be the only blog post" do
-            ::Refinery::BlogPost.all.size.should eq(1)
+            ::Refinery::Blog::Post.all.size.should eq(1)
           end
 
           it "should belong to me" do
-            ::Refinery::BlogPost.first.author.login.should eq(::Refinery::User.last.login)
+            ::Refinery::Blog::Post.first.author.login.should eq(::Refinery::User.last.login)
           end
 
           it "should save categories" do
-            ::Refinery::BlogPost.last.categories.count.should eq(1)
-            ::Refinery::BlogPost.last.categories.first.title.should eq(blog_category.title)
+            ::Refinery::Blog::Post.last.categories.count.should eq(1)
+            ::Refinery::Blog::Post.last.categories.first.title.should eq(blog_category.title)
           end
         end
-      
+
         describe "create blog post with tags" do
           before(:each) do
             @tag_list = "chicago, bikes, beers, babes"
@@ -65,29 +65,29 @@ module Refinery
             fill_in "Tags", :with => @tag_list
             click_button "Save"
           end
-        
+
           it "should succeed" do
             page.should have_content("was successfully added.")
           end
-        
+
           it "should be the only blog post" do
-            ::Refinery::BlogPost.all.size.should eq(1)
+            ::Refinery::Blog::Post.all.size.should eq(1)
           end
-        
+
           it "should have the specified tags" do
-            ::Refinery::BlogPost.last.tag_list.should eq(@tag_list.split(', '))
+            ::Refinery::Blog::Post.last.tag_list.should eq(@tag_list.split(', '))
           end
         end
       end
     end
-  
+
     context "when has blog posts" do
       let!(:blog_post) { FactoryGirl.create(:blog_post) }
-    
+
       describe "blog post listing" do
         before(:each) { visit refinery_admin_blog_posts_path }
-      
-        describe "edit blog post" do      
+
+        describe "edit blog post" do
           it "should succeed" do
             page.should have_content(blog_post.title)
 
@@ -111,7 +111,7 @@ module Refinery
             page.should have_content("'#{blog_post.title}' was successfully removed.")
           end
         end
-    
+
         describe "view live" do
           it "redirects to blog post in the frontend" do
             click_link "View this blog post live"

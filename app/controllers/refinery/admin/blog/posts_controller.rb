@@ -2,20 +2,21 @@ module Refinery
   module Admin
     module Blog
       class PostsController < ::Refinery::AdminController
-        
+
         cache_sweeper Refinery::BlogSweeper
 
-        crudify :'refinery/blog_post',
+        crudify :'refinery/blog/post',
                 :title_attribute => :title,
-                :order => 'published_at DESC'
-                
+                :order => 'published_at DESC',
+                :redirect_to_url => "main_app.refinery_admin_blog_posts_path"
+
         before_filter :find_all_categories,
                       :only => [:new, :edit, :create, :update]
 
-        before_filter :check_category_ids, :only => :update        
+        before_filter :check_category_ids, :only => :update
 
         def uncategorized
-          @blog_posts = Refinery::BlogPost.uncategorized.page(params[:page])
+          @blog_posts = Refinery::Blog::Post.uncategorized.page(params[:page])
         end
 
         def tags
@@ -31,7 +32,7 @@ module Refinery
                       else
                         '%'
                       end
-          @tags = Refinery::BlogPost.tag_counts_on(:tags).where(
+          @tags = Refinery::Blog::Post.tag_counts_on(:tags).where(
               ["tags.name #{op} ?", "#{wildcard}#{params[:term].to_s.downcase}#{wildcard}"]
             ).map { |tag| {:id => tag.id, :value => tag.name}}
           render :json => @tags.flatten
@@ -39,19 +40,19 @@ module Refinery
 
         def create
           # if the position field exists, set this object as last object, given the conditions of this class.
-          if Refinery::BlogPost.column_names.include?("position")
+          if Refinery::Blog::Post.column_names.include?("position")
             params[:blog_post].merge!({
-              :position => ((Refinery::BlogPost.maximum(:position, :conditions => "")||-1) + 1)
+              :position => ((Refinery::Blog::Post.maximum(:position, :conditions => "")||-1) + 1)
             })
           end
 
-          if Refinery::BlogPost.column_names.include?("user_id")
+          if Refinery::Blog::Post.column_names.include?("user_id")
             params[:blog_post].merge!({
               :user_id => current_refinery_user.id
             })
           end
 
-          if (@blog_post = Refinery::BlogPost.create(params[:blog_post])).valid?
+          if (@blog_post = Refinery::Blog::Post.create(params[:blog_post])).valid?
             (request.xhr? ? flash.now : flash).notice = t(
               'refinery.crudify.created',
               :what => "'#{@blog_post.title}'"
@@ -85,7 +86,7 @@ module Refinery
 
       protected
         def find_all_categories
-          @blog_categories = Refinery::BlogCategory.find(:all)
+          @blog_categories = Refinery::Blog::Category.find(:all)
         end
 
         def check_category_ids

@@ -1,7 +1,7 @@
 class CreateBlogStructure < ActiveRecord::Migration
 
   def up
-    create_table Refinery::BlogPost.table_name, :id => true do |t|
+    create_table Refinery::Blog::Post.table_name, :id => true do |t|
       t.string :title
       t.text :body
       t.boolean :draft
@@ -9,9 +9,9 @@ class CreateBlogStructure < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index Refinery::BlogPost.table_name, :id
+    add_index Refinery::Blog::Post.table_name, :id
 
-    create_table Refinery::BlogComment.table_name, :id => true do |t|
+    create_table Refinery::Blog::Comment.table_name, :id => true do |t|
       t.integer :blog_post_id
       t.boolean :spam
       t.string :name
@@ -21,14 +21,14 @@ class CreateBlogStructure < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index Refinery::BlogComment.table_name, :id
+    add_index Refinery::Blog::Comment.table_name, :id
 
-    create_table Refinery::BlogCategory.table_name, :id => true do |t|
+    create_table Refinery::Blog::Category.table_name, :id => true do |t|
       t.string :title
       t.timestamps
     end
 
-    add_index Refinery::BlogCategory.table_name, :id
+    add_index Refinery::Blog::Category.table_name, :id
 
     create_table Refinery::Categorization.table_name, :id => true do |t|
       t.integer :blog_category_id
@@ -43,8 +43,8 @@ class CreateBlogStructure < ActiveRecord::Migration
 
     Refinery::Page.delete_all({:link_url => "/blog"})
 
-    drop_table Refinery::BlogPost.table_name
-    drop_table Refinery::BlogComment.table_name
+    drop_table Refinery::Blog::Post.table_name
+    drop_table Refinery::Blog::Comment.table_name
     drop_table Refinery::Category.table_name
     drop_table Refinery::Categorization.table_name
   end

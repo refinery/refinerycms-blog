@@ -4,10 +4,10 @@
 
 <%=raw t('.comment_starts') %>
 
-<%=raw t('.from') %>: <%= @comment.name %>
-<%=raw t('.email') %>: <%= @comment.email %>
+<%=raw t('.from') %>: <%= @blog_comment.name %>
+<%=raw t('.email') %>: <%= @blog_comment.email %>
 <%=raw t('.message') %>:
-<%=simple_format strip_tags(@comment.body) %>
+<%=simple_format strip_tags(@blog_comment.body) %>
 
 <%=raw t('.comment_ends') %>
 

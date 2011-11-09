@@ -3,8 +3,8 @@ module Refinery
     class CategoriesController < BaseController
 
       def show
-        @category = Refinery::BlogCategory.find(params[:id])
-        @blog_posts = @category.posts.live.includes(:comments, :categories).page(params[:page])
+        @blog_category = Refinery::Blog::Category.find(params[:id])
+        @blog_posts = @blog_category.posts.live.includes(:comments, :categories).page(params[:page])
       end
 
     end

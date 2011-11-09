@@ -3,7 +3,7 @@ module Refinery
     module Blog
       class CategoriesController < ::Refinery::AdminController
 
-        crudify :'refinery/blog_category',
+        crudify :'refinery/blog/category',
                 :title_attribute => :title,
                 :order => 'title ASC'
 

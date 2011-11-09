@@ -3,7 +3,7 @@
     <%= render 'post' %>
   </div>
 
-  <% if Refinery::BlogPost.comments_allowed? %>
+  <% if Refinery::Blog::Post.comments_allowed? %>
     <%= render 'comments'%>
   <% end %>
 <% end %>
@@ -17,5 +17,5 @@
   <%# enable AJAX'd post nav at your own risk until html5 history API implemented. %>
   <%#= javascript_include_tag('refinery/blog/frontend') %>
   <script src="http://w.sharethis.com/button/buttons.js"></script>
-  <script>stLight.options({publisher:'<%= BlogPost::ShareThis.key %>'});</script>
-<% end if Refinery::BlogPost::ShareThis.enabled? %>
+  <script>stLight.options({publisher:'<%= Blog::Post::ShareThis.key %>'});</script>
+<% end if Refinery::Blog::Post::ShareThis.enabled? %>

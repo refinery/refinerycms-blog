@@ -1,7 +1,7 @@
 require "spec_helper"
 
 module Refinery
-  describe "BlogPosts" do
+  describe "Blog::Posts" do
     login_refinery_user
   
     context "when has blog posts" do    
@@ -28,7 +28,7 @@ module Refinery
           @blog_post = FactoryGirl.create(:blog_post,
                                           :title => "I Love my city",
                                           :tag_list => @tag_name)
-          @tag = ::Refinery::BlogPost.tag_counts_on(:tags).first          
+          @tag = ::Refinery::Blog::Post.tag_counts_on(:tags).first          
         end
       
         it "should have one tagged post" do
