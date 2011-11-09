@@ -1,5 +1,10 @@
 module Refinery
   class BlogGenerator < Rails::Generators::Base
+
+    def rake_db
+      rake("refinery_blog:install:migrations")
+    end
+
     source_root File.expand_path('../templates', __FILE__)
 
     def append_load_seed_data
