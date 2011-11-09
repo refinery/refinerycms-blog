@@ -20,18 +20,14 @@ module Refinery
         end
 
         def tags
-          op =  case ActiveRecord::Base.connection.adapter_name.downcase
-                when 'postgresql'
-                  '~*'
-                else
-                  'LIKE'
-                end
-          wildcard =  case ActiveRecord::Base.connection.adapter_name.downcase
-                      when 'postgresql'
-                        '.*'
-                      else
-                        '%'
-                      end
+          if ActiveRecord::Base.connection.adapter_name.downcase == 'postgresql'
+            op = '~*'
+            wildcard = '.*'
+          else
+            op = 'LIKE'
+            wildcard = '%'
+          end
+
           @tags = Refinery::Blog::Post.tag_counts_on(:tags).where(
               ["tags.name #{op} ?", "#{wildcard}#{params[:term].to_s.downcase}#{wildcard}"]
             ).map { |tag| {:id => tag.id, :value => tag.name}}

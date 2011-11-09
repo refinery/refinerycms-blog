@@ -1,7 +1,7 @@
 module Refinery
   module Blog
     class PostsController < BaseController
-      
+
       caches_page :index
 
       before_filter :find_all_blog_posts, :except => [:archive]
@@ -12,7 +12,7 @@ module Refinery
 
       def index
         # Rss feeders are greedy. Let's give them every blog post instead of paginating.
-        (@blog_posts = Refinery::Blog::Post.live.includes(:comments, :categories).all) if request.format.rss? 
+        (@blog_posts = Refinery::Blog::Post.live.includes(:comments, :categories).all) if request.format.rss?
         respond_with (@blog_posts) do |format|
           format.html
           format.rss
@@ -21,6 +21,8 @@ module Refinery
 
       def show
         @blog_comment = Refinery::Blog::Comment.new
+
+        @canonical = url_for(:locale => ::Refinery::I18n.default_frontend_locale) if canonical?
 
         respond_with (@blog_post) do |format|
           format.html { present(@blog_post) }
@@ -70,6 +72,10 @@ module Refinery
         @tag = ActsAsTaggableOn::Tag.find(params[:tag_id])
         @tag_name = @tag.name
         @blog_posts = Refinery::Blog::Post.tagged_with(@tag_name).page(params[:page])
+      end
+
+      def canonical?
+        ::Refinery.i18n_enabled? && ::Refinery::I18n.default_frontend_locale != ::Refinery::I18n.current_frontend_locale
       end
     end
   end
