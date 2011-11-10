@@ -12,6 +12,7 @@ Options:
 ## Requirements
 
 Refinery CMS version 1.0.0 or above.
+Your Rails 3 application should not be called "blog"
 
 ## Install
 
