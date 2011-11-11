@@ -2,6 +2,7 @@
 * Bulgarian translations [mirosr](https://github.com/mirosr)
 * posts/tagged... params[:tag_name] is optional [joemsak](https://github.com/joemsak)
 * Bug Fix on Categorization relationship: destroying a post produced error because no primary key existed on join table [joemsak](https://github.com/joemsak)
+* Bug fix on archive listing, don't include draft posts [jgrevich](https://github.com/jgrevich)
 * [See full list](https://github.com/resolve/refinerycms-blog/compare/1.6.2...1.6.3)
 
 ## 1.6.2 [29 June 2011]
