@@ -17,11 +17,4 @@ if defined?(Refinery::Page)
   Refinery::Page.default_parts.each do |default_page_part|
     page.parts.create(:title => default_page_part, :body => nil)
   end
-end# Refinery seeds
-Dir[Rails.root.join('db', 'seeds', '*.rb').to_s].each do |file|
-  puts "Loading db/seeds/#{file.split(File::SEPARATOR).last}"
-  load(file)
 end
-
-# Added by RefineryCMS Pages engine
-Refinery::Pages::Engine.load_seed
