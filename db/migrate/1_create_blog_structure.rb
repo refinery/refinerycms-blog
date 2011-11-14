@@ -30,7 +30,7 @@ class CreateBlogStructure < ActiveRecord::Migration
 
     add_index :blog_categories, :id
 
-    create_table :blog_categories_blog_posts, :id => true do |t|
+    create_table :blog_categories_blog_posts, :id => false do |t|
       t.integer :blog_category_id
       t.integer :blog_post_id
     end

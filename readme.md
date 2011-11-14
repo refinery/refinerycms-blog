@@ -18,7 +18,7 @@ Your Rails 3 application should not be called "blog"
 
 Open up your ``Gemfile`` and add at the bottom this line:
 
-    gem 'refinerycms-blog', '~> 1.6.3'
+    gem 'refinerycms-blog', '~> 1.7.0'
 
 Now, run ``bundle install``
 
