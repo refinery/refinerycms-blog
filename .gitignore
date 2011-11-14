@@ -42,3 +42,7 @@ nbproject
 
 # Capybara Bug
 capybara-*html
+
+# Future stuff
+Gemfile.lock
+spec/dummy
