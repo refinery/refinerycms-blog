@@ -2,7 +2,7 @@ Gem::Specification.new do |s|
   s.name              = %q{refinerycms-blog}
   s.version           = %q{1.7.0}
   s.description       = %q{A really straightforward open source Ruby on Rails blog engine designed for integration with RefineryCMS.}
-  s.date              = %q{2011-06-29}
+  s.date              = %q{2011-12-05}
   s.summary           = %q{Ruby on Rails blogging engine for RefineryCMS.}
   s.email             = %q{info@refinerycms.com}
   s.homepage          = %q{http://refinerycms.com/blog}
@@ -99,12 +99,14 @@ Gem::Specification.new do |s|
     changelog.md
     config
     config/locales
+    config/locales/bg.yml
     config/locales/cs.yml
     config/locales/de.yml
     config/locales/en.yml
     config/locales/es.yml
     config/locales/fr.yml
     config/locales/it.yml
+    config/locales/ja.yml
     config/locales/nb.yml
     config/locales/nl.yml
     config/locales/pl.yml
@@ -122,6 +124,7 @@ Gem::Specification.new do |s|
     db/migrate/5_add_cached_slugs.rb
     db/migrate/6_add_custom_url_field_to_blog_posts.rb
     db/migrate/7_add_custom_teaser_field_to_blog_posts.rb
+    db/migrate/8_add_primary_key_to_categorizations.rb
     db/seeds
     db/seeds/refinerycms_blog.rb
     features
@@ -138,6 +141,8 @@ Gem::Specification.new do |s|
     features/support/step_definitions/category_steps.rb
     features/support/step_definitions/tags_steps.rb
     features/tags.feature
+    Gemfile
+    Gemfile.lock
     lib
     lib/gemspec.rb
     lib/generators
@@ -197,6 +202,7 @@ Gem::Specification.new do |s|
     spec/models/blog_category_spec.rb
     spec/models/blog_comment_spec.rb
     spec/models/blog_post_spec.rb
+    todo.md
   )
   
 end
