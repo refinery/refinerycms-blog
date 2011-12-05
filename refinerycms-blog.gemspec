@@ -17,6 +17,7 @@ Gem::Specification.new do |s|
 
   # Development dependencies
   s.add_development_dependency 'factory_girl'
+  s.add_development_dependency "rake"
 
   s.files             = %w(
     app
