@@ -1,4 +1,4 @@
-## 1.7.0 [UNRELEASED]
+## 1.7.0 [05 December 2011]
 * Bulgarian translations [mirosr](https://github.com/mirosr)
 * posts/tagged... params[:tag_name] is optional [joemsak](https://github.com/joemsak)
 * Bug Fix on Categorization relationship: destroying a post produced error because no primary key existed on join table [joemsak](https://github.com/joemsak)
