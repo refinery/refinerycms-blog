@@ -1,3 +1,9 @@
+## 1.8.0 [UNRELEASED]
+* extraneous shared/_post partial was moved directly into posts/show [nicinabox](https://github.com/nicinabox)
+* blog archive list helper logic refactored (HTML exists in view template) [nicinabox](https://github.com/nicinabox)
+* pretty "Draft" label added to admin list of blog posts [nicinabox](https://github.com/nicinabox)
+* [See full list](https://github.com/resolve/refinerycms-blog/compare/1.7.0...1.8.0)
+
 ## 1.7.0 [05 December 2011]
 * Bulgarian translations [mirosr](https://github.com/mirosr)
 * posts/tagged... params[:tag_name] is optional [joemsak](https://github.com/joemsak)
