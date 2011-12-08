@@ -1,0 +1,9 @@
+<%
+  archive_posts = blog_archive_list
+%>
+<% if archive_posts.any? %>
+  <h2><%= t('archives', :scope => 'blog.shared') %></h2>
+  <ul>
+    <%= archive_posts %>
+  </ul>
+<% end %>
