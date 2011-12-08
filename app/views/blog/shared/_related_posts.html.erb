@@ -1,0 +1,10 @@
+<% if @blog_posts.many? %>
+  <h2><%= t('.other') %></h2>
+  <ul id="blog_posts">
+    <% @blog_posts.each do |blog_post| %>
+      <li class='clearfix'>
+        <%= link_to blog_post.title, blog_post_url(blog_post) %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
