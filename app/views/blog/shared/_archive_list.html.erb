@@ -1,7 +1,7 @@
 <%
   archive_posts = blog_archive_list
 %>
-<% if archive_posts.any? %>
+<% if archive_posts.present? %>
   <h2><%= t('archives', :scope => 'blog.shared') %></h2>
   <ul>
     <%= archive_posts %>
