@@ -2,9 +2,7 @@ module BlogPostsHelper
   def blog_archive_list
     posts = BlogPost.live.select('published_at').all_previous
     return nil if posts.blank?
-    html = '<section id="blog_archive_list"><h2>'
-    html << t('archives', :scope => 'blog.shared')
-    html << '</h2><nav><ul>'
+    html = ''
     links = []
     super_old_links = []
 
@@ -34,7 +32,6 @@ module BlogPostsHelper
       html << link_to(text, archive_blog_posts_path(:year => year))
       html << "</li>"
     end
-    html << '</ul></nav></section>'
     html.html_safe
   end
 

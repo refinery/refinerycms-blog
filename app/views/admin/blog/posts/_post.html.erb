@@ -6,6 +6,9 @@
       <%= " by #{post.author.username}" if post.author.present? %>
     </span>
   </span>
+  <% if post.draft? %>
+    <span class="label notice">Draft</span>
+  <% end %>
   <span class='actions'>
     <%= link_to refinery_icon_tag("application_go.png"), blog_post_url(post),
         :title => t('.view_live_html'),
