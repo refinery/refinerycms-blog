@@ -20,10 +20,16 @@ class BlogComment < ActiveRecord::Base
   scope :rejected, :conditions => {:state => 'rejected'}
 
   def avatar_url(options = {})
-    options = {:size => 60}
     require 'digest/md5'
-    size = ("?s=#{options[:size]}" if options[:size])
-    "http://gravatar.com/avatar/#{Digest::MD5.hexdigest(self.email.to_s.strip.downcase)}#{size}.jpg"
+    params = {
+      s: options[:size] || 60,
+      d: options[:default_image]
+    }
+    query_string = params.map do |k,v|
+      [k,v].map { |s| CGI::escape(s.to_s) }.join('=')
+    end.join('&')
+    email_md5 = Digest::MD5.hexdigest(self.email.to_s.strip.downcase)
+    "http://gravatar.com/avatar/#{email_md5}?#{query_string}"
   end
 
   def approve!
