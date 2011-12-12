@@ -22,8 +22,8 @@ class BlogComment < ActiveRecord::Base
   def avatar_url(options = {})
     require 'digest/md5'
     params = {
-      s: options[:size] || 60,
-      d: options[:default_image]
+      :s => options[:size] || 60,
+      :d => options[:default_image]
     }
     query_string = params.map do |k,v|
       [k,v].map { |s| CGI::escape(s.to_s) }.join('=')
