@@ -48,7 +48,7 @@ module Refinery
           end
 
           it "should belong to me" do
-            ::Refinery::Blog::Post.first.author.login.should eq(::Refinery::User.last.login)
+            ::Refinery::Blog::Post.first.author.should eq(::Refinery::User.last)
           end
 
           it "should save categories" do
@@ -136,6 +136,34 @@ module Refinery
 
           visit uncategorized_refinery_admin_blog_posts_path
           page.should_not have_content(blog_post.title)
+        end
+      end
+    end
+
+    context "with multiple users" do
+      let!(:other_guy) { Factory(:refinery_user, :username => "Other Guy") }
+
+      describe "create blog post with alternate author" do
+        before(:each) do
+          visit refinery_admin_blog_posts_path
+          click_link "Create new post"
+
+          fill_in "Title", :with => "This is some other guy's blog post"
+          fill_in "blog_post_body", :with => "I totally didn't write it."
+
+          click_link "Advanced Options"
+
+          select other_guy.username, :from => "Author"
+
+          click_button "Save"
+        end
+
+        it "should succeed" do
+          page.should have_content("was successfully added.")
+        end
+
+        it "belongs to another user" do
+          ::Refinery::Blog::Post.last.author.should eq(other_guy)
         end
       end
     end
