@@ -89,6 +89,15 @@
         <%= f.text_field :custom_url, :class => "widest" %>
       </div>
 
+      <div class='field'>
+        <span class='label_with_help'>
+          <%= f.label :user_id, t('.author') %>
+          <%= refinery_help_tag t('.author_help') %>
+          <br/>
+          <%= f.collection_select :user_id, ::Refinery::User.all, :id, :username %>
+        </span>
+      </div>
+
     </div>
     <div class='hemisquare right_side'>
       <%= render :partial => '/seo_meta/form', :locals => {:form => f} %>
