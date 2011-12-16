@@ -46,6 +46,10 @@ pt-BR:
           toggle_advanced_options: Clique aqui para acessar as configurações de meta tag e menu
           save_as_draft: Salvar como rascunho
           published_at: Data de publicação
+          custom_url: Url customizada
+          custom_url_help: Gere a url para o post do blog a partir dessa ao invés de utilizar o título
+          copy_body: Copiar o Corpo do post para o Teaser
+          copy_body_helper: Copiar o corpo do post para o teaser. Deixe o teaser em branco para deixar o Refinery fazer o teaser automaticamente.
         index:
           no_items_yet: 'Ainda não há Posts no Blog. Clique em "%{create}" para adicionar o primeiro post.'
         uncategorized:
@@ -83,6 +87,7 @@ pt-BR:
           moderation: Moderação
           update_notified: Quem receberá a notificação?
           comments: Comentários
+          teasers: Teasers
   blog:
     comment_mailer:
       notification:
