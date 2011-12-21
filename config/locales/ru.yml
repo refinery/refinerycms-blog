@@ -101,6 +101,8 @@ ru:
         singular: комментарий
         none: нет комментариев
       archives: Архивы
+      tags:
+        title: "Теги"
     categories:
       show:
         no_posts: Записей пока нет.
@@ -122,7 +124,12 @@ ru:
           add: Написать комментарий
         other: Другие записи
         filed_in: Категория
+        tagged: Теги
         submit: Отправить комментарий
+        name: Имя
+        email: Email
+        message: Сообщение
+        by: Автор
       archive:
         blog_archive_for: 'Архив %{date}'
         no_blog_articles_posted: 'Ни одной записи за %{date} не опубликовано. Следите за новостями.'
