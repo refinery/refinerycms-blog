@@ -1,6 +1,5 @@
 require 'refinerycms-blog'
-require 'rails'
-      
+
 module Refinery
   module Blog
     class Engine < Rails::Engine
@@ -20,7 +19,7 @@ module Refinery
           }
         end
       end
-      
+
       config.after_initialize do
         Refinery.register_engine(Refinery::Blog)
       end
