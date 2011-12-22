@@ -4,11 +4,11 @@ require 'rails_autolink'
 
 module Refinery
   autoload :BlogGenerator, 'generators/refinery/blog/blog_generator'
-  
+
   module Blog
 
     require 'refinery/blog/engine' if defined?(Rails)
-    
+
     autoload :Version, 'refinery/blog/version'
     autoload :Tab, 'refinery/blog/tabs'
 
@@ -17,9 +17,9 @@ module Refinery
       attr_writer :tabs
 
       def root
-        @root ||= Pathname.new(File.expand_path('../../', __FILE__))
+        @root ||= Pathname.new(File.expand_path('../../../', __FILE__))
       end
-      
+
       def tabs
         @tabs ||= []
       end
@@ -27,11 +27,11 @@ module Refinery
       def version
         ::Refinery::Blog::Version.to_s
       end
-      
+
       def factory_paths
         @factory_paths ||= [ root.join("spec/factories").to_s ]
       end
-      
+
       def table_name_prefix
         'refinery_blog_'
       end
