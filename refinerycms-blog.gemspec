@@ -2,7 +2,7 @@ Gem::Specification.new do |s|
   s.name              = %q{refinerycms-blog}
   s.version           = %q{1.8.0}
   s.description       = %q{A really straightforward open source Ruby on Rails blog engine designed for integration with RefineryCMS.}
-  s.date              = %q{2011-12-08}
+  s.date              = %q{2011-12-22}
   s.summary           = %q{Ruby on Rails blogging engine for RefineryCMS.}
   s.email             = %q{info@refinerycms.com}
   s.homepage          = %q{http://refinerycms.com/blog}
@@ -81,16 +81,16 @@ Gem::Specification.new do |s|
     app/views/blog/posts
     app/views/blog/posts/_comment.html.erb
     app/views/blog/posts/_nav.html.erb
-    app/views/blog/posts/_post.html.erb
     app/views/blog/posts/archive.html.erb
     app/views/blog/posts/index.html.erb
     app/views/blog/posts/index.rss.builder
     app/views/blog/posts/show.html.erb
     app/views/blog/posts/tagged.html.erb
     app/views/blog/shared
+    app/views/blog/shared/_archive_list.html.erb
     app/views/blog/shared/_categories.html.erb
     app/views/blog/shared/_post.html.erb
-    app/views/blog/shared/_posts.html.erb
+    app/views/blog/shared/_related_posts.html.erb
     app/views/blog/shared/_rss_feed.html.erb
     app/views/blog/shared/_tags.html.erb
     app/views/shared
@@ -142,7 +142,6 @@ Gem::Specification.new do |s|
     features/support/step_definitions/tags_steps.rb
     features/tags.feature
     Gemfile
-    Gemfile.lock
     lib
     lib/gemspec.rb
     lib/generators
