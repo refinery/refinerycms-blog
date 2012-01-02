@@ -1,5 +1,3 @@
-require 'refinerycms-blog'
-
 module Refinery
   module Blog
     class Engine < Rails::Engine

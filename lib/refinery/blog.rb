@@ -6,8 +6,7 @@ module Refinery
   autoload :BlogGenerator, 'generators/refinery/blog/blog_generator'
 
   module Blog
-
-    require 'refinery/blog/engine' if defined?(Rails)
+    require 'refinery/blog/engine'
 
     autoload :Version, 'refinery/blog/version'
     autoload :Tab, 'refinery/blog/tabs'
