@@ -1,8 +1,8 @@
 xml.instruct! :xml, :version => "1.0"
 xml.rss :version => "2.0" do
   xml.channel do
-    xml.title ::Refinery::Setting.find_or_set(:site_name, "Company Name")
-    xml.description ::Refinery::Setting.find_or_set(:site_name, "Company Name") + " Blog Posts"
+    xml.title Refinery::Core.config.site_name
+    xml.description Refinery::Core.config.site_name + " Blog Posts"
     xml.link main_app.blog_root_url
 
     @blog_posts.each do |post|
