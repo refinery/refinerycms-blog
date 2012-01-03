@@ -141,7 +141,8 @@ en:
           name: Name
           email: Email
           message: Message
-          by: by
+          by: By
+          source: Source
         tagged:
           no_blog_articles_yet: There are no blog articles posted yet. Stay tuned.
           posts_tagged: Posts tagged

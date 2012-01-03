@@ -26,6 +26,7 @@ module Refinery
       validates :source_url, :url => { :if => 'Refinery::Blog.config.validate_source_url',
                                       :update => true,
                                       :allow_nil => true,
+                                      :allow_blank => true,
                                       :verify => [:resolve_redirects]}
 
       has_friendly_id :friendly_id_source, :use_slug => true,
