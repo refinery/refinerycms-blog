@@ -14,7 +14,7 @@ if defined?(::Page)
     :menu_match => "^/blogs?(\/|\/.+?|)$"
   )
 
-  Refinery::Pages.config.default_parts.each do |default_page_part|
+  ::Page.default_parts.each do |default_page_part|
     page.parts.create(:title => default_page_part, :body => nil)
   end
 end
