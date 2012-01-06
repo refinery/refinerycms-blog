@@ -23,9 +23,9 @@ end
 def each_run  
   FactoryGirl.reload
   ActiveSupport::Dependencies.clear
-  
+
   load_all 'spec/support/**/*.rb'
-  load_all 'spec/factories/**/*.rb'
+  load_all 'spec/factories/**/*.rb' if FactoryGirl.factories.none?
 end
 
 # If spork is available in the Gemfile it'll be used but we don't force it.
