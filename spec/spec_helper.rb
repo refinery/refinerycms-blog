@@ -25,7 +25,7 @@ def each_run
   ActiveSupport::Dependencies.clear
   
   load_all 'spec/support/**/*.rb'
-  load_all 'spec/factories/**/*.rb'
+  #load_all 'spec/factories/**/*.rb'
 end
 
 # If spork is available in the Gemfile it'll be used but we don't force it.

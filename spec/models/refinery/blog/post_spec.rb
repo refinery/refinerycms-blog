@@ -212,9 +212,40 @@ module Refinery
             subject.class.teasers_enabled?.should be_false
           end
         end
-
       end
-
+      
+      describe "source url" do
+        it "should allow a source url and title" do
+          p = FactoryGirl.create(:blog_post, :source_url => 'google.com', :source_url_title => 'author')
+          p.should be_valid
+          p.source_url.should include('google')
+          p.source_url_title.should include('author')
+        end
+      end
+      
+      describe ".validate_source_url?" do
+        context "with Refinery::Setting validate_source_url set to true" do
+          before do
+            Refinery::Setting.set(:validate_source_url, { :scoping => 'blog', :value => true })
+            Refinery::Blog.validate_source_url = true
+          end  
+          it "should have canonical url" do
+            p = FactoryGirl.create(:blog_post, :source_url => 'google.com', :source_url_title => 'google')
+            p.source_url.should include('www')
+          end
+        end
+        context "with Refinery::Setting validate_source_url set to false" do
+          before do
+            Refinery::Setting.set(:validate_source_url, { :scoping => 'blog', :value => false })
+            Refinery::Blog.validate_source_url = false
+          end
+          it "should have original url" do
+            p = FactoryGirl.create(:blog_post, :source_url => 'google.com', :source_url_title => 'google')
+            p.source_url.should_not include('www')
+          end
+        end
+      end
+      
     end
   end
 end
