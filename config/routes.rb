@@ -8,10 +8,8 @@ Rails.application.routes.draw do
       match ':id/comments', :to => 'posts#comment', :as => 'blog_post_blog_comments'
       get 'archive/:year(/:month)', :to => 'posts#archive', :as => 'archive_blog_posts'
       get 'tagged/:tag_id(/:tag_name)' => 'posts#tagged', :as => 'tagged_posts'
-    end
 
-    scope(:path => 'refinery', :as => 'refinery_admin', :module => 'admin') do
-      scope(:path => 'blog', :as => 'blog', :module => 'blog') do
+      scope(:path => 'refinery', :as => 'refinery_admin', :module => 'admin') do
         root :to => 'posts#index'
         resources :posts do
           collection do

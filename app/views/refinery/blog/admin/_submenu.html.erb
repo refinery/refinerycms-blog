@@ -3,7 +3,7 @@
     <li class='not_a_link'>
       <%= render :partial => "/refinery/admin/search",
                  :locals => {
-                   :url => main_app.refinery_admin_blog_posts_path
+                   :url => main_app.refinery_blog_admin_posts_path
                  } %>
     </li>
   </ul>
@@ -14,15 +14,15 @@
                    :class => 'page_copy_icon' %>
     </li>
     <li>
-      <%= link_to t('.posts.manage'), main_app.refinery_admin_blog_posts_path,
+      <%= link_to t('.posts.manage'), main_app.refinery_blog_admin_posts_path,
                    :class => 'page_icon' %>
     </li>
     <li>
-      <%= link_to t('.posts.uncategorized'), main_app.uncategorized_refinery_admin_blog_posts_path,
+      <%= link_to t('.posts.uncategorized'), main_app.uncategorized_refinery_blog_admin_posts_path,
                   :class => 'page_icon' %>
     </li>
     <li>
-       <%= link_to t('.posts.new'), main_app.new_refinery_admin_blog_post_path,
+       <%= link_to t('.posts.new'), main_app.new_refinery_blog_admin_post_path,
                    :class => 'page_add_icon' %>
     </li>
   </ul>
@@ -38,15 +38,15 @@
                     :class => 'comments_icon' %>
       </li>
       <li>
-        <%= link_to t('.comments.new'), main_app.refinery_admin_blog_comments_path,
+        <%= link_to t('.comments.new'), main_app.refinery_blog_admin_comments_path,
                     :class => 'comment_icon' %>
       </li>
       <li>
-        <%= link_to t('.comments.approved'), main_app.approved_refinery_admin_blog_comments_path,
+        <%= link_to t('.comments.approved'), main_app.approved_refinery_blog_admin_comments_path,
                     :class => 'comment_tick_icon' %>
       </li>
       <li>
-        <%= link_to t('.comments.rejected'), main_app.rejected_refinery_admin_blog_comments_path,
+        <%= link_to t('.comments.rejected'), main_app.rejected_refinery_blog_admin_comments_path,
                     :class => 'comment_cross_icon' %>
       </li>
     </ul>
@@ -58,36 +58,36 @@
                   :class => 'folder_icon' %>
     </li>
     <li>
-      <%= link_to t('.categories.manage'), main_app.refinery_admin_blog_categories_path,
+      <%= link_to t('.categories.manage'), main_app.refinery_blog_admin_categories_path,
                   :class => 'folder_edit_icon' %>
     </li>
     <li>
-      <%= link_to t('.categories.new'), main_app.new_refinery_admin_blog_category_path(:dialog => true, :height => 325),
+      <%= link_to t('.categories.new'), main_app.new_refinery_blog_admin_category_path(:dialog => true, :height => 325),
                   :class => 'folder_add_icon' %>
     </li>
   </ul>
 
   <ul class='collapsible_menu'>
     <li class='not_a_link'>
-      <%= link_to t('.settings.title'), main_app.refinery_admin_blog_settings_path,
+      <%= link_to t('.settings.title'), main_app.refinery_blog_admin_settings_path,
                   :class => 'settings_icon' %>
     </li>
     <li>
-      <%= link_to t('.settings.comments'), main_app.comments_refinery_admin_blog_settings_path,
+      <%= link_to t('.settings.comments'), main_app.comments_refinery_blog_admin_settings_path,
                   :class => "#{Refinery::Blog::Post.comments_allowed? ? 'success' : 'failure'}_icon" %>
     </li>
     <li>
-      <%= link_to t('.settings.moderation'), main_app.moderation_refinery_admin_blog_settings_path,
+      <%= link_to t('.settings.moderation'), main_app.moderation_refinery_blog_admin_settings_path,
                   :class => "#{Refinery::Blog::Comment::Moderation.enabled? ? 'success' : 'failure'}_icon" %>
     </li>
     <li>
       <%= link_to t('.settings.update_notified'),
-                  main_app.notification_recipients_refinery_admin_blog_settings_path(:dialog => true, :height => 400),
+                  main_app.notification_recipients_refinery_blog_admin_settings_path(:dialog => true, :height => 400),
                   :class => 'user_comment_icon' %>
     </li>
     <li>
       <%= link_to t('.settings.teasers'),
-                  main_app.teasers_refinery_admin_blog_settings_path, :class => "#{Refinery::Blog::Post.teasers_enabled? ? 'success' : 'failure'}_icon" %>
+                  main_app.teasers_refinery_blog_admin_settings_path, :class => "#{Refinery::Blog::Post.teasers_enabled? ? 'success' : 'failure'}_icon" %>
     </li>
   </ul>
 

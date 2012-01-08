@@ -6,14 +6,14 @@
   <h2><%= t('.actions') %></h2>
   <ul>
     <li>
-      <%= link_to t('.back'), main_app.refinery_admin_blog_comments_path, :class => "back_icon" %>
+      <%= link_to t('.back'), main_app.refinery_blog_admin_comments_path, :class => "back_icon" %>
     </li>
     <li>
-      <%= link_to t('.reject'), main_app.rejected_refinery_admin_blog_comment_path(@blog_comment, :return_to => 'rejected'),
+      <%= link_to t('.reject'), main_app.rejected_refinery_blog_admin_comment_path(@blog_comment, :return_to => 'rejected'),
           :class => 'comment_cross_icon' unless @blog_comment.rejected? %>
     </li>
     <li>
-      <%= link_to t('.approve'), main_app.approved_refinery_admin_blog_comment_path(@blog_comment, :return_to => 'approved'),
+      <%= link_to t('.approve'), main_app.approved_refinery_blog_admin_comment_path(@blog_comment, :return_to => 'approved'),
           :class => 'comment_tick_icon' unless @blog_comment.approved? %>
     </li>
   </ul>

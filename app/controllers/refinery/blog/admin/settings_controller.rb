@@ -1,6 +1,6 @@
 module Refinery
-  module Admin
-    module Blog
+  module Blog
+    module Admin
       class SettingsController < ::Refinery::AdminController
 
         def notification_recipients

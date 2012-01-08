@@ -1,6 +1,6 @@
 module Refinery
-  module Admin
-    module Blog
+  module Blog
+    module Admin
       class PostsController < ::Refinery::AdminController
 
         cache_sweeper Refinery::BlogSweeper
@@ -8,7 +8,7 @@ module Refinery
         crudify :'refinery/blog/post',
                 :title_attribute => :title,
                 :order => 'published_at DESC',
-                :redirect_to_url => "main_app.refinery_admin_blog_posts_path"
+                :redirect_to_url => "main_app.refinery_blog_admin_posts_path"
 
         before_filter :find_all_categories,
                       :only => [:new, :edit, :create, :update]
@@ -54,7 +54,7 @@ module Refinery
 
             unless from_dialog?
               unless params[:continue_editing] =~ /true|on|1/
-                redirect_back_or_default(main_app.refinery_admin_blog_posts_path)
+                redirect_back_or_default(main_app.refinery_blog_admin_posts_path)
               else
                 unless request.xhr?
                   redirect_to :back

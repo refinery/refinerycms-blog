@@ -1,6 +1,6 @@
 module Refinery
-  module Admin
-    module Blog
+  module Blog
+    module Admin
       class CommentsController < ::Refinery::AdminController
         
         cache_sweeper Refinery::BlogSweeper

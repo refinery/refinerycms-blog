@@ -1,6 +1,6 @@
 module Refinery
-  module Admin
-    module Blog
+  module Blog
+    module Admin
       class CategoriesController < ::Refinery::AdminController
 
         crudify :'refinery/blog/category',
