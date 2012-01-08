@@ -5,7 +5,7 @@ Refinery::User.find(:all).each do |user|
   end
 end if defined?(Refinery::User)
 
-if defined?(Refinery::Page)
+if defined?(Refinery::Page) and !Refinery::Page.exists?(:link_url => '/blog')
   page = Refinery::Page.create(
     :title => "Blog",
     :link_url => "/blog",
