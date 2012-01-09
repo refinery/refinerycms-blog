@@ -9,7 +9,7 @@ module Refinery
         end
 
         it "sets the correct path for activity entries" do
-          activity.url.should eq("edit_refinery_admin_blog_posts_path")
+          activity.url.should eq("edit_refinery_admin_blog_post_path")
         end
       end
 
