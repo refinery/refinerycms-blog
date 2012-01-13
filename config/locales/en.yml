@@ -41,6 +41,10 @@ en:
             published_at: Publish Date
             custom_url: Custom Url
             custom_url_help: Generate the url for the blog post from this text instead of the title.
+            source_url: Source Url
+            source_url_help: Stores the url for the source of the post material.
+            source_url_title: Source Url Title
+            source_url_title_help: Title for the source url for the post.
             author: Author
             author_help: Set which user this post will show as the author.
             copy_body: Copy Post Body to Teaser
@@ -137,7 +141,8 @@ en:
           name: Name
           email: Email
           message: Message
-          by: by
+          by: By
+          source: Source
         tagged:
           no_blog_articles_yet: There are no blog articles posted yet. Stay tuned.
           posts_tagged: Posts tagged

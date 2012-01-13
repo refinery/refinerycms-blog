@@ -22,6 +22,12 @@ module Refinery
 
       validates :title, :presence => true, :uniqueness => true
       validates :body,  :presence => true
+      
+      validates :source_url, :url => { :if => 'Refinery::Blog.config.validate_source_url',
+                                      :update => true,
+                                      :allow_nil => true,
+                                      :allow_blank => true,
+                                      :verify => [:resolve_redirects]}
 
       has_friendly_id :friendly_id_source, :use_slug => true,
                       :default_locale => (::Refinery::I18n.default_frontend_locale rescue :en),
@@ -48,6 +54,7 @@ module Refinery
 
       attr_accessible :title, :body, :custom_teaser, :tag_list, :draft, :published_at, :custom_url
       attr_accessible :browser_title, :meta_keywords, :meta_description, :user_id, :category_ids
+      attr_accessible :source_url, :source_url_title
 
       self.per_page = Refinery::Setting.find_or_set(:blog_posts_per_page, 10)
 

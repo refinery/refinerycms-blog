@@ -4,10 +4,10 @@ def load_all(*patterns)
   patterns.each { |pattern| Dir[pattern].sort.each { |path| load File.expand_path(path) } }
 end
 
-def setup_environment  
+def setup_environment
   # Configure Rails Environment
   ENV["RAILS_ENV"] = 'test'
-  require File.expand_path("../dummy/config/environment.rb",  __FILE__)
+  require File.expand_path("../dummy/config/environment.rb", __FILE__)
     
   require 'rspec/rails'
   require 'capybara/rspec'
@@ -20,7 +20,7 @@ def setup_environment
   end
 end
 
-def each_run  
+def each_run
   FactoryGirl.reload
   ActiveSupport::Dependencies.clear
 
