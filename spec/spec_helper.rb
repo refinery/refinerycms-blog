@@ -4,10 +4,10 @@ def load_all(*patterns)
   patterns.each { |pattern| Dir[pattern].sort.each { |path| load File.expand_path(path) } }
 end
 
-def setup_environment  
+def setup_environment
   # Configure Rails Environment
   ENV["RAILS_ENV"] = 'test'
-  require File.expand_path("../dummy/config/environment.rb",  __FILE__)
+  require File.expand_path("../dummy/config/environment.rb", __FILE__)
     
   require 'rspec/rails'
   require 'capybara/rspec'
@@ -20,12 +20,12 @@ def setup_environment
   end
 end
 
-def each_run  
+def each_run
   FactoryGirl.reload
   ActiveSupport::Dependencies.clear
-  
+
   load_all 'spec/support/**/*.rb'
-  #load_all 'spec/factories/**/*.rb'
+  load_all 'spec/factories/**/*.rb' if FactoryGirl.factories.none?
 end
 
 # If spork is available in the Gemfile it'll be used but we don't force it.
