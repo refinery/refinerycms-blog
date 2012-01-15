@@ -7,6 +7,7 @@ module Refinery
 
   module Blog
     require 'refinery/blog/engine'
+    require 'refinery/blog/configuration'
 
     autoload :Version, 'refinery/blog/version'
     autoload :Tab, 'refinery/blog/tabs'
