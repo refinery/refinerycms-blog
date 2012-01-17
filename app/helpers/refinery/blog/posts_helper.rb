@@ -36,14 +36,14 @@ module Refinery
           count = Blog::Post.by_archive(Time.parse(post_date)).size
           text = t("date.month_names")[month.to_i] + " #{year} (#{count})"
 
-          link_to(text, main_app.archive_blog_posts_path(:year => year, :month => month))
+          link_to(text, main_app.refinery_blog_archive_posts_path(:year => year, :month => month))
         else
           post_date = post.published_at.strftime('01/%Y')
           year = post_date.split('/')[1]
           count = Refinery::Blog::Post.by_year(Time.parse(post_date)).size
           text = "#{year} (#{count})"
 
-          link_to(text, main_app.archive_blog_posts_path(:year => year))
+          link_to(text, main_app.refinery_blog_archive_posts_path(:year => year))
         end
       end
     end
