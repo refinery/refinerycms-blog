@@ -3,8 +3,8 @@ bg:
     plugins:
       refinerycms_blog:
         title: Блог
-    admin:
-      blog:
+    blog:
+      admin:
         categories:
           category:
             edit: Редактиране на тази категория
@@ -80,7 +80,6 @@ bg:
             moderation: Модерация
             update_notified: Получатели на уведомления
             comments: Коментари
-    blog:
       comment_mailer:
         notification:
           greeting: Здравейте

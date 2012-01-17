@@ -3,8 +3,8 @@ de:
     plugins:
       refinerycms_blog:
         title: Blog
-    admin:
-      blog:
+    blog:
+      admin:
         categories:
           category:
             edit: Diese Kategorie bearbeiten
@@ -76,7 +76,6 @@ de:
             moderation: Moderation
             update_notified: Empfänger für Benachrichtigungen bearbeiten
             comments: Kommentare
-    blog:
       comment_mailer:
         notification:
           greeting: Hallo

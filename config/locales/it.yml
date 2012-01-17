@@ -3,8 +3,8 @@ it:
     plugins:
       refinerycms_blog:
         title: Blog
-    admin:
-      blog:
+    blog:
+      admin:
         categories:
           category:
             edit: Modifica questa categoria
@@ -80,7 +80,6 @@ it:
             moderation: Moderazione
             update_notified: Aggiornare i destinatari delle notifiche
             comments: Commenti
-    blog:
       comment_mailer:
         notification:
           greeting: Ciao

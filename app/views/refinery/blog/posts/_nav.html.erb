@@ -1,17 +1,17 @@
 <nav id="next_prev_article">
-  <% if @blog_post.next.present? -%>
-    <%= link_to (truncate(@blog_post.next.title) + " &#187;").html_safe, 
-                main_app.url_for(@blog_post.next), 
+  <% if @post.next.present? -%>
+    <%= link_to (truncate(@post.next.title) + " &#187;").html_safe, 
+                main_app.url_for(@post.next), 
                 :class => 'next' %>
   <% end -%>
 
   <%= link_to t('blog_home', :scope => 'refinery.blog.posts.show'), 
-              main_app.blog_root_path, 
+              main_app.refinery_blog_root_path, 
               :class => 'home' %>
 
-  <% if @blog_post.prev.present? -%>
-    <%= link_to ("&#171; " + truncate(@blog_post.prev.title)).html_safe, 
-                main_app.url_for(@blog_post.prev), 
+  <% if @post.prev.present? -%>
+    <%= link_to ("&#171; " + truncate(@post.prev.title)).html_safe, 
+                main_app.url_for(@post.prev), 
                 :class => 'prev' %>
   <% end -%>
 </nav><!-- /next_prev_article -->

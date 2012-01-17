@@ -9,14 +9,14 @@ module Refinery
         end
 
         it "sets the correct path for activity entries" do
-          activity.url.should eq("edit_refinery_admin_blog_post_path")
+          activity.url.should eq("edit_refinery_blog_admin_post_path")
         end
       end
 
       describe ".load_seed" do
         it "is idempotent" do
-          Refinery::Blog::Engine.load_seed
-          Refinery::Blog::Engine.load_seed
+          Engine.load_seed
+          Engine.load_seed
 
           Refinery::Page.where(:link_url => '/blog').count.should eq(1)
         end

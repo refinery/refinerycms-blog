@@ -7,8 +7,8 @@ version = Refinery::Blog::Version.to_s
 Gem::Specification.new do |s|
   s.name              = %q{refinerycms-blog}
   s.version           = version
-  s.description       = %q{A really straightforward open source Ruby on Rails blog engine designed for integration with RefineryCMS.}
-  s.summary           = %q{Ruby on Rails blogging engine for RefineryCMS.}
+  s.description       = %q{A really straightforward open source Ruby on Rails blog engine designed for integration with Refinery CMS.}
+  s.summary           = %q{Ruby on Rails blogging engine for Refinery CMS.}
   s.email             = %q{info@refinerycms.com}
   s.homepage          = %q{http://refinerycms.com/blog}
   s.authors           = ['Resolve Digital', 'Neoteric Design']

@@ -3,8 +3,8 @@ en:
     plugins:
       refinerycms_blog:
         title: Blog
-    admin:
-      blog:
+    blog:
+      admin:
         categories:
           category:
             edit: Edit this category
@@ -83,7 +83,6 @@ en:
             update_notified: Update who gets notified
             comments: Comments
             teasers: Teasers
-    blog:
       comment_mailer:
         notification:
           greeting: Hi there
@@ -143,7 +142,7 @@ en:
           posts_tagged: Posts tagged
         archive:
           blog_archive_for: 'Archive for %{date}'
-          no_blog_articles_posted: 'There are no blog articles posted for %{date}. Stay tuned.'  
+          no_blog_articles_posted: 'There are no blog articles posted for %{date}. Stay tuned.'
   activerecord:
     models:
       refinery/blog_category: Category

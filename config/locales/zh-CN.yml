@@ -3,8 +3,8 @@ zh-CN:
     plugins:
       refinerycms_blog:
         title: 博客
-    admin:
-      blog:
+    blog:
+      admin:
         categories:
           category:
             edit: 编辑此类别
@@ -76,7 +76,6 @@ zh-CN:
             moderation: 等待审核
             update_notified: 更新获得通知的人
             comments: 评论
-    blog:
       comment_mailer:
         notification:
           greeting: 您好

@@ -1,9 +1,9 @@
-<% if @blog_categories.any? %>
+<% if @categories.any? %>
   <h2><%= t('.title') %></h2>
   <ul id='categories'>
-    <% @blog_categories.each do |category| %>
-      <li<%= " class='selected'" if @blog_category.present? and @blog_category.id == category.id %>>
-        <%= link_to "#{category.title} (#{category.post_count})", main_app.blog_category_path(category) %>
+    <% @categories.each do |category| %>
+      <li<%= " class='selected'" if @category.present? and @category.id == category.id %>>
+        <%= link_to "#{category.title} (#{category.post_count})", main_app.refinery_blog_category_path(category) %>
       </li>
     <% end %>
   </ul>

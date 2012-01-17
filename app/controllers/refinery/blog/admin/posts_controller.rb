@@ -16,7 +16,7 @@ module Refinery
         before_filter :check_category_ids, :only => :update
 
         def uncategorized
-          @blog_posts = Refinery::Blog::Post.uncategorized.page(params[:page])
+          @posts = Refinery::Blog::Post.uncategorized.page(params[:page])
         end
 
         def tags
@@ -35,21 +35,21 @@ module Refinery
         end
 
         def new
-          @blog_post = ::Refinery::Blog::Post.new(:author => current_refinery_user)
+          @post = ::Refinery::Blog::Post.new(:author => current_refinery_user)
         end
 
         def create
           # if the position field exists, set this object as last object, given the conditions of this class.
           if Refinery::Blog::Post.column_names.include?("position")
-            params[:blog_post].merge!({
+            params[:post].merge!({
               :position => ((Refinery::Blog::Post.maximum(:position, :conditions => "")||-1) + 1)
             })
           end
 
-          if (@blog_post = Refinery::Blog::Post.create(params[:blog_post])).valid?
+          if (@post = Refinery::Blog::Post.create(params[:post])).valid?
             (request.xhr? ? flash.now : flash).notice = t(
               'refinery.crudify.created',
-              :what => "'#{@blog_post.title}'"
+              :what => "'#{@post.title}'"
             )
 
             unless from_dialog?
@@ -63,7 +63,7 @@ module Refinery
                 end
               end
             else
-              render :text => "<script>parent.window.location = '#{admin_blog_posts_url}';</script>"
+              render :text => "<script>parent.window.location = '#{refinery_blog_admin_posts_url}';</script>"
             end
           else
             unless request.xhr?
@@ -71,7 +71,7 @@ module Refinery
             else
               render :partial => "/refinery/admin/error_messages",
                      :locals => {
-                       :object => @blog_post,
+                       :object => @post,
                        :include_object_name => true
                      }
             end
@@ -80,11 +80,11 @@ module Refinery
 
       protected
         def find_all_categories
-          @blog_categories = Refinery::Blog::Category.find(:all)
+          @categories = Refinery::Blog::Category.find(:all)
         end
 
         def check_category_ids
-          params[:blog_post][:category_ids] ||= []
+          params[:post][:category_ids] ||= []
         end
       end
     end

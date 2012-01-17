@@ -3,8 +3,8 @@ fr:
     plugins:
       refinerycms_blog:
         title: Blog
-    admin:
-      blog:
+    blog:
+      admin:
         categories:
           category:
             edit: Modifier cette catégorie
@@ -76,7 +76,6 @@ fr:
             moderation: Modération
             update_notified: Mettre à jour les personnes à notifier
             comments: Commentaires
-    blog:
       comment_mailer:
         notification:
           greeting: Bonjour

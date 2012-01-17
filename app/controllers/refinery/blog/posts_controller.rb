@@ -1,6 +1,6 @@
 module Refinery
   module Blog
-    class PostsController < BaseController
+    class PostsController < BlogController
 
       caches_page :index
 
@@ -12,41 +12,41 @@ module Refinery
 
       def index
         # Rss feeders are greedy. Let's give them every blog post instead of paginating.
-        (@blog_posts = Refinery::Blog::Post.live.includes(:comments, :categories).all) if request.format.rss?
-        respond_with (@blog_posts) do |format|
+        (@posts = Post.live.includes(:comments, :categories).all) if request.format.rss?
+        respond_with (@posts) do |format|
           format.html
           format.rss
         end
       end
 
       def show
-        @blog_comment = Refinery::Blog::Comment.new
+        @comment = Comment.new
 
         @canonical = url_for(:locale => ::Refinery::I18n.default_frontend_locale) if canonical?
 
-        respond_with (@blog_post) do |format|
-          format.html { present(@blog_post) }
+        respond_with (@post) do |format|
+          format.html { present(@post) }
           format.js { render :partial => 'post', :layout => false }
         end
       end
 
       def comment
-        if (@blog_comment = @blog_post.comments.create(params[:blog_comment])).valid?
-          if Refinery::Blog::Comment::Moderation.enabled? or @blog_comment.ham?
+        if (@comment = @post.comments.create(params[comment])).valid?
+          if Comment::Moderation.enabled? or @comment.ham?
             begin
-              Refinery::Blog::CommentMailer.notification(@blog_comment, request).deliver
+              CommentMailer.notification(@comment, request).deliver
             rescue
               logger.warn "There was an error delivering a blog comment notification.\n#{$!}\n"
             end
           end
 
-          if Refinery::Blog::Comment::Moderation.enabled?
+          if Comment::Moderation.enabled?
             flash[:notice] = t('thank_you_moderated', :scope => 'refinery.blog.posts.comments')
-            redirect_to main_app.blog_post_url(params[:id])
+            redirect_to main_app.refinery_blog_post_url(params[:id])
           else
             flash[:notice] = t('thank_you', :scope => 'refinery.blog.posts.comments')
-            redirect_to main_app.blog_post_url(params[:id],
-                                      :anchor => "comment-#{@blog_comment.to_param}")
+            redirect_to main_app.refinery_blog_post_url(params[:id],
+                                      :anchor => "comment-#{@comment.to_param}")
           end
         else
           render :action => 'show'
@@ -58,20 +58,20 @@ module Refinery
           date = "#{params[:month]}/#{params[:year]}"
           @archive_date = Time.parse(date)
           @date_title = @archive_date.strftime('%B %Y')
-          @blog_posts = Refinery::Blog::Post.live.by_archive(@archive_date).page(params[:page])
+          @posts = Post.live.by_archive(@archive_date).page(params[:page])
         else
           date = "01/#{params[:year]}"
           @archive_date = Time.parse(date)
           @date_title = @archive_date.strftime('%Y')
-          @blog_posts = Refinery::Blog::Post.live.by_year(@archive_date).page(params[:page])
+          @posts = Post.live.by_year(@archive_date).page(params[:page])
         end
-        respond_with (@blog_posts)
+        respond_with (@posts)
       end
 
       def tagged
         @tag = ActsAsTaggableOn::Tag.find(params[:tag_id])
         @tag_name = @tag.name
-        @blog_posts = Refinery::Blog::Post.tagged_with(@tag_name).page(params[:page])
+        @posts = Post.tagged_with(@tag_name).page(params[:page])
       end
 
       def canonical?

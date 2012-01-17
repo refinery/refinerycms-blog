@@ -1,7 +1,7 @@
 <% if post.live? %>
   <article class="blog_post" id="<%= dom_id(post) %>">
     <header>
-      <h1><%= link_to post.title, main_app.blog_post_path(post) %></h1>
+      <h1><%= link_to post.title, main_app.refinery_blog_post_path(post) %></h1>
       <section class='details'>
         <time datetime="<%=l post.published_at.to_date, :format => :default %>" class='posted_at'>
           <%= t('created_at', :scope => 'refinery.blog.shared.posts', :when => l(post.published_at.to_date, :format => :short)) %>
@@ -10,13 +10,13 @@
         <% if (categories = post.categories).any? %>
           <aside class='filed_in'>
             <%= t('filed_in', :scope => 'refinery.blog.posts.show') %>
-            <%=raw categories.collect { |category| link_to category.title, main_app.blog_category_path(category) }.to_sentence %>
+            <%=raw categories.collect { |category| link_to category.title, main_app.refinery_blog_category_path(category) }.to_sentence %>
           </aside>
         <% end %>
         <% if (tags = post.tags).any? %>
           <aside class='tagged'>
             <%= t('tagged', :scope => 'refinery.blog.posts.show') %>
-            <%=raw tags.collect { |tag| link_to tag, main_app.tagged_posts_path(tag.id, tag.name.parameterize) }.to_sentence %>
+            <%=raw tags.collect { |tag| link_to tag, main_app.refinery_blog_tagged_posts_path(tag.id, tag.name.parameterize) }.to_sentence %>
           </aside>
         <% end %>
       </section>
@@ -30,7 +30,7 @@
     </section>
     <footer>
       <p>
-        <%= link_to t('read_more', :scope => 'refinery.blog.shared.posts'), main_app.blog_post_path(post) if blog_post_teaser_enabled? %>
+        <%= link_to t('read_more', :scope => 'refinery.blog.shared.posts'), main_app.refinery_blog_post_path(post) if blog_post_teaser_enabled? %>
       </p>
       <aside class='comment_count'>
         <% if Refinery::Blog::Post.comments_allowed? %>

@@ -3,8 +3,8 @@ nb:
     plugins:
       refinerycms_blog:
         title: Blog
-    admin:
-      blog:
+    blog:
+      admin:
         posts:
           form:
             seo_override_title: Nettleser tittel

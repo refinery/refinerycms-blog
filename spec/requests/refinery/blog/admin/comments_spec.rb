@@ -19,7 +19,6 @@ module Refinery
               page.should have_content('there are no new comments')
             end
           end
-      
           context "when has new unapproved comments" do
             let!(:blog_comment) { FactoryGirl.create(:blog_comment) }
             before(:each) { visit refinery_blog_admin_comments_path }
@@ -54,7 +53,6 @@ module Refinery
               page.should have_content('there are no approved comments')
             end
           end
-      
           context "when has approved comments" do
             let!(:blog_comment) do
               FactoryGirl.create(:blog_comment,
@@ -86,7 +84,6 @@ module Refinery
               page.should have_content('there are no rejected comments')
             end
           end
-      
           context "when has rejected comments" do
             let!(:blog_comment) do
               FactoryGirl.create(:blog_comment,
@@ -110,12 +107,10 @@ module Refinery
         describe "#show" do
           let!(:blog_comment) { FactoryGirl.create(:blog_comment) }
           before(:each) { visit refinery_blog_admin_comment_path(blog_comment) }
-      
           it "should display the comment" do
             page.should have_content(blog_comment.body)
             page.should have_content(blog_comment.name)
           end
-      
           it "should allow me to approve the comment" do
             click_link "Approve this comment"
         

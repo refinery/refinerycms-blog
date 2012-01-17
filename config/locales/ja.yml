@@ -3,8 +3,8 @@ ja:
     plugins:
       refinerycms_blog:
         title: ブログ
-    admin:
-      blog:
+    blog:
+      admin:
         categories:
           category:
             edit: このカテゴリを編集
@@ -80,7 +80,6 @@ ja:
             moderation: 管理する
             update_notified: 通知者を変更・更新する
             comments: コメント
-    blog:
       comment_mailer:
         notification:
           greeting: こんにちわ

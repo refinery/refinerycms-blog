@@ -2,9 +2,9 @@
 
 <% content_for :body_content_left do %>
   <h1><%= t('.blog_archive_for', :date => @archive_date.strftime('%B %Y')) %></h1>
-  <% if @blog_posts.any? %>
+  <% if @posts.any? %>
     <section id="blog_posts">
-      <%= render :partial => "/refinery/blog/shared/post", :collection => @blog_posts %>
+      <%= render :partial => "/refinery/blog/shared/post", :collection => @posts %>
     </section>
   <% else %>
     <p><%= t('.no_blog_articles_posted', :date => @archive_date.strftime('%B %Y')) %></p>

@@ -5,27 +5,27 @@
 <% end %>
 <article id="blog_post">
   <header>
-    <h1><%= @blog_post.title %></h1>
+    <h1><%= @post.title %></h1>
     <section class='details'>
-      <time datetime="<%=l @blog_post.published_at.to_date, :format => :default %>" class='posted_at'>
-        <%= t('created_at', :scope => 'refinery.blog.shared.posts', :when => l(@blog_post.published_at.to_date, :format => :short)) %>
+      <time datetime="<%=l @post.published_at.to_date, :format => :default %>" class='posted_at'>
+        <%= t('created_at', :scope => 'refinery.blog.shared.posts', :when => l(@post.published_at.to_date, :format => :short)) %>
       </time>
-      <%= "#{t('by', :scope => 'refinery.blog.posts.show')} #{@blog_post.author.username}" if @blog_post.author.present? %>.
-      <% if (categories = @blog_post.categories).any? %>
+      <%= "#{t('by', :scope => 'refinery.blog.posts.show')} #{@post.author.username}" if @post.author.present? %>.
+      <% if (categories = @post.categories).any? %>
         <aside class='filed_in'>
           <%= t('filed_in', :scope => 'refinery.blog.posts.show') %>
           <% categories.each_with_index do |category, index| %>
-            <%= link_to category.title, main_app.blog_category_path(category) -%><%= ',' if index < ((categories.length) - 1) %>
+            <%= link_to category.title, main_app.refinery_blog_category_path(category) -%><%= ',' if index < ((categories.length) - 1) %>
           <% end %>
         </aside>
       <% end %>
     </section>
   </header>
-  <%= @blog_post.body.html_safe %>
+  <%= @post.body.html_safe %>
 
   <% if Refinery::Blog::Post::ShareThis.enabled? %>
     <span class="st_sharethis" displayText="ShareThis"></span>
   <% end %>
 </article>
-<%= render :partial => '/refinery/draft_page_message' unless @blog_post.nil? or @blog_post.live? -%>
-<%= render 'nav' if next_or_previous?(@blog_post) %>
+<%= render :partial => '/refinery/draft_page_message' unless @post.nil? or @post.live? -%>
+<%= render 'nav' if next_or_previous?(@post) %>

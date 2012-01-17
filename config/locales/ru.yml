@@ -3,8 +3,8 @@ ru:
     plugins:
       refinerycms_blog:
         title: Блог
-    admin:
-      blog:
+    blog:
+      admin:
         categories:
           category:
             edit: Редактировать эту категорию
@@ -76,7 +76,6 @@ ru:
             moderation: Модерирование
             update_notified: Настроить уведомления
             comments: Комментарии
-    blog:
       comment_mailer:
         notification:
           greeting: Здравствуйте

@@ -1,7 +1,7 @@
 <div id='actions'>
   <h2><%= t('.details')%></h2>
   <p>
-    <strong><%= t('.age') %>:</strong> <%= time_ago_in_words(@blog_comment.created_at) %>
+    <strong><%= t('.age') %>:</strong> <%= time_ago_in_words(@comment.created_at) %>
   </p>
   <h2><%= t('.actions') %></h2>
   <ul>
@@ -9,12 +9,12 @@
       <%= link_to t('.back'), main_app.refinery_blog_admin_comments_path, :class => "back_icon" %>
     </li>
     <li>
-      <%= link_to t('.reject'), main_app.rejected_refinery_blog_admin_comment_path(@blog_comment, :return_to => 'rejected'),
-          :class => 'comment_cross_icon' unless @blog_comment.rejected? %>
+      <%= link_to t('.reject'), main_app.rejected_refinery_blog_admin_comment_path(@comment, :return_to => 'rejected'),
+          :class => 'comment_cross_icon' unless @comment.rejected? %>
     </li>
     <li>
-      <%= link_to t('.approve'), main_app.approved_refinery_blog_admin_comment_path(@blog_comment, :return_to => 'approved'),
-          :class => 'comment_tick_icon' unless @blog_comment.approved? %>
+      <%= link_to t('.approve'), main_app.approved_refinery_blog_admin_comment_path(@comment, :return_to => 'approved'),
+          :class => 'comment_tick_icon' unless @comment.approved? %>
     </li>
   </ul>
 </div>
@@ -26,8 +26,8 @@
         <strong><%= t('.blog_post') %></strong>
       </td>
       <td>
-        <%= link_to @blog_comment.post.title,
-                    main_app.blog_post_path(@blog_comment.post, :anchor => "comment-#{@blog_comment.to_param}"),
+        <%= link_to @comment.post.title,
+                    main_app.refinery_blog_post_path(@comment.post, :anchor => "comment-#{@comment.to_param}"),
                     :target => '_blank' %>
       </td>
     </tr>
@@ -36,7 +36,7 @@
         <strong><%= t('.from') %></strong>
       </td>
       <td>
-        <%= @blog_comment.name %> [<%= mail_to @blog_comment.email, @blog_comment.email, {:title => t('.click_to_email')} %>]
+        <%= @comment.name %> [<%= mail_to @comment.email, @comment.email, {:title => t('.click_to_email')} %>]
       </td>
     </tr>
     <tr>
@@ -44,7 +44,7 @@
         <strong><%= t('.date') %></strong>
       </td>
       <td>
-        <%= l(Date.parse(@blog_comment.created_at.to_s), :format => :long) %>
+        <%= l(Date.parse(@comment.created_at.to_s), :format => :long) %>
       </td>
     </tr>
     <tr>
@@ -53,7 +53,7 @@
       </td>
       <td>
         <p style='margin-top: 0px'>
-          <%= @blog_comment.message.gsub("\r\n\r\n", "\r\n").gsub("\r\n", "</p><p>") %>
+          <%= @comment.message.gsub("\r\n\r\n", "\r\n").gsub("\r\n", "</p><p>") %>
         </p>
       </td>
     </tr>

@@ -1,7 +1,7 @@
 module Refinery
   module Blog
-    class BaseController < ::ApplicationController
-    
+    class BlogController < ::ApplicationController
+
       include ControllerHelper
 
       helper :'refinery/blog/posts'

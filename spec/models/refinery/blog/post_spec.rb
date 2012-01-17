@@ -55,8 +55,8 @@ module Refinery
 
       describe "by_archive scope" do
         before do
-          @blog_post1 = FactoryGirl.create(:blog_post, :published_at => Date.new(2011, 3, 11))
-          @blog_post2 = FactoryGirl.create(:blog_post, :published_at => Date.new(2011, 3, 12))
+          @post1 = FactoryGirl.create(:blog_post, :published_at => Date.new(2011, 3, 11))
+          @post2 = FactoryGirl.create(:blog_post, :published_at => Date.new(2011, 3, 12))
 
           #2 months before
           FactoryGirl.create(:blog_post, :published_at => Date.new(2011, 1, 10))
@@ -66,34 +66,34 @@ module Refinery
           #check for this month
           date = "03/2011"
           subject.class.by_archive(Time.parse(date)).count.should be == 2
-          subject.class.by_archive(Time.parse(date)).should == [@blog_post2, @blog_post1]
+          subject.class.by_archive(Time.parse(date)).should == [@post2, @post1]
         end
       end
 
       describe "all_previous scope" do
         before do
-          @blog_post1 = FactoryGirl.create(:blog_post, :published_at => Time.now - 2.months)
-          @blog_post2 = FactoryGirl.create(:blog_post, :published_at => Time.now - 1.month)
+          @post1 = FactoryGirl.create(:blog_post, :published_at => Time.now - 2.months)
+          @post2 = FactoryGirl.create(:blog_post, :published_at => Time.now - 1.month)
           FactoryGirl.create(:blog_post, :published_at => Time.now)
         end
 
         it "returns all posts from previous months" do
           subject.class.all_previous.count.should be == 2
-          subject.class.all_previous.should == [@blog_post2, @blog_post1]
+          subject.class.all_previous.should == [@post2, @post1]
         end
       end
 
       describe "live scope" do
         before do
-          @blog_post1 = FactoryGirl.create(:blog_post, :published_at => Time.now.advance(:minutes => -2))
-          @blog_post2 = FactoryGirl.create(:blog_post, :published_at => Time.now.advance(:minutes => -1))
+          @post1 = FactoryGirl.create(:blog_post, :published_at => Time.now.advance(:minutes => -2))
+          @post2 = FactoryGirl.create(:blog_post, :published_at => Time.now.advance(:minutes => -1))
           FactoryGirl.create(:blog_post, :draft => true)
           FactoryGirl.create(:blog_post, :published_at => Time.now + 1.minute)
         end
 
         it "returns all posts which aren't in draft and pub date isn't in future" do
           subject.class.live.count.should be == 2
-          subject.class.live.should == [@blog_post2, @blog_post1]
+          subject.class.live.should == [@post2, @post1]
         end
       end
 
@@ -128,22 +128,22 @@ module Refinery
       describe "#next" do
         before do
           FactoryGirl.create(:blog_post, :published_at => Time.now.advance(:minutes => -1))
-          @blog_post = FactoryGirl.create(:blog_post)
+          @post = FactoryGirl.create(:blog_post)
         end
 
         it "returns next article when called on current article" do
-          subject.class.last.next.should == @blog_post
+          subject.class.last.next.should == @post
         end
       end
 
       describe "#prev" do
         before do
           FactoryGirl.create(:blog_post)
-          @blog_post = FactoryGirl.create(:blog_post, :published_at => Time.now.advance(:minutes => -1))
+          @post = FactoryGirl.create(:blog_post, :published_at => Time.now.advance(:minutes => -1))
         end
 
         it "returns previous article when called on current article" do
-          subject.class.first.prev.should == @blog_post
+          subject.class.first.prev.should == @post
         end
       end
 

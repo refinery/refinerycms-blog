@@ -2,7 +2,13 @@ source "http://rubygems.org"
 
 gemspec
 
-gem 'refinerycms', :git => 'git://github.com/resolve/refinerycms.git'
+git 'git://github.com/resolve/refinerycms.git' do
+  gem 'refinerycms'
+
+  group :development, :test do
+    gem 'refinerycms-testing'
+  end
+end
 
 group :development, :test do
   require 'rbconfig'

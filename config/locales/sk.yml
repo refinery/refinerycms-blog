@@ -3,8 +3,8 @@ sk:
     plugins:
       refinerycms_blog:
         title: Blog
-    admin:
-      blog:
+    blog:
+      admin:
         categories:
           category:
             edit: Upraviť kategóriu
@@ -76,7 +76,6 @@ sk:
             moderation: Moderovanie
             update_notified: Upraviť zoznam notifikovaných
             comments: Komentáre
-    blog:
       comment_mailer:
         notification:
           greeting: Ahoj

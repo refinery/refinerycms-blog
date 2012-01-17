@@ -1,10 +1,10 @@
-<% content_for :body_content_title, @blog_category.title %>
+<% content_for :body_content_title, @category.title %>
 
 <% content_for :body_content_left do %>
-  <% if @blog_posts.any? %>
+  <% if @posts.any? %>
     <section id="blog_posts">
-      <%= render :partial => "/refinery/blog/shared/post", :collection => @blog_posts %>
-      <%= will_paginate @blog_posts %>
+      <%= render :partial => "/refinery/blog/shared/post", :collection => @posts %>
+      <%= will_paginate @posts %>
     </section>
   <% else %>
     <p>

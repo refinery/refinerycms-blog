@@ -36,7 +36,7 @@ module Refinery
             describe "create blog post" do
               before(:each) do
                 fill_in "Title", :with => "This is my blog post"
-                fill_in "blog_post_body", :with => "And I love it"
+                fill_in "post_body", :with => "And I love it"
                 check blog_category.title
                 click_button "Save"
               end
@@ -53,7 +53,7 @@ module Refinery
                 subject.class.first.author.should eq(::Refinery::User.last)
               end
 
-              it "should save categories" do
+              it "should save categories", :focus => true do
                 subject.class.last.categories.count.should eq(1)
                 subject.class.last.categories.first.title.should eq(blog_category.title)
               end
@@ -63,7 +63,7 @@ module Refinery
               before(:each) do
                 @tag_list = "chicago, bikes, beers, babes"
                 fill_in "Title", :with => "This is a tagged blog post"
-                fill_in "blog_post_body", :with => "And I also love it"
+                fill_in "post_body", :with => "And I also love it"
                 fill_in "Tags", :with => @tag_list
                 click_button "Save"
               end
@@ -118,7 +118,7 @@ module Refinery
               it "redirects to blog post in the frontend" do
                 click_link "View this blog post live"
 
-                current_path.should == blog_post_path(blog_post)
+                current_path.should == refinery_blog_post_path(blog_post)
                 page.should have_content(blog_post.title)
               end
             end
@@ -151,7 +151,7 @@ module Refinery
               click_link "Create new post"
 
               fill_in "Title", :with => "This is some other guy's blog post"
-              fill_in "blog_post_body", :with => "I totally didn't write it."
+              fill_in "post_body", :with => "I totally didn't write it."
 
               click_link "Advanced Options"
 

@@ -1,4 +1,4 @@
-<%= form_for [main_app, :refinery_admin, @blog_post] do |f| -%>
+<%= form_for [main_app, :refinery_blog_admin, @post] do |f| -%>
   <%= render :partial => "/refinery/admin/error_messages",
              :locals => {
                :object => f.object,
@@ -25,33 +25,25 @@
           </li>
         <% end %>
       </ul>
-      
+
       <div id='page_part_editors'>
         <% part_index = -1 %>
-          <%= render :partial => 'form_part',
-                     :locals => {
-                       :f => f,
-                       :part_index => (part_index += 1),
-                     } -%>
-          <%= render :partial => 'teaser_part',
-                     :locals => {
-                       :f => f,
-                       :part_index => (part_index += 1),
-                     } if f.object.respond_to?(:custom_teaser) -%>
+          <%= render 'form_part', :f => f, :part_index => (part_index += 1) -%>
+          <%= render 'teaser_part', :f => f, :part_index => (part_index += 1) if f.object.respond_to?(:custom_teaser) -%>
         <% Refinery::Blog.tabs.each_with_index do |tab, tab_index| %>
           <div class='page_part' id='<%= "custom_tab_#{tab_index}" %>'>
-            <%= render :partial => tab.partial, :locals => {:f => f} %>
+            <%= render tab.partial, :f => f %>
           </div>
         <% end %>
       </div>
     </div>
   </div>
-  
+
   <div class='field'>
     <%= f.label :tag_list, t('refinery.blog.shared.tags.title') -%>
     <%= f.text_field :tag_list, :class => 'larger' -%>
   </div>
-  
+
   <div id='more_options_field'>
     <p>
       <%= link_to t('.advanced_options'), "#",
@@ -65,14 +57,14 @@
   </div>
   <div id='more_options' style="display:none;">
     <div class="hemisquare">
-      <h3><%= t('title', :scope => 'refinery.admin.blog.submenu.categories') %></h3>
+      <h3><%= t('title', :scope => 'refinery.blog.admin.submenu.categories') %></h3>
       <ul class='blog_categories'>
-        <% @blog_categories.each do |category| %>
+        <% @categories.each do |category| %>
           <li>
-             <%= check_box_tag 'blog_post[category_ids][]', category.id,
-                               @blog_post.categories.include?(category),
-                               :id => (id="blog_post_category_ids_#{category.id}") %>
-             <%= label_tag 'blog_post[category_ids][]', category.title,
+             <%= check_box_tag 'post[category_ids][]', category.id,
+                               @post.categories.include?(category),
+                               :id => (id="post_category_ids_#{category.id}") %>
+             <%= label_tag 'post[category_ids][]', category.title,
                            :class => 'stripped',
                            :for => id %>
           </li>
@@ -100,14 +92,14 @@
 
     </div>
     <div class='hemisquare right_side'>
-      <%= render :partial => '/seo_meta/form', :locals => {:form => f} %>
+      <%= render '/seo_meta/form', :form => f %>
     </div>
   </div>
   <%= render :partial => "/refinery/admin/form_actions",
               :locals => {
                 :f => f,
                 :continue_editing => true,
-                :delete_title => t('delete', :scope => 'refinery.admin.blog.posts.post')
+                :delete_title => t('delete', :scope => 'refinery.blog.admin.posts.post')
               } %>
 <% end -%>
 

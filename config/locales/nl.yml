@@ -3,8 +3,8 @@ nl:
     plugins:
       refinerycms_blog:
         title: Blog
-    admin:
-      blog:
+    blog:
+      admin:
         categories:
           category:
             edit: Bewerk deze categorie
@@ -77,7 +77,6 @@ nl:
             update_notified: Wijzig wie notificaties ontvangt
             comments: Reacties
             teasers: Teasers
-    blog:
       comment_mailer:
         notification:
           greeting: Hallo

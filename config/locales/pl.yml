@@ -3,8 +3,8 @@ pl:
     plugins:
       refinerycms_blog:
         title: Blog
-    admin:
-      blog:
+    blog:
+      admin:
         categories:
           category:
             edit: Edytuj tą kategorię
@@ -76,7 +76,6 @@ pl:
             moderation: Wł./wył. moderację
             update_notified: Powiadamianie przez e-mail
             comments: Komentarze
-    blog:
       comment_mailer:
         notification:
           greeting: Witaj:)
