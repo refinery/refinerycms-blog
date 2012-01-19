@@ -19,6 +19,7 @@ describe "custom path" do
 
   after do
     Refinery::Blog.default_settings!
+    Rails.application.routes_reloader.reload!
   end
 
   it "routes /foo/posts/1 to the Blog::Post controller" do
