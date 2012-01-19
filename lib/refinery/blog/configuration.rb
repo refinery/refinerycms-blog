@@ -4,10 +4,6 @@ module Refinery
 
     config_accessor :mount_path
 
-    def self.default_settings!
-      self.mount_path = "/blog"
-    end
-
-    default_settings!
+    self.mount_path = "/blog"
   end
 end

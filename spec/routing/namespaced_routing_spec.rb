@@ -13,12 +13,13 @@ end
 
 describe "custom path" do
   before do
+    @original_mount_path = Refinery::Blog.mount_path
     Refinery::Blog.mount_path = "/foo"
     Rails.application.routes_reloader.reload!
   end
 
   after do
-    Refinery::Blog.default_settings!
+    Refinery::Blog.mount_path = @original_mount_path
     Rails.application.routes_reloader.reload!
   end
 
