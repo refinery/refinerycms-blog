@@ -4,7 +4,6 @@ module Refinery
       include Refinery::Engine
 
       isolate_namespace Refinery::Blog
-      engine_name :refinery_blog
 
       initializer "register refinerycms_blog plugin", :after => :set_routes_reloader do |app|
         Refinery::Plugin.register do |plugin|
