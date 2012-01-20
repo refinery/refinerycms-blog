@@ -30,10 +30,6 @@ module Refinery
       def factory_paths
         @factory_paths ||= [ root.join("spec/factories").to_s ]
       end
-
-      def table_name_prefix
-        'refinery_blog_'
-      end
     end
   end
 end
