@@ -77,6 +77,30 @@ module Refinery
           page.should_not have_content(blog_comment.body)
         end
       end
+
+      context "when posting comments" do
+        let(:blog_post) { Factory(:blog_post) }
+        let(:name) { "pete" }
+        let(:email) { "pete@mcawesome.com" }
+        let(:body) { "Witty comment." }
+
+        before do
+          visit refinery_blog_post_path(blog_post)
+
+          fill_in "Name", :with => name
+          fill_in "Email", :with => email
+          fill_in "Message", :with => body
+          click_button "Send comment"
+        end
+
+        it "creates the comment" do
+          comment = blog_post.reload.comments.last
+
+          comment.name.should eq(name)
+          comment.email.should eq(email)
+          comment.body.should eq(body)
+        end
+      end
     end
     
     describe "#show draft preview" do
