@@ -31,7 +31,7 @@ module Refinery
       end
 
       def comment
-        if (@comment = @post.comments.create(params[comment])).valid?
+        if (@comment = @post.comments.create(params[:comment])).valid?
           if Comment::Moderation.enabled? or @comment.ham?
             begin
               CommentMailer.notification(@comment, request).deliver
