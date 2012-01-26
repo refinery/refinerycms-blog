@@ -83,6 +83,22 @@
 
       <div class='field'>
         <span class='label_with_help'>
+          <%= f.label :source_url_title, t('.source_url_title') %>
+          <%= refinery_help_tag t('.source_url_title_help') %>
+        </span>
+        <%= f.text_field :source_url_title, :class => "widest" %>
+      </div>
+
+      <div class='field'>
+        <span class='label_with_help'>
+          <%= f.label :source_url, t('.source_url') %>
+          <%= refinery_help_tag t('.source_url_help') %>
+        </span>
+        <%= f.text_field :source_url, :class => "widest" %>
+      </div>
+
+      <div class='field'>
+        <span class='label_with_help'>
           <%= f.label :user_id, t('.author') %>
           <%= refinery_help_tag t('.author_help') %>
           <br/>
