@@ -1,7 +1,7 @@
 <nav id="next_prev_article">
   <% if @post.next.present? -%>
     <%= link_to (truncate(@post.next.title) + " &#187;").html_safe, 
-                main_app.url_for(@post.next), 
+                main_app.refinery_blog_post_path(@post.prev), 
                 :class => 'next' %>
   <% end -%>
 
@@ -11,7 +11,7 @@
 
   <% if @post.prev.present? -%>
     <%= link_to ("&#171; " + truncate(@post.prev.title)).html_safe, 
-                main_app.url_for(@post.prev), 
+                main_app.refinery_blog_post_path(@post.prev), 
                 :class => 'prev' %>
   <% end -%>
 </nav><!-- /next_prev_article -->
