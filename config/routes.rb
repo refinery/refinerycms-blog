@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   namespace :refinery, :path => '' do
-    namespace :blog do
+    namespace :blog, :path => Refinery::Blog.mount_path do
       root :to => "posts#index"
 
       resources :posts, :only => [:show]
