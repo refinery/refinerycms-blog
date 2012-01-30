@@ -63,7 +63,7 @@ module Refinery
                 end
               end
             else
-              render :text => "<script>parent.window.location = '#{refinery_blog_admin_posts_url}';</script>"
+              render :text => "<script>parent.window.location = '#{main_app.refinery_blog_admin_posts_url}';</script>"
             end
           else
             unless request.xhr?
