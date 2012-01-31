@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.homepage          = %q{http://refinerycms.com/blog}
   s.authors           = ['Resolve Digital', 'Neoteric Design']
   s.require_paths     = %w(lib)
-  
+
   s.files             = `git ls-files`.split("\n")
   s.test_files        = `git ls-files -- spec/*`.split("\n")
   s.executables       = `git ls-files -- bin/*`.split("\n").map { |f| File.basename(f) }
@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
   s.add_dependency    'refinerycms-core',   '~> 2.0.0'
   s.add_dependency    'filters_spam',       '~> 0.2'
   s.add_dependency    'acts-as-taggable-on'
-  s.add_dependency    'seo_meta',           '~> 1.2.0.rc1'
+  s.add_dependency    'seo_meta',           '~> 1.2.0.rc3'
   s.add_dependency    'rails_autolink'
 
   # Development dependencies

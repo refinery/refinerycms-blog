@@ -1,5 +1,5 @@
 before_script:
-  - "bundle exec rake refinery:testing:dummy_app"
+  - "bundle exec rake refinery:testing:dummy_app > /dev/null"
 script: "bundle exec rake spec"
 notifications:
   email:
@@ -13,9 +13,8 @@ env:
   - DB=sqlite3
 rvm:
   - 1.8.7
+  - ree
   - 1.9.2
   - 1.9.3
   - rbx
-  - rbx-2.0
-  - ree
   - jruby
