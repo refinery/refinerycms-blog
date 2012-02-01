@@ -8,7 +8,7 @@ notifications:
     - joe@joesak.com
     - jamie@enmasse.com
 env:
-  - DB=postgres
+  - DB=postgresql
   - DB=mysql
   - DB=sqlite3
 rvm:
