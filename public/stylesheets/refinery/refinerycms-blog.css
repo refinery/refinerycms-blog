@@ -53,3 +53,5 @@ ul.collapsible_menu > div {
   width: 93%;
   margin: 0px auto;
 }
+
+#records > ul li {padding:0 84px 0 5px;}
