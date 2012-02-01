@@ -51,3 +51,4 @@ capybara-*html
 .rbenv-version
 
 Gemfile.lock
+.rbx
