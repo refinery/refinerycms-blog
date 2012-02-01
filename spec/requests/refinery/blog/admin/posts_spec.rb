@@ -12,7 +12,7 @@ module Refinery
           before(:each) { subject.class.destroy_all }
 
           describe "blog post listing" do
-            before(:each) { visit refinery_blog_admin_posts_path }
+            before(:each) { visit refinery.blog_admin_posts_path }
 
             it "invites to create new post" do
               page.should have_content("There are no Blog Posts yet. Click \"Create new post\" to add your first blog post.")
@@ -21,7 +21,7 @@ module Refinery
 
           describe "new blog post form" do
             before(:each) do
-              visit refinery_blog_admin_posts_path
+              visit refinery.blog_admin_posts_path
               click_link "Create new post"
             end
 
@@ -53,7 +53,7 @@ module Refinery
                 subject.class.first.author.should eq(::Refinery::User.last)
               end
 
-              it "should save categories", :focus => true do
+              it "should save categories" do
                 subject.class.last.categories.count.should eq(1)
                 subject.class.last.categories.first.title.should eq(blog_category.title)
               end
@@ -87,14 +87,14 @@ module Refinery
           let!(:blog_post) { FactoryGirl.create(:blog_post) }
 
           describe "blog post listing" do
-            before(:each) { visit refinery_blog_admin_posts_path }
+            before(:each) { visit refinery.blog_admin_posts_path }
 
             describe "edit blog post" do
               it "should succeed" do
                 page.should have_content(blog_post.title)
 
                 click_link("Edit this blog post")
-                current_path.should == edit_refinery_blog_admin_post_path(blog_post)
+                current_path.should == refinery.edit_blog_admin_post_path(blog_post)
 
                 fill_in "Title", :with => "hax0r"
                 click_button "Save"
@@ -118,7 +118,7 @@ module Refinery
               it "redirects to blog post in the frontend" do
                 click_link "View this blog post live"
 
-                current_path.should == refinery_blog_post_path(blog_post)
+                current_path.should == refinery.blog_post_path(blog_post)
                 page.should have_content(blog_post.title)
               end
             end
@@ -126,7 +126,7 @@ module Refinery
 
           context "when uncategorized post" do
             it "shows up in the list" do
-              visit uncategorized_refinery_blog_admin_posts_path
+              visit refinery.uncategorized_blog_admin_posts_path
               page.should have_content(blog_post.title)
             end
           end
@@ -136,7 +136,7 @@ module Refinery
               blog_post.categories << blog_category
               blog_post.save!
 
-              visit uncategorized_refinery_blog_admin_posts_path
+              visit refinery.uncategorized_blog_admin_posts_path
               page.should_not have_content(blog_post.title)
             end
           end
@@ -147,7 +147,7 @@ module Refinery
 
           describe "create blog post with alternate author" do
             before(:each) do
-              visit refinery_blog_admin_posts_path
+              visit refinery.blog_admin_posts_path
               click_link "Create new post"
 
               fill_in "Title", :with => "This is some other guy's blog post"

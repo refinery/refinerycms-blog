@@ -4,7 +4,7 @@ describe "Blog menu entry" do
   login_refinery_user
 
   it "is highlighted when managing the blog" do
-    visit refinery_admin_root_path
+    visit refinery.admin_root_path
 
     within("#menu") { click_link "Blog" }
 

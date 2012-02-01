@@ -3,7 +3,7 @@
   <ul id='categories'>
     <% @categories.each do |category| %>
       <li<%= " class='selected'" if @category.present? and @category.id == category.id %>>
-        <%= link_to "#{category.title} (#{category.post_count})", main_app.refinery_blog_category_path(category) %>
+        <%= link_to "#{category.title} (#{category.post_count})", refinery.blog_category_path(category) %>
       </li>
     <% end %>
   </ul>

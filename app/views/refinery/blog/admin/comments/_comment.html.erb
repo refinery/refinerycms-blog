@@ -5,16 +5,16 @@
   </span>
   <span class='actions'>
     <%= link_to refinery_icon_tag("application_go.png"),
-                main_app.refinery_blog_post_path(comment.post, :anchor => "comment-#{comment.to_param}"),
+                refinery.blog_post_path(comment.post, :anchor => "comment-#{comment.to_param}"),
                 :title => t('.view_live_html'),
                 :target => "_blank" unless comment.unmoderated? %>
-    <%= link_to refinery_icon_tag('zoom.png'), main_app.refinery_blog_admin_comment_path(comment),
+    <%= link_to refinery_icon_tag('zoom.png'), refinery.blog_admin_comment_path(comment),
                 :title => t('.read') %>
     <%= link_to refinery_icon_tag("cross.png"),
-                main_app.rejected_refinery_blog_admin_comment_path(comment, :return_to => request.path.split('/').last.gsub(/^comments$/, 'index')),
+                refinery.rejected_blog_admin_comment_path(comment, :return_to => request.path.split('/').last.gsub(/^comments$/, 'index')),
                 :title => t('.reject') unless comment.rejected? %>
     <%= link_to refinery_icon_tag("tick.png"),
-                main_app.approved_refinery_blog_admin_comment_path(comment, :return_to => request.path.split('/').last.gsub(/^comments$/, 'index')),
+                refinery.approved_blog_admin_comment_path(comment, :return_to => request.path.split('/').last.gsub(/^comments$/, 'index')),
                 :title => t('.approve') unless comment.approved? %>
   </span>
 </li>

@@ -6,14 +6,14 @@
   <h2><%= t('.actions') %></h2>
   <ul>
     <li>
-      <%= link_to t('.back'), main_app.refinery_blog_admin_comments_path, :class => "back_icon" %>
+      <%= link_to t('.back'), refinery.blog_admin_comments_path, :class => "back_icon" %>
     </li>
     <li>
-      <%= link_to t('.reject'), main_app.rejected_refinery_blog_admin_comment_path(@comment, :return_to => 'rejected'),
+      <%= link_to t('.reject'), refinery.rejected_blog_admin_comment_path(@comment, :return_to => 'rejected'),
           :class => 'comment_cross_icon' unless @comment.rejected? %>
     </li>
     <li>
-      <%= link_to t('.approve'), main_app.approved_refinery_blog_admin_comment_path(@comment, :return_to => 'approved'),
+      <%= link_to t('.approve'), refinery.approved_blog_admin_comment_path(@comment, :return_to => 'approved'),
           :class => 'comment_tick_icon' unless @comment.approved? %>
     </li>
   </ul>
@@ -27,7 +27,7 @@
       </td>
       <td>
         <%= link_to @comment.post.title,
-                    main_app.refinery_blog_post_path(@comment.post, :anchor => "comment-#{@comment.to_param}"),
+                    refinery.blog_post_path(@comment.post, :anchor => "comment-#{@comment.to_param}"),
                     :target => '_blank' %>
       </td>
     </tr>

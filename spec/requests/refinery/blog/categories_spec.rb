@@ -13,7 +13,7 @@ module Refinery
       end
 
       describe "show categories blog posts" do
-        before(:each) { visit refinery_blog_category_path(@category) }
+        before(:each) { visit refinery.blog_category_path(@category) }
         it "should displays categories blog posts" do
           page.should have_content("Refinery CMS blog post")
           page.should have_content("Video Games")

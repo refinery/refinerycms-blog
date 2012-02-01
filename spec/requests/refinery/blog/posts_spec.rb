@@ -8,13 +8,13 @@ module Refinery
       let!(:blog_post) { FactoryGirl.create(:blog_post, :title => "Refinery CMS blog post") }
     
       it "should display blog post" do
-        visit refinery_blog_post_path(blog_post)
+        visit refinery.blog_post_path(blog_post)
         
         page.should have_content(blog_post.title)
       end
     
       it "should display the blog rss feed" do
-        get refinery_blog_rss_feed_path
+        get refinery.blog_rss_feed_path
         
         response.should be_success
         response.content_type.should eq("application/rss+xml")
@@ -31,7 +31,7 @@ module Refinery
           @tag = ::Refinery::Blog::Post.tag_counts_on(:tags).first          
         end
         it "should have one tagged post" do
-          visit refinery_blog_tagged_posts_path(@tag.id, @tag_name.parameterize)
+          visit refinery.blog_tagged_posts_path(@tag.id, @tag_name.parameterize)
           
           page.should have_content(@tag_name)
           page.should have_content(@post.title)
@@ -44,7 +44,7 @@ module Refinery
         let(:blog_post) { FactoryGirl.create(:blog_post) }
         
         it "should display the blog post" do
-          visit refinery_blog_post_path(blog_post)
+          visit refinery.blog_post_path(blog_post)
           page.should have_content(blog_post.title)
           page.should have_content(blog_post.body)
         end
@@ -53,7 +53,7 @@ module Refinery
         let(:approved_comment) { FactoryGirl.create(:approved_comment) }
         
         it "should display the comments" do
-          visit refinery_blog_post_path(approved_comment.post)
+          visit refinery.blog_post_path(approved_comment.post)
           
           page.should have_content(approved_comment.body)
           page.should have_content("Posted by #{approved_comment.name}")
@@ -63,7 +63,7 @@ module Refinery
         let(:rejected_comment) { FactoryGirl.create(:rejected_comment) }
         
         it "should not display the comments" do          
-          visit refinery_blog_post_path(rejected_comment.post)
+          visit refinery.blog_post_path(rejected_comment.post)
           
           page.should_not have_content(rejected_comment.body)
         end
@@ -72,7 +72,7 @@ module Refinery
         let(:blog_comment) { FactoryGirl.create(:blog_comment) }
         
         it "should not display the comments" do
-          visit refinery_blog_post_path(blog_comment.post)
+          visit refinery.blog_post_path(blog_comment.post)
           
           page.should_not have_content(blog_comment.body)
         end
@@ -85,7 +85,7 @@ module Refinery
         let(:body) { "Witty comment." }
 
         before do
-          visit refinery_blog_post_path(blog_post)
+          visit refinery.blog_post_path(blog_post)
 
           fill_in "Name", :with => name
           fill_in "Email", :with => email
@@ -107,16 +107,16 @@ module Refinery
       let(:blog_post) { FactoryGirl.create(:blog_post_draft) }
       context "when logged in as admin" do        
         it "should display the draft notification" do
-          visit refinery_blog_post_path(blog_post)
+          visit refinery.blog_post_path(blog_post)
           
           page.should have_content('This page is NOT live for public viewing.')
         end
       end
       context "when not logged in as an admin" do
-        before(:each) { visit destroy_refinery_user_session_path }
+        before(:each) { visit refinery.destroy_refinery_user_session_path }
         
         it "should not display the blog post" do
-          visit refinery_blog_post_path(blog_post)
+          visit refinery.blog_post_path(blog_post)
           
           page.should have_content("The page you were looking for doesn't exist (404)")
         end

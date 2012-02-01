@@ -6,7 +6,7 @@ describe "Categories admin" do
   let(:title) { "lol" }
 
   it "can create categories" do
-    visit refinery_admin_root_path
+    visit refinery.admin_root_path
 
     within("nav#menu") { click_link "Blog" }
     within("nav.multilist") { click_link "Create new category" }

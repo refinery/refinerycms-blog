@@ -23,8 +23,7 @@
       <%= will_paginate @comments %>
     <% else %>
       <h3>
-        <%= t('.no_items_yet',
-              :type => action_name.gsub('index', 'new')).downcase %>
+        <%= t('.no_items_yet', :type => action_name.gsub('index', 'new').downcase) %>
       </h3>
     <% end %>
   <% end %>

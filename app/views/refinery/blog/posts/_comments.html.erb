@@ -15,7 +15,7 @@
   <% end %>
 
   <h2><%= t('add', :scope => 'refinery.blog.posts.show.comments') %></h2>
-  <%= form_for [main_app, :refinery_blog, @comment] do |f| %>
+  <%= form_for [refinery, :blog, @comment] do |f| %>
     <%= render :partial => "/refinery/admin/error_messages",
                :locals => {
                  :object => f.object,

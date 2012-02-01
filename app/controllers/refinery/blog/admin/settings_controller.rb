@@ -11,9 +11,9 @@ module Refinery
             flash[:notice] = t('updated', :scope => 'admin.blog.settings.notification_recipients',
                                :recipients => Refinery::Blog::Comment::Notification.recipients)
             unless request.xhr? or from_dialog?
-              redirect_back_or_default(main_app.refinery_blog_admin_posts_path)
+              redirect_back_or_default(refinery.blog_admin_posts_path)
             else
-              render :text => "<script type='text/javascript'>parent.window.location = '#{main_app.refinery_blog_admin_posts_path}';</script>",
+              render :text => "<script type='text/javascript'>parent.window.location = '#{refinery.blog_admin_posts_path}';</script>",
                      :layout => false
             end
           end
@@ -22,7 +22,7 @@ module Refinery
         def moderation
           enabled = Refinery::Blog::Comment::Moderation.toggle!
           unless request.xhr?
-            redirect_back_or_default(main_app.refinery_blog_admin_posts_path)
+            redirect_back_or_default(refinery.blog_admin_posts_path)
           else
             render :json => {:enabled => enabled},
                    :layout => false
@@ -32,7 +32,7 @@ module Refinery
         def comments
           enabled = Refinery::Blog::Comment.toggle!
           unless request.xhr?
-            redirect_back_or_default(main_app.refinery_blog_admin_posts_path)
+            redirect_back_or_default(refinery.blog_admin_posts_path)
           else
             render :json => {:enabled => enabled},
                    :layout => false
@@ -42,7 +42,7 @@ module Refinery
         def teasers
           enabled = Refinery::Blog::Post.teaser_enabled_toggle!
           unless request.xhr?
-            redirect_back_or_default(main_app.refinery_blog_admin_posts_path)
+            redirect_back_or_default(refinery.blog_admin_posts_path)
           else
             render :json => {:enabled => enabled},
                    :layout => false
