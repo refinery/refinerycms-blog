@@ -9,9 +9,6 @@ Refinery::Core::Engine.routes.draw do
     get 'archive/:year(/:month)', :to => 'posts#archive', :as => 'archive_posts'
     get 'tagged/:tag_id(/:tag_name)' => 'posts#tagged', :as => 'tagged_posts'
 
-  end
-
-  namespace :blog, :path => '' do
     namespace :admin, :path => 'refinery' do
       scope :path => 'blog' do
         root :to => "posts#index"
