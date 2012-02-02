@@ -77,7 +77,7 @@ module Refinery
               end
 
               it "should have the specified tags" do
-                subject.class.last.tag_list.should eq(@tag_list.split(', '))
+                subject.class.last.tag_list.sort.should eq(@tag_list.split(', ').sort)
               end
             end
           end
