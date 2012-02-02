@@ -22,7 +22,7 @@ module Refinery
 
       validates :title, :presence => true, :uniqueness => true
       validates :body,  :presence => true
-      
+
       validates :source_url, :url => { :if => 'Refinery::Blog.config.validate_source_url',
                                       :update => true,
                                       :allow_nil => true,
@@ -33,24 +33,6 @@ module Refinery
                       :default_locale => (::Refinery::I18n.default_frontend_locale rescue :en),
                       :approximate_ascii => Refinery::Setting.find_or_set(:approximate_ascii, false, :scoping => 'blog'),
                       :strip_non_ascii => Refinery::Setting.find_or_set(:strip_non_ascii, false, :scoping => 'blog')
-
-      scope :by_archive, lambda { |archive_date|
-        where(['published_at between ? and ?', archive_date.beginning_of_month, archive_date.end_of_month])
-      }
-
-      scope :by_year, lambda { |archive_year|
-        where(['published_at between ? and ?', archive_year.beginning_of_year, archive_year.end_of_year])
-      }
-
-      scope :all_previous, lambda { where(['published_at <= ?', Time.now.beginning_of_month]) }
-
-      scope :live, lambda { where( "published_at <= ? and draft = ?", Time.now, false) }
-
-      scope :previous, lambda { |i| where(["published_at < ? and draft = ?", i.published_at, false]).limit(1) }
-
-      scope :uncategorized, lambda {
-        live.includes(:categories).where(:categories => { Refinery::Categorization.table_name => { :blog_category_id => nil } })
-      }
 
       attr_accessible :title, :body, :custom_teaser, :tag_list, :draft, :published_at, :custom_url, :author
       attr_accessible :browser_title, :meta_keywords, :meta_description, :user_id, :category_ids
@@ -81,6 +63,30 @@ module Refinery
       end
 
       class << self
+        def by_archive(archive_date)
+          where(['published_at between ? and ?', archive_date.beginning_of_month, archive_date.end_of_month])
+        end
+
+        def by_year(archive_year)
+          where(['published_at between ? and ?', archive_year.beginning_of_year, archive_year.end_of_year])
+        end
+
+        def all_previous
+          where(['published_at <= ?', Time.now.beginning_of_month])
+        end
+
+        def live
+          where( "published_at <= ? and draft = ?", Time.now, false)
+        end
+
+        def previous(item)
+          where(["published_at < ? and draft = ?", item.published_at, false]).limit(1)
+        end
+
+        def uncategorized
+          live.includes(:categories).where(:categories => { Refinery::Categorization.table_name => { :blog_category_id => nil } })
+        end
+
         def next(current_record)
           self.send(:with_exclusive_scope) do
             where(["published_at > ? and draft = ?", current_record.published_at, false]).order("published_at ASC")

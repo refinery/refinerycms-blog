@@ -17,9 +17,19 @@ module Refinery
       validates :name, :message, :presence => true
       validates :email, :format => { :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i }
 
-      scope :unmoderated, :conditions => {:state => nil}
-      scope :approved, :conditions => {:state => 'approved'}
-      scope :rejected, :conditions => {:state => 'rejected'}
+      class << self
+        def unmoderated
+          where(:state => nil)
+        end
+
+        def approved
+          where(:state => 'approved')
+        end
+
+        def rejected
+          where(:state => 'rejected')
+        end
+      end
 
       self.per_page = Refinery::Setting.find_or_set(:blog_comments_per_page, 10)
 
