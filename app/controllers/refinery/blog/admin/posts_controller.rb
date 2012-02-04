@@ -6,9 +6,7 @@ module Refinery
         cache_sweeper Refinery::BlogSweeper
 
         crudify :'refinery/blog/post',
-                :title_attribute => :title,
-                :order => 'published_at DESC',
-                :redirect_to_url => "refinery.blog_admin_posts_path"
+                :order => 'published_at DESC'
 
         before_filter :find_all_categories,
                       :only => [:new, :edit, :create, :update]
