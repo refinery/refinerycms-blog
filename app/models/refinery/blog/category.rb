@@ -10,16 +10,16 @@ module Refinery
       validates :title, :presence => true, :uniqueness => true
 
       has_friendly_id :title, :use_slug => true,
-                      :default_locale => (::Refinery::I18n.default_frontend_locale rescue :en),
-                      :approximate_ascii => Refinery::Setting.find_or_set(:approximate_ascii, false, :scoping => 'blog'),
-                      :strip_non_ascii => Refinery::Setting.find_or_set(:strip_non_ascii, false, :scoping => 'blog')
+                      :default_locale => (Refinery::I18n.default_frontend_locale rescue :en),
+                      :approximate_ascii => Refinery::Blog.approximate_ascii,
+                      :strip_non_ascii => Refinery::Blog.strip_non_ascii
 
       def post_count
         posts.select(&:live?).count
       end
 
       # how many items to show per page
-      self.per_page = Refinery::Setting.find_or_set(:blog_posts_per_page, 10)
+      self.per_page = Refinery::Blog.posts_per_page
 
     end
   end

@@ -23,22 +23,22 @@ module Refinery
       validates :title, :presence => true, :uniqueness => true
       validates :body,  :presence => true
 
-      validates :source_url, :url => { :if => 'Refinery::Blog.config.validate_source_url',
+      validates :source_url, :url => { :if => 'Refinery::Blog.validate_source_url',
                                       :update => true,
                                       :allow_nil => true,
                                       :allow_blank => true,
                                       :verify => [:resolve_redirects]}
 
       has_friendly_id :friendly_id_source, :use_slug => true,
-                      :default_locale => (::Refinery::I18n.default_frontend_locale rescue :en),
-                      :approximate_ascii => Refinery::Setting.find_or_set(:approximate_ascii, false, :scoping => 'blog'),
-                      :strip_non_ascii => Refinery::Setting.find_or_set(:strip_non_ascii, false, :scoping => 'blog')
+                      :default_locale => (Refinery::I18n.default_frontend_locale rescue :en),
+                      :approximate_ascii => Refinery::Blog.approximate_ascii,
+                      :strip_non_ascii => Refinery::Blog.strip_non_ascii
 
       attr_accessible :title, :body, :custom_teaser, :tag_list, :draft, :published_at, :custom_url, :author
       attr_accessible :browser_title, :meta_keywords, :meta_description, :user_id, :category_ids
       attr_accessible :source_url, :source_url_title
 
-      self.per_page = Refinery::Setting.find_or_set(:blog_posts_per_page, 10)
+      self.per_page = Refinery::Blog.posts_per_page
 
       def next
         self.class.next(self).first
@@ -108,17 +108,8 @@ module Refinery
       end
 
       module ShareThis
-        DEFAULT_KEY = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
-
-        class << self
-          def key
-            Refinery::Setting.find_or_set(:share_this_key, Blog::Post::ShareThis::DEFAULT_KEY, :scoping => 'blog')
-          end
-
-          def enabled?
-            key = Blog::Post::ShareThis.key
-            key.present? and key != Blog::Post::ShareThis::DEFAULT_KEY
-          end
+        def self.enabled?
+          Refinery::Blog.share_this_key != "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
         end
       end
 

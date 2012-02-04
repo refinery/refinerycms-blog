@@ -22,7 +22,7 @@ module Refinery
          post.custom_teaser.html_safe
         else
          truncate(post.body, {
-           :length => Refinery::Setting.find_or_set(:blog_post_teaser_length, 250),
+           :length => Refinery::Blog.post_teaser_length,
            :preserve_html_tags => true
           }).html_safe
         end

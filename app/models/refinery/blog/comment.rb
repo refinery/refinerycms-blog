@@ -31,7 +31,7 @@ module Refinery
         end
       end
 
-      self.per_page = Refinery::Setting.find_or_set(:blog_comments_per_page, 10)
+      self.per_page = Refinery::Blog.comments_per_page
 
       def avatar_url(options = {})
         options = {:size => 60}

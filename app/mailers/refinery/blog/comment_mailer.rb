@@ -6,7 +6,7 @@ module Refinery
         @comment = comment
         mail :subject => Blog::Comment::Notification.subject,
              :recipients => Blog::Comment::Notification.recipients,
-             :from => "\"#{Refinery::Core.config.site_name}\" <no-reply@#{request.domain}>"
+             :from => "\"#{Refinery::Core.site_name}\" <no-reply@#{request.domain}>"
       end
 
     end

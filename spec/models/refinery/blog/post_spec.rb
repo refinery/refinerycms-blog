@@ -224,9 +224,8 @@ module Refinery
       end
       
       describe ".validate_source_url?" do
-        context "with Refinery::Setting validate_source_url set to true" do
+        context "with Refinery::Blog.validate_source_url set to true" do
           before do
-            Refinery::Setting.set(:validate_source_url, { :scoping => 'blog', :value => true })
             Refinery::Blog.validate_source_url = true
           end  
           it "should have canonical url" do
@@ -234,9 +233,8 @@ module Refinery
             p.source_url.should include('www')
           end
         end
-        context "with Refinery::Setting validate_source_url set to false" do
+        context "with Refinery::Blog.validate_source_url set to false" do
           before do
-            Refinery::Setting.set(:validate_source_url, { :scoping => 'blog', :value => false })
             Refinery::Blog.validate_source_url = false
           end
           it "should have original url" do
