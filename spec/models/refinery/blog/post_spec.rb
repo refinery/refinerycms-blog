@@ -49,7 +49,7 @@ module Refinery
 
       describe "authors" do
         it "are authored" do
-          subject.class.instance_methods.map(&:to_sym).should include(:author)
+          described_class.instance_methods.map(&:to_sym).should include(:author)
         end
       end
 
@@ -65,8 +65,8 @@ module Refinery
         it "returns all posts from specified month" do
           #check for this month
           date = "03/2011"
-          subject.class.by_archive(Time.parse(date)).count.should be == 2
-          subject.class.by_archive(Time.parse(date)).should == [@post2, @post1]
+          described_class.by_archive(Time.parse(date)).count.should be == 2
+          described_class.by_archive(Time.parse(date)).should == [@post2, @post1]
         end
       end
 
@@ -93,8 +93,8 @@ module Refinery
         end
 
         it "returns all posts which aren't in draft and pub date isn't in future" do
-          subject.class.live.count.should be == 2
-          subject.class.live.should == [@post2, @post1]
+          described_class.live.count.should be == 2
+          described_class.live.should == [@post2, @post1]
         end
       end
 
@@ -107,8 +107,8 @@ module Refinery
         end
 
         it "returns uncategorized posts if they exist" do
-          subject.class.uncategorized.should include @uncategorized_post
-          subject.class.uncategorized.should_not include @categorized_post
+          described_class.uncategorized.should include @uncategorized_post
+          described_class.uncategorized.should_not include @categorized_post
         end
       end
 
@@ -133,7 +133,7 @@ module Refinery
         end
 
         it "returns next article when called on current article" do
-          subject.class.last.next.should == @post
+          described_class.last.next.should == @post
         end
       end
 
@@ -144,7 +144,7 @@ module Refinery
         end
 
         it "returns previous article when called on current article" do
-          subject.class.first.prev.should == @post
+          described_class.first.prev.should == @post
         end
       end
 
@@ -172,7 +172,7 @@ module Refinery
           end
 
           it "should be true" do
-            subject.class.comments_allowed?.should be_true
+            described_class.comments_allowed?.should be_true
           end
         end
 
@@ -182,7 +182,7 @@ module Refinery
           end
 
           it "should be false" do
-            subject.class.comments_allowed?.should be_false
+            described_class.comments_allowed?.should be_false
           end
         end
       end
@@ -200,7 +200,7 @@ module Refinery
           end
 
           it "should be true" do
-            subject.class.teasers_enabled?.should be_true
+            described_class.teasers_enabled?.should be_true
           end
         end
 
@@ -210,7 +210,7 @@ module Refinery
           end
 
           it "should be false" do
-            subject.class.teasers_enabled?.should be_false
+            described_class.teasers_enabled?.should be_false
           end
         end
       end
