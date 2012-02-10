@@ -53,7 +53,7 @@ module Refinery
         end
       end
 
-      describe "by_archive scope" do
+      describe "by_archive" do
         before do
           @post1 = FactoryGirl.create(:blog_post, :published_at => Date.new(2011, 3, 11))
           @post2 = FactoryGirl.create(:blog_post, :published_at => Date.new(2011, 3, 12))
@@ -84,7 +84,7 @@ module Refinery
         end
       end
 
-      describe "live scope" do
+      describe "live" do
         before do
           @post1 = FactoryGirl.create(:blog_post, :published_at => Time.now.advance(:minutes => -2))
           @post2 = FactoryGirl.create(:blog_post, :published_at => Time.now.advance(:minutes => -1))
@@ -98,7 +98,7 @@ module Refinery
         end
       end
 
-      describe "uncategorized scope" do
+      describe "uncategorized" do
         before do
           @uncategorized_post = FactoryGirl.create(:blog_post)
           @categorized_post = FactoryGirl.create(:blog_post)
