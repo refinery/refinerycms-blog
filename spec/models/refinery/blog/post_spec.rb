@@ -70,16 +70,17 @@ module Refinery
         end
       end
 
-      describe "all_previous scope" do
+      describe ".published_dates_older_than" do
         before do
           @post1 = FactoryGirl.create(:blog_post, :published_at => Time.now - 2.months)
           @post2 = FactoryGirl.create(:blog_post, :published_at => Time.now - 1.month)
           FactoryGirl.create(:blog_post, :published_at => Time.now)
         end
 
-        it "returns all posts from previous months" do
-          subject.class.all_previous.count.should be == 2
-          subject.class.all_previous.should == [@post2, @post1]
+        it "returns all published dates older than the argument" do
+          expected = [@post2.published_at, @post1.published_at]
+
+          described_class.published_dates_older_than(1.day.ago).should eq(expected)
         end
       end
 

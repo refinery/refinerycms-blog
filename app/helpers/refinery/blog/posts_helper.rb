@@ -24,8 +24,8 @@ module Refinery
         ArchiveWidget.new(dates, self).display
       end
 
-      def blog_archive_dates
-        Refinery::Blog::Post.select('published_at').all_previous.map(&:published_at)
+      def blog_archive_dates(cutoff=Time.now.beginning_of_month)
+        Refinery::Blog::Post.published_dates_older_than(cutoff)
       end
 
       class ArchiveWidget

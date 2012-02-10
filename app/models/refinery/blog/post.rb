@@ -71,8 +71,8 @@ module Refinery
           where(['published_at between ? and ?', archive_year.beginning_of_year, archive_year.end_of_year])
         end
 
-        def all_previous
-          where(['published_at <= ?', Time.now.beginning_of_month])
+        def published_dates_older_than(date)
+          where("published_at <= ?", date).map(&:published_at)
         end
 
         def live
