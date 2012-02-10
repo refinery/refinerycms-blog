@@ -47,11 +47,10 @@ class RedirectFollower
 
   def initialize(url, limit=5)
     @url, @redirect_limit = url, limit
-    logger.level = Logger::INFO
   end
 
   def logger
-    @logger ||= Logger.new(STDOUT)
+    @logger ||= Rails.logger
   end
 
   def resolve
