@@ -7,7 +7,7 @@ module Refinery
         let(:html) { helper.blog_archive_widget(dates) }
         let(:links) { Capybara.string(html).find("#blog_archive_widget ul") }
 
-        context "without no archive dates" do
+        context "with no archive dates" do
           let(:dates) { [] }
 
           it "does not display anything" do
