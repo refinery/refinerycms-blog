@@ -1,6 +1,12 @@
 module Refinery
   class BlogGenerator < Rails::Generators::Base
 
+    source_root File.expand_path("../templates", __FILE__)
+
+    def generate_blog_initializer
+      template "config/initializers/refinery/blog.rb.erb", File.join(destination_root, "config", "initializers", "refinery", "blog.rb")
+    end
+
     def rake_db
       rake("refinery_blog:install:migrations")
     end
