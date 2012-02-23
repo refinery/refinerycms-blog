@@ -8,7 +8,6 @@ module Refinery
       is_seo_meta if self.table_exists?
 
       default_scope :order => 'published_at DESC'
-      #.first & .last will be reversed -- consider a with_exclusive_scope on these?
 
       belongs_to :author, :class_name => 'Refinery::User', :foreign_key => :user_id, :readonly => true
 
@@ -41,11 +40,11 @@ module Refinery
       self.per_page = Refinery::Blog.posts_per_page
 
       def next
-        self.class.next(self).first
+        self.class.next(self)
       end
 
       def prev
-        self.class.previous(self).first
+        self.class.previous(self)
       end
 
       def live?
@@ -78,7 +77,7 @@ module Refinery
         end
 
         def previous(item)
-          published_before(item.published_at).limit(1)
+          published_before(item.published_at).first
         end
 
         def uncategorized
@@ -86,9 +85,7 @@ module Refinery
         end
 
         def next(current_record)
-          self.send(:with_exclusive_scope) do
-            where(["published_at > ? and draft = ?", current_record.published_at, false]).order("published_at ASC")
-          end
+          where(["published_at > ? and draft = ?", current_record.published_at, false]).first
         end
 
         def published_before(date=Time.now)
