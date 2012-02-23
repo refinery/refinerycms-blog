@@ -8,7 +8,7 @@ module Refinery
 
           if request.post?
             Refinery::Blog::Comment::Notification.recipients = params[:recipients]
-            flash[:notice] = t('updated', :scope => 'admin.blog.settings.notification_recipients',
+            flash[:notice] = t('updated', :scope => 'refinery.blog.admin.settings.notification_recipients',
                                :recipients => Refinery::Blog::Comment::Notification.recipients)
             unless request.xhr? or from_dialog?
               redirect_back_or_default(refinery.blog_admin_posts_path)
