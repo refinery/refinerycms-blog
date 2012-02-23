@@ -2,9 +2,9 @@
   <h2><%= t('archives', :scope => 'refinery.blog.shared') %></h2>
   <nav>
     <ul>
-      <% posts.each do |post| %>
-      <li><%= archive_link(post) %></li>
+      <% links.each do |link| %>
+        <li><%= link %></li>
       <% end %>
     </ul>
   </nav>
-</section> 
+</section>

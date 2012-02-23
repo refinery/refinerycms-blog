@@ -49,11 +49,11 @@ module Refinery
 
       describe "authors" do
         it "are authored" do
-          subject.class.instance_methods.map(&:to_sym).should include(:author)
+          described_class.instance_methods.map(&:to_sym).should include(:author)
         end
       end
 
-      describe "by_archive scope" do
+      describe "by_archive" do
         before do
           @post1 = FactoryGirl.create(:blog_post, :published_at => Date.new(2011, 3, 11))
           @post2 = FactoryGirl.create(:blog_post, :published_at => Date.new(2011, 3, 12))
@@ -65,25 +65,26 @@ module Refinery
         it "returns all posts from specified month" do
           #check for this month
           date = "03/2011"
-          subject.class.by_archive(Time.parse(date)).count.should be == 2
-          subject.class.by_archive(Time.parse(date)).should == [@post2, @post1]
+          described_class.by_archive(Time.parse(date)).count.should be == 2
+          described_class.by_archive(Time.parse(date)).should == [@post2, @post1]
         end
       end
 
-      describe "all_previous scope" do
+      describe ".published_dates_older_than" do
         before do
           @post1 = FactoryGirl.create(:blog_post, :published_at => Time.now - 2.months)
           @post2 = FactoryGirl.create(:blog_post, :published_at => Time.now - 1.month)
           FactoryGirl.create(:blog_post, :published_at => Time.now)
         end
 
-        it "returns all posts from previous months" do
-          subject.class.all_previous.count.should be == 2
-          subject.class.all_previous.should == [@post2, @post1]
+        it "returns all published dates older than the argument" do
+          expected = [@post2.published_at, @post1.published_at]
+
+          described_class.published_dates_older_than(1.day.ago).should eq(expected)
         end
       end
 
-      describe "live scope" do
+      describe "live" do
         before do
           @post1 = FactoryGirl.create(:blog_post, :published_at => Time.now.advance(:minutes => -2))
           @post2 = FactoryGirl.create(:blog_post, :published_at => Time.now.advance(:minutes => -1))
@@ -92,12 +93,12 @@ module Refinery
         end
 
         it "returns all posts which aren't in draft and pub date isn't in future" do
-          subject.class.live.count.should be == 2
-          subject.class.live.should == [@post2, @post1]
+          described_class.live.count.should be == 2
+          described_class.live.should == [@post2, @post1]
         end
       end
 
-      describe "uncategorized scope" do
+      describe "uncategorized" do
         before do
           @uncategorized_post = FactoryGirl.create(:blog_post)
           @categorized_post = FactoryGirl.create(:blog_post)
@@ -106,22 +107,22 @@ module Refinery
         end
 
         it "returns uncategorized posts if they exist" do
-          subject.class.uncategorized.should include @uncategorized_post
-          subject.class.uncategorized.should_not include @categorized_post
+          described_class.uncategorized.should include @uncategorized_post
+          described_class.uncategorized.should_not include @categorized_post
         end
       end
 
       describe "#live?" do
         it "returns true if post is not in draft and it's published" do
-          FactoryGirl.create(:blog_post).live?.should be_true
+          Factory.build(:blog_post).should be_live
         end
 
         it "returns false if post is in draft" do
-          FactoryGirl.create(:blog_post, :draft => true).live?.should be_false
+          Factory.build(:blog_post, :draft => true).should_not be_live
         end
 
         it "returns false if post pub date is in future" do
-          FactoryGirl.create(:blog_post, :published_at => Time.now.advance(:minutes => 1)).live?.should be_false
+          Factory.build(:blog_post, :published_at => Time.now.advance(:minutes => 1)).should_not be_live
         end
       end
 
@@ -132,7 +133,7 @@ module Refinery
         end
 
         it "returns next article when called on current article" do
-          subject.class.last.next.should == @post
+          described_class.last.next.should == @post
         end
       end
 
@@ -143,7 +144,7 @@ module Refinery
         end
 
         it "returns previous article when called on current article" do
-          subject.class.first.prev.should == @post
+          described_class.first.prev.should == @post
         end
       end
 
@@ -171,7 +172,7 @@ module Refinery
           end
 
           it "should be true" do
-            subject.class.comments_allowed?.should be_true
+            described_class.comments_allowed?.should be_true
           end
         end
 
@@ -181,7 +182,7 @@ module Refinery
           end
 
           it "should be false" do
-            subject.class.comments_allowed?.should be_false
+            described_class.comments_allowed?.should be_false
           end
         end
       end
@@ -199,7 +200,7 @@ module Refinery
           end
 
           it "should be true" do
-            subject.class.teasers_enabled?.should be_true
+            described_class.teasers_enabled?.should be_true
           end
         end
 
@@ -209,7 +210,7 @@ module Refinery
           end
 
           it "should be false" do
-            subject.class.teasers_enabled?.should be_false
+            described_class.teasers_enabled?.should be_false
           end
         end
       end
