@@ -72,23 +72,19 @@ module Refinery
         end
 
         def published_dates_older_than(date)
-          where("published_at <= ?", date).pluck(:published_at)
+          published_before(date).pluck(:published_at)
         end
 
-        def live
-          where( "published_at <= ? and draft = ?", Time.now, false)
-        end
-        
         def recent(count)
           live.limit(count)
         end
-        
+
         def popular(count)
           unscoped.order("access_count DESC").limit(count)
         end
 
         def previous(item)
-          where(["published_at < ? and draft = ?", item.published_at, false]).limit(1)
+          published_before(item.published_at).limit(1)
         end
 
         def uncategorized
@@ -100,6 +96,11 @@ module Refinery
             where(["published_at > ? and draft = ?", current_record.published_at, false]).order("published_at ASC")
           end
         end
+
+        def published_before(date=Time.now)
+          where("published_at < ? and draft = ?", date, false)
+        end
+        alias_method :live, :published_before
 
         def comments_allowed?
           Refinery::Setting.find_or_set(:comments_allowed, true, :scoping => 'blog')
