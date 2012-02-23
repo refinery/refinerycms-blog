@@ -148,23 +148,6 @@ module Refinery
         end
       end
 
-      describe "#category_ids=" do
-        before do
-          @cat1 = FactoryGirl.create(:blog_category, :id => 1)
-          @cat2 = FactoryGirl.create(:blog_category, :id => 2)
-          @cat3 = FactoryGirl.create(:blog_category, :id => 3)
-          post.category_ids = [1,2,"","",3]
-        end
-
-        it "rejects blank category ids" do
-          post.categories.count.should == 3
-        end
-
-        it "returns array of categories based on given ids" do
-          post.categories.should == [@cat1, @cat2, @cat3]
-        end
-      end
-
       describe ".comments_allowed?" do
         context "with Refinery::Setting comments_allowed set to true" do
           before do

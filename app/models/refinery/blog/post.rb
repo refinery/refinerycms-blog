@@ -8,11 +8,10 @@ module Refinery
       is_seo_meta if self.table_exists?
 
       default_scope :order => 'published_at DESC'
-      #.first & .last will be reversed -- consider a with_exclusive_scope on these?
 
       belongs_to :author, :class_name => 'Refinery::User', :foreign_key => :user_id, :readonly => true
 
-      has_many :comments, :class_name => 'Refinery::Blog::Comment', :dependent => :destroy, :foreign_key => :blog_post_id
+      has_many :comments, :dependent => :destroy, :foreign_key => :blog_post_id
       acts_as_taggable
 
       has_many :categorizations, :dependent => :destroy, :foreign_key => :blog_post_id
@@ -41,21 +40,15 @@ module Refinery
       self.per_page = Refinery::Blog.posts_per_page
 
       def next
-        self.class.next(self).first
+        self.class.next(self)
       end
 
       def prev
-        self.class.previous(self).first
+        self.class.previous(self)
       end
 
       def live?
         !draft and published_at <= Time.now
-      end
-
-      def category_ids=(ids)
-        self.categories = ids.reject{|id| id.blank?}.collect {|c_id|
-          Refinery::Blog::Category.find(c_id.to_i) rescue nil
-        }.compact
       end
 
       def friendly_id_source
@@ -72,23 +65,19 @@ module Refinery
         end
 
         def published_dates_older_than(date)
-          where("published_at <= ?", date).map(&:published_at)
+          published_before(date).pluck(:published_at)
         end
 
-        def live
-          where( "published_at <= ? and draft = ?", Time.now, false)
-        end
-        
         def recent(count)
           live.limit(count)
         end
-        
+
         def popular(count)
           unscoped.order("access_count DESC").limit(count)
         end
 
         def previous(item)
-          where(["published_at < ? and draft = ?", item.published_at, false]).limit(1)
+          published_before(item.published_at).first
         end
 
         def uncategorized
@@ -96,10 +85,13 @@ module Refinery
         end
 
         def next(current_record)
-          self.send(:with_exclusive_scope) do
-            where(["published_at > ? and draft = ?", current_record.published_at, false]).order("published_at ASC")
-          end
+          where(["published_at > ? and draft = ?", current_record.published_at, false]).first
         end
+
+        def published_before(date=Time.now)
+          where("published_at < ? and draft = ?", date, false)
+        end
+        alias_method :live, :published_before
 
         def comments_allowed?
           Refinery::Setting.find_or_set(:comments_allowed, true, :scoping => 'blog')
