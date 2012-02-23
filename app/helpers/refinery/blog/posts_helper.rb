@@ -1,14 +1,6 @@
 module Refinery
   module Blog
     module PostsHelper
-      def blog_archive_widget
-        posts = Refinery::Blog::Post.select('published_at').all_previous
-        return nil if posts.blank?
-
-        render :partial => "/refinery/blog/widgets/blog_archive", :locals => { :posts => posts }
-      end
-      alias_method :blog_archive_list, :blog_archive_widget
-
       def next_or_previous?(post)
         post.next.present? or post.prev.present?
       end
@@ -28,22 +20,51 @@ module Refinery
         end
       end
 
-      def archive_link(post)
-        if post.published_at >= Time.now.end_of_year.advance(:years => -3)
-          post_date = post.published_at.strftime('%m/%Y')
-          year = post_date.split('/')[1]
-          month = post_date.split('/')[0]
-          count = Blog::Post.by_archive(Time.parse(post_date)).size
-          text = t("date.month_names")[month.to_i] + " #{year} (#{count})"
+      def blog_archive_widget(dates=blog_archive_dates)
+        ArchiveWidget.new(dates, self).display
+      end
 
-          link_to(text, refinery.blog_archive_posts_path(:year => year, :month => month))
-        else
-          post_date = post.published_at.strftime('01/%Y')
-          year = post_date.split('/')[1]
-          count = Refinery::Blog::Post.by_year(Time.parse(post_date)).size
-          text = "#{year} (#{count})"
+      def blog_archive_dates(cutoff=Time.now.beginning_of_month)
+        Refinery::Blog::Post.published_dates_older_than(cutoff)
+      end
 
-          link_to(text, refinery.blog_archive_posts_path(:year => year))
+      class ArchiveWidget
+        delegate :t, :link_to, :refinery, :render, :to => :view_context
+        attr_reader :view_context
+
+        def initialize(dates, view_context, cutoff=3.years.ago.end_of_year)
+          @recent_dates, @old_dates = dates.sort_by {|date| -date.to_i }.
+            partition {|date| date > cutoff }
+
+          @view_context = view_context
+        end
+
+        def recent_links
+          @recent_dates.group_by {|date| [date.year, date.month] }.
+            map {|(year, month), dates| recent_link(year, month, dates.count) }
+        end
+
+        def recent_link(year, month, count)
+          link_to "#{t("date.month_names")[month]} #{year} (#{count})",
+            refinery.blog_archive_posts_path(:year => year, :month => month)
+        end
+
+        def old_links
+          @old_dates.group_by {|date| date.year }.
+            map {|year, dates| old_link(year, dates.size) }
+        end
+
+        def old_link(year, count)
+          link_to "#{year} (#{count})", refinery.blog_archive_posts_path(:year => year)
+        end
+
+        def links
+          recent_links + old_links
+        end
+
+        def display
+          return "" if links.empty?
+          render "refinery/blog/widgets/blog_archive", :links => links
         end
       end
     end

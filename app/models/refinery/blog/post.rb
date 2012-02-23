@@ -63,16 +63,16 @@ module Refinery
       end
 
       class << self
-        def by_archive(archive_date)
-          where(['published_at between ? and ?', archive_date.beginning_of_month, archive_date.end_of_month])
+        def by_archive(date)
+          where(:published_at => date.beginning_of_month..date.end_of_month)
         end
 
-        def by_year(archive_year)
-          where(['published_at between ? and ?', archive_year.beginning_of_year, archive_year.end_of_year])
+        def by_year(date)
+          where(:published_at => date.beginning_of_year..date.end_of_year)
         end
 
-        def all_previous
-          where(['published_at <= ?', Time.now.beginning_of_month])
+        def published_dates_older_than(date)
+          where("published_at <= ?", date).map(&:published_at)
         end
 
         def live
