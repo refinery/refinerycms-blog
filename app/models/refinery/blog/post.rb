@@ -72,7 +72,7 @@ module Refinery
         end
 
         def published_dates_older_than(date)
-          where("published_at <= ?", date).map(&:published_at)
+          where("published_at <= ?", date).pluck(:published_at)
         end
 
         def live
