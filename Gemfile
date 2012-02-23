@@ -10,6 +10,8 @@ git 'git://github.com/resolve/refinerycms.git' do
   end
 end
 
+gem 'refinerycms-settings', :git => 'git://github.com/parndt/refinerycms-settings.git'
+
 group :development, :test do
   require 'rbconfig'
 
