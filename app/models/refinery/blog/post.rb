@@ -78,6 +78,14 @@ module Refinery
         def live
           where( "published_at <= ? and draft = ?", Time.now, false)
         end
+        
+        def recent(count)
+          where("published_at <= ? and draft = ?", Time.now, false).limit(count)
+        end
+        
+        def popular(count)
+          unscoped.order("access_count DESC").limit(count)
+        end
 
         def previous(item)
           where(["published_at < ? and draft = ?", item.published_at, false]).limit(1)

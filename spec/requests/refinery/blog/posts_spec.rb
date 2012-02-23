@@ -101,8 +101,42 @@ module Refinery
           comment.body.should eq(body)
         end
       end
+
+      context "post popular" do
+        let(:blog_post) { FactoryGirl.create(:blog_post) }
+        let(:blog_post2) { FactoryGirl.create(:blog_post) }
+
+        before do
+          visit refinery.blog_post_path(blog_post)
+        end
+
+        it "should increment access count" do
+          blog_post.reload.access_count.should eq(1)
+          visit refinery.blog_post_path(blog_post)
+          blog_post.reload.access_count.should eq(2)
+        end
+
+        it "should be most popular" do
+          Refinery::Blog::Post.popular(2).first.should eq(blog_post)
+        end
+      end
+
+      context "post recent" do
+        let(:blog_post) { FactoryGirl.create(:blog_post) }
+        let(:blog_post2) { FactoryGirl.create(:blog_post) }
+
+        before do
+          visit refinery.blog_post_path(blog_post2)
+          visit refinery.blog_post_path(blog_post)
+        end
+
+        it "should be the most recent" do
+          Refinery::Blog::Post.recent(2).first.should eq(blog_post2)
+        end
+      end
+
     end
-    
+
     describe "#show draft preview" do
       let(:blog_post) { FactoryGirl.create(:blog_post_draft) }
       context "when logged in as admin" do        
