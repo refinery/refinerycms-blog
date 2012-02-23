@@ -10,7 +10,6 @@ if defined?(Refinery::Page) and !Refinery::Page.exists?(:link_url => '/blog')
     :title => "Blog",
     :link_url => "/blog",
     :deletable => false,
-    :position => ((Refinery::Page.maximum(:position, :conditions => {:parent_id => nil}) || -1)+1),
     :menu_match => "^/blogs?(\/|\/.+?|)$"
   )
 
