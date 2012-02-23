@@ -80,7 +80,7 @@ module Refinery
         end
         
         def recent(count)
-          where("published_at <= ? and draft = ?", Time.now, false).limit(count)
+          live.limit(count)
         end
         
         def popular(count)
