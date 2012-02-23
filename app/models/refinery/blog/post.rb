@@ -52,12 +52,6 @@ module Refinery
         !draft and published_at <= Time.now
       end
 
-      def category_ids=(ids)
-        self.categories = ids.reject{|id| id.blank?}.collect {|c_id|
-          Refinery::Blog::Category.find(c_id.to_i) rescue nil
-        }.compact
-      end
-
       def friendly_id_source
         custom_url.present? ? custom_url : title
       end
