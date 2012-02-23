@@ -11,7 +11,7 @@ module Refinery
 
       belongs_to :author, :class_name => 'Refinery::User', :foreign_key => :user_id, :readonly => true
 
-      has_many :comments, :class_name => 'Refinery::Blog::Comment', :dependent => :destroy, :foreign_key => :blog_post_id
+      has_many :comments, :dependent => :destroy, :foreign_key => :blog_post_id
       acts_as_taggable
 
       has_many :categorizations, :dependent => :destroy, :foreign_key => :blog_post_id

@@ -8,7 +8,7 @@ module Refinery
                    :email_field => :email,
                    :message_field => :body
 
-      belongs_to :post, :class_name => 'Refinery::Blog::Post', :foreign_key => 'blog_post_id'
+      belongs_to :post, :foreign_key => 'blog_post_id'
 
       acts_as_indexed :fields => [:name, :email, :message]
 
