@@ -4,6 +4,8 @@ require 'seo_meta'
 module Refinery
   module Blog
     class Post < ActiveRecord::Base
+      extend FriendlyId
+      friendly_id :friendly_id_source, :use => [:slugged]
 
       is_seo_meta if self.table_exists?
 
@@ -27,11 +29,6 @@ module Refinery
                                       :allow_nil => true,
                                       :allow_blank => true,
                                       :verify => [:resolve_redirects]}
-
-      has_friendly_id :friendly_id_source, :use_slug => true,
-                      :default_locale => (Refinery::I18n.default_frontend_locale rescue :en),
-                      :approximate_ascii => Refinery::Blog.approximate_ascii,
-                      :strip_non_ascii => Refinery::Blog.strip_non_ascii
 
       attr_accessible :title, :body, :custom_teaser, :tag_list, :draft, :published_at, :custom_url, :author
       attr_accessible :browser_title, :meta_keywords, :meta_description, :user_id, :category_ids

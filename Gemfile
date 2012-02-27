@@ -2,6 +2,8 @@ source "http://rubygems.org"
 
 gemspec
 
+gem 'friendly_id', :git => 'git://github.com/norman/friendly_id.git'
+
 git 'git://github.com/resolve/refinerycms.git' do
   gem 'refinerycms'
 
