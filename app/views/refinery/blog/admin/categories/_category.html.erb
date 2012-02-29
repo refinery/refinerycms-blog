@@ -5,9 +5,7 @@
   </span>
   <span class='actions'>
     <%= link_to refinery_icon_tag("application_edit.png"),
-                refinery.edit_blog_admin_category_path(category, 
-                                                                :dialog => true, 
-                                                                :height => 325),
+                refinery.edit_blog_admin_category_path(category, :dialog => true, :height => 325),
                 :title => t('.edit') %>
     <%= link_to refinery_icon_tag("delete.png"), refinery.blog_admin_category_path(category),
                 :class => "cancel confirm-delete",
