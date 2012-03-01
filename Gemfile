@@ -2,17 +2,11 @@ source "http://rubygems.org"
 
 gemspec
 
-gem 'friendly_id', :git => 'git://github.com/norman/friendly_id.git'
+gem 'refinerycms', '~> 2.0.0'
 
-git 'git://github.com/resolve/refinerycms.git' do
-  gem 'refinerycms'
-
-  group :development, :test do
-    gem 'refinerycms-testing'
-  end
+group :development, :test do
+  gem 'refinerycms-testing', '~> 2.0.0'
 end
-
-gem 'refinerycms-settings', :git => 'git://github.com/parndt/refinerycms-settings.git'
 
 group :development, :test do
   require 'rbconfig'
