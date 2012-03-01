@@ -1,4 +1,5 @@
 require 'refinerycms-core'
+require 'refinerycms-settings'
 require 'filters_spam'
 require 'rails_autolink'
 
