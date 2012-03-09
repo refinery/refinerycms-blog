@@ -27,10 +27,14 @@ Next, to install the blog plugin run:
 
     rails generate refinery:blog
 
-Finally migrate your database and you're done.
+Run database migrations:
 
     rake db:migrate
-    
+
+Finally seed your database and you're done.
+
+    rake db:seed
+
 ## Developing & Contributing
 
 The version of Refinery to develop this engine against is defined in the gemspec. To override the version of refinery to develop against, edit the project Gemfile to point to a local path containing a clone of refinerycms.
