@@ -9,6 +9,11 @@
     <%= f.label :title -%>
     <%= f.text_field :title, :class => 'larger widest' -%>
   </div>
+  
+  <span id='draft_field'>
+    <%= f.check_box :draft %>
+    <%= f.label :draft, t('.save_as_draft'), :class => "stripped" %>
+  </span>
 
   <div class='field'>
     <div id='page-tabs' class='clearfix ui-tabs ui-widget ui-widget-content ui-corner-all'>
@@ -50,10 +55,6 @@
                   :id => 'toggle_advanced_options',
                   :title => t('.toggle_advanced_options') %>
     </p>
-    <span id='draft_field'>
-      <%= f.check_box :draft %>
-      <%= f.label :draft, t('.save_as_draft'), :class => "stripped" %>
-    </span>
   </div>
   <div id='more_options' style="display:none;">
     <div class="hemisquare">
