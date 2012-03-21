@@ -2,13 +2,14 @@
   <span class='title'>
     <%= post.title %>
     <span class="preview">
-      <%= post.published_at.try(:strftime, '%b %d, %Y') || 'draft' %>
       <%= " by #{post.author.username}" if post.author.present? %>
+      <% if post.draft? %>
+        <span class="label notice">Draft</span>
+      <% else %>
+        <%= post.published_at.strftime('%b %d, %Y') %>
+      <% end %>
     </span>
   </span>
-  <% if post.draft? %>
-    <span class="label notice">Draft</span>
-  <% end %>
   <span class='actions'>
     <%= link_to refinery_icon_tag("application_go.png"), refinery.blog_post_path(post),
         :title => t('.view_live_html'),
