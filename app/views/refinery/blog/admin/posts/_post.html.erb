@@ -4,7 +4,7 @@
     <span class="preview">
       <%= " by #{post.author.username}" if post.author.present? %>
       <% if post.draft? %>
-        <span class="label notice">Draft</span>
+        <span class="label notice"><%= t('refinery.blog.admin.posts.post.draft') %></span>
       <% else %>
         <%= post.published_at.strftime('%b %d, %Y') %>
       <% end %>
