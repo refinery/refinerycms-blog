@@ -2,7 +2,11 @@
   <span class='title'>
     <%= post.title %>
     <span class="preview">
-      <%= post.published_at.try(:strftime, '%b %d, %Y') || 'draft' %>
+      <% if post.draft? %>
+        <%= 'draft' %>
+      <% else %>
+        <%= post.published_at.try(:strftime, '%b %d, %Y') %>
+      <% end %>
       <%= " by #{post.author.username}" if post.author.present? %>
     </span>
   </span>
