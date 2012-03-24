@@ -45,7 +45,7 @@ class CreateBlogStructure < ActiveRecord::Migration
 
     drop_table Refinery::Blog::Post.table_name
     drop_table Refinery::Blog::Comment.table_name
-    drop_table Refinery::Category.table_name
+    drop_table Refinery::Blog::Category.table_name
     drop_table Refinery::Categorization.table_name
   end
 
