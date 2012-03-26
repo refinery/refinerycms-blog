@@ -2,8 +2,12 @@
   <span class='title'>
     <%= post.title %>
     <span class="preview">
-      <%= post.published_at.try(:strftime, '%b %d, %Y') || 'draft' %>
       <%= " by #{post.author.username}" if post.author.present? %>
+      <% if post.draft? %>
+        <span class="label notice"><%= t('refinery.blog.admin.posts.post.draft') %></span>
+      <% else %>
+        <%= post.published_at.strftime('%b %d, %Y') %>
+      <% end %>
     </span>
   </span>
   <span class='actions'>
