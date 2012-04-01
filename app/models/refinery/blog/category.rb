@@ -11,6 +11,8 @@ module Refinery
 
       validates :title, :presence => true, :uniqueness => true
 
+      attr_accessible :title
+
       def post_count
         posts.select(&:live?).count
       end
