@@ -11,7 +11,7 @@ Options:
 
 ## Requirements
 
-Refinery CMS version 2.0.0 or above.
+Refinery CMS version 2.0.1 or above.
 
 ## Install
 
