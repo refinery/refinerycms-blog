@@ -1,4 +1,4 @@
-<% content_for :body_content_left do %>
+<% content_for :body do %>
   <%= raw @page.content_for(Refinery::Pages.default_parts.first.to_sym) if Refinery::Pages.default_parts.any? %>
 
   <% if @posts.any? %>
@@ -11,7 +11,7 @@
   <% end %>
 <% end %>
 
-<% content_for :body_content_right_prepend do -%>
+<% content_for :side_body_prepend do -%>
   <%= raw @page.content_for(Refinery::Pages.default_parts.second.to_sym) %>
 <% end if Refinery::Pages.default_parts.many? -%>
 <%= render :partial => '/refinery/blog/shared/body_content_right' %>
