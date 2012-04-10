@@ -57,7 +57,7 @@ module Refinery
                 unless request.xhr?
                   redirect_to :back
                 else
-                  render :partial => "/shared/message"
+                  render "/shared/message"
                 end
               end
             else

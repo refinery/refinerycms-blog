@@ -14,8 +14,8 @@
 <% end %>
 
 <% content_for :side_body do %>
-  <%= render :partial => "/refinery/blog/shared/categories" %>
+  <%= render "/refinery/blog/shared/categories" %>
 <% end %>
 
-<%= render :partial => "/refinery/content_page" %>
+<%= render "/refinery/content_page" %>
 <% content_for :stylesheets, stylesheet_link_tag('refinery/blog/frontend') %>

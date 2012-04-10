@@ -1,4 +1,4 @@
-<%= render :partial => '/refinery/blog/admin/submenu' %>
+<%= render '/refinery/blog/admin/submenu' %>
 <div id='records'>
   <% if searching? %>
     <h2><%= t('results_for', :scope => 'shared.admin.search', :query => params[:search]) %></h2>
@@ -18,7 +18,7 @@
     <% if @comments.any? %>
       <%= will_paginate @comments %>
 
-      <%= render :partial => "sortable_list" %>
+      <%= render "sortable_list" %>
 
       <%= will_paginate @comments %>
     <% else %>
