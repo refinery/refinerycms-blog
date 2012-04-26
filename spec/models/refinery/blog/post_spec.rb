@@ -78,9 +78,14 @@ module Refinery
         end
 
         it "returns all published dates older than the argument" do
-          expected = [@post2.published_at, @post1.published_at]
+          # I'm converting .to_i here and later because of millisecond comparison issue
+          expected = [@post2.published_at.to_i, @post1.published_at.to_i]
 
-          described_class.published_dates_older_than(5.minutes.ago).should eq(expected)
+          publish_times = []
+          described_class.published_dates_older_than(5.minutes.ago).each do |published_at|
+            publish_times << published_at.to_i
+          end
+          publish_times.should eq(expected)
         end
       end
 
