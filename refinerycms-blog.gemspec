@@ -24,7 +24,4 @@ Gem::Specification.new do |s|
   s.add_dependency    'acts-as-taggable-on'
   s.add_dependency    'seo_meta',             '~> 1.3.0'
   s.add_dependency    'rails_autolink'
-
-  # Development dependencies
-  s.add_development_dependency 'refinerycms-testing', '~> 2.0.0'
 end
