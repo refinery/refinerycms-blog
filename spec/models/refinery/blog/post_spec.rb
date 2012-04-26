@@ -72,15 +72,15 @@ module Refinery
 
       describe ".published_dates_older_than" do
         before do
-          @post1 = FactoryGirl.create(:blog_post, :published_at => Time.now - 2.months)
-          @post2 = FactoryGirl.create(:blog_post, :published_at => Time.now - 1.month)
+          @post1 = FactoryGirl.create(:blog_post, :published_at => Time.now - 20.minutes)
+          @post2 = FactoryGirl.create(:blog_post, :published_at => Time.now - 15.minutes)
           FactoryGirl.create(:blog_post, :published_at => Time.now)
         end
 
         it "returns all published dates older than the argument" do
           expected = [@post2.published_at, @post1.published_at]
 
-          described_class.published_dates_older_than(1.day.ago).should eq(expected)
+          described_class.published_dates_older_than(5.minutes.ago).should eq(expected)
         end
       end
 
