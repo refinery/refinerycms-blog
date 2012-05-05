@@ -72,20 +72,15 @@ module Refinery
 
       describe ".published_dates_older_than" do
         before do
-          @post1 = FactoryGirl.create(:blog_post, :published_at => Time.now - 20.minutes)
-          @post2 = FactoryGirl.create(:blog_post, :published_at => Time.now - 15.minutes)
+          @post1 = FactoryGirl.create(:blog_post, :published_at => Time.utc(2012, 05, 01, 15, 20))
+          @post2 = FactoryGirl.create(:blog_post, :published_at => Time.utc(2012, 05, 01, 15, 30))
           FactoryGirl.create(:blog_post, :published_at => Time.now)
         end
 
         it "returns all published dates older than the argument" do
-          # I'm converting .to_i here and later because of millisecond comparison issue
-          expected = [@post2.published_at.to_i, @post1.published_at.to_i]
+          expected = [@post2.published_at, @post1.published_at]
 
-          publish_times = []
-          described_class.published_dates_older_than(5.minutes.ago).each do |published_at|
-            publish_times << published_at.to_i
-          end
-          publish_times.should eq(expected)
+          described_class.published_dates_older_than(5.minutes.ago).should eq(expected)
         end
       end
 
