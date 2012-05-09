@@ -70,7 +70,7 @@ module Refinery
         end
 
         def popular(count)
-          unscoped.order("access_count DESC").limit(count)
+          unscoped.order("access_count DESC").live.limit(count)
         end
 
         def previous(item)
