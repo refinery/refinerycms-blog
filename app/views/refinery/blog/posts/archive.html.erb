@@ -1,6 +1,6 @@
 <% content_for :title, "#{t('.blog_archive_for', :date => @archive_date.strftime('%B %Y'))}" %>
 
-<% content_for :body_content_left do %>
+<% content_for :body do %>
   <h1><%= t('.blog_archive_for', :date => @archive_date.strftime('%B %Y')) %></h1>
   <% if @posts.any? %>
     <section id="blog_posts">

@@ -1,6 +1,6 @@
 <% content_for :body_content_title, @category.title %>
 
-<% content_for :body_content_left do %>
+<% content_for :body do %>
   <% if @posts.any? %>
     <section id="blog_posts">
       <%= render :partial => "/refinery/blog/shared/post", :collection => @posts %>
@@ -13,7 +13,7 @@
   <% end %>
 <% end %>
 
-<% content_for :body_content_right do %>
+<% content_for :side_body do %>
   <%= render :partial => "/refinery/blog/shared/categories" %>
 <% end %>
 
