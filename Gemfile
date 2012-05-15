@@ -2,12 +2,13 @@ source "http://rubygems.org"
 
 gemspec
 
-gem 'refinerycms', '~> 2.0.0'
+gem 'refinerycms', :git => 'git://github.com/resolve/refinerycms.git'
+gem 'refinerycms-settings', :git => 'git://github.com/parndt/refinerycms-settings.git'
 
 group :development, :test do
   require 'rbconfig'
 
-  gem 'refinerycms-testing', '~> 2.0.0'
+  gem 'refinerycms-testing', :git => 'git://github.com/resolve/refinerycms.git'
 
   platforms :jruby do
     gem 'activerecord-jdbcsqlite3-adapter'

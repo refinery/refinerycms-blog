@@ -18,10 +18,10 @@ Gem::Specification.new do |s|
   s.test_files        = `git ls-files -- spec/*`.split("\n")
 
   # Runtime dependencies
-  s.add_dependency    'refinerycms-core',     '~> 2.0.1'
-  s.add_dependency    'refinerycms-settings', '~> 2.0.1'
+  s.add_dependency    'refinerycms-core',     '~> 2.1.0.dev'
+  s.add_dependency    'refinerycms-settings', '~> 2.1.0.dev'
   s.add_dependency    'filters_spam',         '~> 0.2'
   s.add_dependency    'acts-as-taggable-on'
   s.add_dependency    'seo_meta',             '~> 1.3.0'
-  s.add_dependency    'rails_autolink'
+  s.add_dependency    'rails_autolink',       '~> 1.0.7'
 end
