@@ -4,8 +4,8 @@ module Refinery
   module Blog
     module Admin
       describe Post do
-        login_refinery_user
-
+        refinery_login_with :refinery_user
+        
         let!(:blog_category) { FactoryGirl.create(:blog_category, :title => "Video Games") }
 
         context "when no blog posts" do

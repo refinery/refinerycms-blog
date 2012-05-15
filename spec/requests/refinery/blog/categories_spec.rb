@@ -2,8 +2,8 @@ require "spec_helper"
 
 module Refinery
   describe "BlogCategories" do
-    login_refinery_user
-
+    refinery_login_with :refinery_user
+    
     context "has one category and post" do
       before(:each) do
         @post = FactoryGirl.create(:blog_post, :title => "Refinery CMS blog post")

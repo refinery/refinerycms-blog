@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe "Categories admin" do
-  login_refinery_user
-
+  refinery_login_with :refinery_user
+  
   let(:title) { "lol" }
 
   it "can create categories" do
