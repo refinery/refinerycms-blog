@@ -53,7 +53,7 @@ module Refinery
         end
       end
 
-      describe "by_archive" do
+      describe "by_month" do
         before do
           @post1 = FactoryGirl.create(:blog_post, :published_at => Date.new(2011, 3, 11))
           @post2 = FactoryGirl.create(:blog_post, :published_at => Date.new(2011, 3, 12))
@@ -65,8 +65,8 @@ module Refinery
         it "returns all posts from specified month" do
           #check for this month
           date = "03/2011"
-          described_class.by_archive(Time.parse(date)).count.should be == 2
-          described_class.by_archive(Time.parse(date)).should == [@post2, @post1]
+          described_class.by_month(Time.parse(date)).count.should be == 2
+          described_class.by_month(Time.parse(date)).should == [@post2, @post1]
         end
       end
 
