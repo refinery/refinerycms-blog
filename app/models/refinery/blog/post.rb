@@ -58,7 +58,7 @@ module Refinery
         end
         
         def by_archive(date)
-          Refinery.deprecate("Refinery::Blog::Post.by_archive(date)", {:replacement => "Refinery::Blog::Post.by_month(date)"})
+          Refinery.deprecate("Refinery::Blog::Post.by_archive(date)", {:replacement => "Refinery::Blog::Post.by_month(date)", :when => 2.2 })
           by_month(date)
         end
         
