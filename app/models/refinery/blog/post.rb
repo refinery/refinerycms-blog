@@ -48,10 +48,6 @@ module Refinery
         !draft and published_at <= Time.now
       end
 
-      def live
-        where(["published_at <= ? and draft = ?", Time.now, false])
-      end
-
       def friendly_id_source
         custom_url.present? ? custom_url : title
       end
