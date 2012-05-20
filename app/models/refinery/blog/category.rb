@@ -14,7 +14,7 @@ module Refinery
       attr_accessible :title
 
       def post_count
-        posts.select(&:live?).count
+        posts.live.count
       end
 
       # how many items to show per page
