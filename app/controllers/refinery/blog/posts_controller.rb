@@ -60,7 +60,7 @@ module Refinery
           date = "#{params[:month]}/#{params[:year]}"
           @archive_date = Time.parse(date)
           @date_title = @archive_date.strftime('%B %Y')
-          @posts = Post.live.by_archive(@archive_date).page(params[:page])
+          @posts = Post.live.by_month(@archive_date).page(params[:page])
         else
           date = "01/#{params[:year]}"
           @archive_date = Time.parse(date)

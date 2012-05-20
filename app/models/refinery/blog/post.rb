@@ -53,10 +53,15 @@ module Refinery
       end
 
       class << self
-        def by_archive(date)
+        def by_month(date)
           where(:published_at => date.beginning_of_month..date.end_of_month)
         end
-
+        
+        def by_archive(date)
+          warn "[Deprecation Warning] Refinery::Blog::Post.by_archive(date) has been replaced with by_month"
+          by_month(date)
+        end
+        
         def by_year(date)
           where(:published_at => date.beginning_of_year..date.end_of_year)
         end
