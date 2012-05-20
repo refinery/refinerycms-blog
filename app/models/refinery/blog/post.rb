@@ -58,7 +58,7 @@ module Refinery
         end
         
         def by_archive(date)
-          warn "[Deprecation Warning] Refinery::Blog::Post.by_archive(date) has been replaced with by_month"
+          Refinery.deprecate("Refinery::Blog::Post.by_archive(date)", {:replacement => "Refinery::Blog::Post.by_month(date)"})
           by_month(date)
         end
         
