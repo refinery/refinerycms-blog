@@ -49,7 +49,7 @@ module Refinery
       end
 
       def friendly_id_source
-        custom_url.present? ? custom_url : title
+        custom_url.presence || title
       end
 
       class << self
