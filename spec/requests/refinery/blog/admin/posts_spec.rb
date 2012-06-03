@@ -1,3 +1,4 @@
+# encoding: utf-8
 require "spec_helper"
 
 module Refinery
@@ -169,6 +170,154 @@ module Refinery
             end
           end
         end
+
+        context "with translations" do
+          before(:each) do
+            Refinery::I18n.stub(:frontend_locales).and_return([:en, :ru])
+            blog_page = Factory.create(:page, :link_url => "/blog", :title => "Blog")
+            Globalize.locale = :ru
+            blog_page.title = 'блог'
+            blog_page.save
+            Globalize.locale = :en
+            visit refinery.blog_admin_posts_path
+          end
+
+          describe "add a blog post with title for default locale" do
+            before do
+              click_link "Create new post"
+              fill_in "Title", with: "Post"
+              fill_in "post_body", with: "One post in my blog"
+              click_button "Save"
+              @p = Refinery::Blog::Post.find_by_title("Post")
+            end
+
+            it "succeeds" do
+              page.should have_content("'Post' was successfully added.")
+              Refinery::Blog::Post.count.should eq(1)
+            end
+
+            it "shows locale flag for post" do
+              
+              within "#post_#{@p.id}" do
+                page.should have_css("img[src='/assets/refinery/icons/flags/en.png']")
+              end
+            end 
+
+            it "shows up in blog page for default locale" do
+              visit refinery.blog_root_path
+              page.should have_selector("#post_#{@p.id}")
+            end
+
+            it "does not show up in blog page for secondary locale" do
+              visit refinery.blog_root_path(locale: :ru)
+              page.should_not have_selector("#post_#{@p.id}")
+            end
+
+          end
+
+          describe "add a blog post with title only for secondary locale" do
+
+            let(:ru_page_title) { 'Новости' }
+
+            before do
+              click_link "Create new post"
+              within "#switch_locale_picker" do
+                click_link "Ru"
+              end
+              fill_in "Title", with: ru_page_title
+              fill_in "post_body", with: "One post in my blog"
+              click_button "Save"
+              @p = Refinery::Blog::Post.find_by_title("Новости")
+            end
+
+            it "succeeds" do
+              page.should have_content("was successfully added.")
+              Refinery::Blog::Post.count.should eq(1)
+            end
+
+            it "shows title in secondary locale" do
+              within "#post_#{@p.id}" do
+                page.should have_content(ru_page_title)
+              end
+            end
+
+            it "shows locale flag for post" do
+              within "#post_#{@p.id}" do
+                page.should have_css("img[src='/assets/refinery/icons/flags/ru.png']")
+              end
+            end 
+
+            it "does not show locale flag for primary locale" do
+              within "#post_#{@p.id}" do
+                page.should_not have_css("img[src='/assets/refinery/icons/flags/en.png']")
+              end
+            end
+
+            it "does not show up in blog page for default locale" do
+              visit refinery.blog_root_path
+              page.should_not have_selector("#post_#{@p.id}")
+            end
+
+            it "shows up in blog page for secondary locale" do
+              visit refinery.blog_root_path(locale: :ru)
+              page.should have_selector("#post_#{@p.id}")
+            end
+
+          end
+
+
+          context "with a blog post in both locales" do
+            let!(:blog_post) do
+              _blog_post = FactoryGirl.create(:blog_post, title: 'First Post')
+              Globalize.locale = :ru
+              _blog_post.title = 'Домашняя страница'
+              _blog_post.save
+              Globalize.locale = :en
+              _blog_post
+            end
+
+            before(:each) do
+              visit refinery.blog_admin_posts_path
+            end
+            
+            it "shows both locale flags for post" do
+              within "#post_#{blog_post.id}" do
+                page.should have_css("img[src='/assets/refinery/icons/flags/en.png']")
+                page.should have_css("img[src='/assets/refinery/icons/flags/ru.png']")
+              end
+            end
+
+            describe "edit the post in english" do
+              it "succeeds" do
+                within "#post_#{blog_post.id}" do
+                  click_link("En")
+                end
+                current_path.should == refinery.edit_blog_admin_post_path(blog_post)
+                fill_in "Title", with: "New Post Title"
+                click_button "Save"
+
+                page.should_not have_content(blog_post.title)
+                page.should have_content("'New Post Title' was successfully updated.")
+              end
+            end
+
+            describe "edit the post in secondary locale" do
+              it "succeeds" do
+                within "#post_#{blog_post.id}" do
+                  click_link("Ru")
+                end
+
+                fill_in "Title", with: "Нов"
+                click_button "Save"
+
+                page.should_not have_content(blog_post.title)
+                page.should have_content("'Нов' was successfully updated.")
+              end
+            end
+
+          end
+        end
+
       end
     end
   end
