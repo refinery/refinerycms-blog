@@ -19,8 +19,31 @@ module Refinery
         response.should be_success
         response.content_type.should eq("application/rss+xml")
       end
+
+      describe "visit blog" do
+
+        before(:each) do
+          Factory.create(:page, :link_url => "/")
+          Factory.create(:page, :link_url => "/blog", :title => "Blog")
+        end
+
+        it "shows blog link in menu" do
+          visit "/"
+          within "#menu" do
+            page.should have_content("Blog")
+            page.should have_selector("a[href='/blog']")
+          end
+        end
+
+        it "shows blog posts" do
+          visit refinery.blog_root_path
+          page.should have_content blog_post.title
+        end
+
+      end
+    
     end
-      
+          
     describe "list tagged posts" do    
       context "when has tagged blog posts" do      
         before(:each) do
@@ -38,7 +61,7 @@ module Refinery
         end
       end
     end
-    
+
     describe "#show" do
       context "when has no comments" do
         let(:blog_post) { FactoryGirl.create(:blog_post) }

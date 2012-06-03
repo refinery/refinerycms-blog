@@ -15,14 +15,14 @@ module Refinery
         end
     
         def find_all_blog_posts
-          @posts = Refinery::Blog::Post.live.includes(:comments, :categories).page(params[:page])
+          @posts = Refinery::Blog::Post.live.includes(:comments, :categories).with_globalize.page(params[:page])
         end
 
         def find_tags
           @tags = Refinery::Blog::Post.tag_counts_on(:tags)
         end
         def find_all_blog_categories
-          @categories = Refinery::Blog::Category.all
+          @categories = Refinery::Blog::Category.translated.all
         end
     end
   end

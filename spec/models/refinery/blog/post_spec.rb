@@ -128,7 +128,7 @@ module Refinery
 
       describe "#next" do
         before do
-          FactoryGirl.create(:blog_post, :published_at => Time.now.advance(:minutes => -1))
+          FactoryGirl.create(:blog_post, :published_at => Time.now.advance(:minutes => -3))
           @post = FactoryGirl.create(:blog_post)
         end
 
@@ -140,7 +140,7 @@ module Refinery
       describe "#prev" do
         before do
           FactoryGirl.create(:blog_post)
-          @post = FactoryGirl.create(:blog_post, :published_at => Time.now.advance(:minutes => -1))
+          @post = FactoryGirl.create(:blog_post, :published_at => Time.now.advance(:minutes => -3))
         end
 
         it "returns previous article when called on current article" do

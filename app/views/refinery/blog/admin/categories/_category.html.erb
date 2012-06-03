@@ -1,7 +1,15 @@
 <li class='clearfix record <%= cycle("on", "on-hover") %>' id="<%= dom_id(category) -%>">
   <span class='title'>
-    <%= category.title %>
-    <span class="preview">&nbsp;</span>
+    <%= category.title.present? ? category.title : category.translations.detect {|t| t.title.present?}.title %>
+    <span class="preview">
+      <% category.translations.each do |translation| %>
+        <% if translation.title.present? %>
+          <%= link_to refinery_icon_tag("flags/#{translation.locale}.png", :size => '16x11'),
+              refinery.edit_blog_admin_category_path(category, :switch_locale => translation.locale),
+              :class => 'locale' %>
+          <% end %>
+      <% end %>
+    </span>
   </span>
   <span class='actions'>
     <%= link_to refinery_icon_tag("application_edit.png"),
