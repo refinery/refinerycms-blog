@@ -3,7 +3,7 @@ require 'spec_helper'
 
 describe "Categories admin" do
   refinery_login_with :refinery_user
-  
+
   let(:title) { "lol" }
 
   it "can create categories" do
@@ -61,7 +61,7 @@ describe "Categories admin" do
         visit refinery.blog_root_path(:locale => :ru)
         page.should_not have_selector('#categories')
       end
-      
+
     end
 
     describe "add a category with title for secondary locale" do

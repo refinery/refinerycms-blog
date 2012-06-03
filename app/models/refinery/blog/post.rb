@@ -38,7 +38,7 @@ module Refinery
       attr_accessible :source_url, :source_url_title
       attr_accessor :locale
 
-      
+
     class Translation
       is_seo_meta
       attr_accessible :browser_title, :meta_description, :meta_keywords, :locale
@@ -88,12 +88,12 @@ module Refinery
         def by_month(date)
           where(:published_at => date.beginning_of_month..date.end_of_month).with_globalize
         end
-        
+
         def by_archive(date)
           Refinery.deprecate("Refinery::Blog::Post.by_archive(date)", {:replacement => "Refinery::Blog::Post.by_month(date)", :when => 2.2 })
           by_month(date)
         end
-        
+
         def by_year(date)
           where(:published_at => date.beginning_of_year..date.end_of_year).with_globalize
         end
