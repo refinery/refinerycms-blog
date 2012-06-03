@@ -5,7 +5,7 @@
                :include_object_name => true
              } %>
 
-  <%= render "locale_picker",
+  <%= render "/refinery/blog/admin/shared/locale_picker",
               :current_locale => Thread.current[:globalize_locale] if Refinery.i18n_enabled? %>
 
   <div class='field'>
