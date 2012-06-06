@@ -3,6 +3,7 @@ source "http://rubygems.org"
 gemspec
 
 gem 'refinerycms', :git => 'git://github.com/resolve/refinerycms.git'
+gem 'refinerycms-i18n', :git => 'git://github.com/parndt/refinerycms-i18n.git'
 gem 'refinerycms-settings', :git => 'git://github.com/parndt/refinerycms-settings.git'
 
 group :development, :test do
