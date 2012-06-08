@@ -188,8 +188,8 @@ module Refinery
           describe "add a blog post with title for default locale" do
             before do
               click_link "Create new post"
-              fill_in "Title", with: "Post"
-              fill_in "post_body", with: "One post in my blog"
+              fill_in "Title", :with => "Post"
+              fill_in "post_body", :with => "One post in my blog"
               click_button "Save"
               @p = Refinery::Blog::Post.find_by_title("Post")
             end
@@ -212,7 +212,7 @@ module Refinery
             end
 
             it "does not show up in blog page for secondary locale" do
-              visit refinery.blog_root_path(locale: :ru)
+              visit refinery.blog_root_path(:locale => :ru)
               page.should_not have_selector("#post_#{@p.id}")
             end
 
@@ -227,8 +227,8 @@ module Refinery
               within "#switch_locale_picker" do
                 click_link "Ru"
               end
-              fill_in "Title", with: ru_page_title
-              fill_in "post_body", with: "One post in my blog"
+              fill_in "Title", :with => ru_page_title
+              fill_in "post_body", :with => "One post in my blog"
               click_button "Save"
               @p = Refinery::Blog::Post.find_by_title("Новости")
             end
@@ -262,7 +262,7 @@ module Refinery
             end
 
             it "shows up in blog page for secondary locale" do
-              visit refinery.blog_root_path(locale: :ru)
+              visit refinery.blog_root_path(:locale => :ru)
               page.should have_selector("#post_#{@p.id}")
             end
 
@@ -271,7 +271,7 @@ module Refinery
           context "with a blog post in both locales" do
 
             let!(:blog_post) do
-              _blog_post = Globalize.with_locale(:en) { FactoryGirl.create(:blog_post, title: 'First Post') }
+              _blog_post = Globalize.with_locale(:en) { FactoryGirl.create(:blog_post, :title => 'First Post') }
               Globalize.with_locale(:ru) do
                 _blog_post.title = 'Домашняя страница'
                 _blog_post.save
@@ -297,7 +297,7 @@ module Refinery
                   click_link("En")
                 end
                 current_path.should == refinery.edit_blog_admin_post_path(blog_post)
-                fill_in "Title", with: "New Post Title"
+                fill_in "Title", :with => "New Post Title"
                 click_button "Save"
 
                 page.should_not have_content(blog_post.title)
@@ -311,7 +311,7 @@ module Refinery
                   click_link("Ru")
                 end
 
-                fill_in "Title", with: "Нов"
+                fill_in "Title", :with => "Нов"
                 click_button "Save"
 
                 page.should_not have_content(blog_post.title)

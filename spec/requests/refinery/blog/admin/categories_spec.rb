@@ -59,7 +59,7 @@ describe "Categories admin" do
       end
 
       it "does not show up in blog page for secondary locale" do
-        visit refinery.blog_root_path(locale: :ru)
+        visit refinery.blog_root_path(:locale => :ru)
         page.should_not have_selector('#categories')
       end
 
@@ -105,7 +105,7 @@ describe "Categories admin" do
       end
 
       it "shows up in blog page for secondary locale" do
-        visit refinery.blog_root_path(locale: :ru)
+        visit refinery.blog_root_path(:locale => :ru)
         within "#categories" do
           page.should have_selector('li')
         end
