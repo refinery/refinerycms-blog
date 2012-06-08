@@ -6,15 +6,19 @@ module Refinery
     
     context "has one category and post" do
       before(:each) do
-        @post = FactoryGirl.create(:blog_post, :title => "Refinery CMS blog post")
-        @category = FactoryGirl.create(:blog_category, :title => "Video Games")
-        @post.categories << @category
-        @post.save!
+        post = Globalize.with_locale(:en) do
+          FactoryGirl.create(:blog_post, :title => "Refinery CMS blog post")
+        end
+        @category = Globalize.with_locale(:en) do
+          FactoryGirl.create(:blog_category, :title => "Video Games")
+        end
+        post.categories << @category
+        post.save!
       end
 
       describe "show categories blog posts" do
-        before(:each) { visit refinery.blog_category_path(@category) }
         it "should displays categories blog posts" do
+          visit refinery.blog_category_path(@category)
           page.should have_content("Refinery CMS blog post")
           page.should have_content("Video Games")
         end
