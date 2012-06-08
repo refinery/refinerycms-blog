@@ -85,7 +85,7 @@ module Refinery
         end
 
         context "when has blog posts" do
-          let!(:blog_post) { FactoryGirl.create(:blog_post) }
+          let!(:blog_post) { Globalize.with_locale(:en) { FactoryGirl.create(:blog_post) } }
 
           describe "blog post listing" do
             before(:each) { visit refinery.blog_admin_posts_path }
