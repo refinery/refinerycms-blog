@@ -6,7 +6,7 @@ module Refinery
     module Admin
       describe Post do
         refinery_login_with :refinery_user
-        
+
         let!(:blog_category) { FactoryGirl.create(:blog_category, :title => "Video Games") }
 
         context "when no blog posts" do
@@ -175,10 +175,10 @@ module Refinery
           before(:each) do
             Refinery::I18n.stub(:frontend_locales).and_return([:en, :ru])
             blog_page = Factory.create(:page, :link_url => "/blog", :title => "Blog")
-            Globalize.locale = :ru
-            blog_page.title = 'блог'
-            blog_page.save
-            Globalize.locale = :en
+            Globalize.with_locale(:ru) do
+              blog_page.title = 'блог'
+              blog_page.save
+            end
             visit refinery.blog_admin_posts_path
           end
 
@@ -197,11 +197,11 @@ module Refinery
             end
 
             it "shows locale flag for post" do
-              
+
               within "#post_#{@p.id}" do
                 page.should have_css("img[src='/assets/refinery/icons/flags/en.png']")
               end
-            end 
+            end
 
             it "shows up in blog page for default locale" do
               visit refinery.blog_root_path
@@ -245,7 +245,7 @@ module Refinery
               within "#post_#{@p.id}" do
                 page.should have_css("img[src='/assets/refinery/icons/flags/ru.png']")
               end
-            end 
+            end
 
             it "does not show locale flag for primary locale" do
               within "#post_#{@p.id}" do
@@ -267,19 +267,20 @@ module Refinery
 
 
           context "with a blog post in both locales" do
+
             let!(:blog_post) do
-              _blog_post = FactoryGirl.create(:blog_post, title: 'First Post')
-              Globalize.locale = :ru
-              _blog_post.title = 'Домашняя страница'
-              _blog_post.save
-              Globalize.locale = :en
+              _blog_post = Globalize.with_locale(:en) { FactoryGirl.create(:blog_post, title: 'First Post') }
+              Globalize.with_locale(:ru) do
+                _blog_post.title = 'Домашняя страница'
+                _blog_post.save
+              end
               _blog_post
             end
 
             before(:each) do
               visit refinery.blog_admin_posts_path
             end
-            
+
             it "shows both locale flags for post" do
               within "#post_#{blog_post.id}" do
                 page.should have_css("img[src='/assets/refinery/icons/flags/en.png']")
@@ -289,10 +290,11 @@ module Refinery
 
             describe "edit the post in english" do
               it "succeeds" do
+
                 within "#post_#{blog_post.id}" do
                   click_link("En")
                 end
-                current_path.should == refinery.edit_blog_admin_post_path(blog_post)
+
                 fill_in "Title", with: "New Post Title"
                 click_button "Save"
 
