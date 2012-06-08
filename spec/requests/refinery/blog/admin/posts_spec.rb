@@ -85,7 +85,9 @@ module Refinery
         end
 
         context "when has blog posts" do
-          let!(:blog_post) { FactoryGirl.create(:blog_post) }
+          let!(:blog_post) do
+            Globalize.with_locale(:en) { FactoryGirl.create(:blog_post) }
+          end
 
           describe "blog post listing" do
             before(:each) { visit refinery.blog_admin_posts_path }
@@ -173,6 +175,7 @@ module Refinery
 
         context "with translations" do
           before(:each) do
+            Globalize.locale = :en
             Refinery::I18n.stub(:frontend_locales).and_return([:en, :ru])
             blog_page = Factory.create(:page, :link_url => "/blog", :title => "Blog")
             Globalize.with_locale(:ru) do
@@ -211,7 +214,6 @@ module Refinery
             it "does not show up in blog page for secondary locale" do
               visit refinery.blog_root_path(locale: :ru)
               page.should_not have_selector("#post_#{@p.id}")
-              Globalize.locale = :en #reset locale to be sure next request will use :en locale for globalize
             end
 
           end
@@ -262,11 +264,9 @@ module Refinery
             it "shows up in blog page for secondary locale" do
               visit refinery.blog_root_path(locale: :ru)
               page.should have_selector("#post_#{@p.id}")
-              Globalize.locale = :en #reset locale to be sure next request will use :en locale for globalize
             end
 
           end
-
 
           context "with a blog post in both locales" do
 
