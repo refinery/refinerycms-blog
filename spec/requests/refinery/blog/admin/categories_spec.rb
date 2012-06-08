@@ -22,15 +22,16 @@ describe "Categories admin" do
   context "with translations" do
     before(:each) do
       Refinery::I18n.stub(:frontend_locales).and_return([:en, :ru])
-      blog_page = Factory.create(:page, :link_url => "/blog", :title => "Blog")
-      Globalize.locale = :ru
-      blog_page.title = 'блог'
-      blog_page.save
-      Globalize.locale = :en
+      blog_page = Globalize.with_locale(:en) { Factory.create(:page, :link_url => "/blog", :title => "Blog") }
+      Globalize.with_locale(:ru) do
+        blog_page.title = 'блог'
+        blog_page.save
+      end
     end
 
     describe "add a category with title for default locale" do
       before do
+        Globalize.locale = :en
         visit refinery.blog_admin_posts_path
         click_link "Create new category"
         fill_in "Title", :with => "Testing Category"
@@ -58,7 +59,7 @@ describe "Categories admin" do
       end
 
       it "does not show up in blog page for secondary locale" do
-        visit refinery.blog_root_path(:locale => :ru)
+        visit refinery.blog_root_path(locale: :ru)
         page.should_not have_selector('#categories')
       end
 
@@ -104,7 +105,7 @@ describe "Categories admin" do
       end
 
       it "shows up in blog page for secondary locale" do
-        visit refinery.blog_root_path(:locale => :ru)
+        visit refinery.blog_root_path(locale: :ru)
         within "#categories" do
           page.should have_selector('li')
         end

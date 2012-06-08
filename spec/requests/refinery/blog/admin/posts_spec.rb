@@ -211,6 +211,7 @@ module Refinery
             it "does not show up in blog page for secondary locale" do
               visit refinery.blog_root_path(locale: :ru)
               page.should_not have_selector("#post_#{@p.id}")
+              Globalize.locale = :en #reset locale to be sure next request will use :en locale for globalize
             end
 
           end
@@ -261,6 +262,7 @@ module Refinery
             it "shows up in blog page for secondary locale" do
               visit refinery.blog_root_path(locale: :ru)
               page.should have_selector("#post_#{@p.id}")
+              Globalize.locale = :en #reset locale to be sure next request will use :en locale for globalize
             end
 
           end
@@ -294,7 +296,7 @@ module Refinery
                 within "#post_#{blog_post.id}" do
                   click_link("En")
                 end
-
+                current_path.should == refinery.edit_blog_admin_post_path(blog_post)
                 fill_in "Title", with: "New Post Title"
                 click_button "Save"
 
