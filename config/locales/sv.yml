@@ -1,0 +1,167 @@
+sv:
+  refinery:
+    plugins:
+      refinerycms_blog:
+        title: Blogg
+    blog:
+      admin:
+        categories:
+          category:
+            edit: Editera kategori
+            delete: Radera kategori
+          index:
+            no_items_yet: 'Det finns inga kategorier än. Klicka på "%{create}" för att lägga till den första kategorin.'
+        comments:
+          approved: 'Kommentaren från "%{author}" Har godkänts.'
+          comment:
+            view_live_html: 'Visa kommentaren på webbplatsen. <br/><em>(öppnas i ett nytt fönster)</em>'
+            read: Läs denna kommentar
+            reject: Avslå kommentar
+            approve: Godkänn kommentar
+          rejected: 'Kommentaren från "%{author}" har avslagits.'
+          index:
+            no_items_yet: 'Det finns inga %{type} kommentarer.'
+          show:
+            comment: Kommentar
+            blog_post: Blogg post
+            from: Postat av
+            date: Postat
+            message: Kommentar
+            details: Detaljer
+            age: Ålder
+            actions: Actions
+            back: Tillbaka till alla kommentarer
+            reject: Avslå denna kommentar
+            approve: Godkänn denna kommentar
+        posts:
+          form:
+            advanced_options: Avancerat
+            toggle_advanced_options: Klicka för att ställa in metataggar och menyinställningar
+            save_as_draft: Spara som utkast
+            published_at: Publiceringsdatum
+            custom_url: Anpassad URL
+            custom_url_help: Skapa URL för bloggposten med denna text istället för ttieln
+            source_url: Källans URL
+            source_url_help: Sparar URL för postens källa
+            source_url_title: Källhänvisning (titel)
+            source_url_title_help: Källhänvisning för posten (URL).
+            author: Författare
+            author_help: Ställ in författare för denna post.
+            copy_body: Kopiera innehåll i posten till en teaser.
+            copy_body_help: Kopierar inneållet i posten till en teaser, lämna tom om du vill att det ska ske automatiskt.
+          index:
+            no_items_yet: 'Det finns inga poster än. Klicka "%{create}" för att lägga till din första post.'
+          uncategorized:
+            no_items_yet: 'Det finns inga okategoriserade poster.'
+          post:
+            view_live_html: 'Visa denna post i en webbläsare <br/><em>(öppnas i ett nytt fönster)</em>'
+            edit: Redigera denna bloggpost
+            delete: Ta bort denna bloggpost
+            draft: Utkast
+        settings:
+          notification_recipients:
+            value: Skicka notis till
+            explanation: 'Varje gång någon kommenterar på en post, skickas ett mail om kommentaren.'
+            hint: 'När en kommentar läggs till, så skickar vi en notis till dig.'
+            example: "Lägg till epostadress(er) i detta format: kalle@home.se, pelle@work.com"
+            updated: 'Notiser har blivit skickade till: "%{recipients}"'
+        submenu:
+          categories:
+            title: Kategorier
+            manage: Hantera
+            new: Skapa ny kategori
+          comments:
+            title: Kommentarer
+            title_with_count: 'Det finns (%{new_count} nya kommentarer)'
+            new: Ny
+            unmoderated: Ny
+            approved: Godkänd
+            rejected: Avslagen
+          posts:
+            title: Poster
+            manage: Hantera poster
+            new: Skapa ny post
+            uncategorized: Okategoriserade poster
+          settings:
+            title: Inställningar
+            moderation: Moderering
+            update_notified: Uppdarea vilka som får notiser
+            comments: Kommentarer
+            teasers: Teasers
+      comment_mailer:
+        notification:
+          greeting: Hej!
+          you_recieved_new_comment: Du har fått en ny kommentar på bloggenYou just received a new comment on your website.
+          comment_starts: --- kommentar ---
+          comment_ends: --- // kommentar ---
+          from: Från
+          email: E-post
+          message: Meddelande
+          closing_line: Vänliga hälsningar
+          ps: 'P.S. Alla dina kommentarer finns lagrade i bloggsektionen av ditt CMS i undermenyn kommentarer, om du vill se dem senare.'
+      shared:
+        categories:
+          title: Kategorier
+        rss_feed:
+          title: RSS
+          subscribe: Prenumerera
+        posts:
+          other: Övriga poster
+          created_at: 'Postat den %{when}'
+          read_more: Läs mer
+        comments:
+          singular: Kommentar
+          none: Inga kommentarer
+        archives: Arkiv
+        tags:
+          title: "Taggar"
+      categories:
+        show:
+          no_posts: Det finns inga poster än.
+      posts:
+        post:
+          filed_in: Kategoriserat som
+        comment: kommentar
+        comments:
+          by: 'Postad av %{who}'
+          time_ago: 'för %{time} sedan'
+          thank_you: 'Tack för din kommentar.'
+          thank_you_moderated: 'Tack för din kommentar. Ditt meddelande har placerats i modereringskön och kommer snart att bli publicerat.'
+        index:
+          no_blog_articles_yet: Det finns inga bloggposter än.
+        show:
+          blog_home: Blogg hem
+          comments:
+            title: Kommentarer
+            add: Kommentera
+          other: Andra bloggposter
+          filed_in: Kategoriserat i
+          tagged: Taggar
+          submit: Skicka kommentar
+          name: Namn
+          email: E-post
+          message: Meddelande
+          by: av
+          source: Källa
+        tagged:
+          no_blog_articles_yet: Det finns inga bloggposter än.
+          posts_tagged: Poster taggade med
+        archive:
+          blog_archive_for: 'Arkiv för %{date}'
+          no_blog_articles_posted: 'Det finns inga artiklar för %{date}.'
+  activerecord:
+    models:
+      refinery/blog_category: Kategori
+      refinery/blog_comment: Kommentarer
+      refinery/blog_post: Bloggposter
+    attributes:
+      refinery/blog_category:
+        title: Titel
+      refinery/blog_comment:
+        name: Namn
+        email: E-post
+        message: Meddelande
+      refinery/blog_post:
+        title: Titel
+        body: Innehåll
+        teaser: Teaser
