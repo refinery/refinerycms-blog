@@ -157,6 +157,7 @@ module Refinery
 
     describe "#show draft preview" do
       let(:blog_post) { FactoryGirl.create(:blog_post_draft) }
+      
       context "when logged in as admin" do
         it "should display the draft notification" do
           visit refinery.blog_post_path(blog_post)
@@ -164,8 +165,11 @@ module Refinery
           page.should have_content('This page is NOT live for public viewing.')
         end
       end
+     
       context "when not logged in as an admin" do
-        before(:each) { visit refinery.destroy_refinery_user_session_path }
+        before do 
+          visit refinery.logout_path
+        end
 
         it "should not display the blog post" do
           visit refinery.blog_post_path(blog_post)
