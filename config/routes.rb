@@ -18,6 +18,7 @@ Refinery::Core::Engine.routes.draw do
         resources :posts do
           collection do
             get :uncategorized
+						get :categorized
             get :tags
           end
         end
@@ -45,6 +46,9 @@ Refinery::Core::Engine.routes.draw do
             get :teasers
           end
         end
+
+				match 'categories/:id/posts', :to => 'categories#posts', :as => 'category_posts'
+
       end
     end
   end

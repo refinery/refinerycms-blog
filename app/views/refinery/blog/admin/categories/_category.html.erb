@@ -1,6 +1,7 @@
 <li class='clearfix record <%= cycle("on", "on-hover") %>' id="<%= dom_id(category) -%>">
   <span class='title'>
-    <%= category.title.presence || category.translations.detect {|t| t.title.present?}.title %>
+		<%= link_to(category.title.presence || category.translations.detect {|t| t.title.present?}.title, refinery.blog_admin_category_posts_path(category)) %>
+
     <span class="preview">
       <% category.translations.each do |translation| %>
         <% if translation.title.present? %>

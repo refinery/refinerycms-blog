@@ -6,6 +6,11 @@ module Refinery
         crudify :'refinery/blog/category',
                 :order => 'title ASC'
 
+				def posts
+					@category = Category.find(params[:id])
+					@posts = @category.posts.page(params[:page])
+				end
+
       end
     end
   end
