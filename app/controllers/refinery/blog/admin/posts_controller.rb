@@ -66,7 +66,7 @@ module Refinery
             end
           else
             unless request.xhr?
-              render :action => 'new'
+              render :new
             else
               render :partial => "/refinery/admin/error_messages",
                      :locals => {

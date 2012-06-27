@@ -1,9 +1,7 @@
 <%= form_for [refinery, :blog_admin, @category] do |f| -%>
-  <%= render :partial => "/refinery/admin/error_messages",
-             :locals => {
-               :object => f.object,
-               :include_object_name => true
-             } %>
+  <%= render "/refinery/admin/error_messages",
+             :object => f.object,
+             :include_object_name => true %>
 
   <%= render "/refinery/blog/admin/shared/locale_picker",
               :current_locale => Thread.current[:globalize_locale] if Refinery.i18n_enabled? %>
@@ -13,10 +11,8 @@
     <%= f.text_field :title, :class => 'larger widest' -%>
   </div>
 
-  <%= render :partial => "/refinery/admin/form_actions",
-              :locals => {
-                :f => f,
-                :continue_editing => false,
-                :delete_title => t('delete', :scope => 'refinery.blog.admin.categories.category')
-              } %>
+  <%= render "/refinery/admin/form_actions",
+             :f => f,
+             :continue_editing => false,
+             :delete_title => t('delete', :scope => 'refinery.blog.admin.categories.category') %>
 <% end %>

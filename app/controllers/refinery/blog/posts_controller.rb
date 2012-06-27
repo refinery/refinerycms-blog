@@ -51,7 +51,7 @@ module Refinery
                                       :anchor => "comment-#{@comment.to_param}")
           end
         else
-          render :action => 'show'
+          render :show
         end
       end
 

@@ -1,9 +1,7 @@
 <%= form_for [refinery, :blog_admin, @post] do |f| -%>
-  <%= render :partial => "/refinery/admin/error_messages",
-             :locals => {
-               :object => f.object,
-               :include_object_name => true
-             } %>
+  <%= render "/refinery/admin/error_messages",
+             :object => f.object,
+             :include_object_name => true %>
 
   <%= render "/refinery/blog/admin/shared/locale_picker",
               :current_locale => Thread.current[:globalize_locale] if Refinery.i18n_enabled? %>
@@ -117,14 +115,14 @@
       <%= render '/seo_meta/form', :form => f %>
     </div>
   </div>
-  <%= render :partial => "/refinery/admin/form_actions",
-              :locals => {
-                :f => f,
-                :continue_editing => true,
-                :delete_title => t('delete', :scope => 'refinery.blog.admin.posts.post')
-              } %>
+  <%= render "/refinery/admin/form_actions",
+             :f => f,
+             :continue_editing => true,
+             :delete_title => t('delete', :scope => 'refinery.blog.admin.posts.post') %>
 <% end -%>
 
 <% content_for :stylesheets, stylesheet_link_tag('refinery/blog/backend') %>
 <% content_for :javascripts, javascript_include_tag('refinery/blog/backend') %>
-<%= render 'refinery/shared/admin/autocomplete', :dom_id => '#blog_post_tag_list', :url => refinery.tags_blog_admin_posts_url %>
+<%= render 'refinery/shared/admin/autocomplete',
+           :dom_id => '#blog_post_tag_list',
+           :url => refinery.tags_blog_admin_posts_url %>

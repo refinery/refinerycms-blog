@@ -12,14 +12,14 @@ module Refinery
         def index
           @comments = Refinery::Blog::Comment.unmoderated.page(params[:page])
 
-          render :action => 'index'
+          render :index
         end
 
         def approved
           unless params[:id].present?
             @comments = Refinery::Blog::Comment.approved.page(params[:page])
 
-            render :action => 'index'
+            render :index
           else
             @comment = Refinery::Blog::Comment.find(params[:id])
             @comment.approve!
@@ -33,7 +33,7 @@ module Refinery
           unless params[:id].present?
             @comments = Refinery::Blog::Comment.rejected.page(params[:page])
 
-            render :action => 'index'
+            render :index
           else
             @comment = Refinery::Blog::Comment.find(params[:id])
             @comment.reject!

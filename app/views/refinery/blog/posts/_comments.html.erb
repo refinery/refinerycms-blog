@@ -16,11 +16,9 @@
 
   <h2><%= t('add', :scope => 'refinery.blog.posts.show.comments') %></h2>
   <%= form_for [refinery, :blog, @comment] do |f| %>
-    <%= render :partial => "/refinery/admin/error_messages",
-               :locals => {
-                 :object => f.object,
-                 :include_object_name => true
-               } %>
+    <%= render "/refinery/admin/error_messages",
+               :object => f.object,
+               :include_object_name => true %>
     <div class='field'>
       <%= f.label :name %>
       <%= f.text_field :name %>
