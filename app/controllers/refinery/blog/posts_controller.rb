@@ -15,7 +15,7 @@ module Refinery
         (@posts = Post.live.includes(:comments, :categories).with_globalize) if request.format.rss?
         respond_with (@posts) do |format|
           format.html
-          format.rss
+          format.rss { render :layout => false }
         end
       end
 
