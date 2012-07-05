@@ -18,6 +18,10 @@ module Refinery
           @posts = Refinery::Blog::Post.uncategorized.page(params[:page])
         end
 
+				def categorized
+          @posts = Refinery::Blog::Post.categorized.page(params[:page])
+        end
+
         def tags
           if ActiveRecord::Base.connection.adapter_name.downcase == 'postgresql'
             op = '~*'

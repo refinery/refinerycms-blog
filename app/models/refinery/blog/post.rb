@@ -118,6 +118,10 @@ module Refinery
           live.includes(:categories).where(Refinery::Categorization.table_name => { :blog_category_id => nil }).with_globalize
         end
 
+				def categorized
+          live.includes(:categories).where(Refinery::Categorization.arel_table[:blog_category_id].not_eq(nil)).with_globalize
+        end
+
         def next(current_record)
           where(["published_at > ? and draft = ?", current_record.published_at, false]).with_globalize.first
         end

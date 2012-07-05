@@ -18,6 +18,18 @@
         <%= post.published_at.strftime('%b %d, %Y') %>
       <% end %>
     </span>
+		<br />
+		<% if post.categories.length > 0 %>
+			&nbsp; -Categories - 			
+			<% 
+				category_list = []
+  			post.categories.each do |category| %>
+    			[<%= link_to(category.title, refinery.blog_admin_category_posts_path(category)) %>]
+  		<%	end
+  			
+			%>
+			
+		<% end %>
   </span>
   <span class='actions'>
     <%= link_to refinery_icon_tag("application_go.png"), refinery.blog_post_path(post),
