@@ -16,31 +16,31 @@ module Refinery
         end
 
         def approved
-          unless params[:id].present?
-            @comments = Refinery::Blog::Comment.approved.page(params[:page])
+          @comments = Refinery::Blog::Comment.approved.page(params[:page])
 
-            render :index
-          else
-            @comment = Refinery::Blog::Comment.find(params[:id])
-            @comment.approve!
-            flash[:notice] = t('approved', :scope => 'refinery.blog.admin.comments', :author => @comment.name)
+          render :index
+        end
 
-            redirect_to refinery.url_for(:action => params[:return_to] || 'index', :id => nil)
-          end
+        def approve
+          @comment = Refinery::Blog::Comment.find(params[:id])
+          @comment.approve!
+          flash[:notice] = t('approved', :scope => 'refinery.blog.admin.comments', :author => @comment.name)
+
+          redirect_to refinery.blog_admin_comments_path
         end
 
         def rejected
-          unless params[:id].present?
-            @comments = Refinery::Blog::Comment.rejected.page(params[:page])
+          @comments = Refinery::Blog::Comment.rejected.page(params[:page])
 
-            render :index
-          else
-            @comment = Refinery::Blog::Comment.find(params[:id])
-            @comment.reject!
-            flash[:notice] = t('rejected', :scope => 'refinery.blog.admin.comments', :author => @comment.name)
+          render :index
+        end
 
-            redirect_to refinery.url_for(:action => params[:return_to] || 'index', :id => nil)
-          end
+        def reject
+          @comment = Refinery::Blog::Comment.find(params[:id])
+          @comment.reject!
+          flash[:notice] = t('rejected', :scope => 'refinery.blog.admin.comments', :author => @comment.name)
+
+          redirect_to refinery.blog_admin_comments_path
         end
 
       end
