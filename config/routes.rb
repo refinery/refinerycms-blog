@@ -32,6 +32,8 @@ Refinery::Core::Engine.routes.draw do
           member do
             get :approved
             get :rejected
+            post :approve
+            post :reject
           end
         end
 
