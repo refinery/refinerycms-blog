@@ -152,17 +152,17 @@ sk:
           no_blog_articles_posted: 'Nie sú žiadne články publikované %{date}. Zostaňte naladení.'
   activerecord:
       models:
-        refinery/blog_category: Kategória
-        refinery/blog_comment: Komentár
-        refinery/blog_post: Blog článok
+        refinery/blog/category: Kategória
+        refinery/blog/comment: Komentár
+        refinery/blog/post: Blog článok
       attributes:
-        refinery/blog_category:
+        refinery/blog/category:
           title: Názov
-        refinery/blog_comment:
+        refinery/blog/comment:
           name: Meno
           email: E-mail
           message: Správa
-        refinery/blog_post:
+        refinery/blog/post:
           title: Názov
           body: Text
           teaser: Teaser

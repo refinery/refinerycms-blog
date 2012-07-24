@@ -130,9 +130,9 @@ pt-BR:
           filed_in: Arquivado em
   activerecord:
     attributes:
-      refinery/blog_post:
+      refinery/blog/post:
         title: Título
         body: Corpo
-      refinery/blog_comment:
+      refinery/blog/comment:
         name: Nome
         message: Mensagem

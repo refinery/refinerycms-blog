@@ -142,17 +142,17 @@ bg:
           no_blog_articles_posted: 'Все още няма публикувани статии за %{date}. Очаквайте скоро.'
   activerecord:
     models:
-      refinery/blog_category: Категория
-      refinery/blog_comment: Коментар
-      refinery/blog_post: Публикация
+      refinery/blog/category: Категория
+      refinery/blog/comment: Коментар
+      refinery/blog/post: Публикация
     attributes:
-      refinery/blog_category:
+      refinery/blog/category:
         title: Заглавие
-      refinery/blog_comment:
+      refinery/blog/comment:
         name: Име
         email: Е-поща
         message: Съобщение
-      refinery/blog_post:
+      refinery/blog/post:
         title: Заглавие
         body: Съдържание
         teaser: Извадка
