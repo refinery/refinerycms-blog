@@ -128,7 +128,7 @@ pl:
           no_blog_articles_posted: 'Brak wpisów dla daty %{date}.'
   activerecord:
     attributes:
-      refinery/blog_comment:
+      refinery/blog/comment:
         name: "Imię"
         email: "Email"
         message: "Treść"
