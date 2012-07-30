@@ -3,8 +3,6 @@ module Refinery
     module Admin
       class CommentsController < ::Refinery::AdminController
 
-        cache_sweeper Refinery::BlogSweeper
-
         crudify :'refinery/blog/comment',
                 :title_attribute => :name,
                 :order => 'published_at DESC'
