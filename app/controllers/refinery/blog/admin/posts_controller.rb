@@ -3,8 +3,6 @@ module Refinery
     module Admin
       class PostsController < ::Refinery::AdminController
 
-        cache_sweeper Refinery::BlogSweeper
-
         crudify :'refinery/blog/post',
                 :order => 'published_at DESC'
 
