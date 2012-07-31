@@ -1,5 +1,5 @@
 <article class='blog_comment_message' id='<%= "comment-#{comment.to_param}" %>'>
-  <%= image_tag comment.avatar_url, :alt => comment.name, :class => 'avatar' %>
+  <%= image_tag avatar_url(comment.email), :alt => comment.name, :class => 'avatar' %>
   <%= simple_format auto_link(comment.message.to_s) %>
   <footer class='blog_comment_author'>
     <p>

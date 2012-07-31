@@ -33,13 +33,6 @@ module Refinery
 
       self.per_page = Refinery::Blog.comments_per_page
 
-      def avatar_url(options = {})
-        options = {:size => 60}
-        require 'digest/md5'
-        size = ("?s=#{options[:size]}" if options[:size])
-        "http://gravatar.com/avatar/#{Digest::MD5.hexdigest(self.email.to_s.strip.downcase)}#{size}.jpg"
-      end
-
       def approve!
         self.update_column(:state, 'approved')
       end

@@ -66,6 +66,18 @@ module Refinery
           end
         end
       end
+
+      describe "#avatar_url" do
+        let(:email) { "test@test.com" }
+
+        it "returns gravatar url" do
+          helper.avatar_url(email).should eq("http://gravatar.com/avatar/b642b4217b34b1e8d3bd915fc65c4452?s=60.jpg")
+        end
+
+        it "accepts options hash to change default size" do
+          helper.avatar_url(email, :size => 55).should eq("http://gravatar.com/avatar/b642b4217b34b1e8d3bd915fc65c4452?s=55.jpg")
+        end
+      end
     end
   end
 end

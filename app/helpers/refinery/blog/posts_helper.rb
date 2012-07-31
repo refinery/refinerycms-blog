@@ -28,6 +28,11 @@ module Refinery
         Refinery::Blog::Post.published_dates_older_than(cutoff)
       end
 
+      def avatar_url(email, options = {:size => 60})
+        require 'digest/md5'
+        "http://gravatar.com/avatar/#{Digest::MD5.hexdigest(email.to_s.strip.downcase)}?s=#{options[:size]}.jpg"
+      end
+
       class ArchiveWidget
         delegate :t, :link_to, :refinery, :render, :to => :view_context
         attr_reader :view_context
