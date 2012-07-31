@@ -41,11 +41,11 @@ module Refinery
       end
 
       def approve!
-        self.update_attribute(:state, 'approved')
+        self.update_column(:state, 'approved')
       end
 
       def reject!
-        self.update_attribute(:state, 'rejected')
+        self.update_column(:state, 'rejected')
       end
 
       def rejected?
