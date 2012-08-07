@@ -1,6 +1,7 @@
 module Refinery
   class User < ActiveRecord::Base
-    extend FriendlyId
-    friendly_id :username, :use => [:id]
+    def to_param
+      "#{id}-#{username}"
+    end
   end
 end
