@@ -25,6 +25,8 @@ Refinery::Core::Engine.routes.draw do
 
         resources :categories
 
+        resources :authors
+
         resources :comments do
           collection do
             get :approved
