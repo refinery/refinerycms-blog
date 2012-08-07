@@ -1,0 +1,21 @@
+<% content_for :body_content_title, @author.username %>
+
+<% content_for :body do %>
+  <% if @posts.any? %>
+    <section id="blog_posts">
+      <%= render :partial => "/refinery/blog/shared/post", :collection => @posts %>
+      <%= will_paginate @posts %>
+    </section>
+  <% else %>
+    <p>
+      <%= t('.no_posts') %>
+    </p>
+  <% end %>
+<% end %>
+
+<% content_for :side_body do %>
+  <%= render :partial => "/refinery/blog/shared/categories" %>
+<% end %>
+
+<%= render :partial => "/refinery/content_page" %>
+<% content_for :stylesheets, stylesheet_link_tag('refinery/blog/frontend') %>
