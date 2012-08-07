@@ -149,7 +149,8 @@ en:
           blog_archive_for: 'Archive for %{date}'
           no_blog_articles_posted: 'There are no blog articles posted for %{date}. Stay tuned.'
         authors:
-          posts_written_by: Posts written by
+          show:
+            posts_written_by: Posts written by
   activerecord:
     models:
       refinery/blog_category: Category
