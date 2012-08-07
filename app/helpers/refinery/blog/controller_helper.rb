@@ -24,6 +24,9 @@ module Refinery
         def find_all_blog_categories
           @categories = Refinery::Blog::Category.all
         end
+        def find_all_blog_authors
+          @authors = Refinery::Blog::Author.all
+        end
     end
   end
 end

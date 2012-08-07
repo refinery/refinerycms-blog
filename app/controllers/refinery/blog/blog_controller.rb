@@ -5,7 +5,7 @@ module Refinery
       include ControllerHelper
 
       helper :'refinery/blog/posts'
-      before_filter :find_page, :find_all_blog_categories
+      before_filter :find_page, :find_all_blog_categories, :find_all_blog_authors
 
       protected
 
