@@ -13,10 +13,12 @@ module Refinery
 
       attr_accessible :title
 
-      self = Refinery::Blog::Post.find_by_sql('SELECT refinery_blog_posts.user_id, refinery_users.username, count(*) AS post_count 
-                                           FROM refinery_blog_posts 
-                                           LEFT JOIN refinery_users 
-                                           ON refinery_blog_posts.user_id = refinery_users.id')
+      def all
+        Refinery::Blog::Post.find_by_sql('SELECT refinery_blog_posts.user_id, refinery_users.username, count(*) AS post_count 
+                                          FROM refinery_blog_posts 
+                                          LEFT JOIN refinery_users 
+                                          ON refinery_blog_posts.user_id = refinery_users.id')
+      end
 
       def post_count
         posts.select(&:live?).count

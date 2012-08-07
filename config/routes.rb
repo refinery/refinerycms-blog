@@ -5,6 +5,7 @@ Refinery::Core::Engine.routes.draw do
 
     match 'feed.rss', :to => 'posts#index', :as => 'rss_feed', :defaults => {:format => "rss"}
     match 'categories/:id', :to => 'categories#show', :as => 'category'
+    match 'authors/:id', :to => 'authors#show', :as => 'author'
     match ':id/comments', :to => 'posts#comment', :as => 'comments'
     get 'archive/:year(/:month)', :to => 'posts#archive', :as => 'archive_posts'
     get 'tagged/:tag_id(/:tag_name)' => 'posts#tagged', :as => 'tagged_posts'
@@ -23,6 +24,8 @@ Refinery::Core::Engine.routes.draw do
         end
 
         resources :categories
+
+        resources :authors
 
         resources :comments do
           collection do
