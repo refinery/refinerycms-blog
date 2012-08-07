@@ -25,7 +25,10 @@ module Refinery
           @categories = Refinery::Blog::Category.all
         end
         def find_all_blog_authors
-          @authors = Refinery::Blog::Author.all
+          @authors = Refinery::Blog::Post.find_by_sql('SELECT refinery_blog_posts.user_id, refinery_users.username, count(*) AS post_count 
+                                          FROM refinery_blog_posts 
+                                          LEFT JOIN refinery_users 
+                                          ON refinery_blog_posts.user_id = refinery_users.id')
         end
     end
   end
