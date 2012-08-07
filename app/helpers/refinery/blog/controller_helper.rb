@@ -25,7 +25,10 @@ module Refinery
           @categories = Refinery::Blog::Category.all
         end
         def find_all_blog_authors
-          @authors = Refinery::User.find(:all, :joins => "LEFT JOIN refinery_blog_posts ON refinery_blog_posts.user_id = refinery_users.id", :group => "refinery_users.id")
+          @authors = Refinery::User.find(:all, 
+                                         :joins => "LEFT JOIN refinery_blog_posts ON refinery_blog_posts.user_id = refinery_users.id", 
+                                         :select => "refinery_blog_posts.user_id, refinery_users.username, count(*) AS post_count",
+                                         :group => "refinery_users.id")
         end
     end
   end
