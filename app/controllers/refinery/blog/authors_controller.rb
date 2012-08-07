@@ -3,7 +3,7 @@ module Refinery
     class AuthorsController < BlogController
 
       def show
-        @author = Refinery::Users.find(params[:id])
+        @author = Refinery::User.find(params[:id])
         @posts = @author.posts.live.includes(:comments, :categories).page(params[:page])
       end
 
