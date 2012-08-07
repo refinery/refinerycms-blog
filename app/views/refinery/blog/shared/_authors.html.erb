@@ -4,7 +4,7 @@
         <ul>
             <% @authors.each do |author| %>
                 <li<%= " class='selected'" if @author.present? and @author.id == author.id %>>
-                    <%= link_to "#{author.username} (#{author.post_count})", refinery.blog_author_path(author) %>
+                    <%= link_to "#{author.username} (#{author.post_count})", refinery.blog_author_path(author.id) %>
                 </li>
             <% end %>
         </ul>
