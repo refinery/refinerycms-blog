@@ -1,6 +1,8 @@
 module Refinery
   module Blog
     class AuthorsController < BlogController
+      extend FriendlyId
+      friendly_id :name, :use => [:id]
 
       def show
         @author = Refinery::User.find(params[:id])
@@ -10,3 +12,4 @@ module Refinery
     end
   end
 end
+
