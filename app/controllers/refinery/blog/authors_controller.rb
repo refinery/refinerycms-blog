@@ -4,7 +4,7 @@ module Refinery
 
       def show
         @author = Refinery::User.find(params[:id])
-        @posts = @author.posts.live.includes(:comments, :categories).page(params[:page])
+        @posts = @author.posts.live.includes(:posts, :comments, :categories).page(params[:page])
       end
 
     end
