@@ -1,12 +1,12 @@
 <% if @authors.any? %>
-    <h2><%= t('.title') %></h2>
-    <nav id="authors">
-        <ul>
-            <% @authors.each do |author| %>
-                <li<%= " class='selected'" if @author.present? and @author.id == author.id %>>
-                    <%= link_to "#{author.username} (#{author.post_count})", refinery.blog_author_path(author.id) %>
-                </li>
-            <% end %>
-        </ul>
-    </nav>
+  <h2><%= t('.title') %></h2>
+  <nav id="authors">
+    <ul>
+      <% @authors.each do |author| %>
+        <li<%= " class='selected'" if @author.present? and @author == author %>>
+          <%= link_to "#{author.username} (#{author.post_count})", refinery.blog_author_path(author.id) %>
+        </li>
+      <% end %>
+    </ul>
+  </nav>
 <% end %>

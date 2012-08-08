@@ -1,6 +1,4 @@
-<% content_for :title, "#{t('.posts_written_by')} '#{@author.username}'"  %>
-
-<% content_for :body_content_title, "#{t('.posts_written_by')} &#8220;#{@author.username}&#8221;".html_safe -%>
+<% content_for :body_content_title, t('.posts_written_by', :name => @author.username) %>
 
 <% content_for :body do %>
   <% if @posts.any? %>

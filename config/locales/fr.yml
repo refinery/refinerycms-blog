@@ -139,7 +139,7 @@ fr:
           no_blog_articles_posted: "Il n'y a aucun article pour la date du %{date}. Restez en alerte."
         authors:
           show:
-            posts_written_by: Articles écrits par
+            posts_written_by: 'Articles écrits par %{name}'
   activerecord:
     models:
       refinery/blog_category: Categorie
