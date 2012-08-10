@@ -14,7 +14,7 @@ de:
         comments:
           approved: 'Der Kommentar von "%{author}" wurde genehmigt.'
           comment:
-            view_live: 'Diesen Kommentar live betrachten <br/><em>(öffnet sich in einem neuen Fenster)</em>'
+            view_live_html: 'Diesen Kommentar live betrachten <br/><em>(öffnet sich in einem neuen Fenster)</em>'
             read: Kommentar lesen
             reject: Kommentar ablehnen
             approve: Kommentar genehmigen
@@ -39,14 +39,25 @@ de:
             toggle_advanced_options: 'Klicken, um auf Meta-Tag-Einstellungen und Menüoptionen zuzugreifen'
             save_as_draft: Als Entwurf speichern
             published_at: Veröffentlichungsdatum
+            custom_url: Eigene Url
+            custom_url_help: Url von disem Text generieren und nicht vom Titel.
+            source_url: Quell Url
+            source_url_help: Url für die Quelle dieses Artikels.
+            source_url_title: Quell Url Titel
+            source_url_title_help: Titel der Quelle dieses Artikels.
+            author: Autor
+            author_help: Legt fest welcher Benutzer als Autor angegeben wird.
+            copy_body: Kopiere Artikel zum Teaser
+            copy_body_help: Kopiert den Inhalt zum Teaser. Ist der Teaser nicht angegeben generiert Refinery einen.
           index:
             no_items_yet: 'Es sind noch keine Artikel vorhanden. Klicken Sie auf "%{create}", um Ihren ersten Artikel hinzuzufügen.'
           uncategorized:
             no_items_yet: 'Es sind keine unkategorisierten Artikel vorhanden.'
           post:
-            view_live: 'Diesen Artikel live betrachten <br/><em>(öffnet sich in einem neuen Fenster)</em>'
+            view_live_html: 'Diesen Artikel live betrachten <br/><em>(öffnet sich in einem neuen Fenster)</em>'
             edit: Diesen Artikel bearbeiten
             delete: Diesen Artikel dauerhaft entfernen
+            draft: Entwurf
         settings:
           notification_recipients:
             value: Sende Benachrichtigungen an
@@ -76,6 +87,7 @@ de:
             moderation: Moderation
             update_notified: Empfänger für Benachrichtigungen bearbeiten
             comments: Kommentare
+            teasers: Teaser
       comment_mailer:
         notification:
           greeting: Hallo
@@ -96,13 +108,13 @@ de:
         posts:
           other: Andere Artikel
           created_at: 'Verfasst am %{when}'
-          read_more: Mehr lesen
+          read_more: Weiterlesen
         comments:
           singular: Kommentar
           none: Keine Kommentare
         archives: Archiv
         tags:
-          title: Kategorien
+          title: Tags
       categories:
         show:
           no_posts: Es sind noch keine Artikel vorhanden.
@@ -124,7 +136,16 @@ de:
             add: Neuen Kommentar hinzufügen
           other: Andere Artikel
           filed_in: Gespeichert unter
+          tagged: Tagged
           submit: Kommentar senden
+          name: Name
+          email: Email
+          message: Nachricht
+          by: von
+          source: Quelle
+        tagged:
+          no_blog_articles_yet: Es sind noch keine Artikel vorhanden.
+          posts_tagged: Artikel getagged
         archive:
           blog_archive_for: 'Blog Archiv für %{date}'
           no_blog_articles_posted: 'Für %{date} wurden keine Artikel verfasst.'
