@@ -5,7 +5,7 @@ module Refinery
     refinery_login_with :refinery_user
 
     context "when has blog posts" do
-      let!(:blog_post) { FactoryGirl.create(:blog_post, :title => "Refinery CMS blog post") }
+      let!(:blog_post) { Globalize.with_locale(:en) { FactoryGirl.create(:blog_post, :title => "Refinery CMS blog post") } }
 
       it "should display blog post" do
         visit refinery.blog_post_path(blog_post)
