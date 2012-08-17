@@ -9,11 +9,13 @@ module Refinery
 
       has_many :categorizations, :dependent => :destroy, :foreign_key => :blog_category_id
       has_many :posts, :through => :categorizations, :source => :blog_post
-
+      belongs_to :blog
+      
       acts_as_indexed :fields => [:title]
 
       validates :title, :presence => true, :uniqueness => true
-
+      validates :blog, :presence => true
+      
       attr_accessible :title
       attr_accessor :locale
 

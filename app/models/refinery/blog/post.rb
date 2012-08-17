@@ -17,6 +17,7 @@ module Refinery
       belongs_to :author, :class_name => 'Refinery::User', :foreign_key => :user_id, :readonly => true
 
       has_many :comments, :dependent => :destroy, :foreign_key => :blog_post_id
+      belongs_to :blog
       acts_as_taggable
 
       has_many :categorizations, :dependent => :destroy, :foreign_key => :blog_post_id
@@ -25,15 +26,14 @@ module Refinery
       acts_as_indexed :fields => [:title, :body]
 
       validates :title, :presence => true, :uniqueness => true
-      validates :body,  :presence => true
-
+      validates :body, :blog,  :presence => true
       validates :source_url, :url => { :if => 'Refinery::Blog.validate_source_url',
                                       :update => true,
                                       :allow_nil => true,
                                       :allow_blank => true,
                                       :verify => [:resolve_redirects]}
 
-      attr_accessible :title, :body, :custom_teaser, :tag_list, :draft, :published_at, :custom_url, :author
+      attr_accessible :title, :body, :custom_teaser, :tag_list, :draft, :published_at, :custom_url, :author, :blog
       attr_accessible :browser_title, :meta_keywords, :meta_description, :user_id, :category_ids
       attr_accessible :source_url, :source_url_title
       attr_accessor :locale
