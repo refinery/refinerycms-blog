@@ -17,6 +17,10 @@ module Refinery
         it "requires body" do
           FactoryGirl.build(:blog_post, :body => nil).should_not be_valid
         end
+
+        it 'requires blog' do
+          FactoryGirl.build(:blog_post, :blog => nil).should_not be_valid
+        end
       end
 
       describe "comments association" do
@@ -28,7 +32,7 @@ module Refinery
         it "destroys associated comments" do
           FactoryGirl.create(:blog_comment, :blog_post_id => post.id)
           post.destroy
-          Blog::Comment.where(:blog_post_id => post.id).should be_empty
+          ::Refinery::Blog::Comment.where(:blog_post_id => post.id).should be_empty
         end
       end
 
@@ -197,7 +201,7 @@ module Refinery
           end
         end
       end
-      
+
       describe "source url" do
         it "should allow a source url and title" do
           p = FactoryGirl.create(:blog_post, :source_url => 'google.com', :source_url_title => 'author')
@@ -206,12 +210,12 @@ module Refinery
           p.source_url_title.should include('author')
         end
       end
-      
+
       describe ".validate_source_url?" do
         context "with Refinery::Blog.validate_source_url set to true" do
           before do
             Refinery::Blog.validate_source_url = true
-          end  
+          end
           it "should have canonical url" do
             p = FactoryGirl.create(:blog_post, :source_url => 'google.com', :source_url_title => 'google')
             p.source_url.should include('www')
@@ -227,7 +231,7 @@ module Refinery
           end
         end
       end
-      
+
     end
   end
 end
