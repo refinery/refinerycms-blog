@@ -34,15 +34,11 @@
         <%= link_to t('read_more', :scope => 'refinery.blog.shared.posts'), refinery.blog_post_path(post) %>
         <% end %>
       </p>
-      <aside class='comment_count'>
-        <% if Refinery::Blog::Post.comments_allowed? %>
-          <% if post.comments.any? %>
-             (<%= pluralize(post.comments.approved.count, t('singular', :scope => 'refinery.blog.shared.comments')) %>)
-          <% else %>
-                (<%= t('none', :scope => 'refinery.blog.shared.comments') %>)
-          <% end %>
-        <% end %>
-      </aside>
+      <% if Refinery::Blog::Post.comments_allowed? %>
+        <aside class='comment_count'>
+          <%= link_to "#{t('title', :scope => 'refinery.blog.posts.show.comments')} (#{post.comments.approved.count})", refinery.blog_post_path(post) << '#comments' %>
+        </aside>
+      <% end %>
     </footer>
   </article>
 <% end %>
