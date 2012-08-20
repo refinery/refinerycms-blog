@@ -5,6 +5,20 @@ en:
         title: Blog
     blog:
       admin:
+        blogs:
+          actions:
+            create_new: Add New Blog
+            reorder: Reorder Blogs
+            reorder_done: Done Reordering Blogs
+          records:
+            title: Blogs
+            sorry_no_results: Sorry! There are no results found.
+            no_items_yet: There are no Blogs yet. Click "Add New Blog" to add your
+              first blog.
+          blog:
+            view_live_html: View this blog live <br/><em>(opens in a new window)</em>
+            edit: Edit this blog
+            delete: Remove this blog forever
         categories:
           category:
             edit: Edit this category
@@ -155,6 +169,8 @@ en:
       refinery/blog/comment: Comment
       refinery/blog/post: Blog post
     attributes:
+      refinery/blog/blog:
+        name: Name
       refinery/blog/category:
         title: Title
       refinery/blog/comment:
