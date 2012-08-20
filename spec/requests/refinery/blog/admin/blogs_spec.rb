@@ -66,18 +66,33 @@ describe Refinery do
         describe "edit" do
           before { FactoryGirl.create(:blog, :name => "A name") }
 
-          it "should succeed" do
+          it 'should show posts list' do
             visit refinery.blog_admin_blogs_path
 
             within ".actions" do
               click_link "Edit this blog"
             end
 
-            fill_in "Name", :with => "A different name"
-            click_button "Save"
+            page.should have_content("Blog: A name")
+            page.should have_content("There are no Blog Posts yet. Click \"Create new post\" to add your first blog post.")
+          end
 
-            page.should have_content("'A different name' was successfully updated.")
-            page.should have_no_content("A name")
+          describe "change name" do
+            it "should succes" do
+              visit refinery.blog_admin_blogs_path
+
+              within ".actions" do
+                click_link "Edit this blog"
+                click_link "Change name"
+              end
+              
+              fill_in "Name", :with => "A different name"
+              click_button "Save"
+
+              page.should have_content("'A different name' was successfully updated.")
+              page.should have_content("Blog: A different name")
+              page.should have_no_content("A name")
+            end
           end
         end
 

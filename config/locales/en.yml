@@ -80,6 +80,8 @@ en:
             example: "Enter your email address(es) like: jack@work.com, jill@office.com"
             updated: 'Notification recipients have been set to "%{recipients}"'
         submenu:
+          blogs:
+            blog: Blog
           categories:
             title: Categories
             manage: Manage
