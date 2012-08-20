@@ -71,7 +71,7 @@ module Refinery
       def tagged
         @tag = ActsAsTaggableOn::Tag.find(params[:tag_id])
         @tag_name = @tag.name
-        @posts = Post.tagged_with(@tag_name).page(params[:page])
+        @posts = Post.tagged_with(@tag_name).with_globalize.page(params[:page])
       end
 
     protected
