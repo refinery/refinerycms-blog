@@ -104,6 +104,7 @@ en:
             update_notified: Update who gets notified
             comments: Comments
             teasers: Teasers
+            edit_or_delete_blog: Edit or delete blog
       comment_mailer:
         notification:
           greeting: Hi there

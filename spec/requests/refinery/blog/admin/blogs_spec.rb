@@ -64,7 +64,7 @@ describe Refinery do
         end
 
         describe "edit" do
-          before { FactoryGirl.create(:blog, :name => "A name") }
+          let! (:blog) { FactoryGirl.create(:blog, :name => "A name") }
 
           it 'should show posts list' do
             visit refinery.blog_admin_blogs_path
@@ -78,20 +78,26 @@ describe Refinery do
           end
 
           describe "change name" do
+            before { FactoryGirl.create(:blog, :name => "Another name") }
+
             it "should succes" do
               visit refinery.blog_admin_blogs_path
-
-              within ".actions" do
+              within "#blog_#{blog.id} .actions" do
                 click_link "Edit this blog"
-                click_link "Change name"
               end
-              
+
+              click_link "Edit or delete blog"
+
               fill_in "Name", :with => "A different name"
               click_button "Save"
 
               page.should have_content("'A different name' was successfully updated.")
               page.should have_content("Blog: A different name")
               page.should have_no_content("A name")
+
+              visit refinery.blog_admin_blogs_path
+              page.should have_content("A different name")
+              page.should have_content("Another name")
             end
           end
         end

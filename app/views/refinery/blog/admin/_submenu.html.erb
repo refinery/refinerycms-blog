@@ -71,6 +71,10 @@
                   :class => 'settings_icon' %>
     </li>
     <li>
+      <%= link_to t('.settings.edit_or_delete_blog'),
+                  refinery.edit_blog_admin_blog_path(@blog)  %>
+    </li>
+    <li>
       <%= link_to t('.settings.comments'), refinery.comments_blog_admin_settings_path,
                   :class => "#{Refinery::Blog::Post.comments_allowed? ? 'success' : 'failure'}_icon" %>
     </li>

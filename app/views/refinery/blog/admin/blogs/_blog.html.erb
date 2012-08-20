@@ -9,7 +9,7 @@
         :title => t('.view_live_html'),
         :target => "_blank" %>
     
-    <%= link_to refinery_icon_tag("application_edit.png"), refinery.blog_admin_posts_path(blog_id: blog),
+    <%= link_to refinery_icon_tag("application_edit.png"), refinery.blog_admin_posts_path(blog_id: blog.id),
          :title => t('.edit') %>
     <%= link_to refinery_icon_tag("delete.png"), refinery.blog_admin_blog_path(blog),
         :class => "cancel confirm-delete",
