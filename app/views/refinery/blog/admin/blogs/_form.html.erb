@@ -1,0 +1,15 @@
+<%= form_for [refinery, :blog_admin, @blog] do |f| -%>
+  <%= render '/refinery/admin/error_messages',
+              :object => @blog,
+              :include_object_name => true %>
+
+  <div class='field'>
+    <%= f.label :name -%>
+    <%= f.text_field :name, :class => 'larger widest' -%>
+  </div>
+
+  <%= render '/refinery/admin/form_actions', :f => f,
+             :continue_editing => false,
+             :delete_title => t('delete', :scope => 'refinery.blogs.admin.blogs.blog'),
+             :delete_confirmation => t('message', :scope => 'refinery.admin.delete', :title => @blog.name) -%>
+<% end -%>

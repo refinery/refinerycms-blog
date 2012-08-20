@@ -3,6 +3,8 @@ Refinery::Core::Engine.routes.draw do
     root :to => "posts#index"
     resources :posts, :only => [:show]
 
+    resources :blogs
+
     match 'feed.rss', :to => 'posts#index', :as => 'rss_feed', :defaults => {:format => "rss"}
     match 'categories/:id', :to => 'categories#show', :as => 'category'
     match ':id/comments', :to => 'posts#comment', :as => 'comments'
@@ -12,6 +14,13 @@ Refinery::Core::Engine.routes.draw do
 
   namespace :blog, :path => '' do
     namespace :admin, :path => 'refinery' do
+
+      resources :blogs do
+        collection do
+          post :update_positions
+        end
+      end
+
       scope :path => 'blog' do
         root :to => "posts#index"
 
