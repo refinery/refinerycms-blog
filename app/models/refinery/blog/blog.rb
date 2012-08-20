@@ -2,7 +2,7 @@ module Refinery
   module Blog
     class Blog < Refinery::Core::BaseModel
 
-      translates :name
+      translates :name, :slug
 
       extend FriendlyId
       friendly_id :name, :use => [:slugged, :globalize]

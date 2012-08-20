@@ -10,7 +10,8 @@ class CreateBlogs < ActiveRecord::Migration
     end
     Refinery::Blog::Blog.create_translation_table!
     ({
-       :name => :string
+       :name => :string,
+       :slug => :string
      })
     add_column(Refinery::Blog::Post.table_name,
                :blog_id, :integer)
