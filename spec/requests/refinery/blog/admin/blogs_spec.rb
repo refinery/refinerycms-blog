@@ -80,7 +80,7 @@ describe Refinery do
           describe "change name" do
             before { FactoryGirl.create(:blog, :name => "Another name") }
 
-            it "should succes" do
+            it "should success" do
               visit refinery.blog_admin_blogs_path
               within "#blog_#{blog.id} .actions" do
                 click_link "Edit this blog"

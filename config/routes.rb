@@ -19,10 +19,6 @@ Refinery::Core::Engine.routes.draw do
         collection do
           post :update_positions
         end
-      end
-
-      scope :path => 'blog' do
-        root :to => "posts#index"
 
         resources :posts do
           collection do
