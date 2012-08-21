@@ -5,6 +5,9 @@ en:
         title: Blog
     blog:
       admin:
+        shared:
+          blog_name:
+            blog: Blog
         blogs:
           actions:
             create_new: Add New Blog
@@ -80,8 +83,6 @@ en:
             example: "Enter your email address(es) like: jack@work.com, jill@office.com"
             updated: 'Notification recipients have been set to "%{recipients}"'
         submenu:
-          blogs:
-            blog: Blog
           categories:
             title: Categories
             manage: Manage

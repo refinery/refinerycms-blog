@@ -33,7 +33,7 @@ module Refinery
                                       :allow_blank => true,
                                       :verify => [:resolve_redirects]}
 
-      attr_accessible :title, :body, :custom_teaser, :tag_list, :draft, :published_at, :custom_url, :author, :blog
+      attr_accessible :title, :body, :custom_teaser, :tag_list, :draft, :published_at, :custom_url, :author, :blog, :blog_id
       attr_accessible :browser_title, :meta_keywords, :meta_description, :user_id, :category_ids
       attr_accessible :source_url, :source_url_title
       attr_accessor :locale

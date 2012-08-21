@@ -9,7 +9,7 @@ module Refinery
 
       has_many :posts, :dependent => :destroy
       has_many :categories, :dependent => :destroy
-      
+
       attr_accessible :name, :position
 
       acts_as_indexed :fields => [:name]
@@ -19,6 +19,7 @@ module Refinery
       class Translation
         attr_accessible :locale
       end
+
     end
   end
 end

@@ -5,14 +5,16 @@ module Refinery
 
         crudify :'refinery/blog/post',
         :order => 'published_at DESC',
-        :include => [:translations]
+        :include => [:translations],
+        :redirect_to_url => 'refinery.blog_admin_blog_posts_path'
 
         before_filter :find_all_categories,
         :only => [:new, :edit, :create, :update]
 
         before_filter :check_category_ids, :only => :update
 
-        before_filter :find_blog
+        before_filter :find_blog,
+        :only => [:index, :new, :create, :uncategorized]
 
         def uncategorized
           @posts = Refinery::Blog::Post.uncategorized.page(params[:page])
@@ -34,7 +36,7 @@ module Refinery
         end
 
         def new
-          @post = ::Refinery::Blog::Post.new(:author => current_refinery_user)
+          @post = ::Refinery::Blog::Post.new(:author => current_refinery_user, :blog => @blog)
         end
 
         def create
@@ -53,7 +55,7 @@ module Refinery
 
             unless from_dialog?
               unless params[:continue_editing] =~ /true|on|1/
-                redirect_back_or_default(refinery.blog_admin_posts_path)
+                redirect_back_or_default(refinery.blog_admin_blog_posts_path(@blog))
               else
                 unless request.xhr?
                   redirect_to :back
