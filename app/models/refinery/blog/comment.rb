@@ -9,7 +9,8 @@ module Refinery
                    :message_field => :body
 
       belongs_to :post, :foreign_key => 'blog_post_id'
-
+      has_one :blog, :through => :post
+      
       acts_as_indexed :fields => [:name, :email, :message]
 
       alias_attribute :message, :body

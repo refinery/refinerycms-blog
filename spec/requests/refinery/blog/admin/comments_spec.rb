@@ -5,23 +5,25 @@ module Refinery
     module Admin
       describe Comment do
         refinery_login_with :refinery_user
+
+        let (:blog) { FactoryGirl.create(:blog) }
         
         describe "#index" do
           context "when has no new unapproved comments" do
             before(:each) do
               subject.class.delete_all
-              visit refinery.blog_admin_comments_path
+              visit refinery.blog_admin_blog_comments_path(blog)
             end
 
             it "should list no comments" do
-              visit refinery.blog_admin_comments_path
+              visit refinery.blog_admin_blog_comments_path(blog)
 
               page.should have_content('There are no new comments')
             end
           end
           context "when has new unapproved comments" do
             let!(:blog_comment) { FactoryGirl.create(:blog_comment) }
-            before(:each) { visit refinery.blog_admin_comments_path }
+            before(:each) { visit refinery.blog_admin_blog_comments_path(blog) }
 
             it "should list comments" do
               page.should have_content(blog_comment.body)
@@ -46,7 +48,7 @@ module Refinery
           context "when has no approved comments" do
             before(:each) do
               subject.class.delete_all
-              visit refinery.approved_blog_admin_comments_path
+              visit refinery.approved_blog_admin_blog_comments_path(blog)
             end
 
             it "should list no comments" do
@@ -57,7 +59,7 @@ module Refinery
             let!(:blog_comment) do
               FactoryGirl.create(:blog_comment, :state => 'approved')
             end
-            before(:each) { visit refinery.approved_blog_admin_comments_path }
+            before(:each) { visit refinery.approved_blog_admin_blog_comments_path(blog) }
 
             it "should list comments" do
               page.should have_content(blog_comment.body)
@@ -76,7 +78,7 @@ module Refinery
           context "when has no rejected comments" do
             before(:each) do
               subject.class.delete_all
-              visit refinery.rejected_blog_admin_comments_path
+              visit refinery.rejected_blog_admin_blog_comments_path(blog)
             end
 
             it "should list no comments" do
@@ -87,7 +89,7 @@ module Refinery
             let!(:blog_comment) do
               FactoryGirl.create(:blog_comment, :state => 'rejected')
             end
-            before(:each) { visit refinery.rejected_blog_admin_comments_path }
+            before(:each) { visit refinery.rejected_blog_admin_blog_comments_path(blog) }
 
             it "should list comments" do
               page.should have_content(blog_comment.body)

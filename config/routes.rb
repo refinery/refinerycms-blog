@@ -15,6 +15,15 @@ Refinery::Core::Engine.routes.draw do
   namespace :blog, :path => '' do
     namespace :admin, :path => 'refinery' do
 
+      scope :path => 'blog' do
+        resources :comments, :only => [:show] do
+          member do
+            post :approve
+            post :reject
+          end
+        end
+      end
+
       resources :blogs do
         collection do
           post :update_positions
@@ -29,15 +38,11 @@ Refinery::Core::Engine.routes.draw do
 
         resources :categories
 
-        resources :comments do
+        resources :comments, :only => [:index] do
           collection do
             get :approved
             get :rejected
-          end
-          member do
-            post :approve
-            post :reject
-          end
+          end          
         end
 
         resources :settings do
