@@ -9,7 +9,7 @@ module Refinery
         Refinery::Plugin.register do |plugin|
           plugin.pathname = root
           plugin.name = "refinerycms_blog"
-          plugin.url = proc { Refinery::Core::Engine.routes.url_helpers.blog_admin_posts_path }
+          plugin.url = proc { Refinery::Core::Engine.routes.url_helpers.blog_admin_blogs_path }
           plugin.menu_match = /refinery\/blog\/?(blogs|posts|comments|categories)?/
           plugin.activity = { :class_name => :'refinery/blog/post' }
         end
