@@ -7,13 +7,14 @@ module Refinery
       describe Post do
         refinery_login_with :refinery_user
 
+        let!(:blog) { FactoryGirl.create(:blog) }
         let!(:blog_category) { FactoryGirl.create(:blog_category, :title => "Video Games") }
 
         context "when no blog posts" do
           before(:each) { subject.class.destroy_all }
 
           describe "blog post listing" do
-            before(:each) { visit refinery.blog_admin_posts_path }
+            before(:each) { visit refinery.blog_admin_blog_posts_path(blog) }
 
             it "invites to create new post" do
               page.should have_content("There are no Blog Posts yet. Click \"Create new post\" to add your first blog post.")
@@ -22,8 +23,12 @@ module Refinery
 
           describe "new blog post form" do
             before(:each) do
-              visit refinery.blog_admin_posts_path
+              visit refinery.blog_admin_blog_posts_path(blog)
               click_link "Create new post"
+            end
+
+            it 'should show blog name' do
+              page.should have_content("Blog: #{blog.name}")
             end
 
             it "should have Tags" do
@@ -86,18 +91,18 @@ module Refinery
 
         context "when has blog posts" do
           let!(:blog_post) do
-            Globalize.with_locale(:en) { FactoryGirl.create(:blog_post) }
+            Globalize.with_locale(:en) { FactoryGirl.create(:blog_post, :blog => blog) }
           end
 
           describe "blog post listing" do
-            before(:each) { visit refinery.blog_admin_posts_path }
+            before(:each) { visit refinery.blog_admin_blog_posts_path(blog) }
 
             describe "edit blog post" do
               it "should succeed" do
                 page.should have_content(blog_post.title)
 
                 click_link("Edit this blog post")
-                current_path.should == refinery.edit_blog_admin_post_path(blog_post)
+                current_path.should == refinery.edit_blog_admin_blog_post_path(blog, blog_post)
 
                 fill_in "Title", :with => "hax0r"
                 click_button "Save"
@@ -129,7 +134,7 @@ module Refinery
 
           context "when uncategorized post" do
             it "shows up in the list" do
-              visit refinery.uncategorized_blog_admin_posts_path
+              visit refinery.uncategorized_blog_admin_blog_posts_path(blog)
               page.should have_content(blog_post.title)
             end
           end
@@ -139,7 +144,7 @@ module Refinery
               blog_post.categories << blog_category
               blog_post.save!
 
-              visit refinery.uncategorized_blog_admin_posts_path
+              visit refinery.uncategorized_blog_admin_blog_posts_path(blog)
               page.should_not have_content(blog_post.title)
             end
           end
@@ -150,7 +155,7 @@ module Refinery
 
           describe "create blog post with alternate author" do
             before(:each) do
-              visit refinery.blog_admin_posts_path
+              visit refinery.blog_admin_blog_posts_path(blog)
               click_link "Create new post"
 
               fill_in "Title", :with => "This is some other guy's blog post"
@@ -182,7 +187,7 @@ module Refinery
               blog_page.title = 'блог'
               blog_page.save
             end
-            visit refinery.blog_admin_posts_path
+            visit refinery.blog_admin_blog_posts_path(blog)
           end
 
           describe "add a blog post with title for default locale" do
@@ -271,7 +276,7 @@ module Refinery
           context "with a blog post in both locales" do
 
             let!(:blog_post) do
-              _blog_post = Globalize.with_locale(:en) { FactoryGirl.create(:blog_post, :title => 'First Post') }
+              _blog_post = Globalize.with_locale(:en) { FactoryGirl.create(:blog_post, :title => 'First Post', :blog => blog) }
               Globalize.with_locale(:ru) do
                 _blog_post.title = 'Домашняя страница'
                 _blog_post.save
@@ -280,7 +285,7 @@ module Refinery
             end
 
             before(:each) do
-              visit refinery.blog_admin_posts_path
+              visit refinery.blog_admin_blog_posts_path(blog)
             end
 
             it "shows both locale flags for post" do
@@ -296,7 +301,7 @@ module Refinery
                 within "#post_#{blog_post.id}" do
                   click_link("En")
                 end
-                current_path.should == refinery.edit_blog_admin_post_path(blog_post)
+                current_path.should == refinery.edit_blog_admin_blog_post_path(blog, blog_post)
                 fill_in "Title", :with => "New Post Title"
                 click_button "Save"
 
