@@ -4,13 +4,10 @@ module Refinery
   module Blog
     describe Engine do
       describe "plugin activity" do
-        let(:activity) do
-          Refinery::Plugins.registered.find_by_name("refinerycms_blog").activity.first
-        end
+        subject {Refinery::Plugins.registered.find_by_name("refinerycms_blog").activity}
 
-        it "sets the correct path for activity entries" do
-          activity.url.should eq("refinery.edit_blog_admin_post_path")
-        end
+        it { subject[0].class_name.should == 'Refinery::Blog::Blog'}
+        it { subject[1].class_name.should == 'Refinery::Blog::Post'}
       end
 
       describe ".load_seed" do
