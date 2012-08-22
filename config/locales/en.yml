@@ -2,7 +2,7 @@ en:
   refinery:
     plugins:
       refinerycms_blog:
-        title: Blog
+        title: Blogs
     blog:
       admin:
         shared:

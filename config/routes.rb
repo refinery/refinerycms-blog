@@ -1,4 +1,5 @@
 Refinery::Core::Engine.routes.draw do
+  
   namespace :blog do
     root :to => "posts#index"
     resources :posts, :only => [:show]
