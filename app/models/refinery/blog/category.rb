@@ -16,7 +16,7 @@ module Refinery
       validates :title, :presence => true, :uniqueness => true
       validates :blog, :presence => true
       
-      attr_accessible :title
+      attr_accessible :title, :blog, :blog_id
       attr_accessor :locale
 
       class Translation

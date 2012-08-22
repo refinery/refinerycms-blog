@@ -5,7 +5,7 @@
       <% category.translations.each do |translation| %>
         <% if translation.title.present? %>
           <%= link_to refinery_icon_tag("flags/#{translation.locale}.png", :size => '16x11'),
-              refinery.edit_blog_admin_category_path(category, :switch_locale => translation.locale),
+              refinery.edit_blog_admin_blog_category_path(category.blog, category, :switch_locale => translation.locale),
               :class => 'locale' %>
           <% end %>
       <% end %>
@@ -13,9 +13,9 @@
   </span>
   <span class='actions'>
     <%= link_to refinery_icon_tag("application_edit.png"),
-                refinery.edit_blog_admin_category_path(category, :dialog => true, :height => 325),
+                refinery.edit_blog_admin_blog_category_path(category.blog, category, :dialog => true, :height => 325),
                 :title => t('.edit') %>
-    <%= link_to refinery_icon_tag("delete.png"), refinery.blog_admin_category_path(category),
+    <%= link_to refinery_icon_tag("delete.png"), refinery.blog_admin_blog_category_path(category.blog, category),
                 :class => "cancel confirm-delete",
                 :title => t('.delete'),
                 :method => :delete,

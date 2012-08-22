@@ -4,12 +4,12 @@ require 'spec_helper'
 describe "Categories admin" do
   refinery_login_with :refinery_user
 
+  let!(:blog) { FactoryGirl.create(:blog) }
   let(:title) { "lol" }
 
   it "can create categories" do
-    visit refinery.admin_root_path
+    visit refinery.blog_admin_blog_categories_path(blog)
 
-    within("nav#menu") { click_link "Blog" }
     within("nav.multilist") { click_link "Create new category" }
 
     fill_in "Title", :with => title
@@ -32,7 +32,7 @@ describe "Categories admin" do
     describe "add a category with title for default locale" do
       before do
         Globalize.locale = :en
-        visit refinery.blog_admin_posts_path
+        visit refinery.blog_admin_blog_posts_path(blog)
         click_link "Create new category"
         fill_in "Title", :with => "Testing Category"
         click_button "Save"
@@ -70,7 +70,7 @@ describe "Categories admin" do
       let(:ru_category_title) { 'категория' }
 
       before do
-        visit refinery.blog_admin_posts_path
+        visit refinery.blog_admin_blog_posts_path(blog)
         click_link "Create new category"
         within "#switch_locale_picker" do
           click_link "Ru"
