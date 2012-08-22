@@ -9,7 +9,7 @@ module Refinery
         :redirect_to_url => 'refinery.blog_admin_blog_posts_path'
 
         before_filter :find_all_categories,
-        :only => [:new, :edit, :create, :update]
+        :only => [:new, :edit, :update]
 
         before_filter :check_category_ids, :only => :update
 
