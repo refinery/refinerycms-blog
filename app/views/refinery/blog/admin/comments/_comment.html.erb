@@ -8,14 +8,14 @@
                 refinery.blog_post_path(comment.post, :anchor => "comment-#{comment.to_param}"),
                 :title => t('.view_live_html'),
                 :target => "_blank" unless comment.unmoderated? %>
-    <%= link_to refinery_icon_tag('zoom.png'), refinery.blog_admin_comment_path(comment),
+    <%= link_to refinery_icon_tag('zoom.png'), refinery.blog_admin_blog_comment_path(comment.blog, comment),
                 :title => t('.read') %>
     <%= link_to refinery_icon_tag("cross.png"),
-                refinery.reject_blog_admin_comment_path(comment),
+                refinery.reject_blog_admin_blog_comment_path(comment.blog, comment),
                 :method => :post,
                 :title => t('.reject') unless comment.rejected? %>
     <%= link_to refinery_icon_tag("tick.png"),
-                refinery.approve_blog_admin_comment_path(comment),
+                refinery.approve_blog_admin_blog_comment_path(comment.blog, comment),
                 :method => :post,
                 :title => t('.approve') unless comment.approved? %>
   </span>

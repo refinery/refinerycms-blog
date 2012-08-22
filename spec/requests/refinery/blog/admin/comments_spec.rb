@@ -106,7 +106,7 @@ module Refinery
 
         describe "#show" do
           let!(:blog_comment) { FactoryGirl.create(:blog_comment) }
-          before(:each) { visit refinery.blog_admin_comment_path(blog_comment) }
+          before(:each) { visit refinery.blog_admin_blog_comment_path(blog, blog_comment) }
           it "should display the comment" do
             page.should have_content(blog_comment.body)
             page.should have_content(blog_comment.name)
