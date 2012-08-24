@@ -7,7 +7,17 @@ module Refinery
       describe Post do
         refinery_login_with :refinery_user
 
-        let!(:blog) { FactoryGirl.create(:blog) }
+        let!(:blog) do
+          ##
+          # The :ru locale remains after some of the tests, so the blog is
+          # saved for that locale. I think this is a bug caused by the way
+          # Refinery handles locales through Thread.current[:locale].
+          _locale = Globalize.locale
+          Globalize.locale = I18n.default_locale
+          blog = FactoryGirl.create(:blog)
+          Globalize.locale = _locale
+          blog
+        end
         let!(:blog_category) { FactoryGirl.create(:blog_category, :title => "Video Games") }
 
         context "when no blog posts" do
@@ -123,10 +133,14 @@ module Refinery
             end
 
             describe "view live" do
+              before (:each) { FactoryGirl.create(:page,
+                                                  :link_url => '/blogs',
+                                                  :title => 'Blogs') }
+
               it "redirects to blog post in the frontend" do
                 click_link "View this blog post live"
 
-                current_path.should == refinery.blog_post_path(blog_post)
+                current_path.should == refinery.blog_post_path(blog, blog_post)
                 page.should have_content(blog_post.title)
               end
             end
@@ -180,6 +194,8 @@ module Refinery
 
         context "with translations" do
           before(:each) do
+            FactoryGirl.create(:page, :link_url => '/blogs',
+                               :title => 'Blogs')
             Globalize.locale = :en
             Refinery::I18n.stub(:frontend_locales).and_return([:en, :ru])
             blog_page = Factory.create(:page, :link_url => "/blog", :title => "Blog")
@@ -212,12 +228,12 @@ module Refinery
             end
 
             it "shows up in blog page for default locale" do
-              visit refinery.blog_root_path
+              visit refinery.blog_blog_path(blog)
               page.should have_selector("#post_#{@p.id}")
             end
 
             it "does not show up in blog page for secondary locale" do
-              visit refinery.blog_root_path(:locale => :ru)
+              visit refinery.blog_blog_path(blog, :locale => :ru)
               page.should_not have_selector("#post_#{@p.id}")
             end
 
@@ -262,12 +278,12 @@ module Refinery
             end
 
             it "does not show up in blog page for default locale" do
-              visit refinery.blog_root_path
+              visit refinery.blog_blog_path(blog)
               page.should_not have_selector("#post_#{@p.id}")
             end
 
             it "shows up in blog page for secondary locale" do
-              visit refinery.blog_root_path(:locale => :ru)
+              visit refinery.blog_blog_path(blog, :locale => :ru)
               page.should have_selector("#post_#{@p.id}")
             end
 

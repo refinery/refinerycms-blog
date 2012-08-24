@@ -46,7 +46,7 @@ module Refinery
           else
             flash[:notice] = t('thank_you', :scope => 'refinery.blog.posts.comments')
             redirect_to refinery.blog_post_url(params[:id],
-                                      :anchor => "comment-#{@comment.to_param}")
+                                               :anchor => "comment-#{@comment.to_param}")
           end
         else
           render :show
@@ -71,10 +71,14 @@ module Refinery
       def tagged
         @tag = ActsAsTaggableOn::Tag.find(params[:tag_id])
         @tag_name = @tag.name
-        @posts = Post.tagged_with(@tag_name).with_globalize.page(params[:page])
+        @posts = Post.where(:blog_id => @blog.id).tagged_with(@tag_name).with_globalize.page(params[:page])
       end
 
-    protected
+      protected
+      def find_post_for_blog
+        @posts = Refinery::Blog::Post.where(:blog_si => @blog.id).live.includes(:comments, :categories).with_globalize.page(params[:page])
+      end
+
       def canonical?
         ::Refinery.i18n_enabled? && ::Refinery::I18n.default_frontend_locale != ::Refinery::I18n.current_frontend_locale
       end

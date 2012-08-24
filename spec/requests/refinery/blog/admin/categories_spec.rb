@@ -4,7 +4,17 @@ require 'spec_helper'
 describe "Categories admin" do
   refinery_login_with :refinery_user
 
-  let!(:blog) { FactoryGirl.create(:blog) }
+  let!(:blog) do
+    ##
+    # The :ru locale remains after some of the tests, so the blog is
+    # saved for that locale. I think this is a bug caused by the way
+    # Refinery handles locales through Thread.current[:locale].
+    _locale = Globalize.locale
+    Globalize.locale = I18n.default_locale
+    blog = FactoryGirl.create(:blog)
+    Globalize.locale = _locale
+    blog
+  end
   let(:title) { "lol" }
 
   it "can create categories" do
@@ -20,6 +30,8 @@ describe "Categories admin" do
   end
 
   context "with translations" do
+    before (:each) { FactoryGirl.create(:page, :link_url => '/blogs',
+                                        :title => 'Blogs') }
     before(:each) do
       Refinery::I18n.stub(:frontend_locales).and_return([:en, :ru])
       blog_page = Globalize.with_locale(:en) { Factory.create(:page, :link_url => "/blog", :title => "Blog") }
@@ -52,14 +64,14 @@ describe "Categories admin" do
       end
 
       it "shows up in blog page for default locale" do
-        visit refinery.blog_root_path
+        visit refinery.blog_blog_path(blog)
         within "#categories" do
           page.should have_selector('li')
         end
       end
 
       it "does not show up in blog page for secondary locale" do
-        visit refinery.blog_root_path(:locale => :ru)
+        visit refinery.blog_blog_path(blog, :locale => :ru)
         page.should_not have_selector('#categories')
       end
 
@@ -100,12 +112,12 @@ describe "Categories admin" do
       end
 
       it "does not shows up in blog page for default locale" do
-        visit refinery.blog_root_path
+        visit refinery.blog_blog_path(blog)
         page.should_not have_selector('#categories')
       end
 
       it "shows up in blog page for secondary locale" do
-        visit refinery.blog_root_path(:locale => :ru)
+        visit refinery.blog_blog_path(blog, :locale => :ru)
         within "#categories" do
           page.should have_selector('li')
         end
