@@ -3,14 +3,16 @@ require "spec_helper"
 module Refinery
   describe "BlogCategories" do
     refinery_login_with :refinery_user
+
+    let!(:blog) { FactoryGirl.create(:blog) }
     
     context "has one category and post" do
       before(:each) do
         post = Globalize.with_locale(:en) do
-          FactoryGirl.create(:blog_post, :title => "Refinery CMS blog post")
+          FactoryGirl.create(:blog_post, :title => "Refinery CMS blog post", :blog => blog)
         end
         @category = Globalize.with_locale(:en) do
-          FactoryGirl.create(:blog_category, :title => "Video Games")
+          FactoryGirl.create(:blog_category, :title => "Video Games", :blog => blog)
         end
         post.categories << @category
         post.save!
@@ -18,7 +20,7 @@ module Refinery
 
       describe "show categories blog posts" do
         it "should displays categories blog posts" do
-          visit refinery.blog_category_path(@category)
+          visit refinery.blog_category_path(blog, @category)
           page.should have_content("Refinery CMS blog post")
           page.should have_content("Video Games")
         end

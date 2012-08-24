@@ -1,7 +1,7 @@
 <% if post.live? %>
   <article class="blog_post" id="<%= dom_id(post) %>">
     <header>
-      <h1><%= link_to post.title, refinery.blog_post_path(post) %></h1>
+      <h1><%= link_to post.title, refinery.blog_post_path(post.blog, post) %></h1>
       <section class='details'>
         <time datetime="<%=l post.published_at.to_date, :format => :default %>" class='posted_at'>
           <%= t('created_at', :scope => 'refinery.blog.shared.posts', :when => l(post.published_at.to_date, :format => :short)) %>
