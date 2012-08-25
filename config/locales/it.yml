@@ -35,9 +35,7 @@ it:
             approve: Approva questo commento
         posts:
           form:
-            advanced_options: Opzioni Avanzate
             toggle_advanced_options: Clicca per accedere alle impostationi dei meta tag e del menu
-            save_as_draft: Salva come Bozza
             published_at: Data di Pubblicazione
             custom_url: Url personalizzato
             custom_url_help: Puoi scegliere un url specifico per questo articolo. Lasciando questo campo vuoto verrà utilizzato il titolo.

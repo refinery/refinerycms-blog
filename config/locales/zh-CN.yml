@@ -35,9 +35,7 @@ zh-CN:
             approve: 批准此评论
         posts:
           form:
-            advanced_options: 高级选项
             toggle_advanced_options: 点击进入标签详解设置和菜单选项
-            save_as_draft: 保存为草稿
             published_at: 发布日期
           index:
             no_items_yet: '目前尚未发博。 点击 "%{create}" 添加您的第一篇博文。'

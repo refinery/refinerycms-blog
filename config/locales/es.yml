@@ -35,9 +35,7 @@ es:
             approve: Aprovar este comentario
         posts:
           form:
-            advanced_options: Opciones avanzadas
             toggle_advanced_options: Click para acceder a las opciones de menú y etiquetas
-            save_as_draft: Guardar Borrador
             published_at: Fecha de publicación
           index:
             no_items_yet: 'Aún no hay entradas en el Blog. Haz click en "%{create}" para añadir el primero'

@@ -35,9 +35,7 @@ ja:
             approve: このコメントを承認する
         posts:
           form:
-            advanced_options: 詳細オプション
             toggle_advanced_options: メタタグの設定メニューをアクセスするにはここをクリックして下さい
-            save_as_draft: 下書きとして保存
             published_at: 公開時刻
             custom_url: カスタムURL
             custom_url_help: 投稿のURLをここのテキストとして登録する。
