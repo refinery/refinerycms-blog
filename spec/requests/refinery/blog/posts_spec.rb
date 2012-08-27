@@ -182,11 +182,11 @@ module Refinery
       end
 
       context "post recent" do
-        let!(:blog_post) { FactoryGirl.create(:blog_post, :published_at => Time.now - 5.minutes) }
-        let!(:blog_post2) { FactoryGirl.create(:blog_post, :published_at => Time.now - 2.minutes) }
+        let!(:blog_post) { FactoryGirl.create(:blog_post, :published_at => Time.now - 5.minutes, :blog => blog) }
+        let!(:blog_post2) { FactoryGirl.create(:blog_post, :published_at => Time.now - 2.minutes, :blog => blog) }
 
         it "should be the most recent" do
-          Refinery::Blog::Post.recent(2).first.id.should eq(blog_post2.id)
+          Refinery::Blog::Post.recent(blog, 2).first.id.should eq(blog_post2.id)
         end
       end
 

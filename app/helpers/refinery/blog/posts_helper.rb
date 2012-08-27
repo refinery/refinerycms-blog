@@ -20,12 +20,13 @@ module Refinery
         end
       end
 
-      def blog_archive_widget(dates=blog_archive_dates)
-        ArchiveWidget.new(dates, self).display
+      def blog_archive_widget(blog, dates = nil)
+        dates ||= blog_archive_dates(blog)
+        ArchiveWidget.new(blog, dates, self).display
       end
 
-      def blog_archive_dates(cutoff=Time.now.beginning_of_month)
-        Refinery::Blog::Post.published_dates_older_than(cutoff)
+      def blog_archive_dates(blog, cutoff=Time.now.beginning_of_month)
+        Refinery::Blog::Post.published_dates_older_than(blog, cutoff)
       end
 
       def avatar_url(email, options = {:size => 60})
@@ -37,7 +38,8 @@ module Refinery
         delegate :t, :link_to, :refinery, :render, :to => :view_context
         attr_reader :view_context
 
-        def initialize(dates, view_context, cutoff=3.years.ago.end_of_year)
+        def initialize(blog, dates, view_context, cutoff=3.years.ago.end_of_year)
+          @blog = blog
           @recent_dates, @old_dates = dates.sort_by {|date| -date.to_i }.
             partition {|date| date > cutoff }
 
@@ -46,21 +48,21 @@ module Refinery
 
         def recent_links
           @recent_dates.group_by {|date| [date.year, date.month] }.
-            map {|(year, month), dates| recent_link(year, month, dates.count) }
+            map {|(year, month), dates| recent_link(@blog, year, month, dates.count) }
         end
 
-        def recent_link(year, month, count)
+        def recent_link(blog, year, month, count)
           link_to "#{t("date.month_names")[month]} #{year} (#{count})",
-            refinery.blog_archive_posts_path(:year => year, :month => month)
+            refinery.blog_archive_posts_path(blog, :year => year, :month => month)
         end
 
         def old_links
           @old_dates.group_by {|date| date.year }.
-            map {|year, dates| old_link(year, dates.size) }
+            map {|year, dates| old_link(@blog, year, dates.size) }
         end
 
-        def old_link(year, count)
-          link_to "#{year} (#{count})", refinery.blog_archive_posts_path(:year => year)
+        def old_link(blog, year, count)
+          link_to "#{year} (#{count})", refinery.blog_archive_posts_path(blog, :year => year)
         end
 
         def links

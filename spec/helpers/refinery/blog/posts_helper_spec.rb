@@ -4,7 +4,8 @@ module Refinery
   module Blog
     describe PostsHelper do
       describe "#blog_archive_widget" do
-        let(:html) { helper.blog_archive_widget(dates) }
+        let(:blog) { FactoryGirl.create(:blog) }
+        let(:html) { helper.blog_archive_widget(blog, dates) }
         let(:links) { Capybara.string(html).find("#blog_archive_widget ul") }
 
         context "with no archive dates" do

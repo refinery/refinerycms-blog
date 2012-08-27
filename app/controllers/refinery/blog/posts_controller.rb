@@ -2,7 +2,7 @@ module Refinery
   module Blog
     class PostsController < BlogController
 
-      before_filter :find_all_blog_posts, :except => [:archive]
+      before_filter :find_posts_for_blog, :except => [:archive]
       before_filter :find_blog_post, :only => [:show, :comment, :update_nav]
       before_filter :find_tags
 
@@ -10,7 +10,7 @@ module Refinery
 
       def index
         # Rss feeders are greedy. Let's give them every blog post instead of paginating.
-        (@posts = Post.live.includes(:comments, :categories).with_globalize) if request.format.rss?
+        (@posts = Post.live(@blog).includes(:comments, :categories).with_globalize) if request.format.rss?
         respond_with (@posts) do |format|
           format.html
           format.rss { render :layout => false }
@@ -19,6 +19,7 @@ module Refinery
 
       def show
         @comment = Comment.new
+        @comment.post = @post
 
         @canonical = refinery.url_for(:locale => Refinery::I18n.current_frontend_locale) if canonical?
 
@@ -42,10 +43,12 @@ module Refinery
 
           if Comment::Moderation.enabled?
             flash[:notice] = t('thank_you_moderated', :scope => 'refinery.blog.posts.comments')
-            redirect_to refinery.blog_post_url(params[:id])
+            redirect_to refinery.blog_post_url(params[:blog_id],
+                                               params[:id])
           else
             flash[:notice] = t('thank_you', :scope => 'refinery.blog.posts.comments')
-            redirect_to refinery.blog_post_url(params[:id],
+            redirect_to refinery.blog_post_url(params[:blog_id],
+                                               params[:id],
                                                :anchor => "comment-#{@comment.to_param}")
           end
         else
@@ -75,8 +78,8 @@ module Refinery
       end
 
       protected
-      def find_post_for_blog
-        @posts = Refinery::Blog::Post.where(:blog_si => @blog.id).live.includes(:comments, :categories).with_globalize.page(params[:page])
+      def find_posts_for_blog
+        @posts = Refinery::Blog::Post.live(@blog).includes(:comments, :categories).with_globalize.page(params[:page])
       end
 
       def canonical?

@@ -6,7 +6,7 @@
   <% end -%>
 
   <%= link_to t('blog_home', :scope => 'refinery.blog.posts.show'), 
-              refinery.blog_root_path, 
+              refinery.blog_blog_path(@post.blog), 
               :class => 'home' %>
 
   <% if @post.prev.present? -%>
