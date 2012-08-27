@@ -31,6 +31,7 @@
       <%= f.label :message %>
       <%= f.text_area :message, :rows => 6 %>
     </div>
+    <%= hidden_field_tag :blog_id, @post.blog_id %>
     <div class='field form-actions'>
       <%= f.submit t('submit', :scope => 'refinery.blog.posts.show') %>
     </div>

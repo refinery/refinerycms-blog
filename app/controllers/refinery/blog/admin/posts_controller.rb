@@ -17,7 +17,7 @@ module Refinery
         :only => [:index, :new, :create, :uncategorized]
 
         def uncategorized
-          @posts = Refinery::Blog::Post.uncategorized.page(params[:page])
+          @posts = Refinery::Blog::Post.uncategorized(@blog).page(params[:page])
         end
 
         def tags

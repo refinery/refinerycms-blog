@@ -4,6 +4,6 @@
   <%= render "/refinery/blog/shared/categories" %>
   <%= render "/refinery/blog/shared/tags" %>
   <%= render "/refinery/blog/shared/posts" %>
-  <%= blog_archive_widget %>
+  <%= blog_archive_widget(blog) %>
   <%= yield(:side_body_append) %>
 <% end %>

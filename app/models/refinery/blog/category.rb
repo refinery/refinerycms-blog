@@ -28,7 +28,7 @@ module Refinery
       end
 
       def post_count
-        posts.live.with_globalize.count
+        posts.live(self.blog).with_globalize.count
       end
 
       # how many items to show per page

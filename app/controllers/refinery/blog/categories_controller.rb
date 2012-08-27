@@ -4,7 +4,7 @@ module Refinery
 
       def show
         @category = Refinery::Blog::Category.find(params[:id])
-        @posts = @category.posts.live.includes(:comments, :categories).with_globalize.page(params[:page])
+        @posts = @category.posts.live(@category.blog).includes(:comments, :categories).with_globalize.page(params[:page])
       end
 
     end
