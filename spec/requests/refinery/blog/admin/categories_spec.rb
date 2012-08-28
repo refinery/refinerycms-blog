@@ -1,4 +1,4 @@
-# encoding: utf-8
+ # encoding: utf-8
 require 'spec_helper'
 
 describe "Categories admin" do
@@ -82,6 +82,10 @@ describe "Categories admin" do
       let(:ru_category_title) { 'категория' }
 
       before do
+        Globalize.with_locale(:ru) do
+           blog.name = 'Foo'
+           blog.save
+        end
         visit refinery.blog_admin_blog_posts_path(blog)
         click_link "Create new category"
         within "#switch_locale_picker" do

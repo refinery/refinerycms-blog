@@ -14,7 +14,8 @@ module Refinery
       end
 
       def find_blog
-        @blog = Refinery::Blog::Blog.find_by_slug(params[:blog_id])
+        @blog = Refinery::Blog::Blog.find_by_slug_or_id(params[:blog_id])
+        error_404 unless @blog && @blog.translated_locales.include?(Globalize.locale)
       end
 
     end

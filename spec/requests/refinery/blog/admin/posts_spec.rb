@@ -194,11 +194,9 @@ module Refinery
 
         context "with translations" do
           before(:each) do
-            FactoryGirl.create(:page, :link_url => '/blogs',
-                               :title => 'Blogs')
             Globalize.locale = :en
             Refinery::I18n.stub(:frontend_locales).and_return([:en, :ru])
-            blog_page = Factory.create(:page, :link_url => "/blog", :title => "Blog")
+            blog_page = Factory.create(:page, :link_url => "/blogs", :title => "Blogs")
             Globalize.with_locale(:ru) do
               blog_page.title = 'блог'
               blog_page.save
@@ -244,6 +242,10 @@ module Refinery
             let(:ru_page_title) { 'Новости' }
 
             before do
+              Globalize.with_locale(:ru) do
+                blog.name = 'Foo'
+                blog.save
+              end
               click_link "Create new post"
               within "#switch_locale_picker" do
                 click_link "Ru"

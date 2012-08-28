@@ -20,6 +20,22 @@ module Refinery
         attr_accessible :locale
       end
 
+      def self.translated
+        with_translations(::Globalize.locale)
+      end
+
+      class << self
+
+        def find_by_slug_or_id(slug_or_id)
+          if slug_or_id.friendly_id?
+            find_by_slug(slug_or_id)
+          else
+            find(slug_or_id)
+          end
+        end
+        
+      end
+
     end
   end
 end
