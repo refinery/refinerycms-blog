@@ -28,10 +28,10 @@ module Refinery
       validates :title, :presence => true, :uniqueness => true
       validates :body, :blog,  :presence => true
       validates :source_url, :url => { :if => 'Refinery::Blog.validate_source_url',
-                                      :update => true,
-                                      :allow_nil => true,
-                                      :allow_blank => true,
-                                      :verify => [:resolve_redirects]}
+        :update => true,
+        :allow_nil => true,
+        :allow_blank => true,
+        :verify => [:resolve_redirects]}
 
       attr_accessible :title, :body, :custom_teaser, :tag_list, :draft, :published_at, :custom_url, :author, :blog, :blog_id
       attr_accessible :browser_title, :meta_keywords, :meta_description, :user_id, :category_ids
@@ -39,10 +39,10 @@ module Refinery
       attr_accessor :locale
 
 
-    class Translation
-      is_seo_meta
-      attr_accessible :browser_title, :meta_description, :meta_keywords, :locale
-    end
+      class Translation
+        is_seo_meta
+        attr_accessible :browser_title, :meta_description, :meta_keywords, :locale
+      end
 
       self.per_page = Refinery::Blog.posts_per_page
 
@@ -127,18 +127,6 @@ module Refinery
         end
         alias_method :live, :published_before
 
-        def comments_allowed?
-          Refinery::Setting.find_or_set(:comments_allowed, true, :scoping => 'blog')
-        end
-
-        def teasers_enabled?
-          Refinery::Setting.find_or_set(:teasers_enabled, true, :scoping => 'blog')
-        end
-
-        def teaser_enabled_toggle!
-          currently = Refinery::Setting.find_or_set(:teasers_enabled, true, :scoping => 'blog')
-          Refinery::Setting.set(:teasers_enabled, :value => !currently, :scoping => 'blog')
-        end
       end
 
       module ShareThis

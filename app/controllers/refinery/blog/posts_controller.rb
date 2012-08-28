@@ -33,7 +33,7 @@ module Refinery
 
       def comment
         if (@comment = @post.comments.create(params[:comment])).valid?
-          if Comment::Moderation.enabled? or @comment.ham?
+          if @blog.comments_moderation_enabled? or @comment.ham?
             begin
               CommentMailer.notification(@comment, request).deliver
             rescue
@@ -41,7 +41,7 @@ module Refinery
             end
           end
 
-          if Comment::Moderation.enabled?
+          if @blog.comments_moderation_enabled?
             flash[:notice] = t('thank_you_moderated', :scope => 'refinery.blog.posts.comments')
             redirect_to refinery.blog_post_url(params[:blog_id],
                                                params[:id])

@@ -1,7 +1,11 @@
+require 'refinery/blog/settings_controls'
+
 module Refinery
   module Blog
     class Blog < Refinery::Core::BaseModel
 
+      include ::Refinery::Blog::SettingsControls
+      
       translates :name, :slug
 
       extend FriendlyId
@@ -18,11 +22,7 @@ module Refinery
 
       class Translation
         attr_accessible :locale
-      end
-
-      def self.translated
-        with_translations(::Globalize.locale)
-      end
+      end      
 
       class << self
 
@@ -33,7 +33,7 @@ module Refinery
             find(slug_or_id)
           end
         end
-        
+
       end
 
     end
