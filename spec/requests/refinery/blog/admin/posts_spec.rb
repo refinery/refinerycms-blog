@@ -18,7 +18,7 @@ module Refinery
           Globalize.locale = _locale
           blog
         end
-        let!(:blog_category) { FactoryGirl.create(:blog_category, :title => "Video Games") }
+        let!(:blog_category) { FactoryGirl.create(:blog_category, :title => "Video Games", :blog => blog) }
 
         context "when no blog posts" do
           before(:each) { subject.class.destroy_all }
@@ -343,6 +343,23 @@ module Refinery
             end
 
           end
+        end
+
+        context 'multiblog' do
+
+          let!(:blog_2) { FactoryGirl.create(:blog) }
+          let!(:post) {FactoryGirl.create(:blog_post, :blog => blog) }
+
+          it 'should show post in the apropiate blog' do
+            visit refinery.blog_admin_blog_posts_path(blog)
+            page.should have_content(post.title)
+          end
+
+          it 'should not show post in other blogs' do
+            visit refinery.blog_admin_blog_posts_path(blog_2)
+            page.should_not have_content(post.title)
+          end
+
         end
 
       end
