@@ -13,6 +13,10 @@ module Refinery
           @category = Refinery::Blog::Category.new(:blog => @blog)
         end
 
+        def index
+          @categories = Refinery::Blog::Category.where(:blog_id => @blog.id).page(params[:page])
+        end
+
         protected
 
         def find_blog

@@ -1,4 +1,4 @@
- # encoding: utf-8
+# encoding: utf-8
 require 'spec_helper'
 
 describe "Categories admin" do
@@ -83,8 +83,8 @@ describe "Categories admin" do
 
       before do
         Globalize.with_locale(:ru) do
-           blog.name = 'Foo'
-           blog.save
+          blog.name = 'Foo'
+          blog.save
         end
         visit refinery.blog_admin_blog_posts_path(blog)
         click_link "Create new category"
@@ -127,9 +127,23 @@ describe "Categories admin" do
         end
       end
 
-
     end
 
+    context 'multiblog' do
+      let!(:blog_2) { FactoryGirl.create(:blog) }
+      let!(:category) {FactoryGirl.create(:blog_category, :blog => blog) }
+
+      it 'should show categories in its blogs' do
+        visit refinery.blog_admin_blog_categories_path(blog)
+        page.should have_content(category.title)
+      end
+
+      it 'should not show categories in other blogs' do
+        visit refinery.blog_admin_blog_categories_path(blog_2)
+        page.should_not have_content(category.title)
+      end
+
+    end
 
   end
 end
