@@ -162,53 +162,9 @@ module Refinery
         end
       end
 
-      describe ".comments_allowed?" do
-        context "with Refinery::Setting comments_allowed set to true" do
-          before do
-            Refinery::Setting.set(:comments_allowed, { :scoping => 'blog', :value => true })
-          end
-
-          it "should be true" do
-            described_class.comments_allowed?.should be_true
-          end
-        end
-
-        context "with Refinery::Setting comments_allowed set to false" do
-          before do
-            Refinery::Setting.set(:comments_allowed, { :scoping => 'blog', :value => false })
-          end
-
-          it "should be false" do
-            described_class.comments_allowed?.should be_false
-          end
-        end
-      end
-
       describe "custom teasers" do
         it "should allow a custom teaser" do
           FactoryGirl.create(:blog_post, :custom_teaser => 'This is some custom content').should be_valid
-        end
-      end
-
-      describe ".teasers_enabled?" do
-        context "with Refinery::Setting teasers_enabled set to true" do
-          before do
-            Refinery::Setting.set(:teasers_enabled, { :scoping => 'blog', :value => true })
-          end
-
-          it "should be true" do
-            described_class.teasers_enabled?.should be_true
-          end
-        end
-
-        context "with Refinery::Setting teasers_enabled set to false" do
-          before do
-            Refinery::Setting.set(:teasers_enabled, { :scoping => 'blog', :value => false })
-          end
-
-          it "should be false" do
-            described_class.teasers_enabled?.should be_false
-          end
         end
       end
 

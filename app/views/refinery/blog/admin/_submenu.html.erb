@@ -24,7 +24,7 @@
                    :class => 'page_add_icon' %>
     </li>
   </ul>
-  <% if Refinery::Blog::Post.comments_allowed? %>
+  <% if blog.comments_allowed? %>
     <ul class='collapsible_menu'>
       <li class='not_a_link'>
         <% if Refinery::Blog::Comment.unmoderated.any? %>
@@ -76,11 +76,11 @@
     </li>
     <li>
       <%= link_to t('.settings.comments'), refinery.comments_blog_admin_blog_settings_path,
-                  :class => "#{Refinery::Blog::Post.comments_allowed? ? 'success' : 'failure'}_icon" %>
+                  :class => "#{blog.comments_allowed? ? 'success' : 'failure'}_icon" %>
     </li>
     <li>
       <%= link_to t('.settings.moderation'), refinery.moderation_blog_admin_blog_settings_path,
-                  :class => "#{Refinery::Blog::Comment::Moderation.enabled? ? 'success' : 'failure'}_icon" %>
+                  :class => "#{blog.comments_moderation_enabled? ? 'success' : 'failure'}_icon" %>
     </li>
     <li>
       <%= link_to t('.settings.update_notified'),
@@ -89,7 +89,7 @@
     </li>
     <li>
       <%= link_to t('.settings.teasers'),
-                  refinery.teasers_blog_admin_blog_settings_path, :class => "#{Refinery::Blog::Post.teasers_enabled? ? 'success' : 'failure'}_icon" %>
+                  refinery.teasers_blog_admin_blog_settings_path, :class => "#{blog.teasers_enabled? ? 'success' : 'failure'}_icon" %>
     </li>
   </ul>
 

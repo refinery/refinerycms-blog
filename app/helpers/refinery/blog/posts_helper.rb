@@ -5,8 +5,8 @@ module Refinery
         post.next.present? or post.prev.present?
       end
 
-      def blog_post_teaser_enabled?
-        Refinery::Blog::Post.teasers_enabled?
+      def blog_post_teaser_enabled?(blog)
+        blog.teasers_enabled?
       end
 
       def blog_post_teaser(post)

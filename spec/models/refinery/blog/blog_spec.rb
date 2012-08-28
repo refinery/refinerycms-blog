@@ -39,6 +39,51 @@ module Refinery
           ::Refinery::Blog::Category.where(:blog_id => blog.id).should be_empty
         end
       end
+
+      describe ".teasers_enabled?" do
+        context "with Refinery::Setting teasers_enabled set to true" do
+          before do
+            Refinery::Setting.set(:teasers_enabled, { :scoping => blog.settings_scope, :value => true })
+          end
+
+          it "should be true" do
+            blog.teasers_enabled?.should be_true
+          end
+        end
+
+        context "with Refinery::Setting teasers_enabled set to false" do
+          before do
+            Refinery::Setting.set(:teasers_enabled, { :scoping => blog.settings_scope, :value => false })
+          end
+
+          it "should be false" do
+            blog.teasers_enabled?.should be_false
+          end
+        end
+      end
+
+      describe ".comments_allowed?" do
+        context "with Refinery::Setting comments_allowed set to true" do
+          before do
+            Refinery::Setting.set(:comments_allowed, { :scoping => blog.settings_scope, :value => true })
+          end
+
+          it "should be true" do
+            blog.comments_allowed?.should be_true
+          end
+        end
+
+        context "with Refinery::Setting comments_allowed set to false" do
+          before do
+            Refinery::Setting.set(:comments_allowed, { :scoping => blog.settings_scope, :value => false })
+          end
+
+          it "should be false" do
+            blog.comments_allowed?.should be_false
+          end
+        end
+      end
+
     end
   end
 end
