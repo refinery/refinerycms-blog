@@ -8,13 +8,15 @@ module Refinery
         :include => [:translations],
         :redirect_to_url => 'refinery.blog_admin_blog_posts_path'
 
+        before_filter :find_blog
         before_filter :find_all_categories,
         :only => [:new, :edit, :update]
 
         before_filter :check_category_ids, :only => :update
 
-        before_filter :find_blog,
-        :only => [:index, :new, :create, :uncategorized]
+        def index
+          @posts = Refinery::Blog::Post.where(:blog_id => @blog.id).page(params[:page])
+        end
 
         def uncategorized
           @posts = Refinery::Blog::Post.uncategorized(@blog).page(params[:page])
@@ -89,7 +91,7 @@ module Refinery
         end
 
         def find_all_categories
-          @categories = Refinery::Blog::Category.find(:all)
+          @categories = Refinery::Blog::Category.where(:blog_id => @blog.id)
         end
 
         def check_category_ids

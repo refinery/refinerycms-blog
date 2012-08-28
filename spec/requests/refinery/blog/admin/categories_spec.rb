@@ -133,7 +133,7 @@ describe "Categories admin" do
       let!(:blog_2) { FactoryGirl.create(:blog) }
       let!(:category) {FactoryGirl.create(:blog_category, :blog => blog) }
 
-      it 'should show categories in its blogs' do
+      it 'should show category in the apropiate blog' do
         visit refinery.blog_admin_blog_categories_path(blog)
         page.should have_content(category.title)
       end
