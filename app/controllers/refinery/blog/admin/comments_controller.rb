@@ -10,13 +10,13 @@ module Refinery
         before_filter :find_blog, only: [:index, :approved, :rejected]
 
         def index
-          @comments = Refinery::Blog::Comment.unmoderated.page(params[:page])
+          @comments = Refinery::Blog::Comment.for_blog(@blog).unmoderated.page(params[:page])
 
           render :index
         end
 
         def approved
-          @comments = Refinery::Blog::Comment.approved.page(params[:page])
+          @comments = Refinery::Blog::Comment.for_blog(@blog).approved.page(params[:page])
 
           render :index
         end
@@ -30,7 +30,7 @@ module Refinery
         end
 
         def rejected
-          @comments = Refinery::Blog::Comment.rejected.page(params[:page])
+          @comments = Refinery::Blog::Comment.for_blog(@blog).rejected.page(params[:page])
 
           render :index
         end

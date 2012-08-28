@@ -30,6 +30,10 @@ module Refinery
         def rejected
           where(:state => 'rejected')
         end
+
+        def for_blog(blog)
+          joins(:post).where('refinery_blog_posts.blog_id' => blog.id)
+        end
       end
 
       self.per_page = Refinery::Blog.comments_per_page
