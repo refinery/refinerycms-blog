@@ -84,6 +84,35 @@ module Refinery
         end
       end
 
+      describe 'associated page filters' do
+        let!(:page) { FactoryGirl.create(:page,
+                                         :title => 'Blogs',
+                                         :link_url => '/blogs') }
+        let!(:blog) { FactoryGirl.create(:blog) }        
+        
+        context 'on create' do
+          it 'should create an associated page' do
+            _page = Refinery::Page.find_by_link_url("/blogs/#{blog.slug}")
+            _page.title.should == blog.name
+            _page.parent.should == page
+          end
+        end
+        context 'on update' do
+          before(:each) { blog.update_attribute(:name, 'FooBar') }
+          it 'should change associated page title and link_url' do
+            _page = Refinery::Page.find_by_link_url("/blogs/#{blog.slug}")
+            _page.title.should == blog.name
+            _page.parent.should == page
+          end
+        end
+        context 'on destroy' do
+          before(:each) { blog.destroy }
+          it 'should detroy associated page too' do
+            Refinery::Page.find_by_link_url("/blogs/#{blog.slug}").should be_nil
+          end
+        end
+      end
+
     end
   end
 end

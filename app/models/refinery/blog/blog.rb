@@ -5,7 +5,7 @@ module Refinery
     class Blog < Refinery::Core::BaseModel
 
       include ::Refinery::Blog::SettingsControls
-      
+
       translates :name, :slug
 
       extend FriendlyId
@@ -20,9 +20,44 @@ module Refinery
 
       validates :name, :presence => true, :uniqueness => true
 
+      after_create :create_page
+      after_update :update_page
+      after_destroy :destroy_page
+
       class Translation
         attr_accessible :locale
-      end      
+      end
+
+      def create_page
+        page_attrs = {
+          :title => self.name,
+          :link_url => "/blogs/#{self.slug}",
+          :deletable => false,
+          :menu_match => "^/blogs/#{self.slug}$"
+        }
+        if parent = Refinery::Page.find_by_link_url('/blogs')
+          page_attrs[:parent_id] = parent.id
+        end
+        Refinery::Page.create(page_attrs)
+      end
+
+      def update_page
+        if page = Refinery::Page.find_by_link_url("/blogs/#{self.slug_was}")
+          page.update_attributes(
+                                 :title => self.name,
+                                 :link_url => "/blogs/#{self.slug}",
+                                 :menu_match => "^/blogs/#{self.slug}$"
+                                 )
+        end
+      end
+
+      def destroy_page
+        if page = Refinery::Page.find_by_link_url("/blogs/#{self.slug}")
+          page.destroy!
+        end
+      end
+
+      private :create_page, :update_page, :destroy_page
 
       class << self
 
