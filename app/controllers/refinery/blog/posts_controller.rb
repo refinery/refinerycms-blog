@@ -10,7 +10,7 @@ module Refinery
 
       def index
         # Rss feeders are greedy. Let's give them every blog post instead of paginating.
-        (@posts = Post.live.includes(:comments, :categories).with_globalize) if request.format.rss?
+        (@posts = Post.live.includes(:comments, :categories)) if request.format.rss?
         respond_with (@posts) do |format|
           format.html
           format.rss { render :layout => false }
@@ -71,7 +71,7 @@ module Refinery
       def tagged
         @tag = ActsAsTaggableOn::Tag.find(params[:tag_id])
         @tag_name = @tag.name
-        @posts = Post.tagged_with(@tag_name).with_globalize.page(params[:page])
+        @posts = Post.live.tagged_with(@tag_name).page(params[:page])
       end
 
     protected
