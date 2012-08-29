@@ -87,7 +87,7 @@ module Refinery
         end
 
         def by_month(date)
-          where(:published_at => date.beginning_of_month..date.end_of_month).with_globalize
+          where(:published_at => date.beginning_of_month..date.end_of_month)
         end
 
         def by_archive(date)
@@ -100,11 +100,11 @@ module Refinery
         end
 
         def published_dates_older_than(date)
-          published_before(date).with_globalize.pluck(:published_at)
+          published_before(date).pluck(:published_at)
         end
 
         def recent(count)
-          live.limit(count).with_globalize
+          live.limit(count)
         end
 
         def popular(count)
@@ -112,11 +112,11 @@ module Refinery
         end
 
         def previous(item)
-          published_before(item.published_at).with_globalize.first
+          published_before(item.published_at).first
         end
 
         def uncategorized
-          live.includes(:categories).where(Refinery::Categorization.table_name => { :blog_category_id => nil }).with_globalize
+          live.includes(:categories).where(Refinery::Categorization.table_name => { :blog_category_id => nil })
         end
 
         def next(current_record)
