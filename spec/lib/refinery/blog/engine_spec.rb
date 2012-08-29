@@ -15,7 +15,7 @@ module Refinery
           Engine.load_seed
           Engine.load_seed
 
-          Refinery::Page.where(:link_url => '/blog').count.should eq(1)
+          Refinery::Page.where(:link_url => '/blogs').count.should eq(1)
         end
       end
     end

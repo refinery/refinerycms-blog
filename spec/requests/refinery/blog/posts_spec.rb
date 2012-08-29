@@ -37,28 +37,6 @@ module Refinery
         response.content_type.should eq("application/rss+xml")
       end
 
-      describe "visit blog" do
-
-        before(:each) do
-          Factory.create(:page, :link_url => "/")
-          Factory.create(:page, :link_url => "/blogs", :title => "Blogs")
-        end
-
-        it "shows blog link in menu" do
-          visit "/"
-          within "#menu" do
-            page.should have_content("Blogs")
-            page.should have_selector("a[href='/blogs']")
-          end
-        end
-
-        it "shows blog posts" do
-          visit refinery.blog_blog_path(blog)
-          page.should have_content blog_post.title
-        end
-
-      end
-
     end
 
     describe "list tagged posts" do
