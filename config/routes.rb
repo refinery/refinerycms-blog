@@ -1,6 +1,8 @@
 Refinery::Core::Engine.routes.draw do
 
   namespace :blog, :path => 'blogs' do
+    root :to => 'blogs#index', :as => 'blogs'
+    
     scope ':blog_id' do
       root :to => 'posts#index', :as => 'blog'
 

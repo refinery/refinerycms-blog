@@ -136,6 +136,9 @@ en:
       categories:
         show:
           no_posts: There are no posts here yet.
+      blogs:
+        index:
+          no_blogs_yet: There are no blogs yet.
       posts:
         post:
           filed_in: Filed in
