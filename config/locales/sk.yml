@@ -126,7 +126,7 @@ sk:
         comment: komentár
         comments:
           by: 'Odoslal %{who}'
-          time_ago: '%{time} spáť'
+          time_ago: 'pred %{time}'
           thank_you: 'Vďaka za komentár.'
           thank_you_moderated: 'Ďakujeme za Váš komentár. Vaša správa čaká na schválenie a čoskoro sa objaví.'
         index:

@@ -1,6 +1,6 @@
 <% content_for :title, "#{t('.posts_tagged')} '#{@tag_name.titleize}'"  %>
 
-<% content_for :body_content_title, "#{t('.posts_tagged')} &#8220;#{@tag_name.titleize}&#8221;".html_safe -%>
+<% content_for :body_content_title, "#{t('.posts_tagged')} &#8220;#{h(@tag_name.titleize)}&#8221;".html_safe -%>
 
 <% content_for :body do %>
   <% if @posts.any? %>
