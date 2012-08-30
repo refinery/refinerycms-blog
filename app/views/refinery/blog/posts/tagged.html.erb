@@ -1,4 +1,4 @@
-<% content_for :title, "#{t('.posts_tagged')} '#{@tag_name.titleize}'"  %>
+<% content_for :title, "#{t('.posts_tagged')} “#{h(@tag_name.titleize)}”".html_safe  %>
 
 <% content_for :body_content_title, "#{t('.posts_tagged')} &#8220;#{h(@tag_name.titleize)}&#8221;".html_safe -%>
 
