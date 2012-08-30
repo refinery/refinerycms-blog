@@ -1,7 +1,8 @@
+<%= render '/refinery/blog/admin/shared/blog_name', :blog => blog %>
 <nav id='actions' class='multilist'>
   <ul class='search_list'>
     <li class='not_a_link'>
-      <%= render "/refinery/admin/search", :url => refinery.blog_admin_posts_path %>
+      <%= render "/refinery/admin/search", :url => refinery.blog_admin_blog_posts_path(blog) %>
     </li>
   </ul>
 
@@ -11,19 +12,19 @@
                    :class => 'page_copy_icon' %>
     </li>
     <li>
-      <%= link_to t('.posts.manage'), refinery.blog_admin_posts_path,
+      <%= link_to t('.posts.manage'), refinery.blog_admin_blog_posts_path(blog.id),
                    :class => 'page_icon' %>
     </li>
     <li>
-      <%= link_to t('.posts.uncategorized'), refinery.uncategorized_blog_admin_posts_path,
+      <%= link_to t('.posts.uncategorized'), refinery.uncategorized_blog_admin_blog_posts_path,
                   :class => 'page_icon' %>
     </li>
     <li>
-       <%= link_to t('.posts.new'), refinery.new_blog_admin_post_path,
+       <%= link_to t('.posts.new'), refinery.new_blog_admin_blog_post_path(blog.id),
                    :class => 'page_add_icon' %>
     </li>
   </ul>
-  <% if Refinery::Blog::Post.comments_allowed? %>
+  <% if blog.comments_allowed? %>
     <ul class='collapsible_menu'>
       <li class='not_a_link'>
         <% if Refinery::Blog::Comment.unmoderated.any? %>
@@ -35,15 +36,15 @@
                     :class => 'comments_icon' %>
       </li>
       <li>
-        <%= link_to t('.comments.new'), refinery.blog_admin_comments_path,
+        <%= link_to t('.comments.new'), refinery.blog_admin_blog_comments_path,
                     :class => 'comment_icon' %>
       </li>
       <li>
-        <%= link_to t('.comments.approved'), refinery.approved_blog_admin_comments_path,
+        <%= link_to t('.comments.approved'), refinery.approved_blog_admin_blog_comments_path,
                     :class => 'comment_tick_icon' %>
       </li>
       <li>
-        <%= link_to t('.comments.rejected'), refinery.rejected_blog_admin_comments_path,
+        <%= link_to t('.comments.rejected'), refinery.rejected_blog_admin_blog_comments_path,
                     :class => 'comment_cross_icon' %>
       </li>
     </ul>
@@ -55,36 +56,40 @@
                   :class => 'folder_icon' %>
     </li>
     <li>
-      <%= link_to t('.categories.manage'), refinery.blog_admin_categories_path,
+      <%= link_to t('.categories.manage'), refinery.blog_admin_blog_categories_path,
                   :class => 'folder_edit_icon' %>
     </li>
     <li>
-      <%= link_to t('.categories.new'), refinery.new_blog_admin_category_path,
+      <%= link_to t('.categories.new'), refinery.new_blog_admin_blog_category_path,
                   :class => 'folder_add_icon' %>
     </li>
   </ul>
 
   <ul class='collapsible_menu'>
     <li class='not_a_link'>
-      <%= link_to t('.settings.title'), refinery.blog_admin_settings_path,
+      <%= link_to t('.settings.title'), refinery.blog_admin_blog_settings_path,
                   :class => 'settings_icon' %>
     </li>
     <li>
-      <%= link_to t('.settings.comments'), refinery.comments_blog_admin_settings_path,
-                  :class => "#{Refinery::Blog::Post.comments_allowed? ? 'success' : 'failure'}_icon" %>
+      <%= link_to t('.settings.edit_or_delete_blog'),
+                  refinery.edit_blog_admin_blog_path(blog.id)  %>
     </li>
     <li>
-      <%= link_to t('.settings.moderation'), refinery.moderation_blog_admin_settings_path,
-                  :class => "#{Refinery::Blog::Comment::Moderation.enabled? ? 'success' : 'failure'}_icon" %>
+      <%= link_to t('.settings.comments'), refinery.comments_blog_admin_blog_settings_path,
+                  :class => "#{blog.comments_allowed? ? 'success' : 'failure'}_icon" %>
+    </li>
+    <li>
+      <%= link_to t('.settings.moderation'), refinery.moderation_blog_admin_blog_settings_path,
+                  :class => "#{blog.comments_moderation_enabled? ? 'success' : 'failure'}_icon" %>
     </li>
     <li>
       <%= link_to t('.settings.update_notified'),
-                  refinery.notification_recipients_blog_admin_settings_path(:dialog => true, :height => 400),
+                  refinery.notification_recipients_blog_admin_blog_settings_path(:dialog => true, :height => 400),
                   :class => 'user_comment_icon' %>
     </li>
     <li>
       <%= link_to t('.settings.teasers'),
-                  refinery.teasers_blog_admin_settings_path, :class => "#{Refinery::Blog::Post.teasers_enabled? ? 'success' : 'failure'}_icon" %>
+                  refinery.teasers_blog_admin_blog_settings_path, :class => "#{blog.teasers_enabled? ? 'success' : 'failure'}_icon" %>
     </li>
   </ul>
 

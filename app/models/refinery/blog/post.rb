@@ -17,6 +17,7 @@ module Refinery
       belongs_to :author, :class_name => 'Refinery::User', :foreign_key => :user_id, :readonly => true
 
       has_many :comments, :dependent => :destroy, :foreign_key => :blog_post_id
+      belongs_to :blog
       acts_as_taggable
 
       has_many :categorizations, :dependent => :destroy, :foreign_key => :blog_post_id
@@ -25,33 +26,32 @@ module Refinery
       acts_as_indexed :fields => [:title, :body]
 
       validates :title, :presence => true, :uniqueness => true
-      validates :body,  :presence => true
-
+      validates :body, :blog,  :presence => true
       validates :source_url, :url => { :if => 'Refinery::Blog.validate_source_url',
-                                      :update => true,
-                                      :allow_nil => true,
-                                      :allow_blank => true,
-                                      :verify => [:resolve_redirects]}
+        :update => true,
+        :allow_nil => true,
+        :allow_blank => true,
+        :verify => [:resolve_redirects]}
 
-      attr_accessible :title, :body, :custom_teaser, :tag_list, :draft, :published_at, :custom_url, :author
+      attr_accessible :title, :body, :custom_teaser, :tag_list, :draft, :published_at, :custom_url, :author, :blog, :blog_id
       attr_accessible :browser_title, :meta_keywords, :meta_description, :user_id, :category_ids
       attr_accessible :source_url, :source_url_title
       attr_accessor :locale
 
 
-    class Translation
-      is_seo_meta
-      attr_accessible :browser_title, :meta_description, :meta_keywords, :locale
-    end
+      class Translation
+        is_seo_meta
+        attr_accessible :browser_title, :meta_description, :meta_keywords, :locale
+      end
 
       self.per_page = Refinery::Blog.posts_per_page
 
-      def next
-        self.class.next(self)
+      def next()
+        self.class.next(self.blog, self)
       end
 
-      def prev
-        self.class.previous(self)
+      def prev()
+        self.class.previous(self.blog, self)
       end
 
       def live?
@@ -98,47 +98,35 @@ module Refinery
           where(:published_at => date.beginning_of_year..date.end_of_year).with_globalize
         end
 
-        def published_dates_older_than(date)
-          published_before(date).with_globalize.pluck(:published_at)
+        def published_dates_older_than(blog, date)
+          published_before(blog, date).with_globalize.pluck(:published_at)
         end
 
-        def recent(count)
-          live.limit(count).with_globalize
+        def recent(blog, count)
+          live(blog).limit(count).with_globalize
         end
 
         def popular(count)
           unscoped.order("access_count DESC").limit(count).with_globalize
         end
 
-        def previous(item)
-          published_before(item.published_at).with_globalize.first
+        def previous(blog, item)
+          published_before(blog, item.published_at).with_globalize.first
         end
 
-        def uncategorized
-          live.includes(:categories).where(Refinery::Categorization.table_name => { :blog_category_id => nil }).with_globalize
+        def uncategorized(blog)
+          live(blog).includes(:categories).where(Refinery::Categorization.table_name => { :blog_category_id => nil }).with_globalize
         end
 
-        def next(current_record)
-          where(["published_at > ? and draft = ?", current_record.published_at, false]).with_globalize.first
+        def next(blog, current_record)
+          where(["blog_id = ? and published_at > ? and draft = ?", blog.id, current_record.published_at, false]).with_globalize.first
         end
 
-        def published_before(date=Time.now)
-          where("published_at < ? and draft = ?", date, false).with_globalize
+        def published_before(blog, date=Time.now)
+          where("refinery_blog_posts.blog_id = ? and published_at < ? and draft = ?", blog.id, date, false).with_globalize
         end
         alias_method :live, :published_before
 
-        def comments_allowed?
-          Refinery::Setting.find_or_set(:comments_allowed, true, :scoping => 'blog')
-        end
-
-        def teasers_enabled?
-          Refinery::Setting.find_or_set(:teasers_enabled, true, :scoping => 'blog')
-        end
-
-        def teaser_enabled_toggle!
-          currently = Refinery::Setting.find_or_set(:teasers_enabled, true, :scoping => 'blog')
-          Refinery::Setting.set(:teasers_enabled, :value => !currently, :scoping => 'blog')
-        end
       end
 
       module ShareThis

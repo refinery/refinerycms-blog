@@ -6,15 +6,15 @@
   <h2><%= t('.actions') %></h2>
   <ul>
     <li>
-      <%= link_to t('.back'), refinery.blog_admin_comments_path, :class => "back_icon" %>
+      <%= link_to t('.back'), refinery.blog_admin_blog_comments_path(@comment.blog), :class => "back_icon" %>
     </li>
     <li>
-    <%= link_to t('.reject'), refinery.reject_blog_admin_comment_path(@comment),
+    <%= link_to t('.reject'), refinery.reject_blog_admin_blog_comment_path(@comment.blog, @comment),
                               :method => :post,
                               :class => 'comment_cross_icon' unless @comment.rejected? %>
     </li>
     <li>
-      <%= link_to t('.approve'), refinery.approve_blog_admin_comment_path(@comment),
+      <%= link_to t('.approve'), refinery.approve_blog_admin_blog_comment_path(@comment.blog, @comment),
                                  :method => :post,
                                  :class => 'comment_tick_icon' unless @comment.approved? %>
     </li>

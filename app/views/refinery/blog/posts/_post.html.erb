@@ -21,7 +21,7 @@
         <aside class='filed_in'>
           <%= t('filed_in', :scope => 'refinery.blog.posts.show') %>
           <% categories.each_with_index do |category, index| %>
-            <%= link_to category.title, refinery.blog_category_path(category) -%><%= ',' if index < ((categories.length) - 1) %>
+            <%= link_to category.title, refinery.blog_category_path(@post.blog, category) -%><%= ',' if index < ((categories.length) - 1) %>
           <% end %>
         </aside>
       <% end %>

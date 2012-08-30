@@ -7,13 +7,24 @@ module Refinery
       describe Post do
         refinery_login_with :refinery_user
 
-        let!(:blog_category) { FactoryGirl.create(:blog_category, :title => "Video Games") }
+        let!(:blog) do
+          ##
+          # The :ru locale remains after some of the tests, so the blog is
+          # saved for that locale. I think this is a bug caused by the way
+          # Refinery handles locales through Thread.current[:locale].
+          _locale = Globalize.locale
+          Globalize.locale = I18n.default_locale
+          blog = FactoryGirl.create(:blog)
+          Globalize.locale = _locale
+          blog
+        end
+        let!(:blog_category) { FactoryGirl.create(:blog_category, :title => "Video Games", :blog => blog) }
 
         context "when no blog posts" do
           before(:each) { subject.class.destroy_all }
 
           describe "blog post listing" do
-            before(:each) { visit refinery.blog_admin_posts_path }
+            before(:each) { visit refinery.blog_admin_blog_posts_path(blog) }
 
             it "invites to create new post" do
               page.should have_content("There are no Blog Posts yet. Click \"Create new post\" to add your first blog post.")
@@ -22,8 +33,12 @@ module Refinery
 
           describe "new blog post form" do
             before(:each) do
-              visit refinery.blog_admin_posts_path
+              visit refinery.blog_admin_blog_posts_path(blog)
               click_link "Create new post"
+            end
+
+            it 'should show blog name' do
+              page.should have_content("Blog: #{blog.name}")
             end
 
             it "should have Tags" do
@@ -86,18 +101,18 @@ module Refinery
 
         context "when has blog posts" do
           let!(:blog_post) do
-            Globalize.with_locale(:en) { FactoryGirl.create(:blog_post) }
+            Globalize.with_locale(:en) { FactoryGirl.create(:blog_post, :blog => blog) }
           end
 
           describe "blog post listing" do
-            before(:each) { visit refinery.blog_admin_posts_path }
+            before(:each) { visit refinery.blog_admin_blog_posts_path(blog) }
 
             describe "edit blog post" do
               it "should succeed" do
                 page.should have_content(blog_post.title)
 
                 click_link("Edit this blog post")
-                current_path.should == refinery.edit_blog_admin_post_path(blog_post)
+                current_path.should == refinery.edit_blog_admin_blog_post_path(blog, blog_post)
 
                 fill_in "Title", :with => "hax0r"
                 click_button "Save"
@@ -118,10 +133,14 @@ module Refinery
             end
 
             describe "view live" do
+              before (:each) { FactoryGirl.create(:page,
+                                                  :link_url => '/blogs',
+                                                  :title => 'Blogs') }
+
               it "redirects to blog post in the frontend" do
                 click_link "View this blog post live"
 
-                current_path.should == refinery.blog_post_path(blog_post)
+                current_path.should == refinery.blog_post_path(blog, blog_post)
                 page.should have_content(blog_post.title)
               end
             end
@@ -129,7 +148,7 @@ module Refinery
 
           context "when uncategorized post" do
             it "shows up in the list" do
-              visit refinery.uncategorized_blog_admin_posts_path
+              visit refinery.uncategorized_blog_admin_blog_posts_path(blog)
               page.should have_content(blog_post.title)
             end
           end
@@ -139,7 +158,7 @@ module Refinery
               blog_post.categories << blog_category
               blog_post.save!
 
-              visit refinery.uncategorized_blog_admin_posts_path
+              visit refinery.uncategorized_blog_admin_blog_posts_path(blog)
               page.should_not have_content(blog_post.title)
             end
           end
@@ -150,7 +169,7 @@ module Refinery
 
           describe "create blog post with alternate author" do
             before(:each) do
-              visit refinery.blog_admin_posts_path
+              visit refinery.blog_admin_blog_posts_path(blog)
               click_link "Create new post"
 
               fill_in "Title", :with => "This is some other guy's blog post"
@@ -177,12 +196,12 @@ module Refinery
           before(:each) do
             Globalize.locale = :en
             Refinery::I18n.stub(:frontend_locales).and_return([:en, :ru])
-            blog_page = Factory.create(:page, :link_url => "/blog", :title => "Blog")
+            blog_page = Factory.create(:page, :link_url => "/blogs", :title => "Blogs")
             Globalize.with_locale(:ru) do
               blog_page.title = 'блог'
               blog_page.save
             end
-            visit refinery.blog_admin_posts_path
+            visit refinery.blog_admin_blog_posts_path(blog)
           end
 
           describe "add a blog post with title for default locale" do
@@ -207,12 +226,12 @@ module Refinery
             end
 
             it "shows up in blog page for default locale" do
-              visit refinery.blog_root_path
+              visit refinery.blog_blog_path(blog)
               page.should have_selector("#post_#{@p.id}")
             end
 
             it "does not show up in blog page for secondary locale" do
-              visit refinery.blog_root_path(:locale => :ru)
+              visit refinery.blog_blog_path(blog, :locale => :ru)
               page.should_not have_selector("#post_#{@p.id}")
             end
 
@@ -223,6 +242,10 @@ module Refinery
             let(:ru_page_title) { 'Новости' }
 
             before do
+              Globalize.with_locale(:ru) do
+                blog.name = 'Foo'
+                blog.save
+              end
               click_link "Create new post"
               within "#switch_locale_picker" do
                 click_link "Ru"
@@ -257,12 +280,12 @@ module Refinery
             end
 
             it "does not show up in blog page for default locale" do
-              visit refinery.blog_root_path
+              visit refinery.blog_blog_path(blog)
               page.should_not have_selector("#post_#{@p.id}")
             end
 
             it "shows up in blog page for secondary locale" do
-              visit refinery.blog_root_path(:locale => :ru)
+              visit refinery.blog_blog_path(blog, :locale => :ru)
               page.should have_selector("#post_#{@p.id}")
             end
 
@@ -271,7 +294,7 @@ module Refinery
           context "with a blog post in both locales" do
 
             let!(:blog_post) do
-              _blog_post = Globalize.with_locale(:en) { FactoryGirl.create(:blog_post, :title => 'First Post') }
+              _blog_post = Globalize.with_locale(:en) { FactoryGirl.create(:blog_post, :title => 'First Post', :blog => blog) }
               Globalize.with_locale(:ru) do
                 _blog_post.title = 'Домашняя страница'
                 _blog_post.save
@@ -280,7 +303,7 @@ module Refinery
             end
 
             before(:each) do
-              visit refinery.blog_admin_posts_path
+              visit refinery.blog_admin_blog_posts_path(blog)
             end
 
             it "shows both locale flags for post" do
@@ -296,7 +319,7 @@ module Refinery
                 within "#post_#{blog_post.id}" do
                   click_link("En")
                 end
-                current_path.should == refinery.edit_blog_admin_post_path(blog_post)
+                current_path.should == refinery.edit_blog_admin_blog_post_path(blog, blog_post)
                 fill_in "Title", :with => "New Post Title"
                 click_button "Save"
 
@@ -320,6 +343,23 @@ module Refinery
             end
 
           end
+        end
+
+        context 'multiblog' do
+
+          let!(:blog_2) { FactoryGirl.create(:blog) }
+          let!(:post) {FactoryGirl.create(:blog_post, :blog => blog) }
+
+          it 'should show post in the apropiate blog' do
+            visit refinery.blog_admin_blog_posts_path(blog)
+            page.should have_content(post.title)
+          end
+
+          it 'should not show post in other blogs' do
+            visit refinery.blog_admin_blog_posts_path(blog_2)
+            page.should_not have_content(post.title)
+          end
+
         end
 
       end

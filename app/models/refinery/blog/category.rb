@@ -9,12 +9,14 @@ module Refinery
 
       has_many :categorizations, :dependent => :destroy, :foreign_key => :blog_category_id
       has_many :posts, :through => :categorizations, :source => :blog_post
-
+      belongs_to :blog
+      
       acts_as_indexed :fields => [:title]
 
       validates :title, :presence => true, :uniqueness => true
-
-      attr_accessible :title
+      validates :blog, :presence => true
+      
+      attr_accessible :title, :blog, :blog_id
       attr_accessor :locale
 
       class Translation
@@ -26,7 +28,7 @@ module Refinery
       end
 
       def post_count
-        posts.live.with_globalize.count
+        posts.live(self.blog).with_globalize.count
       end
 
       # how many items to show per page

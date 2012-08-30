@@ -1,11 +1,11 @@
-<%= form_for [refinery, :blog_admin, @post] do |f| -%>
+<%= form_for [refinery, :blog_admin, @post.blog, @post] do |f| -%>
   <%= render "/refinery/admin/error_messages",
              :object => f.object,
              :include_object_name => true %>
 
   <%= render "/refinery/blog/admin/shared/locale_picker",
               :current_locale => Thread.current[:globalize_locale] if Refinery.i18n_enabled? %>
-
+  
   <div class='field'>
     <%= f.label :title -%>
     <%= f.text_field :title, :class => 'larger widest' -%>
@@ -51,6 +51,8 @@
     <%= f.label :tag_list, t('refinery.blog.shared.tags.title') -%>
     <%= f.text_field :tag_list, :class => 'larger' -%>
   </div>
+
+  <%= f.hidden_field :blog_id %>
 
   <div id='more_options_field'>
     <p>
@@ -118,6 +120,8 @@
   <%= render "/refinery/admin/form_actions",
              :f => f,
              :continue_editing => true,
+             :cancel_url => refinery.blog_admin_blog_posts_path,
+             :delete_url => refinery.blog_admin_blog_posts_path,
              :delete_title => t('delete', :scope => 'refinery.blog.admin.posts.post') %>
 <% end -%>
 
@@ -125,4 +129,4 @@
 <% content_for :javascripts, javascript_include_tag('refinery/blog/backend') %>
 <%= render 'refinery/shared/admin/autocomplete',
            :dom_id => '#blog_post_tag_list',
-           :url => refinery.tags_blog_admin_posts_url %>
+           :url => refinery.tags_blog_admin_blog_posts_url %>

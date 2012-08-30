@@ -13,7 +13,7 @@
   <% end %>
 <% end %>
 
-<%= render '/refinery/blog/shared/body_content_right' %>
+<%= render '/refinery/blog/shared/body_content_right', :blog => @blog %>
 
 <%= render "/refinery/content_page" %>
 <% content_for :stylesheets, stylesheet_link_tag('refinery/blog/frontend') %>

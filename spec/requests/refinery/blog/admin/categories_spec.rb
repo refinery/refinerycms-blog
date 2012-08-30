@@ -4,12 +4,22 @@ require 'spec_helper'
 describe "Categories admin" do
   refinery_login_with :refinery_user
 
+  let!(:blog) do
+    ##
+    # The :ru locale remains after some of the tests, so the blog is
+    # saved for that locale. I think this is a bug caused by the way
+    # Refinery handles locales through Thread.current[:locale].
+    _locale = Globalize.locale
+    Globalize.locale = I18n.default_locale
+    blog = FactoryGirl.create(:blog)
+    Globalize.locale = _locale
+    blog
+  end
   let(:title) { "lol" }
 
   it "can create categories" do
-    visit refinery.admin_root_path
+    visit refinery.blog_admin_blog_categories_path(blog)
 
-    within("nav#menu") { click_link "Blog" }
     within("nav.multilist") { click_link "Create new category" }
 
     fill_in "Title", :with => title
@@ -20,6 +30,8 @@ describe "Categories admin" do
   end
 
   context "with translations" do
+    before (:each) { FactoryGirl.create(:page, :link_url => '/blogs',
+                                        :title => 'Blogs') }
     before(:each) do
       Refinery::I18n.stub(:frontend_locales).and_return([:en, :ru])
       blog_page = Globalize.with_locale(:en) { Factory.create(:page, :link_url => "/blog", :title => "Blog") }
@@ -32,7 +44,7 @@ describe "Categories admin" do
     describe "add a category with title for default locale" do
       before do
         Globalize.locale = :en
-        visit refinery.blog_admin_posts_path
+        visit refinery.blog_admin_blog_posts_path(blog)
         click_link "Create new category"
         fill_in "Title", :with => "Testing Category"
         click_button "Save"
@@ -52,14 +64,14 @@ describe "Categories admin" do
       end
 
       it "shows up in blog page for default locale" do
-        visit refinery.blog_root_path
+        visit refinery.blog_blog_path(blog)
         within "#categories" do
           page.should have_selector('li')
         end
       end
 
       it "does not show up in blog page for secondary locale" do
-        visit refinery.blog_root_path(:locale => :ru)
+        visit refinery.blog_blog_path(blog, :locale => :ru)
         page.should_not have_selector('#categories')
       end
 
@@ -70,7 +82,11 @@ describe "Categories admin" do
       let(:ru_category_title) { 'категория' }
 
       before do
-        visit refinery.blog_admin_posts_path
+        Globalize.with_locale(:ru) do
+          blog.name = 'Foo'
+          blog.save
+        end
+        visit refinery.blog_admin_blog_posts_path(blog)
         click_link "Create new category"
         within "#switch_locale_picker" do
           click_link "Ru"
@@ -100,20 +116,34 @@ describe "Categories admin" do
       end
 
       it "does not shows up in blog page for default locale" do
-        visit refinery.blog_root_path
+        visit refinery.blog_blog_path(blog)
         page.should_not have_selector('#categories')
       end
 
       it "shows up in blog page for secondary locale" do
-        visit refinery.blog_root_path(:locale => :ru)
+        visit refinery.blog_blog_path(blog, :locale => :ru)
         within "#categories" do
           page.should have_selector('li')
         end
       end
 
-
     end
 
+    context 'multiblog' do
+      let!(:blog_2) { FactoryGirl.create(:blog) }
+      let!(:category) {FactoryGirl.create(:blog_category, :blog => blog) }
+
+      it 'should show category in the apropiate blog' do
+        visit refinery.blog_admin_blog_categories_path(blog)
+        page.should have_content(category.title)
+      end
+
+      it 'should not show categories in other blogs' do
+        visit refinery.blog_admin_blog_categories_path(blog_2)
+        page.should_not have_content(category.title)
+      end
+
+    end
 
   end
 end

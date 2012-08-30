@@ -1,4 +1,4 @@
-<%= render '/refinery/blog/admin/submenu' %>
+<%= render '/refinery/blog/admin/submenu', :blog => @blog %>
 <div id='records'>
   <% if searching? %>
     <h2><%= t('results_for', :scope => 'refinery.admin.search',
