@@ -12,12 +12,10 @@ module Refinery
 
       it 'should display the correct blog' do
         visit "/blogs/#{blog.slug}"
-
-        page.should have_content(blog.name)
+        within ('#body_content_title') { page.should have_content(blog.name) }
 
         visit "/blogs/#{blog_2.slug}"
-
-        page.should have_content(blog_2.name)
+        within ('#body_content_title') { page.should have_content(blog_2.name) }
       end
     end
 
