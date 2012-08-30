@@ -7,7 +7,7 @@ module Refinery
                 :title_attribute => :name,
                 :order => 'published_at DESC'
 
-        before_filter :find_blog, only: [:index, :approved, :rejected]
+        before_filter :find_blog, :only => [:index, :approved, :rejected]
 
         def index
           @comments = Refinery::Blog::Comment.for_blog(@blog).unmoderated.page(params[:page])
