@@ -38,7 +38,10 @@ module Refinery
         if parent = Refinery::Page.find_by_link_url('/blogs')
           page_attrs[:parent_id] = parent.id
         end
-        Refinery::Page.create(page_attrs)
+        page = Refinery::Page.create(page_attrs)
+        Refinery::Pages.default_parts.each do |default_page_part|
+          page.parts.create(:title => default_page_part, :body => nil)
+        end
       end
 
       def update_page
