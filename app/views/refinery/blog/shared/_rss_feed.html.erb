@@ -1,2 +1,4 @@
 <h2><%= t('.title') %></h2>
 <%= link_to t('.subscribe'), refinery.blog_rss_feed_path, :id => "rss_feed_subscribe"%>
+
+<% content_for :meta, auto_discovery_link_tag(:atom, refinery.blog_rss_feed_url, :title => 'RSS Feed') -%>
