@@ -3,9 +3,7 @@
     <%= render 'post' %>
   </div>
 
-  <% if Refinery::Blog::Post.comments_allowed? %>
-    <%= render 'comments'%>
-  <% end %>
+  <%= render 'comments' %>
 <% end %>
 
 <%= render '/refinery/blog/shared/body_content_right' %>
