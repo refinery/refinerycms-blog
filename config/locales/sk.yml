@@ -35,9 +35,7 @@ sk:
             approve: Schváliť komentár
         posts:
           form:
-            advanced_options: Pokročilé nastavenia
             toggle_advanced_options: Klikni pre prístup k nastaveniam meta tagov a menu
-            save_as_draft: Uložiť ako koncept
             published_at: Dátum publikovania
             custom_url: Vlastná url
             custom_url_help: Generovať url pre blog článok z tohto textu namiesto názvu blog článku.

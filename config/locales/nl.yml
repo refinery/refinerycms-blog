@@ -35,9 +35,7 @@ nl:
             approve: Keur deze reactie goed
         posts:
           form:
-            advanced_options: Geavanceerde eigenschappen
             toggle_advanced_options: Klik voor toegang tot meta tag instellingen en menu opties
-            save_as_draft: Sla op als concept
             published_at: Publicatiedatum 
           index:
             no_items_yet: 'Er zijn momenteel geen blogposts. Klik op "%{create}" om uw eerste blogpost toe te voegen.'

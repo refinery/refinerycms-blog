@@ -35,9 +35,7 @@ sv:
             approve: Godkänn denna kommentar
         posts:
           form:
-            advanced_options: Avancerat
             toggle_advanced_options: Klicka för att ställa in metataggar och menyinställningar
-            save_as_draft: Spara som utkast
             published_at: Publiceringsdatum
             custom_url: Anpassad URL
             custom_url_help: Skapa URL för bloggposten med denna text istället för ttieln
