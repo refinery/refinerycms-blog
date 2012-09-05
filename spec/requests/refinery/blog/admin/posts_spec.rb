@@ -156,7 +156,7 @@ module Refinery
               fill_in "Title", :with => "This is some other guy's blog post"
               fill_in "post_body", :with => "I totally didn't write it."
 
-              click_link "Advanced Options"
+              click_link "Advanced options"
 
               select other_guy.username, :from => "Author"
 
