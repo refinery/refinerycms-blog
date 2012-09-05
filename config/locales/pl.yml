@@ -35,9 +35,7 @@ pl:
             approve: Zaakceptuj ten komentarz
         posts:
           form:
-            advanced_options: Opcje zaawansowane
             toggle_advanced_options: 'Kliknij, aby zarządzać meta-ustawieniami'
-            save_as_draft: Zapisz jako szkic
             published_at: Data publikacji
           index:
             no_items_yet: 'Na blogu nie ma jeszcze żadnych wpisów. Kliknij "%{create}" aby dodać pierwszy post.'

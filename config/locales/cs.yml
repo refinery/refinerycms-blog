@@ -35,9 +35,7 @@ cs:
             approve: Schváliť komentář
         posts:
           form:
-            advanced_options: Pokročilé nastavení
             toggle_advanced_options: Klikni pro přístup k nastavením meta tagů a menu 
-            save_as_draft: Uložit jako koncept 
             published_at: Datum publikování
           index:
             no_items_yet: 'Nejsou žádné články na blogu. Klikni na "%{create}" pro přidání prvního.'

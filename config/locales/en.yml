@@ -35,9 +35,7 @@ en:
             approve: Approve this comment
         posts:
           form:
-            advanced_options: Advanced Options
             toggle_advanced_options: Click to access meta tag settings and menu options
-            save_as_draft: Save as Draft
             published_at: Publish Date
             custom_url: Custom Url
             custom_url_help: Generate the url for the blog post from this text instead of the title.

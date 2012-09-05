@@ -35,9 +35,7 @@ fr:
             approve: Approuver ce commentaire
         posts:
           form:
-            advanced_options: Options avancées
             toggle_advanced_options: Cliquez ici pour accéder aux paramêtres des meta-tags et au menu des options
-            save_as_draft: Enregistrer comme Brouillon
             published_at: Date de publication
           index:
             no_items_yet: 'Il n''y a aucun article pour l''instant. Cliquez sur "%{create}" pour ajouter votre premier article.'

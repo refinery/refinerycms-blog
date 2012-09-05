@@ -11,13 +11,6 @@
     <%= f.text_field :title, :class => 'larger widest' -%>
   </div>
   
-  <div class="field">
-    <p>
-      <%= f.check_box :draft %>
-      <%= f.label :draft, t('.save_as_draft'), :class => "stripped" %>
-    </p>
-  </div>
-
   <div class='field'>
     <div id='page-tabs' class='clearfix ui-tabs ui-widget ui-widget-content ui-corner-all'>
       <ul id='page_parts'>
@@ -47,18 +40,13 @@
     </div>
   </div>
 
+  <%= render '/refinery/admin/form_advanced_options_menu', :f => f %>
+
   <div class='field'>
     <%= f.label :tag_list, t('refinery.blog.shared.tags.title') -%>
     <%= f.text_field :tag_list, :class => 'larger' -%>
   </div>
 
-  <div id='more_options_field'>
-    <p>
-      <%= link_to t('.advanced_options'), "#",
-                  :id => 'toggle_advanced_options',
-                  :title => t('.toggle_advanced_options') %>
-    </p>
-  </div>
   <div id='more_options' style="display:none;">
     <div class="hemisquare">
       <h3><%= t('title', :scope => 'refinery.blog.admin.submenu.categories') %></h3>

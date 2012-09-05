@@ -35,9 +35,7 @@ pt-BR:
             approve: Aprovar este comentário
         posts:
           form:
-            advanced_options: Opções avançadas
             toggle_advanced_options: Clique aqui para acessar as configurações de meta tag e menu
-            save_as_draft: Salvar como rascunho
             published_at: Data de publicação
           index:
             no_items_yet: 'Ainda não há Posts no Blog. Clique em "%{create}" para adicionar o primeiro post.'
