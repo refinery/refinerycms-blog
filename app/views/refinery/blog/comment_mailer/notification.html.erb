@@ -11,6 +11,11 @@
 
 <%=raw t('.comment_ends') %>
 
+<%=raw link_to t('.approve'), refinery.approve_blog_admin_comment_url(@comment) -%>
+<%=raw t('.or') -%>
+<%=raw link_to t('.reject'), refinery.reject_blog_admin_comment_url(@comment) -%>
+<%=raw t('.this_comment') %>
+
 <%=raw t('.closing_line') %>,
 <%=raw Refinery::Core.site_name %>
 

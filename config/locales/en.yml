@@ -95,6 +95,10 @@ en:
           from: From
           email: Email
           message: Message
+          approve: Approve
+          or: " or "
+          reject: reject
+          this_comment: " this comment."
           closing_line: Kind Regards
           ps: 'P.S. All your comments are stored in the "Blog" section of Refinery under the "Comments" submenu should you ever want to view it there later.'
       shared:
