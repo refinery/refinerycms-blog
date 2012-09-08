@@ -52,7 +52,7 @@ sk:
           index:
             no_items_yet: 'Nie sú žiadne blog články. Klikni na "%{create}" pre pridanie prvého.'
           uncategorized:
-            no_items_yet: 'Nie sú žiadne nezradené články.'
+            no_items_yet: 'Nie sú žiadne nezaradené články.'
           post:
             view_live_html: 'Zobraziť živý náhľad článku<br/><em>(otvorí sa v novom okne)</em>'
             edit: Upraviť článok
