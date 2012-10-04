@@ -174,7 +174,7 @@ module Refinery
         it "should not display the blog post" do
           visit refinery.blog_post_path(blog_post)
 
-          page.should have_content("The page you were looking for doesn't exist (404)")
+          page.should have_content("The page you requested was not found.")
         end
       end
     end
