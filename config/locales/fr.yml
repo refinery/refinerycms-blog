@@ -37,6 +37,16 @@ fr:
           form:
             toggle_advanced_options: Cliquez ici pour accéder aux paramêtres des meta-tags et au menu des options
             published_at: Date de publication
+            custom_url: Adresse personnalisée
+            custom_url_help: Génère une adresse pour ce billet avec ce texte plutôt qu'avec le titre.
+            source_url: Adresse de la source
+            source_url_help: Conserve l'adresse de la source du billet.
+            source_url_title: Titre de l'adresse de la source
+            source_url_title_help: Titre pour l'adresse de la source de ce billet.
+            author: Auteur
+            author_help: Définit quel utilisateur apparaitra comme auteur de ce billet.
+            copy_body: Copier le contenu du billet dans le résumé
+            copy_body_help: Copie le contenu du billet dans le résumé.  Laissez le résumé vide pour que Refinery génère automatiquement le résumé.
           index:
             no_items_yet: 'Il n''y a aucun article pour l''instant. Cliquez sur "%{create}" pour ajouter votre premier article.'
           uncategorized:
@@ -45,6 +55,7 @@ fr:
             view_live_html: 'Voir cet article sur le site<br/><em>(Ouvre une nouvelle fenêtre)</em>'
             edit: Modifier cet article
             delete: Supprimer cet article
+            draft: Brouillon
         settings:
           notification_recipients:
             value: Envoyer les notifications à
@@ -74,6 +85,7 @@ fr:
             moderation: Modération
             update_notified: Mettre à jour les personnes à notifier
             comments: Commentaires
+            teasers: Résumés
       comment_mailer:
         notification:
           greeting: Bonjour
@@ -83,6 +95,10 @@ fr:
           from: De
           email: Email
           message: Message
+          approve: Approuver
+          or: " ou "
+          reject: rejeter
+          this_comment: " ce commentaire."
           closing_line: Cordialement
           ps: P.S. Tous les commentaires sont stockés dans la section "Blog" de Refinery dans le menu "Commentaires" si vous voulez les revoir plus tard.
       shared:
@@ -129,6 +145,7 @@ fr:
           email: Email
           message: Message
           by: par
+          source: Source
         tagged:
           no_blog_articles_yet: "Il n'y a aucun article pour l'instant. Restez en alerte."
           posts_tagged: Articles taggés
@@ -137,7 +154,7 @@ fr:
           no_blog_articles_posted: "Il n'y a aucun article pour la date du %{date}. Restez en alerte."
   activerecord:
     models:
-      refinery/blog/category: Categorie
+      refinery/blog/category: Catégorie
       refinery/blog/comment: Commentaire
       refinery/blog/post: Article
     attributes:
@@ -150,3 +167,4 @@ fr:
       refinery/blog/post:
         title: Titre
         body: Corps
+        teaser: Résumé
