@@ -20,7 +20,7 @@ module Refinery
     end
 
     context "when has blog posts" do
-      let!(:blog_post) { Globalize.with_locale(:en) { FactoryGirl.create(:blog_post, :title => "Refinery CMS blog post", :custom_teaser => 'Foo', :blog => blog) } }      
+      let!(:blog_post) { Globalize.with_locale(:en) { FactoryGirl.create(:blog_post, :title => "Refinery CMS blog post", :custom_teaser => 'Foo', :blog => blog) } }
 
       it "should display blog post" do
         visit refinery.blog_blog_path(blog)
@@ -33,6 +33,16 @@ module Refinery
 
         response.should be_success
         response.content_type.should eq("application/rss+xml")
+      end
+
+      context 'when more than one post' do
+        before(:each) { Globalize.with_locale(:en) { FactoryGirl.create(:blog_post, :custom_teaser => 'Bar', :blog => blog) } }
+
+        it 'should display the posts list' do
+          visit refinery.blog_blog_path(blog)
+
+          page.should have_content(blog_post.title)
+        end
       end
     end
 
