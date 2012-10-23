@@ -10,8 +10,8 @@ module Refinery
 
         before_filter :find_blog, :except => :edit
         before_filter :find_blog_from_post, :only => :edit
-        before_filter :find_all_categories,
-        :only => [:new, :edit, :update]
+        before_filter(:find_all_categories,
+          :only => [:new, :edit, :update, :create])
 
         before_filter :check_category_ids, :only => :update
 
@@ -33,8 +33,8 @@ module Refinery
           end
 
           @tags = Refinery::Blog::Post.tag_counts_on(:tags).where(
-                                                                  ["tags.name #{op} ?", "#{wildcard}#{params[:term].to_s.downcase}#{wildcard}"]
-                                                                  ).map { |tag| {:id => tag.id, :value => tag.name}}
+            ["tags.name #{op} ?", "#{wildcard}#{params[:term].to_s.downcase}#{wildcard}"]
+            ).map { |tag| {:id => tag.id, :value => tag.name}}
           render :json => @tags.flatten
         end
 
@@ -46,15 +46,15 @@ module Refinery
           # if the position field exists, set this object as last object, given the conditions of this class.
           if Refinery::Blog::Post.column_names.include?("position")
             params[:post].merge!({
-                                   :position => ((Refinery::Blog::Post.maximum(:position, :conditions => "")||-1) + 1)
-                                 })
+                :position => ((Refinery::Blog::Post.maximum(:position, :conditions => "")||-1) + 1)
+              })
           end
 
           if (@post = Refinery::Blog::Post.create(params[:post])).valid?
             (request.xhr? ? flash.now : flash).notice = t(
-                                                          'refinery.crudify.created',
-                                                          :what => "'#{@post.title}'"
-                                                          )
+              'refinery.crudify.created',
+              :what => "'#{@post.title}'"
+              )
 
             unless from_dialog?
               unless params[:continue_editing] =~ /true|on|1/

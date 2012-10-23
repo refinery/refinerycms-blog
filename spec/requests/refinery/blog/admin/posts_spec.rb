@@ -75,6 +75,20 @@ module Refinery
               end
             end
 
+            describe 'validations' do
+              before(:each) do
+                click_button "Save"
+              end
+
+              it 'should validate title' do
+                page.should have_content("Title can't be blank")
+              end
+
+              it 'should validate body' do
+                page.should have_content("Body can't be blank")
+              end
+            end
+
             describe "create blog post with tags" do
               before(:each) do
                 @tag_list = "chicago, bikes, beers, babes"
@@ -111,7 +125,7 @@ module Refinery
               it "should succeed" do
                 page.should have_content(blog_post.title)
 
-                click_link("Edit this blog post")                
+                click_link("Edit this blog post")
                 current_path.should == refinery.edit_blog_admin_blog_post_path(blog, blog_post)
 
                 fill_in "Title", :with => "hax0r"
@@ -126,11 +140,11 @@ module Refinery
                   visit refinery.edit_blog_admin_post_path(blog_post)
                   current_path.should == refinery.edit_blog_admin_post_path(blog_post)
 
-                fill_in "Title", :with => "hax0r"
-                click_button "Save"
+                  fill_in "Title", :with => "hax0r"
+                  click_button "Save"
 
-                page.should_not have_content(blog_post.title)
-                page.should have_content("'hax0r' was successfully updated.")
+                  page.should_not have_content(blog_post.title)
+                  page.should have_content("'hax0r' was successfully updated.")
                 end
               end
             end
