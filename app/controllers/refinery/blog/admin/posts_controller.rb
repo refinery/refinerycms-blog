@@ -8,7 +8,8 @@ module Refinery
         :include => [:translations],
         :redirect_to_url => 'refinery.blog_admin_blog_posts_path'
 
-        before_filter :find_blog
+        before_filter :find_blog, :except => :edit
+        before_filter :find_blog_from_post, :only => :edit
         before_filter :find_all_categories,
         :only => [:new, :edit, :update]
 
@@ -88,6 +89,11 @@ module Refinery
 
         def find_post
           @post = Refinery::Blog::Post.find_by_slug_or_id(params[:id])
+        end
+
+        def find_blog_from_post
+          @post ||= Refinery::Blog::Post.find_by_slug_or_id(params[:id])
+          @blog = @post.blog
         end
 
         def find_all_categories
