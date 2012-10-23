@@ -19,3 +19,12 @@ Refinery::Testing::Railtie.load_dummy_tasks(ENGINE_PATH)
 load File.expand_path('../tasks/rspec.rake', __FILE__)
 
 task :default => :spec
+
+namespace :refinery do
+  namespace :testing do
+    task :setup_extension => :environment do
+      Refinery::BlogGenerator.start %w[--quiet]
+      Rails.application.load_seed
+    end
+  end
+end
