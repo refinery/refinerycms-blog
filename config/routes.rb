@@ -19,6 +19,10 @@ Refinery::Core::Engine.routes.draw do
   namespace :blog, :path => '' do
     namespace :admin, :path => 'refinery' do
 
+      # We need this for the routes helpers calls in the activity
+      # dashboard:
+      resources :posts, :only => [:edit]
+      
       resources :blogs do
         collection do
           post :update_positions

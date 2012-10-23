@@ -31,7 +31,7 @@
     <footer>
       <p>
         <% if blog_post_teaser_enabled?(post.blog) && post.custom_teaser.present? %>
-        <%= link_to t('read_more', :scope => 'refinery.blog.shared.posts'), refinery.blog_post_path(post) %>
+        <%= link_to t('read_more', :scope => 'refinery.blog.shared.posts'), refinery.blog_post_path(post.blog, post) %>
         <% end %>
       </p>
       <aside class='comment_count'>

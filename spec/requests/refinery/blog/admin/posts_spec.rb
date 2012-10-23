@@ -111,7 +111,7 @@ module Refinery
               it "should succeed" do
                 page.should have_content(blog_post.title)
 
-                click_link("Edit this blog post")
+                click_link("Edit this blog post")                
                 current_path.should == refinery.edit_blog_admin_blog_post_path(blog, blog_post)
 
                 fill_in "Title", :with => "hax0r"
@@ -119,6 +119,19 @@ module Refinery
 
                 page.should_not have_content(blog_post.title)
                 page.should have_content("'hax0r' was successfully updated.")
+              end
+
+              context 'using the alternative route helper' do
+                it "should success" do
+                  visit refinery.edit_blog_admin_post_path(blog_post)
+                  current_path.should == refinery.edit_blog_admin_post_path(blog_post)
+
+                fill_in "Title", :with => "hax0r"
+                click_button "Save"
+
+                page.should_not have_content(blog_post.title)
+                page.should have_content("'hax0r' was successfully updated.")
+                end
               end
             end
 
@@ -134,8 +147,8 @@ module Refinery
 
             describe "view live" do
               before (:each) { FactoryGirl.create(:page,
-                                                  :link_url => '/blogs',
-                                                  :title => 'Blogs') }
+                  :link_url => '/blogs',
+                  :title => 'Blogs') }
 
               it "redirects to blog post in the frontend" do
                 click_link "View this blog post live"

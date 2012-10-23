@@ -20,10 +20,10 @@ module Refinery
     end
 
     context "when has blog posts" do
-      let!(:blog_post) { Globalize.with_locale(:en) { FactoryGirl.create(:blog_post, :title => "Refinery CMS blog post", :blog => blog) } }
+      let!(:blog_post) { Globalize.with_locale(:en) { FactoryGirl.create(:blog_post, :title => "Refinery CMS blog post", :custom_teaser => 'Foo', :blog => blog) } }      
 
       it "should display blog post" do
-        visit refinery.blog_post_path(blog, blog_post)
+        visit refinery.blog_blog_path(blog)
 
         page.should have_content(blog_post.title)
       end
@@ -34,7 +34,6 @@ module Refinery
         response.should be_success
         response.content_type.should eq("application/rss+xml")
       end
-
     end
 
     describe "list tagged posts" do
@@ -42,9 +41,9 @@ module Refinery
         before(:each) do
           @tag_name = "chicago"
           @post = FactoryGirl.create(:blog_post,
-                                     :title => "I Love my city",
-                                     :tag_list => @tag_name,
-                                     :blog => blog)
+            :title => "I Love my city",
+            :tag_list => @tag_name,
+            :blog => blog)
           @tag = ::Refinery::Blog::Post.tag_counts_on(:tags).first
         end
 
@@ -58,9 +57,9 @@ module Refinery
         describe 'multiblog' do
           let!(:blog_2) { FactoryGirl.create(:blog) }
           let!(:post_2) { FactoryGirl.create(:blog_post,
-                                             :title => "I don't like my city so much",
-                                             :tag_list => @tag_name,
-                                             :blog => blog_2)}
+              :title => "I don't like my city so much",
+              :tag_list => @tag_name,
+              :blog => blog_2)}
 
           it 'should show the blog tagged posts only' do
             visit refinery.blog_tagged_posts_path(blog_2, @tag.id, @tag_name.parameterize)
@@ -75,7 +74,7 @@ module Refinery
 
     describe "#show" do
       let(:blog_post) { FactoryGirl.create(:blog_post, :blog => blog) }
-      
+
       context "when has no comments" do
         it "should display the blog post" do
           visit refinery.blog_post_path(blog, blog_post)
@@ -85,7 +84,7 @@ module Refinery
       end
       context "when has approved comments" do
         let(:approved_comment) { FactoryGirl.create(:approved_comment,
-                                                    :post => blog_post) }
+            :post => blog_post) }
 
         it "should display the comments" do
           visit refinery.blog_post_path(blog, approved_comment.post)
@@ -96,7 +95,7 @@ module Refinery
       end
       context "when has rejected comments" do
         let(:rejected_comment) { FactoryGirl.create(:rejected_comment,
-                                                    :post => blog_post) }
+            :post => blog_post) }
 
         it "should not display the comments" do
           visit refinery.blog_post_path(blog, rejected_comment.post)
@@ -106,7 +105,7 @@ module Refinery
       end
       context "when has new comments" do
         let(:blog_comment) { FactoryGirl.create(:blog_comment,
-                                                :post => blog_post) }
+            :post => blog_post) }
 
         it "should not display the comments" do
           visit refinery.blog_post_path(blog, blog_comment.post)
@@ -170,7 +169,7 @@ module Refinery
 
     describe "#show draft preview" do
       let(:blog_post) { FactoryGirl.create(:blog_post_draft,
-                                           :blog => blog) }
+          :blog => blog) }
 
       context "when logged in as admin" do
         it "should display the draft notification" do
