@@ -1,18 +1,36 @@
+language: ruby
+before_install:
+  - 'if [[ "$TRAVIS_RUBY_VERSION" =~ "jruby" ]] ; then gem update --system ; fi'
 before_script:
+  - "sh -e /etc/init.d/xvfb start"
   - "bundle exec rake refinery:testing:dummy_app > /dev/null"
-script: "bundle exec rake spec"
+script:
+  - "DISPLAY=:99.0 bundle exec rspec spec"
 notifications:
-  email:
-    - parndt@gmail.com
-    - ugis.ozolss@gmail.com
-    - joe@joesak.com
-    - jamie@enmasse.com
+  email: true
+  irc:
+    use_notice: true
+    skip_join: true
+    channels:
+      - "irc.freenode.org#refinerycms"
+  campfire:
+    on_success: always
+    on_failure: always
+    rooms:
+      - secure: "JaX+Ckvdd2wqL2bD6t8PHvMDBHxWBlCrkBKPcDKxV0t0DOwzzzwxMryVqcRi\nPsmM/zvmWFATDyRmivhNOpu4lRg9RytSroxZ9nkmbLDqjCyEAZ6tv4yZXME/\nPaxPwmfwgS9g8TKjj3lSWS7rEpqqg0D5S0XIfIHrj6KB6LUmFHc="
 env:
   - DB=postgresql
   - DB=mysql
+matrix:
+  allow_failures:
+    - rvm: rbx-18mode
+    - rvm: rbx-19mode
+    - rvm: jruby-19mode
+    - rvm: jruby-18mode
 rvm:
-  - 1.8.7
-  - 1.9.2
   - 1.9.3
-  - rbx
-  - jruby
+  - 1.8.7
+  - rbx-19mode
+  - jruby-19mode
+  - rbx-18mode
+  - jruby-18mode
