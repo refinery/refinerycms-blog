@@ -108,7 +108,7 @@ en:
           title: RSS Feed
           subscribe: Subscribe
         posts:
-          other: Other Posts
+          other: Latest Posts
           created_at: 'Posted on %{when}'
           read_more: Read more
         comments:
@@ -136,7 +136,7 @@ en:
           comments:
             title: Comments
             add: Make a Comment
-          other: Other Blog Posts
+          other: Latest Blog Posts
           filed_in: Filed in
           tagged: Tagged
           submit: Send comment
