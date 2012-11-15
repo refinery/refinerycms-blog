@@ -26,7 +26,6 @@ module Refinery
 
       validates :title, :presence => true, :uniqueness => true
       validates :body,  :presence => true
-      validates :published_at, :author, :presence => true
 
       validates :source_url, :url => { :if => 'Refinery::Blog.validate_source_url',
                                       :update => true,
@@ -39,11 +38,16 @@ module Refinery
       attr_accessible :source_url, :source_url_title
       attr_accessor :locale
 
-
     class Translation
       is_seo_meta
       attr_accessible :browser_title, :meta_description, :meta_keywords, :locale
     end
+
+      # Delegate SEO Attributes to globalize3 translation
+      seo_fields = ::SeoMeta.attributes.keys.map{|a| [a, :"#{a}="]}.flatten
+      delegate(*(seo_fields << {:to => :translation}))
+
+      before_save { |m| m.translation.save }
 
       self.per_page = Refinery::Blog.posts_per_page
 
@@ -116,7 +120,7 @@ module Refinery
         end
 
         def uncategorized
-          live.includes(:categories).where(Refinery::Categorization.table_name => { :blog_category_id => nil }).with_globalize
+          live.includes(:categories).where(:categories => { Refinery::Categorization.table_name => { :blog_category_id => nil } }).with_globalize
         end
 
         def next(current_record)
