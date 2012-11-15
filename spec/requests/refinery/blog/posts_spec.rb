@@ -157,7 +157,7 @@ module Refinery
 
     describe "#show draft preview" do
       let(:blog_post) { FactoryGirl.create(:blog_post_draft) }
-      
+
       context "when logged in as admin" do
         it "should display the draft notification" do
           visit refinery.blog_post_path(blog_post)
@@ -165,9 +165,12 @@ module Refinery
           page.should have_content('This page is NOT live for public viewing.')
         end
       end
-     
+
       context "when not logged in as an admin" do
-        before do 
+        before do
+          # TODO: remove Refinery::Pages::Engine.load_seed dependency.
+          # It's here to temporary fix the issue with 404 after visiting logout path.
+          Refinery::Pages::Engine.load_seed
           visit refinery.logout_path
         end
 
