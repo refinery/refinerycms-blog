@@ -137,6 +137,9 @@ fr:
         archive:
           blog_archive_for: 'Archive du blog pour le %{date}'
           no_blog_articles_posted: "Il n'y a aucun article pour la date du %{date}. Restez en alerte."
+        authors:
+          show:
+            posts_written_by: 'Articles écrits par %{name}'
   activerecord:
     models:
       refinery/blog/category: Categorie
