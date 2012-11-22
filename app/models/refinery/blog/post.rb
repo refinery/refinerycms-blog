@@ -126,7 +126,7 @@ module Refinery
         end
 
         def next(current_record)
-          where(["published_at > ? and draft = ?", current_record.published_at, false]).with_globalize.first
+          where(["published_at > ? and draft = ?", current_record.published_at, false]).reorder('published_at ASC').with_globalize.first
         end
 
         def published_before(date=Time.now)
