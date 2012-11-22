@@ -45,6 +45,12 @@ module Refinery
       attr_accessible :browser_title, :meta_description, :meta_keywords, :locale
     end
 
+      # Delegate SEO Attributes to globalize3 translation
+      seo_fields = ::SeoMeta.attributes.keys.map{|a| [a, :"#{a}="]}.flatten
+      delegate(*(seo_fields << {:to => :translation}))
+
+      before_save { |m| m.translation.save }
+
       self.per_page = Refinery::Blog.posts_per_page
 
       def next
