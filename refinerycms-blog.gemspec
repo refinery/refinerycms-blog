@@ -1,6 +1,5 @@
 # Encoding: UTF-8
-$:.push File.expand_path('../lib', __FILE__)
-require 'refinery/blog/version'
+require File.expand_path('../lib/refinery/blog/version', __FILE__)
 
 version = Refinery::Blog::Version.to_s
 
