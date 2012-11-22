@@ -24,4 +24,5 @@ Gem::Specification.new do |s|
   s.add_dependency    'acts-as-taggable-on'
   s.add_dependency    'seo_meta',             '~> 1.3.0'
   s.add_dependency    'rails_autolink',       '~> 1.0.7'
+  s.add_dependency    'friendly_id',          '~> 4.0.4'
 end

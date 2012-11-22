@@ -3,6 +3,7 @@ require 'refinerycms-settings'
 require 'filters_spam'
 require 'rails_autolink'
 require 'acts_as_indexed'
+require 'friendly_id'
 
 module Refinery
   autoload :BlogGenerator, 'generators/refinery/blog/blog_generator'
