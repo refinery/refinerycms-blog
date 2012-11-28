@@ -4,7 +4,7 @@ class UrlValidator < ActiveModel::EachValidator
 
   def validate_each(record, attribute, value)
     url = value
-    
+
     # Regex code by 'Arsenic' from http://snippets.dzone.com/posts/show/3654
     if url =~ /^
 ( (https?):\/\/ )?
@@ -21,19 +21,23 @@ $/ix
       record.errors[attribute] << 'Not a valid URL'
     end
 
-    if options[:verify]
-      begin
-        url_response = RedirectFollower.new(url).resolve
-        url = url_response.url if options[:verify] == [:resolve_redirects]
-      rescue RedirectFollower::TooManyRedirects
-        record.errors[attribute] << 'URL is redirecting too many times'
-      rescue
-        record.errors[attribute] << 'could not be resolved'
-      end
-    end
+    url = resolve_redirects_verify_url(url) if options[:verify]
 
     if options[:update]
       value.replace url
+    end
+  end
+
+  def resolve_redirects_verify_url(url)
+    begin
+      url_response = RedirectFollower.new(url).resolve
+      url = url_response.url if options[:verify] == [:resolve_redirects]
+    rescue RedirectFollower::TooManyRedirects
+      record.errors[attribute] << 'URL is redirecting too many times'
+    rescue
+      record.errors[attribute] << 'could not be resolved'
+    ensure
+      url
     end
   end
 end
