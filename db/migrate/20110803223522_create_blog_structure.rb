@@ -31,6 +31,7 @@ class CreateBlogStructure < ActiveRecord::Migration
     end
 
     add_index :refinery_blog_comments, :id
+    add_index :refinery_blog_comments, :blog_post_id
 
     create_table :refinery_blog_categories do |t|
       t.string :title
