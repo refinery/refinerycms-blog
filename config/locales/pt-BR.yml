@@ -37,6 +37,16 @@ pt-BR:
           form:
             toggle_advanced_options: Clique aqui para acessar as configurações de meta tag e menu
             published_at: Data de publicação
+            custom_url: Url personalizada
+            custom_url_help: Cria a url para o post a partir desse texto ao invés do título.
+            source_url: Url da Fonte
+            source_url_help: Guarda a url da fonte do material do post.
+            source_url_title: Título da Url da Fonte
+            source_url_title_help: Título para a url da fonte para o post.
+            author: Autor
+            author_help: Configure qual usuário será mostrado como autor desse post.
+            copy_body: Copiar Corpo do Post para o Teaser
+            copy_body_help: Copia o corpo do post para o teaser. Deixe o teaser em branco para que o Refinery o crie automaticamente.
           index:
             no_items_yet: 'Ainda não há Posts no Blog. Clique em "%{create}" para adicionar o primeiro post.'
           uncategorized:
@@ -45,6 +55,7 @@ pt-BR:
             view_live_html: 'Ver este comentário <br/><em>(será aberto em outra janela)</em>'
             edit: Editar este post
             delete: Remover esse post para sempre
+            draft: Rascunho
         settings:
           notification_recipients:
             value: Enviar notificações para
@@ -74,6 +85,7 @@ pt-BR:
             moderation: Moderação
             update_notified: Quem receberá a notificação?
             comments: Comentários
+            teasers: Teasers
       comment_mailer:
         notification:
           greeting: Olá
@@ -83,6 +95,10 @@ pt-BR:
           from: De
           email: Email
           message: Mensagem
+          approve: Aprovar
+          or: " ou "
+          reject: Rejeitar
+          this_comment: " esse comentário."
           closing_line: Atenciosamente
           ps: 'P.S. Lembre-se que você pode ver todos os comentários em "Comentários" dentro da seção "Blog".'
       shared:
@@ -105,6 +121,8 @@ pt-BR:
         show:
           no_posts: Não há posts aqui ainda.
       posts:
+        post:
+          filed_in: Arquivado em
         comment: commentário
         comments:
           by: 'Postado por %{who}'
@@ -120,17 +138,32 @@ pt-BR:
             add: Fazer um comentário
           other: Outros posts
           filed_in: Arquivado em
+          tagged: Marcado
           submit: Enviar comentário
+          name: Nome
+          email: Email
+          message: Mensagem
+          by: Por
+          source: Fonte
+        tagged:
+          no_blog_articles_yet: Ainda não existem artigos postados. Fique sintonizado.
+          posts_tagged: Posts marcados
         archive:
           blog_archive_for: 'Arquivo do blog em %{date}'
           no_blog_articles_posted: 'Não há arquivos do blog em %{date}.'
-        post:
-          filed_in: Arquivado em
   activerecord:
+    models:
+      refinery/blog/category: Categoria
+      refinery/blog/comment: Comentário
+      refinery/blog/post: Blog post
     attributes:
+      refinery/blog/category:
+        title: Título
+      refinery/blog/comment:
+        name: Nome
+        email: Email
+        message: Mensagem
       refinery/blog/post:
         title: Título
         body: Corpo
-      refinery/blog/comment:
-        name: Nome
-        message: Mensagem
+        teaser: Teaser
