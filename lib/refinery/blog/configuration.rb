@@ -12,19 +12,28 @@ module Refinery
     self.post_teaser_length = 250
     self.share_this_key = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
     self.page_url = "/blog"
-    
+
     # Refinery::User isn't available when this line gets hit, so we use static methods instead
     @@user_class_name = nil
-    def self.user_class= (class_name)
-      if class_name.class == Class
-        @@user_class_name = class_name
-      else 
-        raise TypeError, "Expecting configuration input of type Class."
+    class << self
+      def user_class=(class_name)
+        if class_name.is_a?(Class)
+          raise TypeError, "You can't set user_class to be a class, e.g., User.  Instead, please use a string like 'User'"
+        elsif class_name.is_a?(String)
+          @@user_class_name = class_name
+        else
+          raise TypeError, "Invalid type for user_class.  Please use a string like 'User'"
+        end
       end
-    end
-    
-    def self.user_class
-      @@user_class_name || Refinery::User
+
+      def user_class
+        class_name = @@user_class_name || 'Refinery::User'
+        begin
+          Object.const_get(class_name)
+        rescue NameError
+          class_name.constantize
+        end
+      end
     end
   end
 end
