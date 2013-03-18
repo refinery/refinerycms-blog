@@ -11,7 +11,7 @@ Refinery::Core::Engine.routes.draw do
   end
 
   namespace :blog, :path => '' do
-    namespace :admin, :path => 'refinery' do
+    namespace :admin, :path => Refinery::Core.backend_route do
       scope :path => Refinery::Blog.page_url do
         root :to => "posts#index"
 
