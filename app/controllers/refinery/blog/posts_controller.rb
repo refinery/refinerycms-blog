@@ -56,14 +56,14 @@ module Refinery
       def archive
         if params[:month].present?
           date = "#{params[:month]}/#{params[:year]}"
-          @archive_date = Time.parse(date)
-          @date_title = @archive_date.strftime('%B %Y')
-          @posts = Post.live.by_month(@archive_date).page(params[:page])
+          archive_date = Time.parse(date)
+          @date_title = ::I18n.l(archive_date, :format => '%B %Y')
+          @posts = Post.live.by_month(archive_date).page(params[:page])
         else
           date = "01/#{params[:year]}"
-          @archive_date = Time.parse(date)
-          @date_title = @archive_date.strftime('%Y')
-          @posts = Post.live.by_year(@archive_date).page(params[:page])
+          archive_date = Time.parse(date)
+          @date_title = ::I18n.l(archive_date, :format => '%Y')
+          @posts = Post.live.by_year(archive_date).page(params[:page])
         end
         respond_with (@posts)
       end
