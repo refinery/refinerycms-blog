@@ -1,13 +1,13 @@
-<% content_for :title, "#{t('.blog_archive_for', :date => @archive_date.strftime('%B %Y'))}" %>
+<% content_for :title, "#{t('.blog_archive_for', :date => @date_title)}" %>
 
 <% content_for :body do %>
-  <h1><%= t('.blog_archive_for', :date => @archive_date.strftime('%B %Y')) %></h1>
+  <h1><%= t('.blog_archive_for', :date => @date_title) %></h1>
   <% if @posts.any? %>
     <section id="blog_posts">
       <%= render :partial => "/refinery/blog/shared/post", :collection => @posts %>
     </section>
   <% else %>
-    <p><%= t('.no_blog_articles_posted', :date => @archive_date.strftime('%B %Y')) %></p>
+    <p><%= t('.no_blog_articles_posted', :date => @date_title) %></p>
   <% end %>
 <% end %>
 
