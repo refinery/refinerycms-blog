@@ -150,8 +150,8 @@ fr:
           no_blog_articles_yet: "Il n'y a aucun article pour l'instant. Restez en alerte."
           posts_tagged: Articles taggés
         archive:
-          blog_archive_for: 'Archive du blog pour le %{date}'
-          no_blog_articles_posted: "Il n'y a aucun article pour la date du %{date}. Restez en alerte."
+          blog_archive_for: 'Archive du blog pour %{date}'
+          no_blog_articles_posted: "Il n'y a aucun article pour %{date}. Restez en alerte."
   activerecord:
     models:
       refinery/blog/category: Catégorie
