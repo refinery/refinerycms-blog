@@ -5,6 +5,7 @@
   <% if @posts.any? %>
     <section id="blog_posts">
       <%= render :partial => "/refinery/blog/shared/post", :collection => @posts %>
+      <%= will_paginate @posts %>
     </section>
   <% else %>
     <p><%= t('.no_blog_articles_posted', :date => @date_title) %></p>
