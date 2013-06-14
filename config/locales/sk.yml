@@ -35,6 +35,8 @@ sk:
             approve: Schváliť komentár
         posts:
           form:
+            body: Text
+            teaser: Teaser
             toggle_advanced_options: Klikni pre prístup k nastaveniam meta tagov a menu
             published_at: Dátum publikovania
             custom_url: Vlastná url
