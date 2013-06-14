@@ -35,6 +35,8 @@ fr:
             approve: Approuver ce commentaire
         posts:
           form:
+            body: Corps
+            teaser: Résumé
             toggle_advanced_options: Cliquez ici pour accéder aux paramêtres des meta-tags et au menu des options
             published_at: Date de publication
             custom_url: Adresse personnalisée

@@ -35,6 +35,8 @@ ja:
             approve: このコメントを承認する
         posts:
           form:
+            body: 本文
+            teaser: 短紹介文
             toggle_advanced_options: メタタグの設定メニューをアクセスするにはここをクリックして下さい
             published_at: 公開時刻
             custom_url: カスタムURL

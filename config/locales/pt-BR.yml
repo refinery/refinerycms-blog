@@ -35,6 +35,8 @@ pt-BR:
             approve: Aprovar este comentário
         posts:
           form:
+            body: Corpo
+            teaser: Teaser
             toggle_advanced_options: Clique aqui para acessar as configurações de meta tag e menu
             published_at: Data de publicação
             custom_url: Url personalizada

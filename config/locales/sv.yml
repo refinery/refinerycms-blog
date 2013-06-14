@@ -35,6 +35,8 @@ sv:
             approve: Godkänn denna kommentar
         posts:
           form:
+            body: Innehåll
+            teaser: Teaser
             toggle_advanced_options: Klicka för att ställa in metataggar och menyinställningar
             published_at: Publiceringsdatum
             custom_url: Anpassad URL

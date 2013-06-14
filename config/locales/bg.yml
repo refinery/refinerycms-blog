@@ -35,6 +35,8 @@ bg:
             approve: Одобряване на този коментар
         posts:
           form:
+            body: Съдържание
+            teaser: Извадка
             toggle_advanced_options: Натиснете, за да достъпите настройките за етикета "meta" и менюто
             published_at: Дата на публикуване
             custom_url: Уеб адрес по избор

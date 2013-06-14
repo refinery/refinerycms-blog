@@ -35,6 +35,8 @@ en:
             approve: Approve this comment
         posts:
           form:
+            body: Body
+            teaser: Teaser
             toggle_advanced_options: Click to access meta tag settings and menu options
             published_at: Publish Date
             custom_url: Custom Url

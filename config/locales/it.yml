@@ -35,6 +35,7 @@ it:
             approve: Approva questo commento
         posts:
           form:
+            body: Testo
             toggle_advanced_options: Clicca per accedere alle impostationi dei meta tag e del menu
             published_at: Data di Pubblicazione
             custom_url: Url personalizzato
