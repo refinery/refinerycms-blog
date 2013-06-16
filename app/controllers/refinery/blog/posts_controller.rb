@@ -9,8 +9,11 @@ module Refinery
       respond_to :html, :js, :rss
 
       def index
-        # Rss feeders are greedy. Let's give them every blog post instead of paginating.
-        (@posts = Post.live.includes(:comments, :categories).all) if request.format.rss?
+        if request.format.rss?
+          @posts = Post.live.includes(:comments, :categories)
+          # limit rss feed for services (like feedburner) who have max size
+          @posts = Post.recent(params["max_results"]) if params["max_results"].present?
+        end
         respond_with (@posts) do |format|
           format.html
           format.rss
@@ -21,7 +24,7 @@ module Refinery
         @comment = Comment.new
 
         @canonical = url_for(:locale => ::Refinery::I18n.default_frontend_locale) if canonical?
-        
+
         @post.increment!(:access_count, 1)
 
         respond_with (@post) do |format|
