@@ -3,6 +3,7 @@ require "spec_helper"
 module Refinery
   module Blog
     describe PostsController do
+        login_refinery_user
       before do
         FactoryGirl.create(:blog_post, :title => "blogpost_one")
         FactoryGirl.create(:blog_post, :title => "blogpost_two")
