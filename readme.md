@@ -9,6 +9,11 @@ Options:
 * Comment moderation
 * [ShareThis.com](http://sharethis.com) support on posts. To enable, set your key in Refinery's settings area.
 
+## Additional Features
+* To limit rss feed length, use the 'max_results' parameter
+
+        http://test.host/blog/feed.rss?max_results=10
+
 ## Requirements
 
 Refinery CMS version 2.0.0 or above.
