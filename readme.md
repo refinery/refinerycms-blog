@@ -10,9 +10,9 @@ Options:
 * [ShareThis.com](http://sharethis.com) support on posts. To enable, set your key in Refinery's settings area.
 
 ## Additional Features
-* to limit rss feed length, use the 'max_results' parameter
+* To limit rss feed length, use the 'max_results' parameter
 
-        http://test.host/blog/feed/rss?max_results=10
+        http://test.host/blog/feed.rss?max_results=10
 
 ## Requirements
 

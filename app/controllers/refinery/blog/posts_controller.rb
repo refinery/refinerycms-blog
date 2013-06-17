@@ -9,10 +9,9 @@ module Refinery
       respond_to :html, :js, :rss
 
       def index
-        # Rss feeders are greedy. Let's give them every blog post instead of paginating.
         if request.format.rss?
           @posts = Post.live.includes(:comments, :categories)
-          #limit rss feed for services (like feedburner) who have max size
+          # limit rss feed for services (like feedburner) who have max size
           @posts = Post.recent(params["max_results"]) if params["max_results"].present?
         end
         respond_with (@posts) do |format|
