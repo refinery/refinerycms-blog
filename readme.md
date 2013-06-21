@@ -9,11 +9,6 @@ Options:
 * Comment moderation
 * [ShareThis.com](http://sharethis.com) support on posts. To enable, set your key in Refinery's settings area.
 
-## Additional Features
-* To limit rss feed length, use the 'max_results' parameter
-
-        http://test.host/blog/feed.rss?max_results=10
-
 ## Requirements
 
 Refinery CMS version 2.0.0 or above.
@@ -57,3 +52,14 @@ Run the test suite with [Guard](https://github.com/guard/guard)
 Or just with rake spec
 
     $ bundle exec rake spec
+
+## Additional Features
+* To limit rss feed length, use the 'max_results' parameter
+
+        http://test.host/blog/feed.rss?max_results=10
+
+## More Information
+* Check out our [Website](http://refinerycms.com/)
+* Documentation is available in the [guides](http://refinerycms.com/guides)
+* Questions can be asked on our [Google Group](http://group.refinerycms.org)
+* Questions can also be asked in our IRC room, [#refinerycms on freenode](irc://irc.freenode.net/refinerycms)
