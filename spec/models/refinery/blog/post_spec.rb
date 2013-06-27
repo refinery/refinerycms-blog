@@ -114,15 +114,15 @@ module Refinery
 
       describe "#live?" do
         it "returns true if post is not in draft and it's published" do
-          Factory.build(:blog_post).should be_live
+          FactoryGirl.build(:blog_post).should be_live
         end
 
         it "returns false if post is in draft" do
-          Factory.build(:blog_post, :draft => true).should_not be_live
+          FactoryGirl.build(:blog_post, :draft => true).should_not be_live
         end
 
         it "returns false if post pub date is in future" do
-          Factory.build(:blog_post, :published_at => Time.now.advance(:minutes => 1)).should_not be_live
+          FactoryGirl.build(:blog_post, :published_at => Time.now.advance(:minutes => 1)).should_not be_live
         end
       end
 

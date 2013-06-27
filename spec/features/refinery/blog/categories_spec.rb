@@ -3,9 +3,9 @@ require "spec_helper"
 module Refinery
   describe "BlogCategories" do
     refinery_login_with :refinery_user
-    
+
     context "has one category and post" do
-      before(:each) do
+      before do
         post = Globalize.with_locale(:en) do
           FactoryGirl.create(:blog_post, :title => "Refinery CMS blog post")
         end

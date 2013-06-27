@@ -5,10 +5,10 @@ module Refinery
     module Admin
       describe Comment do
         refinery_login_with :refinery_user
-        
+
         describe "#index" do
           context "when has no new unapproved comments" do
-            before(:each) do
+            before do
               subject.class.delete_all
               visit refinery.blog_admin_comments_path
             end
@@ -21,7 +21,7 @@ module Refinery
           end
           context "when has new unapproved comments" do
             let!(:blog_comment) { FactoryGirl.create(:blog_comment) }
-            before(:each) { visit refinery.blog_admin_comments_path }
+            before { visit refinery.blog_admin_comments_path }
 
             it "should list comments" do
               page.should have_content(blog_comment.body)
@@ -44,7 +44,7 @@ module Refinery
 
         describe "#approved" do
           context "when has no approved comments" do
-            before(:each) do
+            before do
               subject.class.delete_all
               visit refinery.approved_blog_admin_comments_path
             end
@@ -57,7 +57,7 @@ module Refinery
             let!(:blog_comment) do
               FactoryGirl.create(:blog_comment, :state => 'approved')
             end
-            before(:each) { visit refinery.approved_blog_admin_comments_path }
+            before { visit refinery.approved_blog_admin_comments_path }
 
             it "should list comments" do
               page.should have_content(blog_comment.body)
@@ -74,7 +74,7 @@ module Refinery
 
         describe "#rejected" do
           context "when has no rejected comments" do
-            before(:each) do
+            before do
               subject.class.delete_all
               visit refinery.rejected_blog_admin_comments_path
             end
@@ -87,7 +87,7 @@ module Refinery
             let!(:blog_comment) do
               FactoryGirl.create(:blog_comment, :state => 'rejected')
             end
-            before(:each) { visit refinery.rejected_blog_admin_comments_path }
+            before { visit refinery.rejected_blog_admin_comments_path }
 
             it "should list comments" do
               page.should have_content(blog_comment.body)
@@ -104,7 +104,7 @@ module Refinery
 
         describe "#show" do
           let!(:blog_comment) { FactoryGirl.create(:blog_comment) }
-          before(:each) { visit refinery.blog_admin_comment_path(blog_comment) }
+          before { visit refinery.blog_admin_comment_path(blog_comment) }
           it "should display the comment" do
             page.should have_content(blog_comment.body)
             page.should have_content(blog_comment.name)

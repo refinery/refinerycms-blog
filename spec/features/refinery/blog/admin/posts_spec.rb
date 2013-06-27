@@ -7,13 +7,15 @@ module Refinery
       describe Post do
         refinery_login_with :refinery_user
 
-        let!(:blog_category) { FactoryGirl.create(:blog_category, :title => "Video Games") }
+        let!(:blog_category) do
+          Globalize.with_locale(:en) { FactoryGirl.create(:blog_category) }
+        end
 
         context "when no blog posts" do
-          before(:each) { subject.class.destroy_all }
+          before { subject.class.destroy_all }
 
           describe "blog post listing" do
-            before(:each) { visit refinery.blog_admin_posts_path }
+            before { visit refinery.blog_admin_posts_path }
 
             it "invites to create new post" do
               page.should have_content("There are no Blog Posts yet. Click \"Create new post\" to add your first blog post.")
@@ -21,7 +23,7 @@ module Refinery
           end
 
           describe "new blog post form" do
-            before(:each) do
+            before do
               visit refinery.blog_admin_posts_path
               click_link "Create new post"
             end
@@ -30,14 +32,18 @@ module Refinery
               page.should have_content("Tags")
             end
 
-            it "should have Video Games" do
+            it "should have category title", :js => true do
+              click_link "toggle_advanced_options"
               page.should have_content(blog_category.title)
             end
 
-            describe "create blog post" do
-              before(:each) do
-                fill_in "Title", :with => "This is my blog post"
-                fill_in "post_body", :with => "And I love it"
+            describe "create blog post", :js => true do
+              before do
+                fill_in "post_title", :with => "This is my blog post"
+                # this is a dirty hack but textarea that needs to be filled is
+                # hidden and capybara refuses to fill in elements it can't see
+                page.evaluate_script("WYMeditor.INSTANCES[0].html('<p>And I love it</p>')")
+                click_link "toggle_advanced_options"
                 check blog_category.title
                 click_button "Save"
               end
@@ -60,11 +66,13 @@ module Refinery
               end
             end
 
-            describe "create blog post with tags" do
-              before(:each) do
+            describe "create blog post with tags", :js => true do
+              before do
                 @tag_list = "chicago, bikes, beers, babes"
                 fill_in "Title", :with => "This is a tagged blog post"
-                fill_in "post_body", :with => "And I also love it"
+                # this is a dirty hack but textarea that needs to be filled is
+                # hidden and capybara refuses to fill in elements it can't see
+                page.evaluate_script("WYMeditor.INSTANCES[0].html('<p>And I also love it</p>')")
                 fill_in "Tags", :with => @tag_list
                 click_button "Save"
               end
@@ -90,7 +98,7 @@ module Refinery
           end
 
           describe "blog post listing" do
-            before(:each) { visit refinery.blog_admin_posts_path }
+            before { visit refinery.blog_admin_posts_path }
 
             describe "edit blog post" do
               it "should succeed" do
@@ -99,7 +107,7 @@ module Refinery
                 click_link("Edit this blog post")
                 current_path.should == refinery.edit_blog_admin_post_path(blog_post)
 
-                fill_in "Title", :with => "hax0r"
+                fill_in "post_title", :with => "hax0r"
                 click_button "Save"
 
                 page.should_not have_content(blog_post.title)
@@ -146,17 +154,19 @@ module Refinery
         end
 
         context "with multiple users" do
-          let!(:other_guy) { Factory(:refinery_user, :username => "Other Guy") }
+          let!(:other_guy) { FactoryGirl.create(:refinery_user, :username => "Other Guy") }
 
-          describe "create blog post with alternate author" do
-            before(:each) do
+          describe "create blog post with alternate author", :js => true do
+            before do
               visit refinery.blog_admin_posts_path
               click_link "Create new post"
 
-              fill_in "Title", :with => "This is some other guy's blog post"
-              fill_in "post_body", :with => "I totally didn't write it."
+              fill_in "post_title", :with => "This is some other guy's blog post"
+              # this is a dpage_titleirty hack but textarea that needs to be filled is
+              # hidden and capybara refuses to fill in elements it can't see
+              page.evaluate_script("WYMeditor.INSTANCES[0].html('<p>I totally did not write it.</p>')")
 
-              click_link "Advanced options"
+              click_link "toggle_advanced_options"
 
               select other_guy.username, :from => "Author"
 
@@ -174,10 +184,10 @@ module Refinery
         end
 
         context "with translations" do
-          before(:each) do
+          before do
             Globalize.locale = :en
             Refinery::I18n.stub(:frontend_locales).and_return([:en, :ru])
-            blog_page = Factory.create(:page, :link_url => "/blog", :title => "Blog")
+            blog_page = FactoryGirl.create(:page, :link_url => "/blog", :title => "Blog")
             Globalize.with_locale(:ru) do
               blog_page.title = 'блог'
               blog_page.save
@@ -279,7 +289,7 @@ module Refinery
               _blog_post
             end
 
-            before(:each) do
+            before do
               visit refinery.blog_admin_posts_path
             end
 

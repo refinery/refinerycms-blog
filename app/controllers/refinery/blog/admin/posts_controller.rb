@@ -81,7 +81,7 @@ module Refinery
         end
 
         def find_all_categories
-          @categories = Refinery::Blog::Category.find(:all)
+          @categories = Refinery::Blog::Category.all
         end
 
         def check_category_ids

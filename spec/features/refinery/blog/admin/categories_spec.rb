@@ -20,9 +20,9 @@ describe "Categories admin" do
   end
 
   context "with translations" do
-    before(:each) do
+    before do
       Refinery::I18n.stub(:frontend_locales).and_return([:en, :ru])
-      blog_page = Globalize.with_locale(:en) { Factory.create(:page, :link_url => "/blog", :title => "Blog") }
+      blog_page = Globalize.with_locale(:en) { FactoryGirl.create(:page, :link_url => "/blog", :title => "Blog") }
       Globalize.with_locale(:ru) do
         blog_page.title = 'блог'
         blog_page.save
