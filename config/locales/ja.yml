@@ -39,6 +39,12 @@ ja:
             published_at: 公開時刻
             custom_url: カスタムURL
             custom_url_help: 投稿のURLをここのテキストとして登録する。
+            source_url: 参照元URL
+            source_url_help: 記事の参照元URLを登録出来ます。
+            source_url_title: 参照元ページのタイトル
+            source_url_title_help: 参照元ページのタイトルを入れて下さい。
+            author: 作者
+            author_help: 記事の作者として表示させる人を設定します。
             copy_body: 本文を短説明文にコピーする
             copy_body_help: 短説明文として本文を引用します。短説明文を空にすると自動的に反映されます。
           index:
@@ -49,6 +55,7 @@ ja:
             view_live_html: 'この投稿を見る。<br/><em>(新規ウィンドウに開かれます)</em>'
             edit: この投稿を編集する
             delete: この投稿を削除する
+            draft: 下書き
         settings:
           notification_recipients:
             value: 通知の受信者
@@ -78,6 +85,7 @@ ja:
             moderation: 管理する
             update_notified: 通知者を変更・更新する
             comments: コメント
+            teasers: 宣伝文
       comment_mailer:
         notification:
           greeting: こんにちわ
@@ -87,6 +95,10 @@ ja:
           from: 差出人
           email: メール
           message: メッセージ
+          approve: 承認
+          or: "か"
+          reject: 却下
+          this_comment: "このコメントを"
           closing_line: 以上、
           ps: '追記: 全てのコメントを見るにはRefineryブログの「コメント」に参照して下さい。'
       shared:
@@ -132,6 +144,7 @@ ja:
           email: メール
           message: メッセージ
           by: '投稿者:'
+          source: 参照元
         tagged:
           no_blog_articles_yet: ブログ記事がまだ投稿されてません。
           posts_tagged: 投稿タグ
@@ -153,4 +166,4 @@ ja:
       refinery/blog/post:
         title: 題名
         body: 本文
-        teaser: 短紹介文
+        teaser: 宣伝文
