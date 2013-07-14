@@ -2,14 +2,17 @@ source "http://rubygems.org"
 
 gemspec
 
-gem 'refinerycms', :git => 'git://github.com/refinery/refinerycms.git'
-gem 'refinerycms-i18n', :git => 'git://github.com/refinery/refinerycms-i18n.git'
-gem 'refinerycms-settings', :git => 'git://github.com/refinery/refinerycms-settings.git'
+git 'https://github.com/refinery/refinerycms.git', :branch => 'master' do
+  gem 'refinerycms'
+  gem 'refinerycms-testing', :group => [:development, :test]
+end
+
+gem 'refinerycms-i18n', :github => 'refinery/refinerycms-i18n', :branch => 'master'
+gem 'refinerycms-settings', :github => 'refinery/refinerycms-settings', :branch => 'master'
 
 group :development, :test do
   require 'rbconfig'
 
-  gem 'refinerycms-testing', :git => 'git://github.com/refinery/refinerycms.git'
   gem 'guard-rspec', '~> 1.1.0'
 
   platforms :jruby do
