@@ -116,7 +116,7 @@ ru:
           no_posts: Записей пока нет.
       posts:
         post:
-          filed_in: Категория
+          filled_in: Категория
         comment: комментарий
         comments:
           by: 'Опубликовал %{who}'
@@ -131,7 +131,7 @@ ru:
             title: Комментарии
             add: Написать комментарий
           other: Другие записи
-          filed_in: Категория
+          filled_in: Категория
           submit: Отправить комментарий
           tagged: Тэги
           submit: Отправить коментарий
@@ -147,7 +147,7 @@ ru:
     models:
       refinery/blog_category: Категория
       refinery/blog_comment: Коментарии
-      refinery/blog_post: Запись в блоге 
+      refinery/blog_post: Запись в блоге
     attributes:
       refinery/blog_category:
         title: Название

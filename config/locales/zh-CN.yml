@@ -104,7 +104,7 @@ zh-CN:
           no_posts: 此处没有文章。
       posts:
         post:
-          filed_in: 用户体验
+          filled_in: 用户体验
         comment: 评论
         comments:
           by: '发布由 %{who}'
@@ -119,7 +119,7 @@ zh-CN:
             title: 评论
             add: 发表评论
           other: 其他博文
-          filed_in: 用户体验
+          filled_in: 用户体验
           submit: 发送评论
         archive:
           blog_archive_for: '博客存档 %{date}'

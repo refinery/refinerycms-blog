@@ -104,7 +104,7 @@ pl:
           no_posts: Nie ma jeszcze żadnych postów.
       posts:
         post:
-          filed_in: 'kategorie:'
+          filled_in: 'kategorie:'
         comment: komentarz
         comments:
           by: 'Autor: %{who}'
@@ -114,12 +114,12 @@ pl:
         index:
           no_blog_articles_yet: W tej chwili nie ma jeszcze żadnych postów. Cierpliwości:)
         show:
-          blog_home: Blog 
+          blog_home: Blog
           comments:
             title: Komentarze
             add: Dodaj komentarz
           other: Pozostałe wpisy
-          filed_in: 'kategorie:'
+          filled_in: 'kategorie:'
           submit: Dodaj komentarz
         archive:
           blog_archive_for: 'Archiwum dla %{date}'

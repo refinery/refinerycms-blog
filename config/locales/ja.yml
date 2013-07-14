@@ -122,7 +122,7 @@ ja:
           no_posts: 投稿がありません。
       posts:
         post:
-          filed_in: に分類されている
+          filled_in: に分類されている
         comment: コメント
         comments:
           by: '%{who}より'
@@ -137,7 +137,7 @@ ja:
             title: コメント
             add: コメントを投稿
           other: 他のブログ投稿
-          filed_in: に分類されている
+          filled_in: に分類されている
           tagged: とのタグが付いている
           submit: コメントを送信
           name: 名前

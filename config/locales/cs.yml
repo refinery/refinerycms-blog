@@ -17,7 +17,7 @@ cs:
             view_live_html: 'Zobrazit živý náhled <br/><em>(otevře nové okno)</em>'
             read: Zobrazit komentář
             reject: Zamítnout komentář
-            approve: Schválit 
+            approve: Schválit
           rejected: 'Komentář od "%{author}" byl zamítnut.'
           index:
             no_items_yet: 'Nejsou zde žádné %{type} komentáře.'
@@ -28,14 +28,14 @@ cs:
             date: Datum
             message: Komentář
             details: Detaily
-            age: Věk 
+            age: Věk
             actions: Akce
             back: Zpět na seznam komentářů
             reject: Zamítnout komentář
             approve: Schváliť komentář
         posts:
           form:
-            toggle_advanced_options: Klikni pro přístup k nastavením meta tagů a menu 
+            toggle_advanced_options: Klikni pro přístup k nastavením meta tagů a menu
             published_at: Datum publikování
           index:
             no_items_yet: 'Nejsou žádné články na blogu. Klikni na "%{create}" pro přidání prvního.'
@@ -92,7 +92,7 @@ cs:
           title: RSS zdroj článků
           subscribe: Přihlásit k odběru
         posts:
-          other: Další články 
+          other: Další články
           created_at: 'Publikován %{when}'
           read_more: Celý článek
         comments:
@@ -104,7 +104,7 @@ cs:
           no_posts: Nejsou zde žádné články.
       posts:
         post:
-          filed_in: Podaný
+          filled_in: Podaný
         comment: komentář
         comments:
           by: 'Odeslal %{who}'
@@ -119,7 +119,7 @@ cs:
             title: Komentáře
             add: Přidat komentář
           other: Další články
-          filed_in: Podaný
+          filled_in: Podaný
           submit: Odeslat komentář
         archive:
           blog_archive_for: 'Blog archiv pro %{date}'

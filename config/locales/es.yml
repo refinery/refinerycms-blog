@@ -104,7 +104,7 @@ es:
           no_posts: Todavía no hay entradas.
       posts:
         post:
-          filed_in: Archivado en
+          filled_in: Archivado en
         comment: comentario
         comments:
           by: 'Enviado por %{who}'
@@ -119,7 +119,7 @@ es:
             title: Comentarios
             add: 'Envía tu comentario'
           other: Otros posts
-          filed_in: Archivado en
+          filled_in: Archivado en
           submit: Enviar comentario
         archive:
           blog_archive_for: 'Archivo del blog en %{date}'

@@ -120,7 +120,7 @@ sk:
           no_posts: Momentálne tu nie sú žiadne články.
       posts:
         post:
-          filed_in: Zaradené do
+          filled_in: Zaradené do
         comment: komentár
         comments:
           by: 'Odoslal %{who}'
@@ -135,7 +135,7 @@ sk:
             title: Komentáre
             add: Pridať komentár
           other: Ďalšie články
-          filed_in: Zaradené do
+          filled_in: Zaradené do
           submit: Odoslať komentár
           name: Meno
           email: E-mail

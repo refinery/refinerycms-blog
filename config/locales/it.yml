@@ -110,7 +110,7 @@ it:
           no_posts: Non sono ancora presenti articoli.
       posts:
         post:
-          filed_in: Archiviato in
+          filled_in: Archiviato in
         comment: commento
         comments:
           by: 'Pubblicato da %{who}'
@@ -124,7 +124,7 @@ it:
             title: Commenti
             add: Scrivi un Commento
           other: Altri Articoli
-          filed_in: Archiviato in
+          filled_in: Archiviato in
           submit: Invia commento
           tagged: Taggato
           name: Nome

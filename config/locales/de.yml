@@ -118,7 +118,7 @@ de:
           no_posts: Es sind noch keine Artikel vorhanden.
       posts:
         post:
-          filed_in: Gespeichert unter
+          filled_in: Gespeichert unter
         comment: Kommentar
         comments:
           by: 'Verfasst von %{who}'
@@ -133,7 +133,7 @@ de:
             title: Kommentare
             add: Neuen Kommentar hinzufügen
           other: Andere Artikel
-          filed_in: Gespeichert unter
+          filled_in: Gespeichert unter
           tagged: Tagged
           submit: Kommentar senden
           name: Name

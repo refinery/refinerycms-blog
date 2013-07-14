@@ -8,8 +8,8 @@
         </time>
         <%= "#{t('by', :scope => 'refinery.blog.posts.show')} #{post.author.username}" if post.author.present? %>.
         <% if (categories = post.categories.translated).any? %>
-          <aside class='filed_in'>
-            <%= t('filed_in', :scope => 'refinery.blog.posts.show') %>
+          <aside class='filled_in'>
+            <%= t('filled_in', :scope => 'refinery.blog.posts.show') %>
             <%=raw categories.collect { |category| link_to category.title, refinery.blog_category_path(category) }.to_sentence %>
           </aside>
         <% end %>

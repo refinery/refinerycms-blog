@@ -110,7 +110,7 @@ bg:
           no_posts: Тук все още няма публикации.
       posts:
         post:
-          filed_in: Категория
+          filled_in: Категория
         comment: коментар
         comments:
           by: 'Публикувано от %{who}'
@@ -125,7 +125,7 @@ bg:
             title: Коментари
             add: Вашият коментар
           other: Други публикации
-          filed_in: Категория
+          filled_in: Категория
           tagged: Отбелязано с
           submit: Изпращане на коментар
           name: Име

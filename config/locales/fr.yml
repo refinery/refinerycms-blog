@@ -123,7 +123,7 @@ fr:
           no_posts: 'Il n''y a aucun article pour cette catégorie.'
       posts:
         post:
-          filed_in: Classé dans
+          filled_in: Classé dans
         comment: commentaire
         comments:
           by: 'Écrit par %{who}'
@@ -138,7 +138,7 @@ fr:
             title: Commentaires
             add: Ajouter un commentaire
           other: Autres articles
-          filed_in: Classé dans
+          filled_in: Classé dans
           tagged: Taggé
           submit: Envoyer le commentaire
           name: Nom

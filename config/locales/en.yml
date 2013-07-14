@@ -122,7 +122,7 @@ en:
           no_posts: There are no posts here yet.
       posts:
         post:
-          filed_in: Filed in
+          filled_in: Filed in
         comment: comment
         comments:
           by: 'Posted by %{who}'
@@ -137,7 +137,7 @@ en:
             title: Comments
             add: Make a Comment
           other: Latest Blog Posts
-          filed_in: Filed in
+          filled_in: Filed in
           tagged: Tagged
           submit: Send comment
           name: Name

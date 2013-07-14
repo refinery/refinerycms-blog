@@ -36,7 +36,7 @@ nl:
         posts:
           form:
             toggle_advanced_options: Klik voor toegang tot meta tag instellingen en menu opties
-            published_at: Publicatiedatum 
+            published_at: Publicatiedatum
           index:
             no_items_yet: 'Er zijn momenteel geen blogposts. Klik op "%{create}" om uw eerste blogpost toe te voegen.'
           uncategorized:
@@ -107,7 +107,7 @@ nl:
           no_posts: Er zijn momenteel geen posts.
       posts:
         post:
-          filed_in: Toegevoegd aan
+          filled_in: Toegevoegd aan
         comment: Reactie
         comments:
           by: 'Gepost door %{who}'
@@ -122,7 +122,7 @@ nl:
             title: Reacties
             add: Plaats een reactie
           other: Andere blogposts
-          filed_in: Toegevoegd aan
+          filled_in: Toegevoegd aan
           tagged: Tagged
           submit: Verstuur reactie
         tagged:

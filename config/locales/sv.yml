@@ -118,7 +118,7 @@ sv:
           no_posts: Det finns inga poster än.
       posts:
         post:
-          filed_in: Kategoriserat som
+          filled_in: Kategoriserat som
         comment: kommentar
         comments:
           by: 'Postad av %{who}'
@@ -133,7 +133,7 @@ sv:
             title: Kommentarer
             add: Kommentera
           other: Andra bloggposter
-          filed_in: Kategoriserat i
+          filled_in: Kategoriserat i
           tagged: Taggar
           submit: Skicka kommentar
           name: Namn

@@ -122,7 +122,7 @@ pt-BR:
           no_posts: Não há posts aqui ainda.
       posts:
         post:
-          filed_in: Arquivado em
+          filled_in: Arquivado em
         comment: commentário
         comments:
           by: 'Postado por %{who}'
@@ -137,7 +137,7 @@ pt-BR:
             title: Comentários
             add: Fazer um comentário
           other: Outros posts
-          filed_in: Arquivado em
+          filled_in: Arquivado em
           tagged: Marcado
           submit: Enviar comentário
           name: Nome
