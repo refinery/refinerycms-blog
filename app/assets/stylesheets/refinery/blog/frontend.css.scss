@@ -1,20 +1,22 @@
-.blog_post header, .blog_post footer {
-  width: auto;
+.blog_post {
+  header, footer {
+    width: auto;
+  }
 }
-.blog_post .posted_at{
-}
-.post_categories .filled_in {
-  display: inline;
-}
-.post_categories ul {
-  margin: 0px 0px 0px 6px;
-  padding: 0px;
-  display: inline;
-}
-.post_categories ul li {
-  margin: 0px;
-  padding: 0px;
-  display: inline;
+.post_categories {
+  .filled_in {
+    display: inline;
+  }
+  ul {
+    margin: 0px 0px 0px 6px;
+    padding: 0px;
+    display: inline;
+    li {
+      margin: 0px;
+      padding: 0px;
+      display: inline;
+    }
+  }
 }
 .field.message_field label {
   vertical-align: top;
@@ -25,69 +27,78 @@
   background: image_url('refinery/blog/rss-feed.png') no-repeat;
 }
 #next_prev_article{
-  overflow:hidden;
-  margin:10px 0;
-  position:relative;
-  height:30px;
+  overflow: hidden;
+  margin: 10px 0;
+  position: relative;
+  height: 30px;
+  a {
+    display: block;
+    width: 33%;
+    height: 30px;
+    line-height: 30px;
+    position: absolute;
+    top:0;
+    &.prev {
+      left:0;
+    }
+    &.home {
+      left: 33%;
+      text-align: center;
+    }
+    &.next {
+      text-align: right;
+      right:0;
+    }
+  }
 }
-#next_prev_article a{
-  display:block;
-  width:33%;
-  height:30px;
-  line-height:30px;
-  position:absolute;
-  top:0;
-}
-#next_prev_article a.prev{
-  left:0;
-}
-#next_prev_article a.home{
-  left:33%;
-  text-align:center;
-}
-#next_prev_article a.next{
-  text-align:right;
-  right:0;
-}
-
 #message, .flash {
   padding: 8px 8px 8px 30px;
   margin-bottom: 15px;
   position: relative;
 }
-.flash_notice, .flash_message {
-  border: 1px solid #00A017;
-  color: #00A017;
-  background: 7px 7px no-repeat image_url('refinery/blog/icons/accept.png') #E0F5E0;
+.flash {
+  .flash_notice {
+    &, * {
+      color: #00A017;
+    }
+  }
+  .flash_notice, .flash_message {
+    border: 1px solid #00A017;
+    color: #00A017;
+    background: 7px 7px no-repeat image_url('refinery/blog/icons/accept.png') #E0F5E0;
+  }
+  .flash_notice #flash_close, .flash.flash_error #flash_close {
+    text-transform: lowercase;
+  }
+  .flash_message {
+    background: #E0F5E0;
+    padding: 9px;
+    position: relative;
+    margin-bottom: 32px;
+    h2 {
+      margin-top: 12px;
+    }
+  }
+  a {
+    &, &:hover {
+      color: #e20003;
+      border-bottom-color: #e20003;
+    }
+  }
+  .flash_error {
+    border: 1px solid #A00027;
+    color: #A00027;
+    background: 7px 7px no-repeat image_url('refinery/blog/icons/cancel.png') #FFB1B1;
+    a {
+      &, &:hover {
+        display: none;
+      }
+    }
+  }
+  .flash_message {
+    &, & * {
+      color: #262719;
+      font-size: 14px;
+    }
+  }
 }
-.flash_notice, .flash_notice * {
-  color: #00A017;
-}
-.flash_error {
-  border: 1px solid #A00027;
-  color: #A00027;
-  background: 7px 7px no-repeat image_url('refinery/blog/icons/cancel.png') #FFB1B1;
-}
-.flash.flash_notice #flash_close, .flash.flash_error #flash_close {
-  text-transform: lowercase;
-}
-.flash.flash_message {
-  background: #E0F5E0;
-  padding: 9px;
-  position: relative;
-  margin-bottom: 32px;
-}
-.flash.flash_message h2 {
-  margin-top: 12px;
-}
-.flash_message, .flash_message * {
-  color: #262719;
-  font-size: 14px;
-}
-.flash a, .flash a:hover {
-  color: #e20003;
-  border-bottom-color: #e20003;
-}
-.flash.flash_error a, .flash.flash_error a:hover {
-  display: none;
-} /* FLASH MESSAGES */
