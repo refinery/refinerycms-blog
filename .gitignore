@@ -52,3 +52,6 @@ capybara-*html
 
 Gemfile.lock
 .rbx
+
+# Local Gemfile for developing without sharing dependencies
+.gemfile
