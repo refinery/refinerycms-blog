@@ -13,6 +13,7 @@ Gem::Specification.new do |s|
   s.homepage          = %q{http://refinerycms.com/blog}
   s.authors           = ['Resolve Digital', 'Neoteric Design']
   s.require_paths     = %w(lib)
+  s.licenses          = %q{MIT}
 
   s.files             = `git ls-files`.split("\n")
   s.test_files        = `git ls-files -- spec/*`.split("\n")
