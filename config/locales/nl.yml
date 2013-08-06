@@ -130,3 +130,19 @@ nl:
         archive:
           blog_archive_for: 'Blog archief voor %{date}'
           no_blog_articles_posted: 'Er zijn geen blogposts voor %{date}. Neem regelmatig een kijkje.'
+  activerecord:
+   models:
+     refinery/blog/category: Categorie
+     refinery/blog/comment: Reactie
+     refinery/blog/post: Blogpost
+   attributes:
+     refinery/blog/category:
+       title: Titel
+     refinery/blog/comment:
+       name: Naam
+       email: E-mail
+       message: Bericht
+     refinery/blog/post:
+       title: Titel
+       body: Body
+       teaser: Teaser
