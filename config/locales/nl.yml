@@ -54,7 +54,7 @@ nl:
             updated: 'De ontvanger(s) van notificaties is/zijn gewijzigd naar "%{recipients}"'
         submenu:
           categories:
-            title: Categorien
+            title: Categorieën
             manage: Beheren
             new: Voeg een nieuwe categorie toe
           comments:
@@ -88,7 +88,7 @@ nl:
           ps: 'P.S. Alle reacties worden opgeslagen in de "Blog" sectie van Refinery onder het submenu "Comments", voor als u deze reacties later wilt bekijken.'
       shared:
         categories:
-          title: Categorien
+          title: Categorieën
         rss_feed:
           title: RSS Feed
           subscribe: Aanmelden
