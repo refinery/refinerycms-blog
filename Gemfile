@@ -2,9 +2,11 @@ source "https://rubygems.org"
 
 gemspec
 
-gem 'refinerycms', :github => 'refinery/refinerycms'
-gem 'refinerycms-settings', :github => 'refinery/refinerycms-settings'
+gem 'refinerycms', '~> 2.1.0'
 gem 'refinerycms-testing', '~> 2.1.0', :group => :test
+gem 'refinerycms-settings', :github => 'refinery/refinerycms-settings'
+gem 'refinerycms-acts-as-indexed', :github => 'refinery/refinerycms-acts-as-indexed', :branch => '1-0-stable'
+
 
 # Database Configuration
 unless ENV['TRAVIS']
