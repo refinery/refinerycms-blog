@@ -10,8 +10,6 @@ module Refinery
 
       belongs_to :post, :foreign_key => 'blog_post_id'
 
-      acts_as_indexed :fields => [:name, :email, :message]
-
       alias_attribute :message, :body
 
       validates :name, :message, :presence => true

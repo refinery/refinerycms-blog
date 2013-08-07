@@ -1,30 +1,21 @@
-<%= render '/refinery/blog/admin/submenu' %>
+<%= render 'refinery/blog/admin/submenu' %>
+<%= render 'refinery/admin/search_header', :url => request.path %>
 <div id='records'>
-  <% if searching? %>
-    <h2><%= t('results_for', :scope => 'shared.admin.search', :query => params[:search]) %></h2>
-    <% if @comments.any? %>
-      <%= will_paginate @comments %>
+  <% if @comments.any? %>
+    <%= will_paginate @comments %>
 
-      <ul>
-        <%= render :partial => "blog_comments",
-                   :collection => @comments %>
-      </ul>
+    <%= render "sortable_list" %>
 
-      <%= will_paginate @comments %>
-    <% else %>
-      <p><%= t('search_no_results', :scope => 'admin') %></p>
-    <% end %>
+    <%= will_paginate @comments %>
   <% else %>
-    <% if @comments.any? %>
-      <%= will_paginate @comments %>
-
-      <%= render "sortable_list" %>
-
-      <%= will_paginate @comments %>
+    <% if searching? %>
+      <%= t('no_results', :scope => 'refinery.admin.search') %>
     <% else %>
-      <h3>
-        <%= t('.no_items_yet', :type => action_name.gsub('index', 'new').downcase) %>
-      </h3>
-    <% end %>
+      <p>
+        <strong>
+          <%= t('.no_items_yet', :type => action_name.gsub('index', 'new').downcase) %>
+        </strong>
+      </p>
   <% end %>
+<% end %>
 </div>
