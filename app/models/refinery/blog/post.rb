@@ -22,8 +22,6 @@ module Refinery
       has_many :categorizations, :dependent => :destroy, :foreign_key => :blog_post_id
       has_many :categories, :through => :categorizations, :source => :blog_category
 
-      acts_as_indexed :fields => [:title, :body]
-
       validates :title, :presence => true, :uniqueness => true
       validates :body,  :presence => true
       validates :published_at, :author, :presence => true
@@ -106,7 +104,7 @@ module Refinery
         end
 
         def published_dates_older_than(date)
-          published_before(date).pluck(:published_at)
+          published_before(date).select(:published_at).map(&:published_at)
         end
 
         def recent(count)
