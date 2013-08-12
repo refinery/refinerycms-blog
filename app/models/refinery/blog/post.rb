@@ -104,7 +104,7 @@ module Refinery
         end
 
         def published_dates_older_than(date)
-          published_before(date).pluck(:published_at)
+          published_before(date).select(:published_at).map(&:published_at)
         end
 
         def recent(count)
