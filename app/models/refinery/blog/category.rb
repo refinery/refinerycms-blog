@@ -10,8 +10,6 @@ module Refinery
       has_many :categorizations, :dependent => :destroy, :foreign_key => :blog_category_id
       has_many :posts, :through => :categorizations, :source => :blog_post
 
-      acts_as_indexed :fields => [:title]
-
       validates :title, :presence => true, :uniqueness => true
 
       attr_accessible :title
