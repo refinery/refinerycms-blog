@@ -13,7 +13,7 @@ if defined?(Refinery::Page) and !Refinery::Page.exists?(:link_url => '/blog')
     :menu_match => "^/blogs?(\/|\/.+?|)$"
   )
 
-  Refinery::Pages.default_parts.each do |default_page_part|
-    page.parts.create(:title => default_page_part, :body => nil)
+  Refinery::Pages.default_parts.each_with_index do |default_page_part, index|
+    page.parts.create(:title => default_page_part, :body => nil, :position => index)
   end
 end
