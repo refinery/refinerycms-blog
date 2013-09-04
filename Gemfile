@@ -3,7 +3,7 @@ source "https://rubygems.org"
 gemspec
 
 gem 'refinerycms', '~> 2.1.0'
-gem 'refinerycms-testing', '~> 2.1.0', :group => :test
+gem 'refinerycms-testing', :github => 'refinery/refinerycms', :branch => '2-1-stable', :group => :test
 gem 'refinerycms-settings', '~> 2.1.0'
 gem 'refinerycms-acts-as-indexed', :github => 'refinery/refinerycms-acts-as-indexed', :branch => '1-0-stable'
 
