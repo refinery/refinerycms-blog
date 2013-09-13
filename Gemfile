@@ -2,11 +2,18 @@ source "https://rubygems.org"
 
 gemspec
 
-gem 'refinerycms', '~> 2.1.0'
-gem 'refinerycms-testing', :github => 'refinery/refinerycms', :branch => '2-1-stable', :group => :test
-gem 'refinerycms-settings', '~> 2.1.0'
-gem 'refinerycms-acts-as-indexed', :github => 'refinery/refinerycms-acts-as-indexed', :branch => '1-0-stable'
-
+git 'https://github.com/refinery/refinerycms.git', branch: 'rails4' do
+  gem 'refinerycms-authentication'
+  gem 'refinerycms-dashboard'
+  gem 'refinerycms-pages'
+  gem 'refinerycms-testing', group: :test
+end
+gem 'refinerycms-i18n', github: 'refinery/refinerycms-i18n', branch: 'master'
+gem 'refinerycms-settings', github: 'refinery/refinerycms-settings', branch: 'master'
+gem 'refinerycms-acts-as-indexed', github: 'refinery/refinerycms-acts-as-indexed', branch: 'master'
+gem 'protected_attributes'
+gem 'globalize3', github: 'svenfuchs/globalize3', branch: 'rails4'
+gem 'seo_meta', github: 'parndt/seo_meta', branch: 'master'
 
 # Database Configuration
 unless ENV['TRAVIS']
@@ -25,13 +32,12 @@ if !ENV['TRAVIS'] || ENV['DB'] == 'postgresql'
   gem 'pg', :platform => :ruby
 end
 
-gem 'jruby-openssl', :platform => :jruby
-
-# Refinery/rails should pull in the proper versions of these
-group :assets do
-  gem 'sass-rails'
-  gem 'coffee-rails'
-  gem 'uglifier'
+group :test do
+  gem 'launchy'
+end
+group :development, :test do
+  gem 'pry'
+  gem 'pry-nav'
 end
 
 # Load local gems according to Refinery developer preference.

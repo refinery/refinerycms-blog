@@ -1,3 +1,6 @@
+## 3.0.0 [UNRELEASED]
+* Removed `Post#default_scope` in favour of opting in to `Post#newest_first`. [parndt](https://github.com/parndt)
+
 ## 1.6.3 [UNRELEASED]
 * Bulgarian translations [mirosr](https://github.com/mirosr)
 * posts/tagged... params[:tag_name] is optional [joemsak](https://github.com/joemsak)

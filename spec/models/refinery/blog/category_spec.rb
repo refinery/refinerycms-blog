@@ -32,7 +32,7 @@ module Refinery
                                                  :published_at => Time.now,
                                                  :author => refinery_user })
 
-          category.posts.first.should == latest_post
+          category.posts.newest_first.first.should == latest_post
         end
 
       end

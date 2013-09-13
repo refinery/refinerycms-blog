@@ -2,7 +2,7 @@ module Refinery
   module Blog
     class PostsController < BlogController
 
-      before_filter :find_all_blog_posts, :except => [:archive]
+      before_filter :paginate_all_blog_posts, :except => [:archive]
       before_filter :find_blog_post, :only => [:show, :comment, :update_nav]
       before_filter :find_tags
 
@@ -10,9 +10,12 @@ module Refinery
 
       def index
         if request.format.rss?
-          @posts = Post.live.includes(:comments, :categories)
-          # limit rss feed for services (like feedburner) who have max size
-          @posts = Post.recent(params["max_results"]) if params["max_results"].present?
+          @posts = if params["max_results"].present?
+            # limit rss feed for services (like feedburner) who have max size
+            Post.recent(params["max_results"])
+          else
+            Post.newest_first.live.includes(:comments, :categories)
+          end
         end
         respond_with (@posts) do |format|
           format.html
@@ -34,7 +37,8 @@ module Refinery
       end
 
       def comment
-        if (@comment = @post.comments.create(params[:comment])).valid?
+        @comment = @post.comments.create(params[:comment])
+        if @comment.valid?
           if Comment::Moderation.enabled? or @comment.ham?
             begin
               CommentMailer.notification(@comment, request).deliver

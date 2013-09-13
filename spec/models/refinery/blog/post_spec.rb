@@ -93,8 +93,10 @@ module Refinery
         end
 
         it "returns all posts which aren't in draft and pub date isn't in future" do
-          described_class.live.count.should be == 2
-          described_class.live.should == [@post2, @post1]
+          live_posts = described_class.live
+          live_posts.count.should be == 2
+          live_posts.should include(@post2)
+          live_posts.should include(@post1)
         end
       end
 
@@ -133,7 +135,7 @@ module Refinery
         end
 
         it "returns next article when called on current article" do
-          described_class.last.next.should == @post
+          described_class.newest_first.last.next.should == @post
         end
       end
 
