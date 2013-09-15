@@ -85,7 +85,7 @@ $(document).ready(function(){
     }
   }).autocomplete({
     source: function( request, response ) {
-      $.getJSON( "/refinery/blog/posts/tags", {
+      $.getJSON( "<%= Refinery::Core::Engine.routes.url_helpers.tags_blog_admin_posts_path %>", {
         term: extractLast( request.term )
       }, response );
     },
