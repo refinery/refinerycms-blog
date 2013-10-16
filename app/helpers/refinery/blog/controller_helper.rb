@@ -19,7 +19,7 @@ module Refinery
         end
 
         def find_tags
-          @tags = Refinery::Blog::Post.tag_counts_on(:tags)
+          @tags = Refinery::Blog::Post.live.tag_counts_on(:tags)
         end
         def find_all_blog_categories
           @categories = Refinery::Blog::Category.translated
