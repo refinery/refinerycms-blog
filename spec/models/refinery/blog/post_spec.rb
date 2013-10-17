@@ -42,8 +42,10 @@ module Refinery
         it "acts as taggable" do
           post.should respond_to(:tag_list)
 
-          #the factory has default tags, including 'chicago'
-          post.tag_list.should include("chicago")
+          post.tag_list = "refinery, cms"
+          post.save!
+
+          post.tag_list.should include("refinery")
         end
       end
 
