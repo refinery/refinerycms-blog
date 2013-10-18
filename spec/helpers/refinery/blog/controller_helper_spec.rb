@@ -6,14 +6,14 @@ module Refinery
         let(:tags) { helper.find_tags }
 
         context "with draft posts" do
-          let!(:blog_post) { FactoryGirl.create(:blog_post, :draft => true) }
+          let!(:blog_post) { FactoryGirl.create(:blog_post, :draft => true, :tag_list => "first, second" ) }
           it "does not return tags" do
             tags.should be_empty
           end
         end
 
         context "with live posts" do
-          let!(:blog_post) { FactoryGirl.create(:blog_post) }
+          let!(:blog_post) { FactoryGirl.create(:blog_post, :tag_list => "first, second" ) }
 
           it "does not return tags" do
             tags.should_not be_empty
