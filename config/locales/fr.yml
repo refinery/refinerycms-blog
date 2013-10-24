@@ -55,6 +55,9 @@ fr:
             view_live_html: 'Voir cet article sur le site<br/><em>(Ouvre une nouvelle fenêtre)</em>'
             edit: Modifier cet article
             delete: Supprimer cet article
+            delete_translation: Supprimer cette traduction
+            delete_translation_confirmation: Êtes-vous sûr de vouloir supprimer cette traduction ?
+            delete_translation_success: La traduction a été correctement supprimée.
             draft: Brouillon
         settings:
           notification_recipients:

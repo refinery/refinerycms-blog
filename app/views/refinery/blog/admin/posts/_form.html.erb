@@ -106,7 +106,14 @@
   <%= render "/refinery/admin/form_actions",
              :f => f,
              :continue_editing => true,
-             :delete_title => t('delete', :scope => 'refinery.blog.admin.posts.post') %>
+             :delete_title => t('delete', :scope => 'refinery.blog.admin.posts.post'),
+             :before_delete_button => (link_to(t('delete_translation', :scope => 'refinery.blog.admin.posts.post'),
+                                               refinery.delete_translation_blog_admin_post_path(@post, :locale_to_delete => Globalize.locale),
+                                               :method => :post,
+                                               :data => {
+                                                 :confirm => t('delete_translation_confirmation', :scope => 'refinery.blog.admin.posts.post')
+                                               },
+                                               :class => "button confirm-delete") if Refinery::I18n.frontend_locales.many? && @post.translations.size > 1) %>
 <% end -%>
 
 <% content_for :stylesheets, stylesheet_link_tag('refinery/blog/backend') %>

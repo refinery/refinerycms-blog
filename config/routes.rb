@@ -20,6 +20,9 @@ Refinery::Core::Engine.routes.draw do
             get :uncategorized
             get :tags
           end
+          member do
+            post :delete_translation
+          end
         end
 
         resources :categories
