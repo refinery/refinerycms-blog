@@ -3,7 +3,7 @@ require "spec_helper"
 module Refinery
   module Blog
     module Admin
-      describe PostsController, :focus do
+      describe PostsController do
         refinery_login_with :refinery_user
 
         describe "#delete_translation" do
