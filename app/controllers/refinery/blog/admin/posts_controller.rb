@@ -75,6 +75,13 @@ module Refinery
           end
         end
 
+        def delete_translation
+          find_post
+          @post.translations.find_by_locale(params[:locale_to_delete]).destroy
+          flash[:notice] = ::I18n.t('delete_translation_success', :scope => 'refinery.blog.admin.posts.post')
+          redirect_to refinery.blog_admin_posts_path
+        end
+
       protected
         def find_post
           @post = Refinery::Blog::Post.find_by_slug_or_id(params[:id])

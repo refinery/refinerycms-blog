@@ -329,6 +329,18 @@ module Refinery
               end
             end
 
+            describe "delete the post translation in secondary locale", :focus do
+              it "succeeds" do
+                within "#post_#{blog_post.id}" do
+                  click_link("Ru")
+                end
+
+                click_link "Remove this translation"
+
+                page.should_not have_content(blog_post.title)
+                page.should have_content("The translation was successfully removed.")
+              end
+            end
           end
         end
 

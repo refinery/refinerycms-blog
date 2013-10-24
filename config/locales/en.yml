@@ -55,6 +55,9 @@ en:
             view_live_html: 'View this blog post live <br/><em>(opens in a new window)</em>'
             edit: Edit this blog post
             delete: Remove this blog post forever
+            delete_translation: Remove this translation
+            delete_translation_confirmation: Are you sure you want to remove this translation forever ?
+            delete_translation_success: The translation was successfully removed.
             draft: Draft
         settings:
           notification_recipients:
