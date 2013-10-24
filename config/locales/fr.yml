@@ -8,7 +8,7 @@ fr:
         categories:
           category:
             edit: Modifier cette catégorie
-            delete: Supprimer cett catégorie
+            delete: Supprimer cette catégorie
           index:
             no_items_yet: 'Il n''y a aucune catégorie pour le moment. Cliquez sur "%{create}" pour ajouter votre première catégorie.'
         comments:
