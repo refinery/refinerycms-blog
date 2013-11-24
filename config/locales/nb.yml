@@ -2,28 +2,168 @@ nb:
   refinery:
     plugins:
       refinerycms_blog:
-        title: Blog
+        title: Blogg
     blog:
       admin:
+        categories:
+          category:
+            edit: Redigér kategori
+            delete: Slett denne kategorien permanent
+          index:
+            no_items_yet: 'Ingen kategorier definert. Klikk "%{create}" for å legge til din første kategori.'
+        comments:
+          approved: 'Kommentaren fra "%{author}" har blitt godkjent.'
+          comment:
+            view_live_html: 'Forhåndsvis denne kommentaren.<br/><em>(åpner i et nytt vindu)</em>'
+            read: Les denne kommentaren
+            reject: Avvis denne kommentaren
+            approve: Godkjenn denne kommentaren
+          rejected: 'Kommentaren fra "%{author}" har blitt avvist.'
+          index:
+            no_items_yet: 'Det finnes ingen %{type} kommentarer.'
+          show:
+            comment: Kommentar
+            blog_post: Blogginnlegg
+            from: Av
+            date: Publisert
+            message: Kommentar
+            details: Detaljer
+            age: Alder
+            actions: Aktiviteter
+            back: Tilbake til alle kommentarer
+            reject: Avvis denne kommentaren
+            approve: Godkjenn denne kommentaren
         posts:
           form:
-            seo_override_title: Nettleser tittel
-            seo_override_title_help: Skriv inn en tittel på 5-10 ord som oppsummerer innholdet på siden.
-            meta_description_title: Meta beskrivelse
-            meta_description_help: Skriv en kort beskrivelse på to eller tre setninger som forteller hva denne siden inneholder.
+            toggle_advanced_options: Klikk for tilgang til instillinger for metainformasjon og menyoppføring
+            published_at: Publiseringsdato
+            custom_url: Tilpasset URL
+            custom_url_help: Opprett URL for dette innlegget fra oppgitt tekst i stedet for fra innleggets tittel.
+            source_url: Kilde-Url
+            source_url_help: Lagrer en URL til kilden for innholdet i dette innlegget.
+            source_url_title: Tittel for kilde-Url
+            source_url_title_help: Tittel til kilden for innholdet i innlegget.
+            author: Forfatter
+            author_help: Oppgi brukeren som vil stå som forfatter av dette innlegget.
+            copy_body: Kopiér hovetdekst til ledetekst.
+            copy_body_help: Kopierer hovedteksten i innlegget til ledeteksten. La ledetekst forbli tom for å la Refinery automatisk generere den for deg.
           index:
-            no_items_yet: 'Det er ingen Blog Posts enda. Klikk på "Lag en ny Blog Posts" for å legge til din første blog posts.'
+            no_items_yet: 'Det finnes ingen blogginnlegg enda. Klikk på "Nytt blogginnlegg" for å legge til ditt første innlegg.'
+          uncategorized:
+            no_items_yet: 'Det finnes ingen ukategoriserte innlegg.'
           post:
-            view_live: 'Vis hvordan denne blog post ser ut offentlig <br/><em>(åpner i et nytt vindu)</em>'
-            edit: Rediger denne blog post
-            delete: Fjern denne blog post permanent
+            view_live: 'Forhåndsvis dette innlegget<br/><em>(åpner i et nytt vindu)</em>'
+            edit: Rediger dette innlegget
+            delete: Fjern dette innlegget permanent
+            draft: Kladd
+        settings:
+          notification_recipients:
+            value: Send beskjed om nye kommentarer til
+            explanation: 'Hver gang noen kommenterer på et innlegg, sender Refinery ut en epost for å fortelle om det.'
+            hint: 'Refinery gir deg beskjed via epost hver gang noen legger igjen en kommentar.'
+            example: "Skriv inn epostadressen(e) slik: ola@jobb.no, andrea@kontor.no"
+            updated: 'Mottagere av beskjed om kommentarer er satt til "%{recipients}"'
         submenu:
+          categories:
+            title: Kategorier
+            manage: Administrér
+            new: Opprett ny kategori
           comments:
-            new: ny
+            title: Kommentarer
+            title_with_count: 'Kommentarer (%{new_count} nye)'
+            new: Nye
+            unmoderated: Nye
+            approved: Godkjente
+            rejected: Avviste
           posts:
-            new: Lag en ny post
+            title: Blogginnlegg
+            manage: Administrér blogginnlegg
+            new: Nytt blogginnlegg
+            uncategorized: Ukategoriserte innlegg
           settings:
+            title: Innstillinger
+            moderation: Moderering
             update_notified: Oppdater hvem som blir informert
-    blog_posts:
-      show:
-        other: Andre Blog Posts
+            comments: Kommentarer
+            teasers: Ledetekst
+      comment_mailer:
+        notification:
+          greeting: Hei
+          you_recieved_new_comment: Du mottok nettopp en ny kommentar på din webside.
+          comment_starts: --- start kommentar ---
+          comment_ends: --- slutt kommentar ---
+          from: Fra
+          email: Epost
+          message: Melding
+          approve: Godkjenn
+          or: " eller "
+          reject: avvis
+          this_comment: " denne kommentaren."
+          closing_line: Vennlig hilsen
+          ps: 'P.S. Alle kommentarene lagres under "Blogg"-seksjonen i Refinery. Du finner dem under "Kommentarer" skulle du ønske å se dem igjen senere.'
+      shared:
+        categories:
+          title: Kategorier
+        rss_feed:
+          title: RSS-strøm
+          subscribe: Abonnér
+        posts:
+          other: Siste innlegg
+          created_at: 'Publisert %{when}'
+          read_more: Les mer
+        comments:
+          singular: kommentar
+          none: ingen kommentarer
+        archives: Arkiv
+        tags:
+          title: "Merkelapper"
+      categories:
+        show:
+          no_posts: Det er ingen innlegg i denne kategorien ennå.
+      posts:
+        post:
+          filled_in: Arkivert under
+        comment: kommentar
+        comments:
+          by: 'Postet av %{who}'
+          time_ago: '%{time} siden'
+          thank_you: 'Takk for din kommentar.'
+          thank_you_moderated: 'Takk for din kommentar. Meldingen din har blitt lagt i moderatorkøen og vil behandles så snart vi har tid.'
+        index:
+          no_blog_articles_yet: Ingen blogginnlegg har blitt postet enda. Følg med!
+        show:
+          blog_home: Blogg
+          comments:
+            title: Kommentarer
+            add: Legg igjen en kommentar
+          other: Siste blogginnlegg
+          filled_in: Arkivert under
+          tagged: Merket
+          submit: Send kommentar
+          name: Navn
+          email: Epost
+          message: Melding
+          by: av
+          source: Kilde
+        tagged:
+          no_blog_articles_yet: Ingen blogginnlegg har blitt postet enda. Følg med!
+          posts_tagged: Innlegg merket
+        archive:
+          blog_archive_for: 'Arkiv for %{date}'
+          no_blog_articles_posted: 'Det er ikke postet noen blogginnlegg for %{date}. Følg med.'
+  activerecord:
+    models:
+      refinery/blog/category: Kategori
+      refinery/blog/comment: Kommentar
+      refinery/blog/post: Blogginnlegg
+    attributes:
+      refinery/blog/category:
+        title: Tittel
+      refinery/blog/comment:
+        name: Navn
+        email: Epost
+        message: Melding
+      refinery/blog/post:
+        title: Tittel
+        body: Hovedtekst
+        teaser: Ledetekst
