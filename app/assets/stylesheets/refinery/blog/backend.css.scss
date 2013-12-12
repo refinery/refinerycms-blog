@@ -71,3 +71,7 @@ a#copy_body_link {
   margin-top: 0;
   padding-left: 20px;
 }
+.form-actions a.confirm-delete, #content .form-actions a.confirm-delete {
+  position: relative;
+  right: auto;
+}
