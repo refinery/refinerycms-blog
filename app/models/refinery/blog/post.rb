@@ -44,6 +44,11 @@ module Refinery
       seo_fields = ::SeoMeta.attributes.keys.map{|a| [a, :"#{a}="]}.flatten
       delegate(*(seo_fields << {:to => :translation}))
 
+      before_save do |m|
+        m.translation.globalized_model = self
+        m.translation.save if m.translation.new_record?
+      end
+
       self.per_page = Refinery::Blog.posts_per_page
 
       def next
