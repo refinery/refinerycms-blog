@@ -19,8 +19,8 @@ Gem::Specification.new do |s|
   s.add_dependency    'refinerycms-settings', '~> 3.0.0.dev'
   s.add_dependency    'filters_spam',         '~> 0.2'
   s.add_dependency    'acts-as-taggable-on'
-  s.add_dependency    'seo_meta',             '~> 1.4.0'
+  s.add_dependency    'seo_meta',             '~> 2.0.0.rc.1'
   s.add_dependency    'rails_autolink',       '~> 1.1.3'
   s.add_dependency    'friendly_id',          '~> 5.0.0.rc1'
-  s.add_dependency    'globalize3',           '~> 0.3.0'
+  s.add_dependency    'globalize',            '~> 4.0.0'
 end

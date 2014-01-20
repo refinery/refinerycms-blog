@@ -2,18 +2,17 @@ source "https://rubygems.org"
 
 gemspec
 
-git 'https://github.com/refinery/refinerycms.git', branch: 'rails4' do
+git 'https://github.com/refinery/refinerycms.git' do
   gem 'refinerycms-authentication'
   gem 'refinerycms-dashboard'
   gem 'refinerycms-pages'
   gem 'refinerycms-testing', group: :test
 end
-gem 'refinerycms-i18n', github: 'refinery/refinerycms-i18n', branch: 'master'
-gem 'refinerycms-settings', github: 'refinery/refinerycms-settings', branch: 'master'
-gem 'refinerycms-acts-as-indexed', github: 'refinery/refinerycms-acts-as-indexed', branch: 'master'
+gem 'refinerycms-i18n', github: 'refinery/refinerycms-i18n'
+gem 'refinerycms-settings', github: 'refinery/refinerycms-settings'
+gem 'refinerycms-acts-as-indexed', github: 'refinery/refinerycms-acts-as-indexed'
 gem 'protected_attributes'
-gem 'globalize3', github: 'svenfuchs/globalize3', branch: 'rails4'
-gem 'seo_meta', github: 'parndt/seo_meta', branch: 'master'
+gem 'mime-types', '1.25.1'
 
 # Database Configuration
 unless ENV['TRAVIS']
