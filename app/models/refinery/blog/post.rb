@@ -4,50 +4,37 @@ require 'seo_meta'
 module Refinery
   module Blog
     class Post < ActiveRecord::Base
+      extend FriendlyId
 
       translates :title, :body, :custom_url, :custom_teaser, :slug, :include => :seo_meta
 
-      extend FriendlyId
       friendly_id :friendly_id_source, :use => [:slugged, :globalize]
 
-      is_seo_meta if self.table_exists?
+      is_seo_meta
 
-      belongs_to :author, proc{ readonly(true) }, :class_name => Refinery::Blog.user_class.to_s, :foreign_key => :user_id
-
-      has_many :comments, :dependent => :destroy, :foreign_key => :blog_post_id
       acts_as_taggable
 
+      belongs_to :author, proc { readonly(true) }, :class_name => Refinery::Blog.user_class.to_s, :foreign_key => :user_id
+      has_many :comments, :dependent => :destroy, :foreign_key => :blog_post_id
       has_many :categorizations, :dependent => :destroy, :foreign_key => :blog_post_id
       has_many :categories, :through => :categorizations, :source => :blog_category
 
       validates :title, :presence => true, :uniqueness => true
       validates :body,  :presence => true
       validates :published_at, :author, :presence => true
-
       validates :source_url, :url => { :if => 'Refinery::Blog.validate_source_url',
                                       :update => true,
                                       :allow_nil => true,
                                       :allow_blank => true,
                                       :verify => [:resolve_redirects]}
 
-      attr_accessible :title, :body, :custom_teaser, :tag_list, :draft, :published_at, :custom_url, :author
-      attr_accessible :browser_title, :meta_description, :user_id, :category_ids
-      attr_accessible :source_url, :source_url_title
-      attr_accessor :locale
-
       class Translation
         is_seo_meta
-        attr_accessible :browser_title, :meta_description, :locale
       end
 
-      # Delegate SEO Attributes to globalize3 translation
+      # Delegate SEO Attributes to globalize translation
       seo_fields = ::SeoMeta.attributes.keys.map{|a| [a, :"#{a}="]}.flatten
       delegate(*(seo_fields << {:to => :translation}))
-
-      before_save do |m|
-        m.translation.globalized_model = self
-        m.translation.save if m.translation.new_record?
-      end
 
       self.per_page = Refinery::Blog.posts_per_page
 

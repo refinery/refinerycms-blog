@@ -38,12 +38,12 @@ module Refinery
         def create
           # if the position field exists, set this object as last object, given the conditions of this class.
           if Refinery::Blog::Post.column_names.include?("position")
-            params[:post].merge!({
+            post_params.merge!({
               :position => ((Refinery::Blog::Post.maximum(:position, :conditions => "")||-1) + 1)
             })
           end
 
-          if (@post = Refinery::Blog::Post.create(params[:post])).valid?
+          if (@post = Refinery::Blog::Post.create(post_params)).valid?
             (request.xhr? ? flash.now : flash).notice = t(
               'refinery.crudify.created',
               :what => "'#{@post.title}'"
@@ -75,7 +75,16 @@ module Refinery
           end
         end
 
+      private
+
+        def post_params
+          params.require(:post).permit(:title, :body, :custom_teaser, :tag_list,
+            :draft, :published_at, :custom_url, :user_id, :browser_title,
+            :meta_description, :source_url, :source_url_title, :category_ids => [])
+        end
+
       protected
+
         def find_post
           @post = Refinery::Blog::Post.find_by_slug_or_id(params[:id])
         end
@@ -85,7 +94,7 @@ module Refinery
         end
 
         def check_category_ids
-          params[:post][:category_ids] ||= []
+          post_params[:category_ids] ||= []
         end
       end
     end

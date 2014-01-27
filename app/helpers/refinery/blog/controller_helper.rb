@@ -5,10 +5,9 @@ module Refinery
       protected
 
         def find_blog_post
-          @post = all_blog_posts.friendly.find(params[:id])
-          unless @post.try(:live?)
-            if refinery_user? && current_refinery_user.authorized_plugins.include?("refinerycms_blog")
-              @post = Post.friendly.find(params[:id])
+          unless (@post = Refinery::Blog::Post.with_globalize.friendly.find(params[:id])).try(:live?)
+            if refinery_user? and current_refinery_user.authorized_plugins.include?("refinerycms_blog")
+              @post = Refinery::Blog::Post.friendly.find(params[:id])
             else
               error_404
             end
@@ -16,7 +15,7 @@ module Refinery
         end
 
         def find_all_blog_posts
-          @posts = all_blog_posts.live
+          @posts = Refinery::Blog::Post.live.includes(:comments, :categories).with_globalize.page(params[:page])
         end
 
         def find_tags

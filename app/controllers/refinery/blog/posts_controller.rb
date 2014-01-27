@@ -2,7 +2,7 @@ module Refinery
   module Blog
     class PostsController < BlogController
 
-      before_filter :paginate_all_blog_posts, :except => [:archive]
+      before_filter :find_all_blog_posts, :except => [:archive]
       before_filter :find_blog_post, :only => [:show, :comment, :update_nav]
       before_filter :find_tags
 
@@ -37,7 +37,7 @@ module Refinery
       end
 
       def comment
-        @comment = @post.comments.create(params[:comment])
+        @comment = @post.comments.create(comment_params)
         if @comment.valid?
           if Comment::Moderation.enabled? or @comment.ham?
             begin
@@ -79,6 +79,12 @@ module Refinery
         @tag = ActsAsTaggableOn::Tag.find(params[:tag_id])
         @tag_name = @tag.name
         @posts = Post.live.tagged_with(@tag_name).page(params[:page])
+      end
+
+    private
+
+      def comment_params
+        params.require(:comment).permit(:name, :email, :message)
       end
 
     protected
