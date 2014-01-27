@@ -2,17 +2,16 @@ source "https://rubygems.org"
 
 gemspec
 
-git 'https://github.com/refinery/refinerycms.git' do
-  gem 'refinerycms-authentication'
-  gem 'refinerycms-dashboard'
-  gem 'refinerycms-pages'
-  gem 'refinerycms-testing', group: :test
-end
+gem 'refinerycms', github: 'refinery/refinerycms'
 gem 'refinerycms-i18n', github: 'refinery/refinerycms-i18n'
 gem 'refinerycms-settings', github: 'refinery/refinerycms-settings'
 gem 'refinerycms-acts-as-indexed', github: 'refinery/refinerycms-acts-as-indexed'
-gem 'protected_attributes'
+
 gem 'mime-types', '1.25.1'
+
+group :test do
+  gem 'refinerycms-testing', github: 'refinery/refinerycms'
+end
 
 # Database Configuration
 unless ENV['TRAVIS']
@@ -31,12 +30,10 @@ if !ENV['TRAVIS'] || ENV['DB'] == 'postgresql'
   gem 'pg', :platform => :ruby
 end
 
-group :test do
-  gem 'launchy'
-end
-group :development, :test do
-  gem 'pry'
-  gem 'pry-nav'
+# Refinery/rails should pull in the proper versions of these
+group :assets do
+  gem 'sass-rails'
+  gem 'coffee-rails'
 end
 
 # Load local gems according to Refinery developer preference.
