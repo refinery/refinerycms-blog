@@ -11,6 +11,7 @@ gem 'mime-types', '1.25.1'
 
 group :test do
   gem 'refinerycms-testing', github: 'refinery/refinerycms'
+  gem 'poltergeist'
 end
 
 # Database Configuration
