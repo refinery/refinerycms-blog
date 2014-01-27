@@ -6,6 +6,7 @@ gem 'refinerycms', github: 'refinery/refinerycms'
 gem 'refinerycms-i18n', github: 'refinery/refinerycms-i18n'
 gem 'refinerycms-settings', github: 'refinery/refinerycms-settings'
 gem 'refinerycms-acts-as-indexed', github: 'refinery/refinerycms-acts-as-indexed'
+gem 'filters_spam', github: 'resolve/filters_spam'
 
 gem 'mime-types', '1.25.1'
 
