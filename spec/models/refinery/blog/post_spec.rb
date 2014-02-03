@@ -234,6 +234,30 @@ module Refinery
         end
       end
 
+      describe "#should_generate_new_friendly_id?" do
+        context "when custom_url changes" do
+          it "regenerates slug upon save" do
+            post = FactoryGirl.create(:blog_post, :custom_url => "Test Url")
+
+            post.custom_url = "Test Url 2"
+            post.save!
+
+            expect(post.slug).to eq("test-url-2")
+          end
+        end
+
+        context "when title changes" do
+          it "regenerates slug upon save" do
+            post = FactoryGirl.create(:blog_post, :title => "Test Title")
+
+            post.title = "Test Title 2"
+            post.save!
+
+            expect(post.slug).to eq("test-title-2")
+          end
+        end
+      end
+
     end
   end
 end

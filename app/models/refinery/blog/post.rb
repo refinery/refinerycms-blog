@@ -32,6 +32,12 @@ module Refinery
         is_seo_meta
       end
 
+      # If custom_url or title changes tell friendly_id to regenerate slug when
+      # saving record
+      def should_generate_new_friendly_id?
+        custom_url_changed? || title_changed?
+      end
+
       # Delegate SEO Attributes to globalize translation
       seo_fields = ::SeoMeta.attributes.keys.map{|a| [a, :"#{a}="]}.flatten
       delegate(*(seo_fields << {:to => :translation}))
