@@ -39,16 +39,18 @@ module Refinery
 
             describe "create blog post", :js => true do
               before do
+                subject.class.count.should eq(0)
                 fill_in "post_title", :with => "This is my blog post"
+
                 # this is a dirty hack but textarea that needs to be filled is
                 # hidden and capybara refuses to fill in elements it can't see
                 page.evaluate_script("WYMeditor.INSTANCES[0].html('<p>And I love it</p>')")
                 click_link "toggle_advanced_options"
+                page.should have_css '.blog_categories'
+                page.should have_css "#post_category_ids_#{blog_category.id}"
                 check blog_category.title
+                find_field("post_category_ids_#{blog_category.id}").should be_checked
                 click_button "Save"
-              end
-
-              it "should succeed" do
                 page.should have_content("was successfully added.")
               end
 
@@ -67,13 +69,13 @@ module Refinery
             end
 
             describe "create blog post with tags", :js => true do
+              let(:tag_list) { "chicago, bikes, beers, babes" }
               before do
-                @tag_list = "chicago, bikes, beers, babes"
                 fill_in "Title", :with => "This is a tagged blog post"
                 # this is a dirty hack but textarea that needs to be filled is
                 # hidden and capybara refuses to fill in elements it can't see
                 page.evaluate_script("WYMeditor.INSTANCES[0].html('<p>And I also love it</p>')")
-                fill_in "Tags", :with => @tag_list
+                fill_in "Tags", :with => tag_list
                 click_button "Save"
               end
 
@@ -86,7 +88,7 @@ module Refinery
               end
 
               it "should have the specified tags" do
-                subject.class.last.tag_list.sort.should eq(@tag_list.split(', ').sort)
+                subject.class.last.tag_list.sort.should eq(tag_list.split(', ').sort)
               end
             end
           end
@@ -171,9 +173,6 @@ module Refinery
               select other_guy.username, :from => "Author"
 
               click_button "Save"
-            end
-
-            it "should succeed" do
               page.should have_content("was successfully added.")
             end
 

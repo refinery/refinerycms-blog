@@ -1,7 +1,7 @@
 class CreateBlogStructure < ActiveRecord::Migration
 
   def up
-    create_table :refinery_blog_posts, :id => true do |t|
+    create_table :refinery_blog_posts do |t|
       t.string :title
       t.text :body
       t.boolean :draft
@@ -11,7 +11,7 @@ class CreateBlogStructure < ActiveRecord::Migration
 
     add_index :refinery_blog_posts, :id
 
-    create_table :refinery_blog_comments, :id => true do |t|
+    create_table :refinery_blog_comments do |t|
       t.integer :blog_post_id
       t.boolean :spam
       t.string :name
@@ -24,14 +24,14 @@ class CreateBlogStructure < ActiveRecord::Migration
     add_index :refinery_blog_comments, :id
     add_index :refinery_blog_comments, :blog_post_id
 
-    create_table :refinery_blog_categories, :id => true do |t|
+    create_table :refinery_blog_categories do |t|
       t.string :title
       t.timestamps
     end
 
     add_index :refinery_blog_categories, :id
 
-    create_table :refinery_blog_categories_blog_posts, :id => true do |t|
+    create_table :refinery_blog_categories_blog_posts do |t|
       t.integer :blog_category_id
       t.integer :blog_post_id
     end

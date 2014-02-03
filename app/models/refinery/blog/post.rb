@@ -4,53 +4,37 @@ require 'seo_meta'
 module Refinery
   module Blog
     class Post < ActiveRecord::Base
+      extend FriendlyId
 
       translates :title, :body, :custom_url, :custom_teaser, :slug, :include => :seo_meta
 
-      extend FriendlyId
       friendly_id :friendly_id_source, :use => [:slugged, :globalize]
 
-      is_seo_meta if self.table_exists?
+      is_seo_meta
 
-      default_scope :order => 'published_at DESC'
-
-      belongs_to :author, :class_name => Refinery::Blog.user_class.to_s, :foreign_key => :user_id, :readonly => true
-
-      has_many :comments, :dependent => :destroy, :foreign_key => :blog_post_id
       acts_as_taggable
 
+      belongs_to :author, proc { readonly(true) }, :class_name => Refinery::Blog.user_class.to_s, :foreign_key => :user_id
+      has_many :comments, :dependent => :destroy, :foreign_key => :blog_post_id
       has_many :categorizations, :dependent => :destroy, :foreign_key => :blog_post_id
       has_many :categories, :through => :categorizations, :source => :blog_category
 
       validates :title, :presence => true, :uniqueness => true
       validates :body,  :presence => true
       validates :published_at, :author, :presence => true
-
       validates :source_url, :url => { :if => 'Refinery::Blog.validate_source_url',
                                       :update => true,
                                       :allow_nil => true,
                                       :allow_blank => true,
                                       :verify => [:resolve_redirects]}
 
-      attr_accessible :title, :body, :custom_teaser, :tag_list, :draft, :published_at, :custom_url, :author
-      attr_accessible :browser_title, :meta_description, :user_id, :category_ids
-      attr_accessible :source_url, :source_url_title
-      attr_accessor :locale
+      class Translation
+        is_seo_meta
+      end
 
-
-    class Translation
-      is_seo_meta
-      attr_accessible :browser_title, :meta_description, :locale
-    end
-
-      # Delegate SEO Attributes to globalize3 translation
+      # Delegate SEO Attributes to globalize translation
       seo_fields = ::SeoMeta.attributes.keys.map{|a| [a, :"#{a}="]}.flatten
       delegate(*(seo_fields << {:to => :translation}))
-
-      before_save do |m|
-        m.translation.globalized_model = self
-        m.translation.save if m.translation.new_record?
-      end
 
       self.per_page = Refinery::Blog.posts_per_page
 
@@ -63,7 +47,7 @@ module Refinery
       end
 
       def live?
-        !draft and published_at <= Time.now
+        !draft && published_at <= Time.now
       end
 
       def friendly_id_source
@@ -82,7 +66,8 @@ module Refinery
             end
           end
           # A join implies readonly which we don't really want.
-          joins(:translations).where(globalized_conditions).where(conditions).readonly(false)
+          where(conditions).joins(:translations).where(globalized_conditions)
+                           .readonly(false)
         end
 
         def find_by_slug_or_id(slug_or_id)
@@ -94,44 +79,49 @@ module Refinery
         end
 
         def by_month(date)
-          where(:published_at => date.beginning_of_month..date.end_of_month)
-        end
-
-        def by_archive(date)
-          Refinery.deprecate("Refinery::Blog::Post.by_archive(date)", {:replacement => "Refinery::Blog::Post.by_month(date)", :when => 2.2 })
-          by_month(date)
+          newest_first.where(:published_at => date.beginning_of_month..date.end_of_month)
         end
 
         def by_year(date)
-          where(:published_at => date.beginning_of_year..date.end_of_year).with_globalize
+          newest_first.where(:published_at => date.beginning_of_year..date.end_of_year).with_globalize
+        end
+
+        def newest_first
+          order("published_at DESC")
         end
 
         def published_dates_older_than(date)
-          published_before(date).select(:published_at).map(&:published_at)
+          newest_first.published_before(date).select(:published_at).map(&:published_at)
         end
 
         def recent(count)
-          live.limit(count)
+          newest_first.live.limit(count)
         end
 
         def popular(count)
-          unscoped.order("access_count DESC").limit(count).with_globalize
+          order("access_count DESC").limit(count).with_globalize
         end
 
         def previous(item)
-          published_before(item.published_at).first
+          newest_first.published_before(item.published_at).first
         end
 
         def uncategorized
-          live.includes(:categories).where(Refinery::Blog::Categorization.table_name => { :blog_category_id => nil })
+          newest_first.live.includes(:categories).where(
+            Refinery::Blog::Categorization.table_name => { :blog_category_id => nil }
+          )
         end
 
         def next(current_record)
-          where(["published_at > ? and draft = ?", current_record.published_at, false]).reorder('published_at ASC').with_globalize.first
+          where(arel_table[:published_at].gt(current_record.published_at))
+            .where(:draft => false)
+            .order('published_at ASC').with_globalize.first
         end
 
         def published_before(date=Time.now)
-          where("published_at < ? and draft = ?", date, false).with_globalize
+          where(arel_table[:published_at].lt(date))
+            .where(:draft => false)
+            .with_globalize
         end
         alias_method :live, :published_before
 

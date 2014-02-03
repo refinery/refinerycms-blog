@@ -10,9 +10,12 @@ module Refinery
 
       def index
         if request.format.rss?
-          @posts = Post.live.includes(:comments, :categories)
-          # limit rss feed for services (like feedburner) who have max size
-          @posts = Post.recent(params["max_results"]) if params["max_results"].present?
+          @posts = if params["max_results"].present?
+            # limit rss feed for services (like feedburner) who have max size
+            Post.recent(params["max_results"])
+          else
+            Post.newest_first.live.includes(:comments, :categories)
+          end
         end
         respond_with (@posts) do |format|
           format.html
@@ -34,7 +37,8 @@ module Refinery
       end
 
       def comment
-        if (@comment = @post.comments.create(params[:comment])).valid?
+        @comment = @post.comments.create(comment_params)
+        if @comment.valid?
           if Comment::Moderation.enabled? or @comment.ham?
             begin
               CommentMailer.notification(@comment, request).deliver
@@ -75,6 +79,12 @@ module Refinery
         @tag = ActsAsTaggableOn::Tag.find(params[:tag_id])
         @tag_name = @tag.name
         @posts = Post.live.tagged_with(@tag_name).page(params[:page])
+      end
+
+    private
+
+      def comment_params
+        params.require(:comment).permit(:name, :email, :message)
       end
 
     protected

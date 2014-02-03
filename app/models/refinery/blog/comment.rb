@@ -2,30 +2,26 @@ module Refinery
   module Blog
     class Comment < ActiveRecord::Base
 
-      attr_accessible :name, :email, :message
+      filters_spam author_field: :name, email_field: :email, message_field: :body
 
-      filters_spam :author_field => :name,
-                   :email_field => :email,
-                   :message_field => :body
-
-      belongs_to :post, :foreign_key => 'blog_post_id'
+      belongs_to :post, foreign_key: 'blog_post_id'
 
       alias_attribute :message, :body
 
-      validates :name, :message, :presence => true
-      validates :email, :format => { :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i }
+      validates :name, :message, presence: true
+      validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
 
       class << self
         def unmoderated
-          where(:state => nil)
+          where(state: nil)
         end
 
         def approved
-          where(:state => 'approved')
+          where(state: 'approved')
         end
 
         def rejected
-          where(:state => 'rejected')
+          where(state: 'rejected')
         end
       end
 
@@ -55,7 +51,7 @@ module Refinery
         currently = Refinery::Setting.find_or_set(:comments_allowed, true, {
           :scoping => 'blog'
         })
-        Refinery::Setting.set(:comments_allowed, {:value => !currently, :scoping => 'blog'})
+        Refinery::Setting.set(:comments_allowed, {value: !currently, scoping: 'blog'})
       end
 
       before_create do |comment|
@@ -68,16 +64,16 @@ module Refinery
         class << self
           def enabled?
             Refinery::Setting.find_or_set(:comment_moderation, true, {
-              :scoping => 'blog',
-              :restricted => false
+              scoping: 'blog',
+              restricted: false
             })
           end
 
           def toggle!
             new_value = {
-              :value => !Blog::Comment::Moderation.enabled?,
-              :scoping => 'blog',
-              :restricted => false
+              value: !Blog::Comment::Moderation.enabled?,
+              scoping: 'blog',
+              restricted: false
             }
             Refinery::Setting.set(:comment_moderation, new_value)
           end
