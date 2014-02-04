@@ -35,9 +35,7 @@ ru:
             approve: Принять этот комментарий
         posts:
           form:
-            advanced_options: Дополнительные настройки
             toggle_advanced_options: 'Нажмите, чтобы получить доступ к настройкам мета-тегов и меню'
-            save_as_draft: Сохранить как черновик
             published_at: Дата публикации
             custom_url: Переадресовывать на другой сайт или страницу
             custom_url_help: Переадресовывать на другой сайт или страницу.
@@ -145,17 +143,17 @@ ru:
           no_blog_articles_posted: 'Ни одной записи за %{date} не опубликовано. Следите за новостями.'
   activerecord:
     models:
-      refinery/blog_category: Категория
-      refinery/blog_comment: Коментарии
-      refinery/blog_post: Запись в блоге
+      refinery/blog/category: Категория
+      refinery/blog/comment: Коментарии
+      refinery/blog/post: Запись в блоге
     attributes:
-      refinery/blog_category:
+      refinery/blog/category:
         title: Название
-      refinery/blog_comment:
+      refinery/blog/comment:
         name: Имя
         email: Email
         message: Сообщение
-      refinery/blog_post:
+      refinery/blog/post:
         title: Название
         body: Основное сообщение
         teaser: Краткое описание

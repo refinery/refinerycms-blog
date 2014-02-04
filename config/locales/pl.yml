@@ -14,7 +14,7 @@ pl:
         comments:
           approved: 'Komentarz "%{author}" został zaakceptowany.'
           comment:
-            view_live: 'Zobacz ten komentarz na żywo<br/><em>(otwiera w nowym oknie)</em>'
+            view_live_html: 'Zobacz ten komentarz na żywo<br/><em>(otwiera w nowym oknie)</em>'
             read: Pokaż ten komentarz
             reject: Odrzuć ten komentarz
             approve: Zaakceptuj ten komentarz
@@ -42,7 +42,7 @@ pl:
           uncategorized:
             no_items_yet: 'Brak nieskategoryzowanych wpisów na blogu.'
           post:
-            view_live: 'Zobacz ten post na żywo<br/><em>(otwiera w nowym oknie)</em>'
+            view_live_html: 'Zobacz ten post na żywo<br/><em>(otwiera w nowym oknie)</em>'
             edit: Edytuj ten post
             delete: Usuń ten post na zawsze
         settings:

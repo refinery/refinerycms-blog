@@ -52,7 +52,7 @@ nb:
           uncategorized:
             no_items_yet: 'Det finnes ingen ukategoriserte innlegg.'
           post:
-            view_live: 'Forhåndsvis dette innlegget<br/><em>(åpner i et nytt vindu)</em>'
+            view_live_html: 'Forhåndsvis dette innlegget<br/><em>(åpner i et nytt vindu)</em>'
             edit: Rediger dette innlegget
             delete: Fjern dette innlegget permanent
             draft: Kladd

@@ -111,7 +111,6 @@ fr:
           other: Autres articles
           created_at: 'Écrit le %{when}'
           read_more: Lire la suite
-          by: 'par'
         comments:
           singular: commentaire
           none: aucun commentaire
