@@ -79,13 +79,13 @@ $(document).ready(function(){
 
   page_options.init(false, '', '')
 
-  $('<%= dom_id %>').bind( "keydown", function( event ) {
+  $('#post_tag_list').bind( "keydown", function( event ) {
     if ( event.keyCode === $.ui.keyCode.TAB && $( this ).data( "autocomplete" ).menu.active ) {
       event.preventDefault()
     }
   }).autocomplete({
     source: function( request, response ) {
-      $.getJSON( "<%= url %>", {
+      $.getJSON( "<%= Refinery::Core::Engine.routes.url_helpers.tags_blog_admin_posts_path %>", {
         term: extractLast( request.term )
       }, response );
     },
