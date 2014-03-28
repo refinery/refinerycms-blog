@@ -1,0 +1,150 @@
+zh-TW:
+  activerecord:
+    attributes:
+      refinery/blog/post:
+        body: 內容
+        teaser: 前言   
+  refinery:
+    plugins:
+      refinerycms_blog:
+        title: 博客
+    blog:
+      admin:
+        categories:
+          category:
+            edit: 編輯此類別
+            delete: 永久删除此類別
+          index:
+            no_items_yet: '沒有此類別。 點擊 "%{create}" 添加第一次類別。'
+        comments:
+          approved: '評論來自 "%{author}" 已被審批。'
+          comment:
+            view_live_html: '查看此評論 <br/><em>(opens in a new window)</em>'
+            read: 閱讀此評論
+            reject: 駁回此評論
+            approve: 批准此評論
+          rejected: '評論來自 "%{author}" 已被駁回。'
+          index:
+            no_items_yet: '沒有 %{type} 評論。'
+          show:
+            comment: 評論
+            blog_post: 發博客
+            from: 發佈由
+            date: 發佈在
+            message: 評論
+            details: 詳情
+            age: 年齡
+            actions: 行動
+            back: 返回至所有評論
+            reject: 駁回此評論
+            approve: 批准此評論
+        posts:
+          form:
+            toggle_advanced_options: 按此存取關鍵字標簽及菜單選項
+            published_at: 公佈日期
+            custom_url: 自設網址
+            custom_url_help: 由此字句生成網誌發帖，而非從標題
+            source_url: 來源網站
+            source_url_help: 記錄發帖來源
+            source_url_title: 網址來源標題
+            source_url_title_help: 發帖的來源網址標題
+            author: 作者
+            author_help: 設定此用者成為作者
+            copy_body: 複製發帖內容至前言
+            copy_body_help: '複製發帖內容至前言。前言留白讓系統自動生成前言。'
+          index:
+            no_items_yet: '目前尚未發博客。點擊 "%{create}" 添加您的第一篇博客。'
+          uncategorized:
+            no_items_yet: '沒有未歸類的博客。'
+          post:
+            view_live_html: '查看此博客 <br/><em>(opens in a new window)</em>'
+            edit: 編輯此博客
+            delete: 永久删除此博客
+        settings:
+          notification_recipients:
+            value: 發送通知
+            explanation: '每次有人發表評論，發送郵件告知有新評論。'
+            hint: '增加新評論時，將會發送郵件告知您。'
+            example: "輸入您的郵件地址，如: jack@work.com, jill@office.com"
+            updated: '通知收件人已被設為 "%{recipients}"'
+        submenu:
+          categories:
+            title: 分類
+            manage: 管理
+            new: 創建新的類別
+          comments:
+            title: 評論
+            title_with_count: '評論 (%{new_count} new)'
+            new: 新
+            unmoderated: 新
+            approved: 批准
+            rejected: 駁回
+          posts:
+            title: 題目
+            manage: 管理博客
+            new: 創建新博客
+            uncategorized: 未歸類博客
+          settings:
+            title: 設置
+            moderation: 等待審核
+            update_notified: 更新獲得通知的人
+            comments: 評論
+            teasers: 前言
+      comment_mailer:
+        notification:
+          greeting: 您好
+          you_recieved_new_comment: 您剛收到來自網站的一條新評論
+          comment_starts: --- 評論開始 ---
+          comment_ends: --- 評論結束 ---
+          from: 來自
+          email: 郵件
+          message: 信息
+          closing_line: 親切問候
+          ps: '備註： 您所有的評論也會備存於「博客」部份的「評論」菜單下。您以後隨時可以再閱讀。'
+      shared:
+        categories:
+          title: 分類
+        rss_feed:
+          title: RSS源
+          subscribe: 訂閱
+        posts:
+          other: 其他博客
+          created_at: '發表於 %{when}'
+          read_more: 閱讀更多
+        comments:
+          singular: 評論
+          none: 没有評論
+        archives: 檔案
+        tags:
+          title: "標簽"
+      categories:
+        show:
+          no_posts: 此處沒有文章。          
+      posts:
+        post:
+          filled_in: 用戶體驗
+        comment: 評論
+        comments:
+          by: '發佈由 %{who}'
+          time_ago: '%{time} 之前'
+          thank_you: '感謝您的評論。'
+          thank_you_moderated: '感謝您的評論。您的信息已被列入等待審核隊列，並會在短期內出現。'
+        index:
+          no_blog_articles_yet: 尚未發布文章。敬請關注。
+        show:
+          blog_home: 博客首頁
+          by: 作者 
+          categories: 標簽
+          category: 標簽
+          comments:
+            title: 評論
+            add: 發表評論
+          other: 其他博客
+          filled_in: 用戶體驗
+          source: 來自
+          submit: 發送評論
+          tagged: 標簽
+        archive:
+          blog_archive_for: '博客存檔 %{date}'
+          no_blog_articles_posted: '沒有發布文章 %{date}。敬請關注。'
+                    
