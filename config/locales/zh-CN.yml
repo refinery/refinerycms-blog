@@ -1,9 +1,4 @@
 zh-CN:
-  activerecord:
-    attributes:
-      refinery/blog/post:
-        body: 內容
-        teaser: 前言   
   refinery:
     plugins:
       refinerycms_blog:
@@ -142,3 +137,21 @@ zh-CN:
         archive:
           blog_archive_for: '博客存档 %{date}'
           no_blog_articles_posted: '没有发布文章 %{date}。敬请关注。'
+
+  activerecord:
+    models:
+      refinery/blog/category: 分类 
+      refinery/blog/comment: 评论
+      refinery/blog/post: 博文发帖
+    attributes:
+      refinery/blog/category:
+        title: 标题
+      refinery/blog/comment:
+        name: 姓名
+        email: 电邮
+        message: 信息
+      refinery/blog/post:
+        title: Title
+        body: 标题
+        teaser: 前言
+        

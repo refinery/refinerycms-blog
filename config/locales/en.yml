@@ -1,9 +1,4 @@
 en:
-  activerecord:
-    attributes:
-      refinery/blog/post:
-        body: Body
-        teaser: Teaser
   refinery:
     plugins:
       refinerycms_blog:
