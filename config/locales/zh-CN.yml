@@ -36,7 +36,17 @@ zh-CN:
         posts:
           form:
             toggle_advanced_options: 点击进入标签详解设置和菜单选项
-            published_at: 发布日期
+            published_at: 公布日期 
+            custom_url: 自设网址
+            custom_url_help: 由此字句生成网志发帖，而非从标题 
+            source_url: 来源网站
+            source_url_help: 记录发帖来源
+            source_url_title: 网址来源标题
+            source_url_title_help: 发帖的来源网址标题 
+            author: 作者
+            author_help: 设定此用者成为作者 
+            copy_body: 复制发帖内容至前言
+            copy_body_help: '复制发帖内容至前言，前言留白让系统自动生成前言。'
           index:
             no_items_yet: '目前尚未发博。 点击 "%{create}" 添加您的第一篇博文。'
           uncategorized:
@@ -74,6 +84,7 @@ zh-CN:
             moderation: 等待审核
             update_notified: 更新获得通知的人
             comments: 评论
+            teasers: 前言
       comment_mailer:
         notification:
           greeting: 您好
@@ -99,6 +110,8 @@ zh-CN:
           singular: 评论
           none: 没有评论
         archives: 档案
+        tags:
+          title: "标签"
       categories:
         show:
           no_posts: 此处没有文章。
@@ -124,3 +137,21 @@ zh-CN:
         archive:
           blog_archive_for: '博客存档 %{date}'
           no_blog_articles_posted: '没有发布文章 %{date}。敬请关注。'
+
+  activerecord:
+    models:
+      refinery/blog/category: 分类 
+      refinery/blog/comment: 评论
+      refinery/blog/post: 博文发帖
+    attributes:
+      refinery/blog/category:
+        title: 标题
+      refinery/blog/comment:
+        name: 姓名
+        email: 电邮
+        message: 信息
+      refinery/blog/post:
+        title: Title
+        body: 标题
+        teaser: 前言
+        

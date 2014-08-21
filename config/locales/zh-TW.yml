@@ -35,8 +35,18 @@ zh-TW:
             approve: 批准此評論
         posts:
           form:
-            toggle_advanced_options: 點擊進入標籤詳解設置和菜單選項
-            published_at: 發佈日期
+            toggle_advanced_options: 按此存取關鍵字標簽及菜單選項
+            published_at: 公佈日期
+            custom_url: 自設網址
+            custom_url_help: 由此字句生成網誌發帖，而非從標題
+            source_url: 來源網站
+            source_url_help: 記錄發帖來源
+            source_url_title: 網址來源標題
+            source_url_title_help: 發帖的來源網址標題
+            author: 作者
+            author_help: 設定此用者成為作者
+            copy_body: 複製發帖內容至前言
+            copy_body_help: '複製發帖內容至前言。前言留白讓系統自動生成前言。'
           index:
             no_items_yet: '目前尚未發博客。點擊 "%{create}" 添加您的第一篇博客。'
           uncategorized:
@@ -74,6 +84,7 @@ zh-TW:
             moderation: 等待審核
             update_notified: 更新獲得通知的人
             comments: 評論
+            teasers: 前言
       comment_mailer:
         notification:
           greeting: 您好
@@ -99,9 +110,11 @@ zh-TW:
           singular: 評論
           none: 没有評論
         archives: 檔案
+        tags:
+          title: "標簽"
       categories:
         show:
-          no_posts: 此處沒有文章。          
+          no_posts: 此處沒有文章。
       posts:
         post:
           filled_in: 用戶體驗
@@ -115,7 +128,7 @@ zh-TW:
           no_blog_articles_yet: 尚未發布文章。敬請關注。
         show:
           blog_home: 博客首頁
-          by: 作者 
+          by: 作者
           categories: 標簽
           category: 標簽
           comments:
@@ -129,4 +142,19 @@ zh-TW:
         archive:
           blog_archive_for: '博客存檔 %{date}'
           no_blog_articles_posted: '沒有發布文章 %{date}。敬請關注。'
-                    
+  activerecord:
+    models:
+      refinery/blog/category: 分類
+      refinery/blog/comment: 評論
+      refinery/blog/post: 博文發帖
+    attributes:
+      refinery/blog/category:
+        title: 標題
+      refinery/blog/comment:
+        name: 姓名
+        email: 電郵
+        message: 信息
+      refinery/blog/post:
+        title: Title
+        body: 標題
+        teaser: 前言
