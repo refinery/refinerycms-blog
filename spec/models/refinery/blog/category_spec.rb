@@ -2,7 +2,7 @@ require 'spec_helper'
 
 module Refinery
   module Blog
-    describe Category do
+    describe Category, type: :model do
       let(:category) { FactoryGirl.create(:blog_category) }
       let(:refinery_user) { FactoryGirl.create(:refinery_user) }
 

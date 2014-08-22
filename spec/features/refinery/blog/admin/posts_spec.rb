@@ -4,7 +4,7 @@ require "spec_helper"
 module Refinery
   module Blog
     module Admin
-      describe Post do
+      describe Post, type: :feature do
         refinery_login_with :refinery_user
 
         let!(:blog_category) do
@@ -49,7 +49,7 @@ module Refinery
                 page.should have_css '.blog_categories'
                 page.should have_css "#post_category_ids_#{blog_category.id}"
                 check blog_category.title
-                find_field("post_category_ids_#{blog_category.id}").should be_checked
+                find(:css, "#post_category_ids_#{blog_category.id}").checked?.should be_truthy
                 click_button "Save"
                 page.should have_content("was successfully added.")
               end

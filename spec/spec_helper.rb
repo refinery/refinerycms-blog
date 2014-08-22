@@ -19,8 +19,7 @@ RSpec.configure do |config|
 end
 
 # set javascript driver for capybara
-require 'capybara/poltergeist'
-Capybara.javascript_driver = :poltergeist
+Capybara.javascript_driver = :selenium
 
 # Requires supporting files with custom matchers and macros, etc,
 # in ./support/ and its subdirectories including factories.

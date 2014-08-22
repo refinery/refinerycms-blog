@@ -3,7 +3,7 @@ require "spec_helper"
 module Refinery
   module Blog
     module Admin
-      describe Comment do
+      describe Comment, type: :feature do
         refinery_login_with :refinery_user
 
         describe "#index" do

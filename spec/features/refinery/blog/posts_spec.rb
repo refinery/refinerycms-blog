@@ -1,7 +1,7 @@
 require "spec_helper"
 
 module Refinery
-  describe "Blog::Posts" do
+  describe "Blog::Posts", type: :feature do
     refinery_login_with :refinery_user
 
     context "when has blog posts" do

@@ -3,7 +3,7 @@ require 'spec_helper'
 module Refinery
   module Blog
     describe PostsHelper do
-      describe "#blog_archive_widget" do
+      describe "#blog_archive_widget", type: :helper do
         let(:html) { helper.blog_archive_widget(dates) }
         let(:links) { Capybara.string(html).find("#blog_archive_widget ul") }
 

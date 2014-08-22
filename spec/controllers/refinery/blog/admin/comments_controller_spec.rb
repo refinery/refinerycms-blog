@@ -3,12 +3,12 @@ require "spec_helper"
 module Refinery
   module Blog
     module Admin
-      describe CommentsController do
+      describe CommentsController, type: :controller do
         refinery_login_with :refinery_user
 
         describe "#index" do
           let!(:comment) { FactoryGirl.create(:blog_comment) }
-          
+
           it "succeeds" do
             get :index
             response.should be_success
@@ -43,13 +43,13 @@ module Refinery
             post :approve, :id => comment.id
             response.should be_redirect
           end
-          
+
           it "approves the comment" do
             post :approve, :id => comment.id
             Refinery::Blog::Comment.approved.count.should eq(1)
           end
         end
-        
+
         describe "#rejected" do
           let!(:comment) { FactoryGirl.create(:rejected_comment) }
 
@@ -72,7 +72,7 @@ module Refinery
             post :reject, :id => comment.id
             response.should be_redirect
           end
-          
+
           it "rejects the comment" do
             post :reject, :id => comment.id
             Refinery::Blog::Comment.rejected.count.should eq(1)

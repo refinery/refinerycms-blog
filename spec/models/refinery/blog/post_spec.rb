@@ -2,7 +2,7 @@ require 'spec_helper'
 
 module Refinery
   module Blog
-    describe Post do
+    describe Post, type: :model do
       let(:post) { FactoryGirl.create(:blog_post) }
 
       describe "validations" do
@@ -159,7 +159,7 @@ module Refinery
           end
 
           it "should be true" do
-            described_class.comments_allowed?.should be_true
+            described_class.comments_allowed?.should be_truthy
           end
         end
 
@@ -169,7 +169,7 @@ module Refinery
           end
 
           it "should be false" do
-            described_class.comments_allowed?.should be_false
+            described_class.comments_allowed?.should be_falsey
           end
         end
       end
@@ -187,7 +187,7 @@ module Refinery
           end
 
           it "should be true" do
-            described_class.teasers_enabled?.should be_true
+            described_class.teasers_enabled?.should be_truthy
           end
         end
 
@@ -197,7 +197,7 @@ module Refinery
           end
 
           it "should be false" do
-            described_class.teasers_enabled?.should be_false
+            described_class.teasers_enabled?.should be_falsey
           end
         end
       end

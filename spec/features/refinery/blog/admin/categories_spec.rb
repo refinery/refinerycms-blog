@@ -1,7 +1,7 @@
 # encoding: utf-8
 require 'spec_helper'
 
-describe "Categories admin" do
+describe "Categories admin", type: :feature do
   refinery_login_with :refinery_user
 
   let(:title) { "lol" }

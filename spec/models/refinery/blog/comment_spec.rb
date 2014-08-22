@@ -2,7 +2,7 @@ require 'spec_helper'
 
 module Refinery
   module Blog
-    describe Comment do
+    describe Comment, type: :model do
       context "wiring up" do
         let(:comment) { FactoryGirl.create(:blog_comment) }
 

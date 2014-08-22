@@ -2,7 +2,7 @@ require 'spec_helper'
 
 module Refinery
   module Blog
-    describe ControllerHelper do
+    describe ControllerHelper, type: :helper do
       describe "#find_tags" do
         let(:tags) { helper.find_tags }
 
