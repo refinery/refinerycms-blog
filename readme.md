@@ -2,7 +2,7 @@
 
 Simple blog engine for [Refinery CMS](http://refinerycms.com). It supports posts, categories and comments.
 
-This version of `refinerycms-blog` supports Rails 3.2.x. To use Rails 2.3.x use the [refinerycms-blog "Rails 2.3.x stable branch"](http://github.com/refinery/refinerycms-blog/tree/rails2-stable).
+This version of `refinerycms-blog` supports Refinery 3.x and Rails 4.1.x.  To use Rails 3.x / Refinery 2.1.x use the [refinerycms-blog "Refinery CMS 2-1 stable branch"](http://github.com/refinery/refinerycms-blog/tree/2-1-stable).
 
 Options:
 
@@ -11,14 +11,14 @@ Options:
 
 ## Requirements
 
-Refinery CMS version 2.1.0 or above.
+Refinery CMS version 3.0.0 or above.
 
 ## Install
 
 Open up your ``Gemfile`` and add at the bottom this line:
 
 ```ruby
-gem 'refinerycms-blog', '~> 2.1.0'
+gem 'refinerycms-blog', git: 'https://github.com/refinery/refinerycms-blog', branch: 'master'
 ```
 
 Now, run ``bundle install``
