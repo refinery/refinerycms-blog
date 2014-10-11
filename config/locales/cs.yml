@@ -97,14 +97,14 @@ cs:
           read_more: Celý článek
         comments:
           singular: komentář
-          none: žiadne komentáře
+          none: žádné komentáře
         archives: Archiv
       categories:
         show:
           no_posts: Nejsou zde žádné články.
       posts:
         post:
-          filled_in: Podaný
+          filled_in: Kategorie
         comment: komentář
         comments:
           by: 'Odeslal %{who}'
