@@ -4,6 +4,7 @@ require 'refinerycms-wymeditor'
 require 'filters_spam'
 require 'rails_autolink'
 require 'friendly_id'
+require 'jquery-ui-rails'
 
 module Refinery
   autoload :BlogGenerator, 'generators/refinery/blog/blog_generator'

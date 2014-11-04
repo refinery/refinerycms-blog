@@ -1,3 +1,5 @@
+//= require jquery-ui/autocomplete
+
 $(document).ready(function(){
   $('nav#actions.multilist > ul:not(.search_list) li a[href$="' + window.location.pathname + '"]')
     .parent().addClass('selected');
