@@ -3,7 +3,6 @@ require 'spec_helper'
 module Refinery
   module Blog
     describe Engine do
-      describe "plugin activity" do
       describe ".load_seed" do
         it "is idempotent" do
           Engine.load_seed
