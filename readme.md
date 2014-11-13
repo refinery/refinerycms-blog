@@ -1,4 +1,4 @@
-# Refinery CMS Blog
+# Refinery CMS Blog [![Build Status](https://travis-ci.org/refinery/refinerycms-blog.svg?branch=master)](https://travis-ci.org/refinery/refinerycms-blog)
 
 Simple blog engine for [Refinery CMS](http://refinerycms.com). It supports posts, categories and comments.
 
