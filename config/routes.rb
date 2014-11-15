@@ -21,9 +21,12 @@ Refinery::Core::Engine.routes.draw do
             get :tags
           end
         end
-
-        resources :categories
-
+        
+        get 'categories/*path/children', to: 'categories#children', as: 'children_categories'
+        resources :categories do
+          post :update_positions, on: :collection
+        end
+        
         resources :comments do
           collection do
             get :approved

@@ -67,6 +67,8 @@ zh-CN:
             title: 分类
             manage: 管理
             new: 创建新的类别
+            reorder_categories: 重新编排分类顺序
+            reorder_categories_done: 完成分类顺序编排                 
           comments:
             title: 评论
             title_with_count: '评论 (%{new_count} new)'

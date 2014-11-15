@@ -104,6 +104,8 @@ en:
       shared:
         categories:
           title: Categories
+          reorder_categories: Reorder categories
+          reorder_categories_done: Finished reordering categories
         rss_feed:
           title: RSS Feed
           subscribe: Subscribe
