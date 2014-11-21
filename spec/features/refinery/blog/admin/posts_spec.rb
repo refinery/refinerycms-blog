@@ -234,7 +234,7 @@ module Refinery
             before do
               click_link "Create new post"
               within "#switch_locale_picker" do
-                click_link "Ru"
+                click_link "ru"
               end
               fill_in "Title", :with => ru_page_title
               fill_in "post_body", :with => "One post in my blog"
@@ -317,7 +317,7 @@ module Refinery
             describe "edit the post in secondary locale" do
               it "succeeds" do
                 within "#post_#{blog_post.id}" do
-                  click_link("Ru")
+                  click_link("ru")
                 end
 
                 fill_in "Title", :with => "Нов"
