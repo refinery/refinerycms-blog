@@ -120,7 +120,7 @@ describe "Categories admin", type: :feature do
 
         within "#actions" do
           expect(page).to have_no_content( 'Reorder Categories' )
-          expect(page).to have_no_selector("a[href='/#{Refinery::Core.backend_route}/blog/categories']")
+         
         end
       end
     end
