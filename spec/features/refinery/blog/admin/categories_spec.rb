@@ -73,7 +73,7 @@ describe "Categories admin", type: :feature do
         visit refinery.blog_admin_posts_path
         click_link "Create new category"
         within "#switch_locale_picker" do
-          click_link "Ru"
+          click_link "ru"
         end
         fill_in "Title", :with => ru_category_title
         click_button "Save"
