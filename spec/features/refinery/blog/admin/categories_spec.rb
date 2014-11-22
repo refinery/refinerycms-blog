@@ -119,7 +119,7 @@ describe "Categories admin", type: :feature do
         visit refinery.blog_admin_categories_path
 
         within "#actions" do
-          expect(page).to have_no_content("Reorder categories")
+          expect(page).to have_no_content( 'Reorder Categories' )
           expect(page).to have_no_selector("a[href='/#{Refinery::Core.backend_route}/blog/categories']")
         end
       end
@@ -132,7 +132,7 @@ describe "Categories admin", type: :feature do
         visit refinery.blog_admin_categories_path
 
         within "#actions" do
-          expect(page).to have_content("Reorder categories")
+          expect(page).to have_content( 'Reorder Categories' )
           expect(page).to have_selector("a[href='/#{Refinery::Core.backend_route}/blog/categories']")
         end
       end
