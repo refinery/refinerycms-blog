@@ -13,4 +13,9 @@ Refinery::Blog.configure do |config|
   
   # If you're grafting onto an existing app, change this to your User class
   # Refinery::Blog.user_class = <%= Refinery::Blog.user_class.to_s.inspect %>
+  
+  # If categories is not sortable, make it false; 
+  # config.category_orderable = <%= Refinery::Blog.category_orderable.inspect %>
+  
+  # config.scope_slug_by_parent = <%= Refinery::Blog.scope_slug_by_parent.inspect %>
 end

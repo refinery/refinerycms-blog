@@ -1,6 +1,6 @@
 module Refinery
   module Blog
-    class Categorization < ActiveRecord::Base
+    class Categorization < Core::BaseModel
 
       self.table_name = 'refinery_blog_categories_blog_posts'
       belongs_to :blog_post, :class_name => 'Refinery::Blog::Post', :foreign_key => :blog_post_id

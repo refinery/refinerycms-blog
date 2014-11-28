@@ -114,6 +114,29 @@ describe "Categories admin", type: :feature do
 
     end
 
+    context "when no categories" do
+      it "doesn't show reorder categories link" do
+        visit refinery.blog_admin_categories_path
 
+        within "#actions" do
+          expect(page).to have_no_content( 'Reorder Categories' )
+         
+        end
+      end
+    end
+
+    context "when some categories exist" do
+      before { 2.times { |i| Refinery::Blog::Category.create :title => "Page #{i}" } }
+
+      it "shows reorder categories link" do
+        visit refinery.blog_admin_categories_path
+
+        within "#actions" do
+          expect(page).to have_content( 'Reorder Categories' )
+          expect(page).to have_selector("a[href='/#{Refinery::Core.backend_route}/blog/categories']")
+        end
+      end
+    end
+    
   end
 end

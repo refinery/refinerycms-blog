@@ -67,6 +67,8 @@ zh-TW:
             title: 分類
             manage: 管理
             new: 創建新的類別
+            reorder_categories: 重新編排分類順序
+            reorder_categories_done: 完成頁面分類編排                      
           comments:
             title: 評論
             title_with_count: '評論 (%{new_count} new)'

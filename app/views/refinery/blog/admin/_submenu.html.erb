@@ -51,6 +51,7 @@
 
   <ul class='collapsible_menu'>
     <li class='not_a_link'>
+   
       <%= link_to t('.categories.title'), '#',
                   :class => 'folder_icon' %>
     </li>
@@ -62,6 +63,19 @@
       <%= link_to t('.categories.new'), refinery.new_blog_admin_category_path,
                   :class => 'folder_add_icon' %>
     </li>
+    
+    <% if  Refinery::Blog.category_orderable && @categories.present? && @categories.many? && params[:controller] == 'refinery/blog/admin/categories' %>
+      <li>
+        <%= link_to t('.categories.reorder_categories'), refinery.blog_admin_categories_path,
+                    :id => "reorder_action",
+                    :class => "reorder_icon" %>
+
+        <%= link_to t('.categories.reorder_categories_done'), refinery.blog_admin_categories_path,
+                    :id => "reorder_action_done",
+                    :style => "display: none;",
+                    :class => "reorder_icon" %>
+      </li>
+    <%end %>
   </ul>
 
   <ul class='collapsible_menu'>

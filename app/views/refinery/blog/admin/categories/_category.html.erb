@@ -1,26 +1,36 @@
 <li class='clearfix record <%= cycle("on", "on-hover") %>' id="<%= dom_id(category) -%>">
-  <span class='title'>
-    <%= category.title.presence || category.translations.detect {|t| t.title.present?}.title %>
-    <span class="preview">
-      <% category.translations.each do |translation| %>
-        <% if translation.title.present? %>
-          <%= link_to refinery_icon_tag("flags/#{translation.locale}.png", :size => '16x11'),
-              refinery.edit_blog_admin_category_path(category, :switch_locale => translation.locale),
-              :class => 'locale' %>
-          <% end %>
-      <% end %>
+  <div class='clearfix'>
+    <% if category.children.present? %>
+      <span class="icon toggle <%= 'expanded' if Refinery::Blog.auto_expand_admin_tree %>" title="<%= t('expand_collapse', :scope => 'refinery.admin.blog.categories') %>"></span>
+    <% else %>
+      <span class="icon"></span>
+    <% end %>
+    <span class='title'>
+      <%= category.title.presence || category.translations.detect {|t| t.title.present?}.title %>
+      <span class="preview">
+        <% category.translations.each do |translation| %>
+          <% if translation.title.present? %>
+            <%= link_to refinery_icon_tag("flags/#{translation.locale}.png", :size => '16x11'),
+                refinery.edit_blog_admin_category_path(category, :switch_locale => translation.locale),
+                :class => 'locale' %>
+            <% end %>
+        <% end %>
+      </span>
     </span>
-  </span>
-  <span class='actions'>
-    <%= link_to refinery_icon_tag("application_edit.png"),
-                refinery.edit_blog_admin_category_path(category),
-                :title => t('.edit') %>
-    <%= link_to refinery_icon_tag("delete.png"), refinery.blog_admin_category_path(category),
-                :class => "cancel confirm-delete",
-                :title => t('.delete'),
-                :method => :delete,
-                :data => {
-                  :confirm => t('message', :scope => 'refinery.admin.delete', :title => category.title)
-                } %>
-  </span>
+    <span class='actions'>
+      <%= link_to refinery_icon_tag("application_edit.png"),
+                  refinery.edit_blog_admin_category_path(category),
+                  :title => t('.edit') %>
+      <%= link_to refinery_icon_tag("delete.png"), refinery.blog_admin_category_path(category),
+                  :class => "cancel confirm-delete",
+                  :title => t('.delete'),
+                  :method => :delete,
+                  :data => {
+                    :confirm => t('message', :scope => 'refinery.admin.delete', :title => category.title)
+                  } %>
+    </span>
+  </div>
+  <ul class='nested' data-ajax-content="<%= refinery.blog_admin_children_categories_path(category.nested_url) %>">
+    <%= render(:partial => 'category', :collection => category.children) if Refinery::Blog.auto_expand_admin_tree %>
+  </ul>
 </li>
