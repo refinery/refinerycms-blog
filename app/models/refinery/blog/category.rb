@@ -18,8 +18,34 @@ module Refinery
 
       validates :title, :presence => true, :uniqueness => true
 
-      def self.translated
-        with_translations(::Globalize.locale)
+      
+
+      class << self
+        def translated
+          with_translations(::Globalize.locale)
+        end
+
+
+
+        def find_by_path_or_id(path, id)
+          if path.present?
+            if path.friendly_id?
+              self.friendly.find_by_path(path)
+            else
+              self.friendly.find(path)
+            end
+          elsif id.present?
+            self.friendly.find(id)
+          end
+          
+        end
+        def find_by_path_or_id!(path, id)
+          c = find_by_path_or_id(path, id)
+          raise ActiveRecord::RecordNotFound unless c
+          c
+        end
+
+
       end
 
       def post_count
@@ -63,6 +89,8 @@ module Refinery
           translations.first.locale
         end
       end
+
+      
     end
   end
 end
