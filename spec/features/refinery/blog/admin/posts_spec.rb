@@ -208,10 +208,10 @@ module Refinery
               expect(Refinery::Blog::Post.count).to eq(1)
             end
 
-            it "shows locale flag for post" do
+            it "shows locale for post" do
 
               within "#post_#{@p.id}" do
-                expect(page).to have_css("img[src='/assets/refinery/icons/flags/en.png']")
+                expect(page).to have_css(".locale_icon.en")
               end
             end
 
@@ -234,7 +234,7 @@ module Refinery
             before do
               click_link "Create new post"
               within "#switch_locale_picker" do
-                click_link "ru"
+                click_link "RU"
               end
               fill_in "Title", :with => ru_page_title
               fill_in "post_body", :with => "One post in my blog"
@@ -253,15 +253,15 @@ module Refinery
               end
             end
 
-            it "shows locale flag for post" do
+            it "shows locale for post" do
               within "#post_#{@p.id}" do
-                expect(page).to have_css("img[src='/assets/refinery/icons/flags/ru.png']")
+                expect(page).to have_css(".locale_icon.ru")
               end
             end
 
-            it "does not show locale flag for primary locale" do
+            it "does not show locale for primary locale" do
               within "#post_#{@p.id}" do
-                expect(page).not_to have_css("img[src='/assets/refinery/icons/flags/en.png']")
+                expect(page).not_to have_css(".locale_icon.en")
               end
             end
 
@@ -292,10 +292,10 @@ module Refinery
               visit refinery.blog_admin_posts_path
             end
 
-            it "shows both locale flags for post" do
+            it "shows both locales for post" do
               within "#post_#{blog_post.id}" do
-                expect(page).to have_css("img[src='/assets/refinery/icons/flags/en.png']")
-                expect(page).to have_css("img[src='/assets/refinery/icons/flags/ru.png']")
+                expect(page).to have_css(".locale_icon.en")
+                expect(page).to have_css(".locale_icon.ru")
               end
             end
 
@@ -303,7 +303,7 @@ module Refinery
               it "succeeds" do
 
                 within "#post_#{blog_post.id}" do
-                  click_link("En")
+                  click_link("EN")
                 end
                 expect(current_path).to eq(refinery.edit_blog_admin_post_path(blog_post))
                 fill_in "Title", :with => "New Post Title"
@@ -317,7 +317,7 @@ module Refinery
             describe "edit the post in secondary locale" do
               it "succeeds" do
                 within "#post_#{blog_post.id}" do
-                  click_link("ru")
+                  click_link("RU")
                 end
 
                 fill_in "Title", :with => "Нов"
