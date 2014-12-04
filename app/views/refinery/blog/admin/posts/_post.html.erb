@@ -2,12 +2,14 @@
   <span class='title'>
     <%= post.title.presence || post.translations.detect {|t| t.title.present?}.title %>
     <span class="preview">
-      <% post.translations.each do |translation| %>
-        <% if translation.title.present? %>
-          <%= link_to refinery_icon_tag("flags/#{translation.locale}.png", :size => '16x11'),
-              refinery.edit_blog_admin_post_path(post, :switch_locale => translation.locale),
-              :class => 'locale' %>
-          <% end %>
+      <% post.translations.reject {|t| t.title.blank? }.each do |translation| %>
+        <%= link_to refinery.edit_blog_admin_post_path(post, :switch_locale => translation.locale),
+                    :class => 'locale' do %>
+          <div class="locale_icon <%= translation.locale %>">
+            <%= refinery_icon_tag('locale-blue.svg', :size => '24x24') %>
+            <span class="code"><%= translation.locale.upcase %></span>
+          </div>
+        <% end %>
       <% end %>
 
       <%= post.published_at.try(:strftime, '%b %d, %Y') || 'draft' %>
