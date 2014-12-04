@@ -15,9 +15,10 @@ Refinery CMS version 3.0.0 or above.
 
 ## Install
 
-Open up your ``Gemfile`` and add at the bottom this line:
+Open up your ``Gemfile`` and add at the bottom this two lines:
 
 ```ruby
+gem 'refinerycms-settings', git: 'https://github.com/refinery/refinerycms-settings', branch: 'master'
 gem 'refinerycms-blog', git: 'https://github.com/refinery/refinerycms-blog', branch: 'master'
 ```
 
