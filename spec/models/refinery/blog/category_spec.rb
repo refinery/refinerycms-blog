@@ -8,17 +8,17 @@ module Refinery
 
       describe "validations" do
         it "requires title" do
-          FactoryGirl.build(:blog_category, :title => "").should_not be_valid
+          expect(FactoryGirl.build(:blog_category, :title => "")).not_to be_valid
         end
 
         it "won't allow duplicate titles" do
-          FactoryGirl.build(:blog_category, :title => category.title).should_not be_valid
+          expect(FactoryGirl.build(:blog_category, :title => category.title)).not_to be_valid
         end
       end
 
       describe "blog posts association" do
         it "has a posts attribute" do
-          category.should respond_to(:posts)
+          expect(category).to respond_to(:posts)
         end
 
         it "returns posts by published_at date in descending order" do
@@ -32,7 +32,7 @@ module Refinery
                                                  :published_at => Time.now,
                                                  :author => refinery_user })
 
-          category.posts.newest_first.first.should == latest_post
+          expect(category.posts.newest_first.first).to eq(latest_post)
         end
 
       end
@@ -42,7 +42,7 @@ module Refinery
           2.times do
             category.posts << FactoryGirl.create(:blog_post)
           end
-          category.post_count.should == 2
+          expect(category.post_count).to eq(2)
         end
       end
     end

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 module Refinery
   module Blog
-    describe PostsHelper do
+    describe PostsHelper, :type => :helper do
       describe "#blog_archive_widget", type: :helper do
         let(:html) { helper.blog_archive_widget(dates) }
         let(:links) { Capybara.string(html).find("#blog_archive_widget ul") }
@@ -11,7 +11,7 @@ module Refinery
           let(:dates) { [] }
 
           it "does not display anything" do
-            html.should be_blank
+            expect(html).to be_blank
           end
         end
 
@@ -29,18 +29,18 @@ module Refinery
             month = Date::MONTHNAMES[recent_post.month]
             year = recent_post.year
 
-            links.should have_link("#{month} #{year} (3)")
+            expect(links).to have_link("#{month} #{year} (3)")
           end
 
           it "has a link for the year of dates older than one year" do
             year = old_post.year
 
-            links.should have_link("#{year} (3)")
+            expect(links).to have_link("#{year} (3)")
           end
 
           it "sorts recent links before old links" do
-            links.find("li:first").should have_content(recent_post.year.to_s)
-            links.find("li:last").should have_content(old_post.year.to_s)
+            expect(links.find("li:first")).to have_content(recent_post.year.to_s)
+            expect(links.find("li:last")).to have_content(old_post.year.to_s)
           end
         end
 
@@ -50,8 +50,8 @@ module Refinery
           it "sorts by the more recent date" do
             first, second = dates.map {|p| Date::MONTHNAMES[p.month] }
 
-            links.find("li:first").should have_content(second)
-            links.find("li:last").should have_content(first)
+            expect(links.find("li:first")).to have_content(second)
+            expect(links.find("li:last")).to have_content(first)
           end
         end
 
@@ -61,8 +61,8 @@ module Refinery
           it "sorts by the more recent date" do
             first, second = dates.map {|p| p.year.to_s }
 
-            links.find("li:first").should have_content(second)
-            links.find("li:last").should have_content(first)
+            expect(links.find("li:first")).to have_content(second)
+            expect(links.find("li:last")).to have_content(first)
           end
         end
       end
@@ -71,11 +71,11 @@ module Refinery
         let(:email) { "test@test.com" }
 
         it "returns gravatar url" do
-          helper.avatar_url(email).should eq("http://gravatar.com/avatar/b642b4217b34b1e8d3bd915fc65c4452?s=60.jpg")
+          expect(helper.avatar_url(email)).to eq("http://gravatar.com/avatar/b642b4217b34b1e8d3bd915fc65c4452?s=60.jpg")
         end
 
         it "accepts options hash to change default size" do
-          helper.avatar_url(email, :size => 55).should eq("http://gravatar.com/avatar/b642b4217b34b1e8d3bd915fc65c4452?s=55.jpg")
+          expect(helper.avatar_url(email, :size => 55)).to eq("http://gravatar.com/avatar/b642b4217b34b1e8d3bd915fc65c4452?s=55.jpg")
         end
       end
     end

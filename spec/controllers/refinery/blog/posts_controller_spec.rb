@@ -11,12 +11,12 @@ module Refinery
 
       it "should not limit rss feed" do
         get :index, :format => :rss
-        assigns[:posts].size.should == 3
+        expect(assigns[:posts].size).to eq(3)
       end
 
       it "should limit rss feed" do
         get :index, :format => :rss, :max_results => 2
-        assigns[:posts].count.should == 2
+        expect(assigns[:posts].count).to eq(2)
       end
     end
   end

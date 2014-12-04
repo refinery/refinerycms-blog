@@ -8,6 +8,6 @@ describe "Blog menu entry", type: :feature do
 
     within("#menu") { click_link "Blog" }
 
-    page.should have_css("a.active", :text => "Blog")
+    expect(page).to have_css("a.active", :text => "Blog")
   end
 end

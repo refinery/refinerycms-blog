@@ -16,12 +16,12 @@ describe "Categories admin", type: :feature do
     click_button "Save"
 
     category = Refinery::Blog::Category.first
-    category.title.should eq(title)
+    expect(category.title).to eq(title)
   end
 
   context "with translations" do
     before do
-      Refinery::I18n.stub(:frontend_locales).and_return([:en, :ru])
+      allow(Refinery::I18n).to receive(:frontend_locales).and_return([:en, :ru])
       blog_page = Globalize.with_locale(:en) { FactoryGirl.create(:page, :link_url => "/blog", :title => "Blog") }
       Globalize.with_locale(:ru) do
         blog_page.title = 'блог'
@@ -40,27 +40,27 @@ describe "Categories admin", type: :feature do
       end
 
       it "suceeds" do
-        page.should have_content("'#{@c.title}' was successfully added.")
-        Refinery::Blog::Category.count.should eq(1)
+        expect(page).to have_content("'#{@c.title}' was successfully added.")
+        expect(Refinery::Blog::Category.count).to eq(1)
       end
 
       it "shows locale flag for category" do
         click_link "Manage"
         within "#category_#{@c.id}" do
-          page.should have_css("img[src='/assets/refinery/icons/flags/en.png']")
+          expect(page).to have_css("img[src='/assets/refinery/icons/flags/en.png']")
         end
       end
 
       it "shows up in blog page for default locale" do
         visit refinery.blog_root_path
         within "#categories" do
-          page.should have_selector('li')
+          expect(page).to have_selector('li')
         end
       end
 
       it "does not show up in blog page for secondary locale" do
         visit refinery.blog_root_path(:locale => :ru)
-        page.should_not have_selector('#categories')
+        expect(page).not_to have_selector('#categories')
       end
 
     end
@@ -81,33 +81,33 @@ describe "Categories admin", type: :feature do
       end
 
       it "suceeds" do
-        page.should have_content("'#{@c.title}' was successfully added.")
-        Refinery::Blog::Category.count.should eq(1)
+        expect(page).to have_content("'#{@c.title}' was successfully added.")
+        expect(Refinery::Blog::Category.count).to eq(1)
       end
 
       it "shows locale flag for category" do
         click_link "Manage"
         within "#category_#{@c.id}" do
-          page.should have_css("img[src='/assets/refinery/icons/flags/ru.png']")
+          expect(page).to have_css("img[src='/assets/refinery/icons/flags/ru.png']")
         end
       end
 
       it "does not show locale flag for primary locale" do
         click_link "Manage"
         within "#category_#{@c.id}" do
-          page.should_not have_css("img[src='/assets/refinery/icons/flags/en.png']")
+          expect(page).not_to have_css("img[src='/assets/refinery/icons/flags/en.png']")
         end
       end
 
       it "does not shows up in blog page for default locale" do
         visit refinery.blog_root_path
-        page.should_not have_selector('#categories')
+        expect(page).not_to have_selector('#categories')
       end
 
       it "shows up in blog page for secondary locale" do
         visit refinery.blog_root_path(:locale => :ru)
         within "#categories" do
-          page.should have_selector('li')
+          expect(page).to have_selector('li')
         end
       end
 

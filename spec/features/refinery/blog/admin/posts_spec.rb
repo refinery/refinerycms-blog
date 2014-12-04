@@ -18,7 +18,7 @@ module Refinery
             before { visit refinery.blog_admin_posts_path }
 
             it "invites to create new post" do
-              page.should have_content("There are no Blog Posts yet. Click \"Create new post\" to add your first blog post.")
+              expect(page).to have_content("There are no Blog Posts yet. Click \"Create new post\" to add your first blog post.")
             end
           end
 
@@ -29,42 +29,42 @@ module Refinery
             end
 
             it "should have Tags" do
-              page.should have_content("Tags")
+              expect(page).to have_content("Tags")
             end
 
             it "should have category title", :js => true do
               click_link "toggle_advanced_options"
-              page.should have_content(blog_category.title)
+              expect(page).to have_content(blog_category.title)
             end
 
             describe "create blog post", :js => true do
               before do
-                subject.class.count.should eq(0)
+                expect(subject.class.count).to eq(0)
                 fill_in "post_title", :with => "This is my blog post"
 
                 # this is a dirty hack but textarea that needs to be filled is
                 # hidden and capybara refuses to fill in elements it can't see
                 page.evaluate_script("WYMeditor.INSTANCES[0].html('<p>And I love it</p>')")
                 click_link "toggle_advanced_options"
-                page.should have_css '.blog_categories'
-                page.should have_css "#post_category_ids_#{blog_category.id}"
+                expect(page).to have_css '.blog_categories'
+                expect(page).to have_css "#post_category_ids_#{blog_category.id}"
                 check blog_category.title
-                find(:css, "#post_category_ids_#{blog_category.id}").checked?.should be_truthy
+                expect(find(:css, "#post_category_ids_#{blog_category.id}").checked?).to be_truthy
                 click_button "Save"
-                page.should have_content("was successfully added.")
+                expect(page).to have_content("was successfully added.")
               end
 
               it "should be the only blog post" do
-                subject.class.count.should eq(1)
+                expect(subject.class.count).to eq(1)
               end
 
               it "should belong to me" do
-                subject.class.first.author.should eq(::Refinery::User.last)
+                expect(subject.class.first.author).to eq(::Refinery::User.last)
               end
 
               it "should save categories" do
-                subject.class.last.categories.count.should eq(1)
-                subject.class.last.categories.first.title.should eq(blog_category.title)
+                expect(subject.class.last.categories.count).to eq(1)
+                expect(subject.class.last.categories.first.title).to eq(blog_category.title)
               end
             end
 
@@ -80,15 +80,15 @@ module Refinery
               end
 
               it "should succeed" do
-                page.should have_content("was successfully added.")
+                expect(page).to have_content("was successfully added.")
               end
 
               it "should be the only blog post" do
-                subject.class.count.should eq(1)
+                expect(subject.class.count).to eq(1)
               end
 
               it "should have the specified tags" do
-                subject.class.last.tag_list.sort.should eq(tag_list.split(', ').sort)
+                expect(subject.class.last.tag_list.sort).to eq(tag_list.split(', ').sort)
               end
             end
           end
@@ -104,26 +104,26 @@ module Refinery
 
             describe "edit blog post" do
               it "should succeed" do
-                page.should have_content(blog_post.title)
+                expect(page).to have_content(blog_post.title)
 
                 click_link("Edit this blog post")
-                current_path.should == refinery.edit_blog_admin_post_path(blog_post)
+                expect(current_path).to eq(refinery.edit_blog_admin_post_path(blog_post))
 
                 fill_in "post_title", :with => "hax0r"
                 click_button "Save"
 
-                page.should_not have_content(blog_post.title)
-                page.should have_content("'hax0r' was successfully updated.")
+                expect(page).not_to have_content(blog_post.title)
+                expect(page).to have_content("'hax0r' was successfully updated.")
               end
             end
 
             describe "deleting blog post" do
               it "should succeed" do
-                page.should have_content(blog_post.title)
+                expect(page).to have_content(blog_post.title)
 
                 click_link "Remove this blog post forever"
 
-                page.should have_content("'#{blog_post.title}' was successfully removed.")
+                expect(page).to have_content("'#{blog_post.title}' was successfully removed.")
               end
             end
 
@@ -131,8 +131,8 @@ module Refinery
               it "redirects to blog post in the frontend" do
                 click_link "View this blog post live"
 
-                current_path.should == refinery.blog_post_path(blog_post)
-                page.should have_content(blog_post.title)
+                expect(current_path).to eq(refinery.blog_post_path(blog_post))
+                expect(page).to have_content(blog_post.title)
               end
             end
           end
@@ -140,7 +140,7 @@ module Refinery
           context "when uncategorized post" do
             it "shows up in the list" do
               visit refinery.uncategorized_blog_admin_posts_path
-              page.should have_content(blog_post.title)
+              expect(page).to have_content(blog_post.title)
             end
           end
 
@@ -150,7 +150,7 @@ module Refinery
               blog_post.save!
 
               visit refinery.uncategorized_blog_admin_posts_path
-              page.should_not have_content(blog_post.title)
+              expect(page).not_to have_content(blog_post.title)
             end
           end
         end
@@ -173,11 +173,11 @@ module Refinery
               select other_guy.username, :from => "Author"
 
               click_button "Save"
-              page.should have_content("was successfully added.")
+              expect(page).to have_content("was successfully added.")
             end
 
             it "belongs to another user" do
-              subject.class.last.author.should eq(other_guy)
+              expect(subject.class.last.author).to eq(other_guy)
             end
           end
         end
@@ -185,7 +185,7 @@ module Refinery
         context "with translations" do
           before do
             Globalize.locale = :en
-            Refinery::I18n.stub(:frontend_locales).and_return([:en, :ru])
+            allow(Refinery::I18n).to receive(:frontend_locales).and_return([:en, :ru])
             blog_page = FactoryGirl.create(:page, :link_url => "/blog", :title => "Blog")
             Globalize.with_locale(:ru) do
               blog_page.title = 'блог'
@@ -204,25 +204,25 @@ module Refinery
             end
 
             it "succeeds" do
-              page.should have_content("'Post' was successfully added.")
-              Refinery::Blog::Post.count.should eq(1)
+              expect(page).to have_content("'Post' was successfully added.")
+              expect(Refinery::Blog::Post.count).to eq(1)
             end
 
             it "shows locale flag for post" do
 
               within "#post_#{@p.id}" do
-                page.should have_css("img[src='/assets/refinery/icons/flags/en.png']")
+                expect(page).to have_css("img[src='/assets/refinery/icons/flags/en.png']")
               end
             end
 
             it "shows up in blog page for default locale" do
               visit refinery.blog_root_path
-              page.should have_selector("#post_#{@p.id}")
+              expect(page).to have_selector("#post_#{@p.id}")
             end
 
             it "does not show up in blog page for secondary locale" do
               visit refinery.blog_root_path(:locale => :ru)
-              page.should_not have_selector("#post_#{@p.id}")
+              expect(page).not_to have_selector("#post_#{@p.id}")
             end
 
           end
@@ -243,36 +243,36 @@ module Refinery
             end
 
             it "succeeds" do
-              page.should have_content("was successfully added.")
-              Refinery::Blog::Post.count.should eq(1)
+              expect(page).to have_content("was successfully added.")
+              expect(Refinery::Blog::Post.count).to eq(1)
             end
 
             it "shows title in secondary locale" do
               within "#post_#{@p.id}" do
-                page.should have_content(ru_page_title)
+                expect(page).to have_content(ru_page_title)
               end
             end
 
             it "shows locale flag for post" do
               within "#post_#{@p.id}" do
-                page.should have_css("img[src='/assets/refinery/icons/flags/ru.png']")
+                expect(page).to have_css("img[src='/assets/refinery/icons/flags/ru.png']")
               end
             end
 
             it "does not show locale flag for primary locale" do
               within "#post_#{@p.id}" do
-                page.should_not have_css("img[src='/assets/refinery/icons/flags/en.png']")
+                expect(page).not_to have_css("img[src='/assets/refinery/icons/flags/en.png']")
               end
             end
 
             it "does not show up in blog page for default locale" do
               visit refinery.blog_root_path
-              page.should_not have_selector("#post_#{@p.id}")
+              expect(page).not_to have_selector("#post_#{@p.id}")
             end
 
             it "shows up in blog page for secondary locale" do
               visit refinery.blog_root_path(:locale => :ru)
-              page.should have_selector("#post_#{@p.id}")
+              expect(page).to have_selector("#post_#{@p.id}")
             end
 
           end
@@ -294,8 +294,8 @@ module Refinery
 
             it "shows both locale flags for post" do
               within "#post_#{blog_post.id}" do
-                page.should have_css("img[src='/assets/refinery/icons/flags/en.png']")
-                page.should have_css("img[src='/assets/refinery/icons/flags/ru.png']")
+                expect(page).to have_css("img[src='/assets/refinery/icons/flags/en.png']")
+                expect(page).to have_css("img[src='/assets/refinery/icons/flags/ru.png']")
               end
             end
 
@@ -305,12 +305,12 @@ module Refinery
                 within "#post_#{blog_post.id}" do
                   click_link("En")
                 end
-                current_path.should == refinery.edit_blog_admin_post_path(blog_post)
+                expect(current_path).to eq(refinery.edit_blog_admin_post_path(blog_post))
                 fill_in "Title", :with => "New Post Title"
                 click_button "Save"
 
-                page.should_not have_content(blog_post.title)
-                page.should have_content("'New Post Title' was successfully updated.")
+                expect(page).not_to have_content(blog_post.title)
+                expect(page).to have_content("'New Post Title' was successfully updated.")
               end
             end
 
@@ -323,8 +323,8 @@ module Refinery
                 fill_in "Title", :with => "Нов"
                 click_button "Save"
 
-                page.should_not have_content(blog_post.title)
-                page.should have_content("'Нов' was successfully updated.")
+                expect(page).not_to have_content(blog_post.title)
+                expect(page).to have_content("'Нов' was successfully updated.")
               end
             end
 

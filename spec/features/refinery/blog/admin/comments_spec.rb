@@ -16,7 +16,7 @@ module Refinery
             it "should list no comments" do
               visit refinery.blog_admin_comments_path
 
-              page.should have_content('There are no new comments')
+              expect(page).to have_content('There are no new comments')
             end
           end
           context "when has new unapproved comments" do
@@ -24,20 +24,20 @@ module Refinery
             before { visit refinery.blog_admin_comments_path }
 
             it "should list comments" do
-              page.should have_content(blog_comment.body)
-              page.should have_content(blog_comment.name)
+              expect(page).to have_content(blog_comment.body)
+              expect(page).to have_content(blog_comment.name)
             end
 
             it "should allow me to approve a comment" do
               click_link "Approve this comment"
 
-              page.should have_content("has been approved")
+              expect(page).to have_content("has been approved")
             end
 
             it "should allow me to reject a comment" do
               click_link "Reject this comment"
 
-              page.should have_content("has been rejected")
+              expect(page).to have_content("has been rejected")
             end
           end
         end
@@ -50,7 +50,7 @@ module Refinery
             end
 
             it "should list no comments" do
-              page.should have_content('There are no approved comments')
+              expect(page).to have_content('There are no approved comments')
             end
           end
           context "when has approved comments" do
@@ -60,14 +60,14 @@ module Refinery
             before { visit refinery.approved_blog_admin_comments_path }
 
             it "should list comments" do
-              page.should have_content(blog_comment.body)
-              page.should have_content(blog_comment.name)
+              expect(page).to have_content(blog_comment.body)
+              expect(page).to have_content(blog_comment.name)
             end
 
             it "should allow me to reject a comment" do
               click_link "Reject this comment"
 
-              page.should have_content("has been rejected")
+              expect(page).to have_content("has been rejected")
             end
           end
         end
@@ -80,7 +80,7 @@ module Refinery
             end
 
             it "should list no comments" do
-              page.should have_content('There are no rejected comments')
+              expect(page).to have_content('There are no rejected comments')
             end
           end
           context "when has rejected comments" do
@@ -90,14 +90,14 @@ module Refinery
             before { visit refinery.rejected_blog_admin_comments_path }
 
             it "should list comments" do
-              page.should have_content(blog_comment.body)
-              page.should have_content(blog_comment.name)
+              expect(page).to have_content(blog_comment.body)
+              expect(page).to have_content(blog_comment.name)
             end
 
             it "should allow me to approve a comment" do
               click_link "Approve this comment"
 
-              page.should have_content("has been approved")
+              expect(page).to have_content("has been approved")
             end
           end
         end
@@ -106,13 +106,13 @@ module Refinery
           let!(:blog_comment) { FactoryGirl.create(:blog_comment) }
           before { visit refinery.blog_admin_comment_path(blog_comment) }
           it "should display the comment" do
-            page.should have_content(blog_comment.body)
-            page.should have_content(blog_comment.name)
+            expect(page).to have_content(blog_comment.body)
+            expect(page).to have_content(blog_comment.name)
           end
           it "should allow me to approve the comment" do
             click_link "Approve this comment"
 
-            page.should have_content("has been approved")
+            expect(page).to have_content("has been approved")
           end
         end
       end
