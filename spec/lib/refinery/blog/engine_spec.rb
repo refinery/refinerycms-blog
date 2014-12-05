@@ -8,7 +8,7 @@ module Refinery
           Engine.load_seed
           Engine.load_seed
 
-          Refinery::Page.where(:link_url => '/blog').count.should eq(1)
+          expect(Refinery::Page.where(:link_url => '/blog').count).to eq(1)
         end
       end
     end

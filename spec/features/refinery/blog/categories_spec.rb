@@ -19,8 +19,8 @@ module Refinery
       describe "show categories blog posts" do
         it "should displays categories blog posts" do
           visit refinery.blog_category_path(@category)
-          page.should have_content("Refinery CMS blog post")
-          page.should have_content("Video Games")
+          expect(page).to have_content("Refinery CMS blog post")
+          expect(page).to have_content("Video Games")
         end
       end
     end

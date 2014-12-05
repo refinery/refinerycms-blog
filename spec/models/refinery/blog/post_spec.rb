@@ -7,51 +7,51 @@ module Refinery
 
       describe "validations" do
         it "requires title" do
-          FactoryGirl.build(:blog_post, :title => "").should_not be_valid
+          expect(FactoryGirl.build(:blog_post, :title => "")).not_to be_valid
         end
 
         it "won't allow duplicate titles" do
-          FactoryGirl.build(:blog_post, :title => post.title).should_not be_valid
+          expect(FactoryGirl.build(:blog_post, :title => post.title)).not_to be_valid
         end
 
         it "requires body" do
-          FactoryGirl.build(:blog_post, :body => nil).should_not be_valid
+          expect(FactoryGirl.build(:blog_post, :body => nil)).not_to be_valid
         end
       end
 
       describe "comments association" do
 
         it "have a comments attribute" do
-          post.should respond_to(:comments)
+          expect(post).to respond_to(:comments)
         end
 
         it "destroys associated comments" do
           FactoryGirl.create(:blog_comment, :blog_post_id => post.id)
           post.destroy
-          Blog::Comment.where(:blog_post_id => post.id).should be_empty
+          expect(Blog::Comment.where(:blog_post_id => post.id)).to be_empty
         end
       end
 
       describe "categories association" do
         it "have categories attribute" do
-          post.should respond_to(:categories)
+          expect(post).to respond_to(:categories)
         end
       end
 
       describe "tags" do
         it "acts as taggable" do
-          post.should respond_to(:tag_list)
+          expect(post).to respond_to(:tag_list)
 
           post.tag_list = "refinery, cms"
           post.save!
 
-          post.tag_list.should include("refinery")
+          expect(post.tag_list).to include("refinery")
         end
       end
 
       describe "authors" do
         it "are authored" do
-          described_class.instance_methods.map(&:to_sym).should include(:author)
+          expect(described_class.instance_methods.map(&:to_sym)).to include(:author)
         end
       end
 
@@ -67,8 +67,8 @@ module Refinery
         it "returns all posts from specified month" do
           #check for this month
           date = "03/2011"
-          described_class.by_month(Time.parse(date)).count.should be == 2
-          described_class.by_month(Time.parse(date)).should == [@post2, @post1]
+          expect(described_class.by_month(Time.parse(date)).count).to eq(2)
+          expect(described_class.by_month(Time.parse(date))).to eq([@post2, @post1])
         end
       end
 
@@ -82,7 +82,7 @@ module Refinery
         it "returns all published dates older than the argument" do
           expected = [@post2.published_at, @post1.published_at]
 
-          described_class.published_dates_older_than(5.minutes.ago).should eq(expected)
+          expect(described_class.published_dates_older_than(5.minutes.ago)).to eq(expected)
         end
       end
 
@@ -96,9 +96,9 @@ module Refinery
 
         it "returns all posts which aren't in draft and pub date isn't in future" do
           live_posts = described_class.live
-          live_posts.count.should be == 2
-          live_posts.should include(@post2)
-          live_posts.should include(@post1)
+          expect(live_posts.count).to eq(2)
+          expect(live_posts).to include(@post2)
+          expect(live_posts).to include(@post1)
         end
       end
 
@@ -111,22 +111,22 @@ module Refinery
         end
 
         it "returns uncategorized posts if they exist" do
-          described_class.uncategorized.should include @uncategorized_post
-          described_class.uncategorized.should_not include @categorized_post
+          expect(described_class.uncategorized).to include @uncategorized_post
+          expect(described_class.uncategorized).not_to include @categorized_post
         end
       end
 
       describe "#live?" do
         it "returns true if post is not in draft and it's published" do
-          FactoryGirl.build(:blog_post).should be_live
+          expect(FactoryGirl.build(:blog_post)).to be_live
         end
 
         it "returns false if post is in draft" do
-          FactoryGirl.build(:blog_post, :draft => true).should_not be_live
+          expect(FactoryGirl.build(:blog_post, :draft => true)).not_to be_live
         end
 
         it "returns false if post pub date is in future" do
-          FactoryGirl.build(:blog_post, :published_at => Time.now.advance(:minutes => 1)).should_not be_live
+          expect(FactoryGirl.build(:blog_post, :published_at => Time.now.advance(:minutes => 1))).not_to be_live
         end
       end
 
@@ -137,7 +137,7 @@ module Refinery
         end
 
         it "returns next article when called on current article" do
-          described_class.newest_first.last.next.should == @post
+          expect(described_class.newest_first.last.next).to eq(@post)
         end
       end
 
@@ -148,7 +148,7 @@ module Refinery
         end
 
         it "returns previous article when called on current article" do
-          described_class.first.prev.should == @post
+          expect(described_class.first.prev).to eq(@post)
         end
       end
 
@@ -159,7 +159,7 @@ module Refinery
           end
 
           it "should be true" do
-            described_class.comments_allowed?.should be_truthy
+            expect(described_class.comments_allowed?).to be_truthy
           end
         end
 
@@ -169,14 +169,14 @@ module Refinery
           end
 
           it "should be false" do
-            described_class.comments_allowed?.should be_falsey
+            expect(described_class.comments_allowed?).to be_falsey
           end
         end
       end
 
       describe "custom teasers" do
         it "should allow a custom teaser" do
-          FactoryGirl.create(:blog_post, :custom_teaser => 'This is some custom content').should be_valid
+          expect(FactoryGirl.create(:blog_post, :custom_teaser => 'This is some custom content')).to be_valid
         end
       end
 
@@ -187,7 +187,7 @@ module Refinery
           end
 
           it "should be true" do
-            described_class.teasers_enabled?.should be_truthy
+            expect(described_class.teasers_enabled?).to be_truthy
           end
         end
 
@@ -197,7 +197,7 @@ module Refinery
           end
 
           it "should be false" do
-            described_class.teasers_enabled?.should be_falsey
+            expect(described_class.teasers_enabled?).to be_falsey
           end
         end
       end
@@ -205,9 +205,9 @@ module Refinery
       describe "source url" do
         it "should allow a source url and title" do
           p = FactoryGirl.create(:blog_post, :source_url => 'google.com', :source_url_title => 'author')
-          p.should be_valid
-          p.source_url.should include('google')
-          p.source_url_title.should include('author')
+          expect(p).to be_valid
+          expect(p.source_url).to include('google')
+          expect(p.source_url_title).to include('author')
         end
       end
 
@@ -217,10 +217,10 @@ module Refinery
             Refinery::Blog.validate_source_url = true
           end
           it "should have canonical url" do
-            UrlValidator.any_instance.should_receive(:resolve_redirects_verify_url).
+            expect_any_instance_of(UrlValidator).to receive(:resolve_redirects_verify_url).
                                       and_return('http://www.google.com')
             p = FactoryGirl.create(:blog_post, :source_url => 'google.com', :source_url_title => 'google')
-            p.source_url.should include('www')
+            expect(p.source_url).to include('www')
           end
         end
         context "with Refinery::Blog.validate_source_url set to false" do
@@ -229,7 +229,7 @@ module Refinery
           end
           it "should have original url" do
             p = FactoryGirl.create(:blog_post, :source_url => 'google.com', :source_url_title => 'google')
-            p.source_url.should_not include('www')
+            expect(p.source_url).not_to include('www')
           end
         end
       end
