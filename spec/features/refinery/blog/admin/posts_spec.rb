@@ -239,7 +239,7 @@ module Refinery
               fill_in "Title", :with => ru_page_title
               fill_in "post_body", :with => "One post in my blog"
               click_button "Save"
-              @p = Refinery::Blog::Post.find_by_title("Новости")
+              @p = Refinery::Blog::Post.find_by_title(ru_page_title)
             end
 
             it "succeeds" do
