@@ -86,7 +86,8 @@ module Refinery
       protected
 
         def find_post
-          @post = Refinery::Blog::Post.find_by_slug_or_id(params[:id])
+          @post = Refinery::Blog::Post.find_by_slug(params[:id]) if params[:id].friendly_id?
+          @post = Refinery::Blog::Post.find(params[:id]) if @post.nil?
         end
 
         def find_all_categories
