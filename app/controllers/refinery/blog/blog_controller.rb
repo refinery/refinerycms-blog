@@ -2,7 +2,7 @@ module Refinery
   module Blog
     class BlogController < ::ApplicationController
 
-      include ControllerHelper
+      include Refinery::Blog::ControllerHelper
 
       helper :'refinery/blog/posts'
       before_filter :find_page, :find_all_blog_categories
