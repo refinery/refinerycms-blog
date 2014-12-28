@@ -15,7 +15,7 @@ module Refinery
         else
          truncate(post.body, {
            :length => Refinery::Blog.post_teaser_length,
-           :preserve_html_tags => true
+           :escape => false
           }).html_safe
         end
       end
