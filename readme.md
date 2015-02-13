@@ -15,11 +15,14 @@ Refinery CMS version 3.0.0 or above.
 
 ## Install
 
-Open up your ``Gemfile`` and add at the bottom this line:
+Open up your ``Gemfile`` and add at the bottom this line. If refinerycms-page-images extension is also installed, make sure the line come before gem 'refinerycms-page-images'
+
 
 ```ruby
 gem 'refinerycms-blog', git: 'https://github.com/refinery/refinerycms-blog', branch: 'master'
 ```
+
+
 
 Now, run ``bundle install``
 
