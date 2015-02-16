@@ -5,12 +5,12 @@ Refinery::User.all.each do |user|
   end
 end if defined?(Refinery::User)
 
-if defined?(Refinery::Page) and !Refinery::Page.exists?(:link_url => '/blog')
+if defined?(Refinery::Page) and !Refinery::Page.exists?(:link_url => (url = Refinery::Blog.page_url))
   page = Refinery::Page.create(
     :title => "Blog",
-    :link_url => "/blog",
+    :link_url => url,
     :deletable => false,
-    :menu_match => "^/blogs?(\/|\/.+?|)$"
+    :menu_match => "^#{url}?(\/|\/.+?|)$"
   )
 
   Refinery::Pages.default_parts.each_with_index do |default_page_part, index|
