@@ -7,7 +7,7 @@ require File.expand_path("../dummy/config/environment", __FILE__)
 
 require 'rspec/rails'
 require 'capybara/rspec'
-require 'factory_girl_rails'
+require 'factory_girl'
 
 Rails.backtrace_cleaner.remove_silencers!
 
