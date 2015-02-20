@@ -15,11 +15,14 @@ Refinery CMS version 3.0.0 or above.
 
 ## Install
 
-Open up your ``Gemfile`` and add at the bottom this line:
+Open up your ``Gemfile`` and at the bottom, add this line:
+
 
 ```ruby
 gem 'refinerycms-blog', git: 'https://github.com/refinery/refinerycms-blog', branch: 'master'
 ```
+
+Note: if the [refinerycms-page-images](https://github.com/refinery/refinerycms-page-images) extension is also installed, make sure `gem refinerycms-blog` comes before `gem 'refinerycms-page-images'`.
 
 Now, run ``bundle install``
 
@@ -56,7 +59,7 @@ Or just with rake spec
 ## Additional Features
 * To limit rss feed length, use the 'max_results' parameter
 
-        http://test.host/blog/feed.rss?max_results=10
+    http://test.host/blog/feed.rss?max_results=10
 
 ## More Information
 * Check out our [Website](http://refinerycms.com/)
