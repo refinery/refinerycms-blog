@@ -2,17 +2,18 @@ source "https://rubygems.org"
 
 gemspec
 
-gem 'refinerycms', github: 'refinery/refinerycms'
-gem 'refinerycms-i18n', github: 'refinery/refinerycms-i18n'
-gem 'refinerycms-acts-as-indexed', github: 'refinery/refinerycms-acts-as-indexed'
-gem 'filters_spam', github: 'resolve/filters_spam'
+git "https://github.com/refinery/refinerycms", branch: "master" do
+  gem 'refinerycms'
 
-gem 'mime-types', '1.25.1'
+  group :development, :test do
+    gem 'refinerycms-testing'
+  end
+end
 
 group :test do
-  gem 'refinerycms-testing', github: 'refinery/refinerycms'
   gem 'pry'
   gem 'launchy'
+  gem 'selenium-webdriver'
 end
 
 # Database Configuration
