@@ -13,7 +13,7 @@ end
 group :test do
   gem 'pry'
   gem 'launchy'
-  gem 'selenium-webdriver'
+  gem 'poltergeist'
 end
 
 # Database Configuration
