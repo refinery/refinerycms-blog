@@ -1,3 +1,5 @@
+require 'filters_spam'
+
 module Refinery
   module Blog
     class Comment < ActiveRecord::Base
