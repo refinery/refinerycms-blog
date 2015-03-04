@@ -41,7 +41,7 @@ module Refinery
         if @comment.valid?
           if Comment::Moderation.enabled? or @comment.ham?
             begin
-              CommentMailer.notification(@comment, request).deliver
+              CommentMailer.notification(@comment, request).deliver_now
             rescue
               logger.warn "There was an error delivering a blog comment notification.\n#{$!}\n"
             end

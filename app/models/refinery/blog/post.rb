@@ -78,7 +78,7 @@ module Refinery
 
         def find_by_slug_or_id(slug_or_id)
           if slug_or_id.friendly_id?
-            find_by_slug(slug_or_id)
+            friendly.find(slug_or_id)
           else
             find(slug_or_id)
           end
@@ -90,6 +90,10 @@ module Refinery
 
         def by_year(date)
           newest_first.where(:published_at => date.beginning_of_year..date.end_of_year).with_globalize
+        end
+
+        def by_title(title)
+          joins(:translations).find_by(:title => title)
         end
 
         def newest_first

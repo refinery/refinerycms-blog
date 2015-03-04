@@ -1,5 +1,4 @@
 require 'rubygems'
-require 'capybara/poltergeist'
 
 # Configure Rails Environment
 ENV["RAILS_ENV"] ||= 'test'
@@ -18,6 +17,7 @@ RSpec.configure do |config|
 end
 
 # set javascript driver for capybara
+require 'capybara/poltergeist'
 Capybara.javascript_driver = :poltergeist
 
 # Requires supporting files with custom matchers and macros, etc,

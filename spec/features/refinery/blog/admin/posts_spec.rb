@@ -200,7 +200,7 @@ module Refinery
               fill_in "Title", :with => "Post"
               fill_in "post_body", :with => "One post in my blog"
               click_button "Save"
-              @p = Refinery::Blog::Post.find_by_title("Post")
+              @p = Refinery::Blog::Post.by_title("Post")
             end
 
             it "succeeds" do
@@ -239,7 +239,7 @@ module Refinery
               fill_in "Title", :with => ru_page_title
               fill_in "post_body", :with => "One post in my blog"
               click_button "Save"
-              @p = Refinery::Blog::Post.find_by_title(ru_page_title)
+              @p = Refinery::Blog::Post.by_title(ru_page_title)
             end
 
             it "succeeds" do

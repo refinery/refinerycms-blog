@@ -35,8 +35,8 @@ describe "Categories admin", type: :feature do
         visit refinery.blog_admin_posts_path
         click_link "Create new category"
         fill_in "Title", :with => "Testing Category"
-        click_button "Save"
-        @c = Refinery::Blog::Category.find_by_title("Testing Category")
+        expect { click_button "Save" }.to change(Refinery::Blog::Category, :count).by(1)
+        @c = Refinery::Blog::Category.by_title("Testing Category")
       end
 
       it "suceeds" do
@@ -76,8 +76,8 @@ describe "Categories admin", type: :feature do
           click_link "RU"
         end
         fill_in "Title", :with => ru_category_title
-        click_button "Save"
-        @c = Refinery::Blog::Category.find_by_title(ru_category_title)
+        expect { click_button "Save" }.to change(Refinery::Blog::Category, :count).by(1)
+        @c = Refinery::Blog::Category.by_title(ru_category_title)
       end
 
       it "suceeds" do
