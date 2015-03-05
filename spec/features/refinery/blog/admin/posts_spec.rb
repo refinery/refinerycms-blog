@@ -48,8 +48,9 @@ module Refinery
                 click_link "toggle_advanced_options"
                 expect(page).to have_css '.blog_categories'
                 expect(page).to have_css "#post_category_ids_#{blog_category.id}"
+                expect(page).to have_selector("#post_category_ids_#{blog_category.id}:not(:checked)")
                 check blog_category.title
-                expect(find(:css, "#post_category_ids_#{blog_category.id}").checked?).to be_truthy
+                expect(page).to have_selector("#post_category_ids_#{blog_category.id}:checked")
                 click_button "Save"
                 expect(page).to have_content("was successfully added.")
               end
