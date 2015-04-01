@@ -76,14 +76,6 @@ module Refinery
                            .readonly(false)
         end
 
-        def find_by_slug_or_id(slug_or_id)
-          if slug_or_id.friendly_id?
-            friendly.find(slug_or_id)
-          else
-            find(slug_or_id)
-          end
-        end
-
         def by_month(date)
           newest_first.where(:published_at => date.beginning_of_month..date.end_of_month)
         end
