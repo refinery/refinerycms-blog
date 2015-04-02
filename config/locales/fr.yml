@@ -81,7 +81,7 @@ fr:
             new: Créer un nouvel article
             uncategorized: Aricles non catégorisés
           settings:
-            title: Paramêtres
+            title: Paramètres
             moderation: Modération
             update_notified: Mettre à jour les personnes à notifier
             comments: Commentaires
