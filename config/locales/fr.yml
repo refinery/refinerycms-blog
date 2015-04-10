@@ -79,7 +79,7 @@ fr:
             title: Articles
             manage: Gérer les articles
             new: Créer un nouvel article
-            uncategorized: Aricles non catégorisés
+            uncategorized: Articles non catégorisés
           settings:
             title: Paramètres
             moderation: Modération
