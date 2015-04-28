@@ -37,6 +37,16 @@ nl:
           form:
             toggle_advanced_options: Klik voor toegang tot meta tag instellingen en menu opties
             published_at: Publicatiedatum
+            custom_url: Custom URL
+            custom_url_help: Genereer de URL van deze blogpost aan de hand van deze tekst in plaats van de titel.
+            source_url: Bron URL
+            source_url_help: Slaat de bron URL op van materiaal voor deze post.
+            source_url_title: Bron URL titel
+            source_url_title_help: Titel van de bron URL van de post.
+            author: Auteur
+            author_help: Stel in wie wordt weergegeven als auteur van deze post.
+            copy_body: Kopieer de post body naar de teaser
+            copy_body_help: Kopieer de post body naar de teaser. Laat de teaser leeg om deze automatisch te laten genereren.
           index:
             no_items_yet: 'Er zijn momenteel geen blogposts. Klik op "%{create}" om uw eerste blogpost toe te voegen.'
           uncategorized:
@@ -45,6 +55,7 @@ nl:
             view_live_html: 'Bekijk deze blogpost op de website <br/><em>(opent in een nieuw venster)</em>'
             edit: Bewerk deze blogpost
             delete: Verwijder deze blogpost definitief
+            draft: Concept
         settings:
           notification_recipients:
             value: Stuur notificaties naar
@@ -84,6 +95,10 @@ nl:
           from: Van
           email: E-mail
           message: Bericht
+          approve: Goedkeuren
+          or: " of "
+          reject: afkeuren
+          this_comment: " deze comment."
           closing_line: Met vriendelijke groet
           ps: 'P.S. Alle reacties worden opgeslagen in de "Blog" sectie van Refinery onder het submenu "Comments", voor als u deze reacties later wilt bekijken.'
       shared:
@@ -125,8 +140,14 @@ nl:
           filled_in: Toegevoegd aan
           tagged: Tagged
           submit: Verstuur reactie
+          name: Naam
+          email: Email
+          message: Bericht
+          by: Door
+          source: Bron
         tagged:
           no_blog_articles_yet: Er zijn momenteel nog geen blogposts. Neem regelmatig een kijkje.
+          posts_tagged: Posts tagged
         archive:
           blog_archive_for: 'Blog archief voor %{date}'
           no_blog_articles_posted: 'Er zijn geen blogposts voor %{date}. Neem regelmatig een kijkje.'
