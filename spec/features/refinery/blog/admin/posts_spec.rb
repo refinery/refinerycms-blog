@@ -49,6 +49,7 @@ module Refinery
                 expect(page).to have_css '.blog_categories'
                 expect(page).to have_css "#post_category_ids_#{blog_category.id}"
                 expect(page).to have_selector("#post_category_ids_#{blog_category.id}:not(:checked)")
+                sleep 1
                 check blog_category.title
                 expect(page).to have_selector("#post_category_ids_#{blog_category.id}:checked")
                 click_button "Save"
@@ -171,7 +172,9 @@ module Refinery
 
               click_link "toggle_advanced_options"
 
-              select other_guy.username, :from => "Author"
+              select other_guy.username, :from => "post[user_id]"
+
+              sleep 1
 
               click_button "Save"
               expect(page).to have_content("was successfully added.")
