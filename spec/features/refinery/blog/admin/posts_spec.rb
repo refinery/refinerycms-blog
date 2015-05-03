@@ -170,7 +170,7 @@ module Refinery
               page.evaluate_script("WYMeditor.INSTANCES[0].html('<p>I totally did not write it.</p>')")
 
               click_link "toggle_advanced_options"
-
+              expect(page).to have_content("Author")
               select other_guy.username, :from => "Author"
 
               click_button "Save"
