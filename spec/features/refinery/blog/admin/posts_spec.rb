@@ -46,6 +46,7 @@ module Refinery
                 # hidden and capybara refuses to fill in elements it can't see
                 page.evaluate_script("WYMeditor.INSTANCES[0].html('<p>And I love it</p>')")
                 click_link "toggle_advanced_options"
+                sleep 1
                 expect(page).to have_css '.blog_categories'
                 expect(page).to have_css "#post_category_ids_#{blog_category.id}"
                 expect(page).to have_selector("#post_category_ids_#{blog_category.id}:not(:checked)")
