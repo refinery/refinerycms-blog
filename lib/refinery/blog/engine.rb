@@ -5,7 +5,7 @@ module Refinery
 
       isolate_namespace Refinery::Blog
 
-      initializer "register refinerycms_blog plugin" do
+      before_inclusion do
         Refinery::Plugin.register do |plugin|
           plugin.pathname = root
           plugin.name = "refinerycms_blog"
