@@ -10,7 +10,49 @@
 .comment_tick_icon {
   background-image: image_url('refinery/blog/icons/comment_tick.png');
 }
-
+.folder_icon {
+  background-image: image_url('refinery/blog/icons/folder.png');
+}
+.folder_add_icon {
+  background-image: image_url('refinery/blog/icons/folder_add.png');
+}
+.folder_edit_icon {
+  background-image: image_url('refinery/blog/icons/folder_edit.png');
+}
+.settings_icon {
+  background-image: image_url('refinery/blog/icons/cog.png');
+}
+.page_icon {
+  background-image: image_url('refinery/blog/icons/page.png');
+}
+.page_copy_icon {
+  background-image: image_url('refinery/blog/icons/page_copy.png');
+}
+.page_add_icon {
+  background-image: image_url('refinery/blog/icons/page_add.png');
+}
+ul.collapsible_menu li {
+  position: relative;
+  span.arrow {
+    background-repeat: no-repeat;
+    position: absolute;
+    right: 10px;
+    top: 13px;
+    width: 11px;
+    height: 7px;
+    cursor: pointer;
+    background-image: image_url('refinery/blog/icons/up.gif');
+  }
+  &.closed {
+    span.arrow {
+      background-image: image_url('refinery/blog/icons/down.gif');
+    }
+  }
+  > div {
+    width: 93%;
+    margin: 0px auto;
+  }
+}
 ul.blog_categories {
   height:200px;
   overflow:auto;
