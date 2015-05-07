@@ -38,6 +38,16 @@ Finally seed your database and you're done.
 
     rake db:seed
 
+## Usage
+
+Enable page images for this engine in your initializer file
+
+# config/initializers/refinery/page_images.rb
+  config.enable_for = [
+    {:model=>"Refinery::Page", :tab=>"Refinery::Pages::Tab"},
+    {:model=>"Refinery::Blog::Post", :tab=>"Refinery::Blog::Tab"},
+  ]
+
 ## Developing & Contributing
 
 The version of Refinery to develop this engine against is defined in the gemspec. To override the version of refinery to develop against, edit the project Gemfile to point to a local path containing a clone of refinerycms.
