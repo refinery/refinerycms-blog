@@ -52,6 +52,7 @@ module Refinery
                 check blog_category.title
                 expect(page).to have_selector("#post_category_ids_#{blog_category.id}:checked")
                 click_button "Save"
+                sleep 1
                 expect(page).to have_content("was successfully added.")
               end
 
