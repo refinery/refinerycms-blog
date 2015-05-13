@@ -44,7 +44,7 @@
 
   <div class='field'>
     <%= f.label :tag_list, t('refinery.blog.shared.tags.title') -%>
-    <%= f.text_field :tag_list, :class => 'larger' -%>
+    <%= f.text_field :tag_list, value: @post.tag_list.to_s, :class => 'larger' -%>
   </div>
 
   <div id='more_options' style="display:none;">
