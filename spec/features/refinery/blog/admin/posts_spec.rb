@@ -33,7 +33,7 @@ module Refinery
             end
 
             it "should have category title", :js => true do
-              click_link "toggle_advanced_options"
+              find('#toggle_advanced_options').click
               expect(page).to have_content(blog_category.title)
             end
 
@@ -45,14 +45,14 @@ module Refinery
                 # this is a dirty hack but textarea that needs to be filled is
                 # hidden and capybara refuses to fill in elements it can't see
                 page.evaluate_script("WYMeditor.INSTANCES[0].html('<p>And I love it</p>')")
-                click_link "toggle_advanced_options"
-                sleep 1
+                find('#toggle_advanced_options').click
                 expect(page).to have_css '.blog_categories'
                 expect(page).to have_css "#post_category_ids_#{blog_category.id}"
                 expect(page).to have_selector("#post_category_ids_#{blog_category.id}:not(:checked)")
                 check blog_category.title
                 expect(page).to have_selector("#post_category_ids_#{blog_category.id}:checked")
                 click_button "Save"
+                sleep 1
                 expect(page).to have_content("was successfully added.")
               end
 
