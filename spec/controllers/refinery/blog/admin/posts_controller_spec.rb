@@ -3,8 +3,8 @@ require "spec_helper"
 module Refinery
   module Blog
     module Admin
-      describe PostsController do
-        refinery_login_with :refinery_user
+      describe PostsController, type: :controller do
+        refinery_login_with [:refinery, :superuser]
 
         describe "#delete_translation" do
           let!(:blog_post) { FactoryGirl.create(:blog_post) }
@@ -16,17 +16,17 @@ module Refinery
 
           it "destroys the translation" do
             post :delete_translation, :id => blog_post.id, :locale_to_delete => :fr
-            blog_post.translations.exists?(:locale => :fr).should be_false
+            expect(blog_post.translations.exists?(:locale => :fr)).to be_falsey
           end
 
           it "does not destroy other translations" do
             post :delete_translation, :id => blog_post.id, :locale_to_delete => :fr
-            blog_post.translations.exists?(:locale => :es).should be_true
+            expect(blog_post.translations.exists?(:locale => :es)).to be_truthy
           end
 
           it "redirects on success" do
             post :delete_translation, :id => blog_post.id, :locale_to_delete => :fr
-            response.should be_redirect
+            expect(response).to be_redirect
           end
         end
       end

@@ -333,13 +333,13 @@ module Refinery
             describe "delete the post translation in secondary locale" do
               it "succeeds" do
                 within "#post_#{blog_post.id}" do
-                  click_link("Ru")
+                  click_link("RU")
                 end
 
                 click_link "Remove this translation"
 
-                page.should_not have_content(blog_post.title)
-                page.should have_content("The translation was successfully removed.")
+                expect(page).not_to have_content(blog_post.title)
+                expect(page).to have_content("The translation was successfully removed.")
               end
             end
           end

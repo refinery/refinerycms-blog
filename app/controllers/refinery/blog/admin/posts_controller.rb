@@ -93,7 +93,7 @@ module Refinery
       protected
 
         def find_post
-          @post = Refinery::Blog::Post.find(params[:id])
+          @post = Refinery::Blog::Post.friendly.find(params[:id])
         end
 
         def find_all_categories
