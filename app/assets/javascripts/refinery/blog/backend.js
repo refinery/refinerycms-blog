@@ -62,7 +62,7 @@ $(document).ready(function(){
     });
 
     if (teaserEditor) {
-      teaserEditor.html($('#post_body').attr('value'));
+      teaserEditor.html($('#post_body').val());
     }
 
     event.preventDefault();
