@@ -38,6 +38,18 @@ Finally seed your database and you're done.
 
     rake db:seed
 
+## Visual Editor
+
+By default, this extension does not require any particular visual editor.
+Previously, Refinery was coupled to WYMeditor but this has been extracted to an
+extension, [refinerycms-wymeditor](https://github.com/parndt/refinerycms-wymeditor).
+
+If you want to use `refinerycms-wymeditor`, simply place it in your Gemfile:
+
+```ruby
+gem 'refinerycms-wymeditor', ['~> 1.0', '>= 1.0.6']
+```
+
 ## Developing & Contributing
 
 The version of Refinery to develop this engine against is defined in the gemspec. To override the version of refinery to develop against, edit the project Gemfile to point to a local path containing a clone of refinerycms.

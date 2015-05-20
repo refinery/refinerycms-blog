@@ -1,6 +1,5 @@
 require 'refinerycms-core'
 require 'refinerycms-settings'
-require 'refinerycms-wymeditor'
 require 'rails_autolink'
 require 'friendly_id'
 require 'jquery-ui-rails'

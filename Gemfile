@@ -10,6 +10,9 @@ git "https://github.com/refinery/refinerycms", branch: "master" do
   end
 end
 
+# Add the default visual editor, for now.
+gem 'refinerycms-wymeditor', ['~> 1.0', '>= 1.0.6']
+
 group :test do
   gem 'pry'
   gem 'launchy'
