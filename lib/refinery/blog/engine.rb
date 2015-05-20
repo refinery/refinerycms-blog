@@ -12,6 +12,11 @@ module Refinery
           plugin.url = proc { Refinery::Core::Engine.routes.url_helpers.blog_admin_posts_path }
           plugin.menu_match = %r{refinery/blog/?(posts|comments|categories)?}
         end
+
+        Rails.application.config.assets.precompile += %w(
+          refinery/blog/backend.css
+          refinery/blog/**/*.css
+        )
       end
 
       config.after_initialize do
