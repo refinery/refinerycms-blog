@@ -32,27 +32,24 @@ module Refinery
               expect(page).to have_content("Tags")
             end
 
-            it "should have category title", :js => true do
-              find('#toggle_advanced_options').trigger(:click)
+            it "should have category title" do
               expect(page).to have_content(blog_category.title)
             end
 
-            describe "create blog post", :js => true do
+            describe "create blog post" do
               before do
                 expect(subject.class.count).to eq(0)
                 fill_in "post_title", :with => "This is my blog post"
+                fill_in "post_body", with: "<p>And I love it</p>"
 
-                # this is a dirty hack but textarea that needs to be filled is
-                # hidden and capybara refuses to fill in elements it can't see
-                page.evaluate_script("WYMeditor.INSTANCES[0].html('<p>And I love it</p>')")
-                find('#toggle_advanced_options').trigger(:click)
                 expect(page).to have_css '.blog_categories'
                 expect(page).to have_css "#post_category_ids_#{blog_category.id}"
-                expect(page).to have_selector("#post_category_ids_#{blog_category.id}:not(:checked)")
-                check blog_category.title
-                expect(page).to have_selector("#post_category_ids_#{blog_category.id}:checked")
+                expect { check(blog_category.title) }.to change {
+                  !!page.find("#post_category_ids_#{blog_category.id}").checked?
+                }.from(false).to(true)
+
                 click_button "Save"
-                sleep 1
+
                 expect(page).to have_content("was successfully added.")
               end
 
@@ -70,13 +67,11 @@ module Refinery
               end
             end
 
-            describe "create blog post with tags", :js => true do
+            describe "create blog post with tags" do
               let(:tag_list) { "chicago, bikes, beers, babes" }
               before do
                 fill_in "Title", :with => "This is a tagged blog post"
-                # this is a dirty hack but textarea that needs to be filled is
-                # hidden and capybara refuses to fill in elements it can't see
-                page.evaluate_script("WYMeditor.INSTANCES[0].html('<p>And I also love it</p>')")
+                fill_in "post_body", with: "<p>And I also love it</p>"
                 fill_in "Tags", :with => tag_list
                 click_button "Save"
               end
@@ -160,17 +155,14 @@ module Refinery
         context "with multiple users" do
           let!(:other_guy) { FactoryGirl.create(:refinery_user, :username => "Other Guy") }
 
-          describe "create blog post with alternate author", :js => true do
+          describe "create blog post with alternate author" do
             before do
               visit refinery.blog_admin_posts_path
               click_link "Create new post"
 
               fill_in "post_title", :with => "This is some other guy's blog post"
-              # this is a dirty hack but textarea that needs to be filled is
-              # hidden and capybara refuses to fill in elements it can't see
-              page.evaluate_script("WYMeditor.INSTANCES[0].html('<p>I totally did not write it.</p>')")
+              fill_in "post_body", with: "<p>I totally did not write it.</p>"
 
-              find("#toggle_advanced_options").trigger(:click)
               expect(page).to have_content("Author")
               select other_guy.username, :from => "Author"
 

@@ -40,14 +40,14 @@
     </div>
   </div>
 
-  <%= render '/refinery/admin/form_advanced_options_menu', :f => f %>
-
   <div class='field'>
     <%= f.label :tag_list, t('refinery.blog.shared.tags.title') -%>
     <%= f.text_field :tag_list, value: @post.tag_list.to_s, :class => 'larger' -%>
   </div>
 
-  <div id='more_options' style="display:none;">
+  <%= render '/refinery/admin/form_advanced_options_menu', :f => f %>
+
+  <div id='more_options'>
     <div class="hemisquare">
       <h3><%= t('title', :scope => 'refinery.blog.admin.submenu.categories') %></h3>
       <ul class='blog_categories'>
