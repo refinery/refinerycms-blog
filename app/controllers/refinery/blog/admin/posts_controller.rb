@@ -107,7 +107,7 @@ module Refinery
         end
 
         def check_category_ids
-          post_params[:category_ids] ||= []
+          params[:post][:category_ids] ||= []
         end
       end
     end
