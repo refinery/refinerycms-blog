@@ -1,5 +1,5 @@
 <% content_for :body do %>
-  <%= raw @page.content_for(Refinery::Pages.default_parts.first.to_sym) if Refinery::Pages.default_parts.any? %>
+  <%= raw @page.content_for(Refinery::Pages.default_parts.first[:slug].to_sym) if Refinery::Pages.default_parts.any? %>
 
   <% if @posts.any? %>
     <section id="blog_posts">
@@ -12,7 +12,7 @@
 <% end %>
 
 <% content_for :side_body_prepend do -%>
-  <%= raw @page.content_for(Refinery::Pages.default_parts.second.to_sym) %>
+  <%= raw @page.content_for(Refinery::Pages.default_parts.second[:slug].to_sym) %>
 <% end if Refinery::Pages.default_parts.many? -%>
 <%= render '/refinery/blog/shared/body_content_right' %>
 
