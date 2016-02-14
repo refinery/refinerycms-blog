@@ -85,9 +85,15 @@ module Refinery
       private
 
         def post_params
-          params.require(:post).permit(:title, :body, :custom_teaser, :tag_list,
+          params.require(:post).permit(permitted_post_params)
+        end
+        
+        def permitted_post_params
+          [
+            :title, :body, :custom_teaser, :tag_list,
             :draft, :published_at, :custom_url, :user_id, :browser_title,
-            :meta_description, :source_url, :source_url_title, :category_ids => [])
+            :meta_description, :source_url, :source_url_title, :category_ids => []
+          ]
         end
 
       protected
