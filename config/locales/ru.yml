@@ -38,13 +38,15 @@ ru:
             toggle_advanced_options: 'Нажмите, чтобы получить доступ к настройкам мета-тегов и меню'
             published_at: Дата публикации
             custom_url: Переадресовывать на другой сайт или страницу
-            custom_url_help: Переадресовывать на другой сайт или страницу.
-            source_url: Источник
-            source_url_help: Источник сообщения.
+            custom_url_help: "Ссылка будет взята из данного поля, вместо генерации из названия записи."
+            source_url: URL источника
+            source_url_help: Источник материала данной записи.
             source_url_title: Название источника сообщения
             source_url_title_help: Название источника сообщения в посте.
-            author: Author
-            author_help: Установить, какой пользователь написал данное сообщение, покажет как автора.
+            author: Автор
+            author_help: 'Установить, какой пользователь будет покажан как автор записи.'
+            copy_body: Копировать основное сообщение в краткое
+            copy_body_help: 'Копирует основное сообщение в краткое. Оставьте краткое сообщение пустым, чтобы Refinery составлял его автоматически.'
           index:
             no_items_yet: 'Записи в блоге отстутствуют. Нажмите "%{create}", чтобы добавить первую запись.'
           uncategorized:
@@ -53,6 +55,10 @@ ru:
             view_live_html: Посмотреть запись на сайте <br/><em>(откроется в новом окне)</em>
             edit: Редактировать запись
             delete: Удалить запись
+            delete_translation: Удалить этот перевод
+            delete_translation_confirmation: Вы действительно хотите навсегда удалить этот перевод?
+            delete_translation_success: Перевод был успешно удален.
+            draft: Черновик
         settings:
           notification_recipients:
             value: Отправлять уведомления
@@ -82,6 +88,7 @@ ru:
             moderation: Модерирование
             update_notified: Настроить уведомления
             comments: Комментарии
+            teasers: Краткие содержания
       comment_mailer:
         notification:
           greeting: Здравствуйте
@@ -91,6 +98,10 @@ ru:
           from: От
           email: Эл. почта
           message: Сообщение
+          approve: Подтвердите
+          or: " или "
+          reject: отклоните
+          this_comment: " этот комментарий."
           closing_line: С уважением
           ps: P.S. Все комментарии находятся в разделе "Блог" Refinery CMS в подменю "Комментарии".
       shared:
@@ -130,7 +141,6 @@ ru:
             add: Написать комментарий
           other: Другие записи
           filled_in: Категория
-          submit: Отправить комментарий
           tagged: Тэги
           submit: Отправить коментарий
           name: Имя
@@ -138,6 +148,9 @@ ru:
           message: Сообщение
           by: Автор
           source: Источник
+        tagged:
+          no_blog_articles_yet: Пока ни одной записи не опубликовано. Следите за новостями.
+          posts_tagged: Записи с тегом
         archive:
           blog_archive_for: 'Архив %{date}'
           no_blog_articles_posted: 'Ни одной записи за %{date} не опубликовано. Следите за новостями.'
