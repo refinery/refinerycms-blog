@@ -4,7 +4,7 @@ module Refinery
   module Blog
     describe Category, type: :model do
       let(:category) { FactoryGirl.create(:blog_category) }
-      let(:refinery_user) { FactoryGirl.create(:refinery_user) }
+      let(:author) { FactoryGirl.create(:authentication_devise_refinery_user) }
 
       describe "validations" do
         it "requires title" do
@@ -25,12 +25,12 @@ module Refinery
           first_post = category.posts.create!({ :title => "Breaking News: Joe Sak is hot stuff you guys!!",
                                                 :body => "True story.",
                                                 :published_at => Time.now.yesterday,
-                                                :author => refinery_user })
+                                                :author => author })
 
           latest_post = category.posts.create!({ :title => "parndt is p. okay",
                                                  :body => "For a Kiwi.",
                                                  :published_at => Time.now,
-                                                 :author => refinery_user })
+                                                 :author => author })
 
           expect(category.posts.newest_first.first).to eq(latest_post)
         end
