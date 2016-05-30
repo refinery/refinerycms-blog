@@ -4,7 +4,8 @@ module Refinery
   module Blog
     module Admin
       describe CommentsController, type: :controller do
-        refinery_login_with :refinery_user
+        refinery_login_with_devise [:refinery, :superuser]
+        
         before do
           logged_in_user.plugins = logged_in_user.plugins | %w(refinerycms_blog)
         end
