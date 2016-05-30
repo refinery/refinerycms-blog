@@ -5,7 +5,7 @@ module Refinery
   module Blog
     module Admin
       describe Post, type: :feature do
-        refinery_login
+        refinery_login_with_devise :authentication_devise_refinery_superuser
 
         let!(:blog_category) do
           Globalize.with_locale(:en) { FactoryGirl.create(:blog_category) }
@@ -58,7 +58,7 @@ module Refinery
               end
 
               it "should belong to me" do
-                expect(subject.class.first.author).to eq(::Refinery::User.last)
+                expect(subject.class.first.author).to eq(::Refinery::Blog.user_class.last)
               end
 
               it "should save categories" do
@@ -153,7 +153,7 @@ module Refinery
         end
 
         context "with multiple users" do
-          let!(:other_guy) { FactoryGirl.create(:refinery_user, :username => "Other Guy") }
+          let!(:other_guy) { FactoryGirl.create(:authentication_devise_refinery_user, :username => "Other Guy") }
 
           describe "create blog post with alternate author" do
             before do
@@ -210,13 +210,20 @@ module Refinery
             end
 
             it "shows up in blog page for default locale" do
-              visit refinery.blog_root_path
+              visit refinery.blog_admin_root_path
               expect(page).to have_selector("#post_#{@p.id}")
             end
 
-            it "does not show up in blog page for secondary locale" do
-              visit refinery.blog_root_path(:locale => :ru)
-              expect(page).not_to have_selector("#post_#{@p.id}")
+            it "does show locale for default locale" do
+              within "#post_#{@p.id}" do
+                expect(page).to have_css(".locale_icon.en")
+              end
+            end
+
+            it "does not show locale for secondary locale" do
+              within "#post_#{@p.id}" do
+                expect(page).not_to have_css(".locale_icon.ru")
+              end
             end
 
           end
@@ -259,13 +266,14 @@ module Refinery
               end
             end
 
-            it "does not show up in blog page for default locale" do
-              visit refinery.blog_root_path
-              expect(page).not_to have_selector("#post_#{@p.id}")
+            it "does show locale for secondary locale" do
+              within "#post_#{@p.id}" do
+                expect(page).to have_css(".locale_icon.ru")
+              end
             end
 
             it "shows up in blog page for secondary locale" do
-              visit refinery.blog_root_path(:locale => :ru)
+              visit refinery.blog_admin_root_path(:locale => :ru)
               expect(page).to have_selector("#post_#{@p.id}")
             end
 
