@@ -2,7 +2,7 @@
 require 'spec_helper'
 
 describe "Categories admin", type: :feature do
-  refinery_login_with :refinery_user
+  refinery_login
 
   let(:title) { "lol" }
 

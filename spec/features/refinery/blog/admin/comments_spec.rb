@@ -4,7 +4,7 @@ module Refinery
   module Blog
     module Admin
       describe Comment, type: :feature do
-        refinery_login_with :refinery_user
+        refinery_login
 
         describe "#index" do
           context "when has no new unapproved comments" do

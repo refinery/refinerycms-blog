@@ -5,7 +5,7 @@ module Refinery
   module Blog
     module Admin
       describe Post, type: :feature do
-        refinery_login_with :refinery_user
+        refinery_login
 
         let!(:blog_category) do
           Globalize.with_locale(:en) { FactoryGirl.create(:blog_category) }
