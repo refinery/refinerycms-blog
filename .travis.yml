@@ -1,29 +1,16 @@
 language: ruby
-sudo: false
 cache: bundler
 bundler_args: --without development
-before_script:
-  - "sh -e /etc/init.d/xvfb start"
-  - "bundle exec rake refinery:testing:dummy_app"
-script:
-  - "DISPLAY=:99.0 bundle exec rspec spec"
-notifications:
-  email: true
-  irc:
-    use_notice: true
-    skip_join: true
-    channels:
-      - "irc.freenode.org#refinerycms"
-  campfire:
-    on_success: always
-    on_failure: always
-    rooms:
-      - secure: "JaX+Ckvdd2wqL2bD6t8PHvMDBHxWBlCrkBKPcDKxV0t0DOwzzzwxMryVqcRi\nPsmM/zvmWFATDyRmivhNOpu4lRg9RytSroxZ9nkmbLDqjCyEAZ6tv4yZXME/\nPaxPwmfwgS9g8TKjj3lSWS7rEpqqg0D5S0XIfIHrj6KB6LUmFHc="
-    webhooks:
-      - https://webhooks.gitter.im/e/b5d48907cdc89864b874
+before_script: "bundle exec rake refinery:testing:dummy_app"
 env:
   - DB=postgresql
   - DB=mysql
+notifications:
+  webhooks:
+    - https://webhooks.gitter.im/e/b5d48907cdc89864b874
 rvm:
+  - 2.3.1
   - 2.2
   - 2.1
+  - 2.0.0
+sudo: false
