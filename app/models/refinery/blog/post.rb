@@ -23,6 +23,7 @@ module Refinery
       validates :body,  :presence => true
       validates :published_at, :presence => true
       validates :author, :presence => true, if: :author_required?
+      validates :username, :presence => true, unless: :author_required?
       validates :source_url, :url => { :if => 'Refinery::Blog.validate_source_url',
                                       :update => true,
                                       :allow_nil => true,
@@ -32,10 +33,10 @@ module Refinery
       class Translation
         is_seo_meta
       end
-      
+
       # Override this to disable required authors
       def author_required?
-        true
+        !Refinery::Blog.user_class.nil?
       end
 
       # If custom_url or title changes tell friendly_id to regenerate slug when
