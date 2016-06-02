@@ -31,10 +31,6 @@ module Refinery
           render :json => @tags.flatten
         end
 
-        def new
-          @post = ::Refinery::Blog::Post.new(:author => current_refinery_user)
-        end
-
         def create
           # if the position field exists, set this object as last object, given the conditions of this class.
           if Refinery::Blog::Post.column_names.include?("position")
