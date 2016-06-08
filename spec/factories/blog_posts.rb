@@ -4,10 +4,14 @@ FactoryGirl.define do
     body "These are the top ten shopping centers in Chicago. You're going to read a long blog post about them. Come to peace with it."
     draft false
     published_at Time.now
-    author { FactoryGirl.create(:authentication_devise_refinery_user) }
+    username "John Doe"
 
     factory :blog_post_draft do
       draft true
+    end
+
+    factory :blog_post_authentication_devise_refinery_user_author do
+      author { FactoryGirl.create(:authentication_devise_refinery_user) }
     end
   end
 end
