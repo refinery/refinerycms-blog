@@ -4,7 +4,6 @@ module Refinery
   module Blog
     describe Category, type: :model do
       let(:category) { FactoryGirl.create(:blog_category) }
-      let(:author) { FactoryGirl.create(:authentication_devise_refinery_user) }
 
       describe "validations" do
         it "requires title" do
@@ -22,15 +21,15 @@ module Refinery
         end
 
         it "returns posts by published_at date in descending order" do
-          first_post = category.posts.create!({ :title => "Breaking News: Joe Sak is hot stuff you guys!!",
-                                                :body => "True story.",
-                                                :published_at => Time.now.yesterday,
-                                                :author => author })
+          first_post = category.posts.create!({ title: "Breaking News: Joe Sak is hot stuff you guys!!",
+                                                body: "True story.",
+                                                published_at: Time.now.yesterday,
+                                                username: "John Doe" })
 
-          latest_post = category.posts.create!({ :title => "parndt is p. okay",
-                                                 :body => "For a Kiwi.",
-                                                 :published_at => Time.now,
-                                                 :author => author })
+          latest_post = category.posts.create!({ title: "parndt is p. okay",
+                                                 body: "For a Kiwi.",
+                                                 published_at: Time.now,
+                                                 username: "John Doe" })
 
           expect(category.posts.newest_first.first).to eq(latest_post)
         end

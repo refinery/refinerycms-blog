@@ -12,7 +12,7 @@ module Refinery
         it "can create categories" do
           visit refinery.admin_root_path
 
-          within("nav#menu") { click_link "Blog" }
+          within("#sidebar-left") { click_link "Blog" }
           within("nav.multilist") { click_link "Create new category" }
 
           fill_in "Title", :with => title
