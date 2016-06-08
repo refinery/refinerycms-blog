@@ -2,26 +2,26 @@
   <article class="blog_post" id="<%= dom_id(post) %>">
     <header>
       <h1><%= link_to post.title, refinery.blog_post_path(post) %></h1>
-      <section class='details'>
-        <time datetime="<%=l post.published_at.to_date, :format => :default %>" class='posted_at'>
+      <section class="details">
+        <time datetime="<%=l post.published_at.to_date, :format => :default %>" class="posted_at">
           <%= t('created_at', :scope => 'refinery.blog.shared.posts', :when => l(post.published_at.to_date, :format => :short)) %>
         </time>
         <%= "#{t('by', :scope => 'refinery.blog.posts.show')} #{post.author.username}" if post.author.present? %>.
         <% if (categories = post.categories.translated).any? %>
-          <aside class='filled_in'>
+          <aside class="filled_in">
             <%= t('filled_in', :scope => 'refinery.blog.posts.show') %>
             <%=raw categories.collect { |category| link_to category.title, refinery.blog_category_path(category) }.to_sentence %>
           </aside>
         <% end %>
         <% if (tags = post.tags).any? %>
-          <aside class='tagged'>
+          <aside class="tagged">
             <%= t('tagged', :scope => 'refinery.blog.posts.show') %>
             <%=raw tags.collect { |tag| link_to tag, refinery.blog_tagged_posts_path(tag.id, tag.name.parameterize) }.to_sentence %>
           </aside>
         <% end %>
       </section>
     </header>
-    <section class='clearfix'>
+    <section class="clearfix">
       <% if blog_post_teaser_enabled? %>
         <%= blog_post_teaser(post) %>
       <% else %>
@@ -35,7 +35,7 @@
         <% end %>
       </p>
       <% if Refinery::Blog::Post.comments_allowed? %>
-        <aside class='comment_count'>
+        <aside class="comment_count">
           <%= link_to "#{t('title', :scope => 'refinery.blog.posts.show.comments')} (#{post.comments.approved.count})", refinery.blog_post_path(post) << '#comments' %>
         </aside>
       <% end %>
