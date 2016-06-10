@@ -14,6 +14,6 @@ if defined?(Refinery::Page) and !Refinery::Page.exists?(:link_url => (url = Refi
   )
 
   Refinery::Pages.default_parts.each_with_index do |default_page_part, index|
-    page.parts.create(:title => default_page_part, :body => nil, :position => index)
+    page.parts.create(:title => default_page_part[:title], :slug => default_page_part[:slug], :body => nil, :position => index)
   end
 end
