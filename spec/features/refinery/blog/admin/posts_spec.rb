@@ -39,8 +39,9 @@ module Refinery
             describe "create blog post" do
               before do
                 expect(subject.class.count).to eq(0)
-                fill_in "post_title", :with => "This is my blog post"
+                fill_in "post_title", with: "This is my blog post"
                 fill_in "post_body", with: "<p>And I love it</p>"
+                fill_in "post_user_id", with: "John Doe"
 
                 expect(page).to have_css '.blog_categories'
                 expect(page).to have_css "#post_category_ids_#{blog_category.id}"
@@ -57,10 +58,6 @@ module Refinery
                 expect(subject.class.count).to eq(1)
               end
 
-              it "should belong to me" do
-                expect(subject.class.first.author).to eq(::Refinery::Blog.user_class.last)
-              end
-
               it "should save categories" do
                 expect(subject.class.last.categories.count).to eq(1)
                 expect(subject.class.last.categories.first.title).to eq(blog_category.title)
@@ -70,9 +67,10 @@ module Refinery
             describe "create blog post with tags" do
               let(:tag_list) { "chicago, bikes, beers, babes" }
               before do
-                fill_in "Title", :with => "This is a tagged blog post"
+                fill_in "Title", with: "This is a tagged blog post"
                 fill_in "post_body", with: "<p>And I also love it</p>"
-                fill_in "Tags", :with => tag_list
+                fill_in "post_user_id", with: "John Doe"
+                fill_in "Tags", with: tag_list
                 click_button "Save"
               end
 
@@ -153,6 +151,10 @@ module Refinery
         end
 
         context "with multiple users" do
+          before do
+            allow(Refinery::Blog).to receive(:user_class).and_return(Refinery::Authentication::Devise::User)
+          end
+
           let!(:other_guy) { FactoryGirl.create(:authentication_devise_refinery_user, :username => "Other Guy") }
 
           describe "create blog post with alternate author" do
@@ -164,7 +166,7 @@ module Refinery
               fill_in "post_body", with: "<p>I totally did not write it.</p>"
 
               expect(page).to have_content("Author")
-              select other_guy.username, :from => "Author"
+              select other_guy.username, from: "Author"
 
               click_button "Save"
               expect(page).to have_content("was successfully added.")
@@ -191,8 +193,9 @@ module Refinery
           describe "add a blog post with title for default locale" do
             before do
               click_link "Create new post"
-              fill_in "Title", :with => "Post"
-              fill_in "post_body", :with => "One post in my blog"
+              fill_in "Title", with: "Post"
+              fill_in "post_body", with: "One post in my blog"
+              fill_in "post_user_id", with: "John Doe"
               click_button "Save"
               @p = Refinery::Blog::Post.by_title("Post")
             end
@@ -237,8 +240,9 @@ module Refinery
               within "#switch_locale_picker" do
                 click_link "RU"
               end
-              fill_in "Title", :with => ru_page_title
-              fill_in "post_body", :with => "One post in my blog"
+              fill_in "Title", with: ru_page_title
+              fill_in "post_body", with: "One post in my blog"
+              fill_in "post_user_id", with: "John Doe"
               click_button "Save"
               @p = Refinery::Blog::Post.by_title(ru_page_title)
             end
