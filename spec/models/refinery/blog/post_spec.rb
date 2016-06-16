@@ -50,6 +50,13 @@ module Refinery
       end
 
       describe "authors" do
+        before do
+          allow(Refinery::Blog).to receive(:user_class).and_return("Refinery::Authentication::Devise::User")
+        end
+
+        let(:author) { mock_model(::Refinery::Blog.user_class, id: 1) }
+        let(:blog_post) { FactoryGirl.create(:blog_post, author: author) }
+
         it "are authored" do
           expect(described_class.instance_methods.map(&:to_sym)).to include(:author)
         end
