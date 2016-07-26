@@ -3,6 +3,7 @@ Refinery::Core::Engine.routes.draw do
     root :to => "posts#index"
     resources :posts, path: '', :only => [:show] do
     	get 'comments', on: :member, to: :show
+      get 'posts/:id(/comments)', on: :collection, to: redirect("#{Refinery::Blog.page_url}/%{id}")
     end
 
     get 'feed.rss', :to => 'posts#index', :as => 'rss_feed', :defaults => {:format => "rss"}
