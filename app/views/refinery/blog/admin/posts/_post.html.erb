@@ -6,8 +6,9 @@
         <span class='locales'>
           <% post.translations.sort_by{ |t| Refinery::I18n.frontend_locales.index(t.locale)}.each do |translation| %>
             <% if translation.title.present? %>
-              <%= link_to refinery.edit_blog_admin_post_path(post, :switch_locale => translation.locale), :class => 'locale', title: translation.locale.upcase do %>
-
+              <%= link_to refinery.edit_blog_admin_post_path(post, :switch_locale => translation.locale),
+                  :class => 'locale',
+                  :title => translation.locale.upcase do %>
                 <div class="<%=translation.locale %> locale_marker">
                   <%= locale_text_icon(translation.locale.upcase) %>
                 </div>
