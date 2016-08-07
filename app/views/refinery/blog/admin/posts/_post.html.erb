@@ -2,14 +2,20 @@
   <span class='title'>
     <%= post.title.presence || post.translations.detect {|t| t.title.present?}.title %>
     <span class="preview">
-      <% post.translations.reject {|t| t.title.blank? }.each do |translation| %>
-        <%= link_to refinery.edit_blog_admin_post_path(post, :switch_locale => translation.locale),
-                    :class => 'locale' do %>
-          <div class="locale_icon <%= translation.locale %>">
-            <%= refinery_icon_tag('locale-blue.svg', :size => '24x24') %>
-            <span class="code"><%= translation.locale.upcase %></span>
-          </div>
-        <% end %>
+      <% if Refinery::I18n.frontend_locales.many? %>
+        <span class='locales'>
+          <% post.translations.sort_by{ |t| Refinery::I18n.frontend_locales.index(t.locale)}.each do |translation| %>
+            <% if translation.title.present? %>
+              <%= link_to refinery.edit_blog_admin_post_path(post, :switch_locale => translation.locale),
+                  :class => 'locale',
+                  :title => translation.locale.upcase do %>
+                <div class="<%=translation.locale %> locale_marker">
+                  <%= locale_text_icon(translation.locale.upcase) %>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
+        </span>
       <% end %>
 
       <%= post.published_at.try(:strftime, '%b %d, %Y') || 'draft' %>
