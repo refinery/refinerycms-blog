@@ -1,4 +1,4 @@
-# Encoding: UTF-8
+# Encoding: utf-8
 
 Gem::Specification.new do |s|
   s.name              = %q{refinerycms-blog}
