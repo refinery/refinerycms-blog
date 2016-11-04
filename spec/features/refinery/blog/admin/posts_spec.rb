@@ -153,6 +153,9 @@ module Refinery
         context "with multiple users" do
           before do
             allow(Refinery::Blog).to receive(:user_class).and_return(Refinery::Authentication::Devise::User)
+            class Refinery::Blog::Post
+              belongs_to :author, proc { readonly(true) }, :class_name => Refinery::Blog.user_class.to_s, :foreign_key => :user_id
+            end
           end
 
           let!(:other_guy) { FactoryGirl.create(:authentication_devise_refinery_user, :username => "Other Guy") }

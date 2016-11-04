@@ -9,7 +9,7 @@ module Refinery
         it "is highlighted when managing the blog" do
           visit refinery.admin_root_path
 
-          within("#sidebar-left") { click_link "Blog" }
+          within("nav#menu") { click_link "Blog" }
 
           expect(page).to have_css("a.active", :text => "Blog")
         end
