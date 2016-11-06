@@ -6,7 +6,9 @@
         <time datetime="<%=l post.published_at.to_date, :format => :default %>" class="posted_at">
           <%= t('created_at', :scope => 'refinery.blog.shared.posts', :when => l(post.published_at.to_date, :format => :short)) %>
         </time>
-        <%= "#{t('by', :scope => 'refinery.blog.posts.show')} #{post.author.username}" if post.author.present? %>.
+
+        <%= content_tag(:div, "#{t('by', :scope => 'refinery.blog.posts.show')} #{post.author.try(:username) || post.username}", :class => "blog_author") if post.author.present? || post.username.present? %>
+
         <% if (categories = post.categories.translated).any? %>
           <aside class="filled_in">
             <%= t('filled_in', :scope => 'refinery.blog.posts.show') %>
