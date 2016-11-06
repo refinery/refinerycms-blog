@@ -3,7 +3,6 @@ require "spec_helper"
 module Refinery
   module Blog
     describe Post, type: :feature do
-      refinery_login_with_devise :authentication_devise_refinery_user
 
       context "when has blog posts" do
         let!(:blog_post) do
@@ -164,18 +163,20 @@ module Refinery
           end
         end
 
-        context "when not logged in as an admin" do
-          before do
-            # TODO: remove Refinery::Pages::Engine.load_seed dependency.
-            # It's here to temporary fix the issue with 404 after visiting logout path.
-            Refinery::Pages::Engine.load_seed
-            visit refinery.logout_path
-          end
+        if defined?(Refinery::Authentication::Devise::User)
+          context "when not logged in as an admin" do
+            before do
+              # TODO: remove Refinery::Pages::Engine.load_seed dependency.
+              # It's here to temporary fix the issue with 404 after visiting logout path.
+              Refinery::Pages::Engine.load_seed
+              visit refinery.logout_path
+            end
 
-          it "should not display the blog post" do
-            visit refinery.blog_post_path(blog_post)
+            it "should not display the blog post" do
+              visit refinery.blog_post_path(blog_post)
 
-            expect(page).to have_content("The page you requested was not found.")
+              expect(page).to have_content("The page you requested was not found.")
+            end
           end
         end
       end

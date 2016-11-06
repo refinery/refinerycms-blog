@@ -5,7 +5,7 @@ module Refinery
   module Blog
     module Admin
       describe Post, type: :feature do
-        refinery_login_with_devise :authentication_devise_refinery_superuser
+        refinery_login_with_devise :authentication_devise_refinery_superuser if defined?(Refinery::Authentication::Devise::User)
 
         let!(:blog_category) do
           Globalize.with_locale(:en) { FactoryGirl.create(:blog_category) }
@@ -150,33 +150,35 @@ module Refinery
           end
         end
 
-        context "with multiple users" do
-          before do
-            allow(Refinery::Blog).to receive(:user_class).and_return(Refinery::Authentication::Devise::User)
-            class Refinery::Blog::Post
-              belongs_to :author, proc { readonly(true) }, :class_name => Refinery::Blog.user_class.to_s, :foreign_key => :user_id
-            end
-          end
-
-          let!(:other_guy) { FactoryGirl.create(:authentication_devise_refinery_user, :username => "Other Guy") }
-
-          describe "create blog post with alternate author" do
+        if defined?(Refinery::Authentication::Devise::User)
+          context "with multiple users" do
             before do
-              visit refinery.blog_admin_posts_path
-              click_link "Create new post"
-
-              fill_in "post_title", :with => "This is some other guy's blog post"
-              fill_in "post_body", with: "<p>I totally did not write it.</p>"
-
-              expect(page).to have_content("Author")
-              select other_guy.username, from: "Author"
-
-              click_button "Save"
-              expect(page).to have_content("was successfully added.")
+              allow(Refinery::Blog).to receive(:user_class).and_return(Refinery::Authentication::Devise::User)
+              class Refinery::Blog::Post
+                belongs_to :author, proc { readonly(true) }, :class_name => Refinery::Blog.user_class.to_s, :foreign_key => :user_id
+              end
             end
 
-            it "belongs to another user" do
-              expect(subject.class.last.author).to eq(other_guy)
+            let!(:other_guy) { FactoryGirl.create(:authentication_devise_refinery_user, :username => "Other Guy") }
+
+            describe "create blog post with alternate author" do
+              before do
+                visit refinery.blog_admin_posts_path
+                click_link "Create new post"
+
+                fill_in "post_title", :with => "This is some other guy's blog post"
+                fill_in "post_body", with: "<p>I totally did not write it.</p>"
+
+                expect(page).to have_content("Author")
+                select other_guy.username, from: "Author"
+
+                click_button "Save"
+                expect(page).to have_content("was successfully added.")
+              end
+
+              it "belongs to another user" do
+                expect(subject.class.last.author).to eq(other_guy)
+              end
             end
           end
         end
