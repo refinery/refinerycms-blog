@@ -24,4 +24,5 @@ Gem::Specification.new do |s|
   s.add_dependency    'friendly_id',           '~> 5.1.0'
   s.add_dependency    'globalize',             ['>= 4.0.0', '< 5.2']
   s.add_dependency    'jquery-ui-rails',       '~> 5.0.0'
+  s.add_dependency    'responders',            '~> 2.0'
 end
