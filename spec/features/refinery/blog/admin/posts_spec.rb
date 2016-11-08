@@ -1,6 +1,19 @@
 # encoding: utf-8
 require "spec_helper"
 
+shared_context "with_user_class" do
+  # This context changes the user class and updates the author association on Post.
+  before :each do
+    @old_user_class = Refinery::Blog.user_class
+    allow(Refinery::Blog).to receive(:user_class).and_return(Refinery::Authentication::Devise::User)
+    Refinery::Blog::Post.reflections['author'].instance_variable_set(:@class_name, Refinery::Blog.user_class.to_s)
+  end
+
+  after :each do
+    Refinery::Blog::Post.reflections['author'].instance_variable_set(:@class_name, @old_user_class.to_s)
+  end
+end
+
 module Refinery
   module Blog
     module Admin
@@ -151,12 +164,7 @@ module Refinery
         end
 
         context "with multiple users" do
-          before do
-            allow(Refinery::Blog).to receive(:user_class).and_return(Refinery::Authentication::Devise::User)
-            class Refinery::Blog::Post
-              belongs_to :author, proc { readonly(true) }, :class_name => Refinery::Blog.user_class.to_s, :foreign_key => :user_id
-            end
-          end
+          include_context "with_user_class"
 
           let!(:other_guy) { FactoryGirl.create(:authentication_devise_refinery_user, :username => "Other Guy") }
 
