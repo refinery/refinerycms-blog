@@ -5,7 +5,7 @@ module Refinery
   module Blog
     module Admin
       describe Category, type: :feature do
-        refinery_login_with_devise :authentication_devise_refinery_superuser if defined?(Refinery::Authentication::Devise::User)
+        refinery_login_with_devise :authentication_devise_refinery_superuser
 
         let(:title) { "lol" }
 

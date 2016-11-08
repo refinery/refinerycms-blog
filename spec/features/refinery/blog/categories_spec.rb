@@ -3,6 +3,7 @@ require "spec_helper"
 module Refinery
   module Blog
     describe Category, type: :feature do
+      refinery_login_with_devise :authentication_devise_refinery_user
 
       context "has one category and post" do
         before do
