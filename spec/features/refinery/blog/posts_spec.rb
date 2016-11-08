@@ -3,8 +3,6 @@ require "spec_helper"
 module Refinery
   module Blog
     describe Post, type: :feature do
-      refinery_login_with_devise :authentication_devise_refinery_user
-
       context "when has blog posts" do
         let!(:blog_post) do
           Globalize.with_locale(:en) { FactoryGirl.create(:blog_post, :title => "Refinery CMS blog post") }
@@ -165,12 +163,6 @@ module Refinery
         end
 
         context "when not logged in as an admin" do
-          before do
-            # TODO: remove Refinery::Pages::Engine.load_seed dependency.
-            # It's here to temporary fix the issue with 404 after visiting logout path.
-            Refinery::Pages::Engine.load_seed
-            visit refinery.logout_path
-          end
 
           it "should not display the blog post" do
             visit refinery.blog_post_path(blog_post)

@@ -4,7 +4,7 @@ module Refinery
   module Blog
     module Admin
       describe PostsController, type: :controller do
-        refinery_login_with_devise [:refinery, :superuser]
+        refinery_login
 
         describe "#delete_translation" do
           let!(:blog_post) { FactoryGirl.create(:blog_post) }

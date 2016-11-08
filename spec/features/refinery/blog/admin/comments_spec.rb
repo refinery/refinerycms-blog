@@ -4,7 +4,7 @@ module Refinery
   module Blog
     module Admin
       describe Comment, type: :feature do
-        refinery_login_with_devise :authentication_devise_refinery_superuser
+        refinery_login
 
         describe "#index" do
           context "when has no new unapproved comments" do
