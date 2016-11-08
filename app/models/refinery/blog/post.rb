@@ -67,6 +67,10 @@ module Refinery
         custom_url.presence || title
       end
 
+      def author_username
+        author.try(:username) || username
+      end
+
       class << self
 
         # Wrap up the logic of finding the pages based on the translations table.
