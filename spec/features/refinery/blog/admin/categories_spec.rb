@@ -50,7 +50,7 @@ module Refinery
             it "shows locale for category" do
               click_link "Manage"
               within "#category_#{@c.id}" do
-                expect(page).to have_css(".locale_icon.en")
+                expect(page).to have_css(".locale .en")
               end
             end
 
@@ -91,14 +91,14 @@ module Refinery
             it "shows locale for category" do
               click_link "Manage"
               within "#category_#{@c.id}" do
-                expect(page).to have_css(".locale_icon.ru")
+                expect(page).to have_css(".locale .ru")
               end
             end
 
             it "does not show locale for primary locale" do
               click_link "Manage"
               within "#category_#{@c.id}" do
-                expect(page).not_to have_css(".locale_icon.en")
+                expect(page).not_to have_css(".locale .en")
               end
             end
 

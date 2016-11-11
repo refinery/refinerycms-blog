@@ -205,7 +205,7 @@ module Refinery
             it "shows locale for post" do
 
               within "#post_#{@p.id}" do
-                expect(page).to have_css(".locale_icon.en")
+                expect(page).to have_css(".locale .en")
               end
             end
 
@@ -216,13 +216,13 @@ module Refinery
 
             it "does show locale for default locale" do
               within "#post_#{@p.id}" do
-                expect(page).to have_css(".locale_icon.en")
+                expect(page).to have_css(".locale .en")
               end
             end
 
             it "does not show locale for secondary locale" do
               within "#post_#{@p.id}" do
-                expect(page).not_to have_css(".locale_icon.ru")
+                expect(page).not_to have_css(".locale .ru")
               end
             end
 
@@ -256,19 +256,19 @@ module Refinery
 
             it "shows locale for post" do
               within "#post_#{@p.id}" do
-                expect(page).to have_css(".locale_icon.ru")
+                expect(page).to have_css(".locale .ru")
               end
             end
 
             it "does not show locale for primary locale" do
               within "#post_#{@p.id}" do
-                expect(page).not_to have_css(".locale_icon.en")
+                expect(page).not_to have_css(".locale .en")
               end
             end
 
             it "does show locale for secondary locale" do
               within "#post_#{@p.id}" do
-                expect(page).to have_css(".locale_icon.ru")
+                expect(page).to have_css(".locale .ru")
               end
             end
 
@@ -296,8 +296,8 @@ module Refinery
 
             it "shows both locales for post" do
               within "#post_#{blog_post.id}" do
-                expect(page).to have_css(".locale_icon.en")
-                expect(page).to have_css(".locale_icon.ru")
+                expect(page).to have_css(".locale .en")
+                expect(page).to have_css(".locale .ru")
               end
             end
 

@@ -4,7 +4,7 @@ gem "refinerycms-authentication-devise", '~> 1.0.4'
 
 gemspec
 
-git "https://github.com/refinery/refinerycms", branch: "master" do
+git "https://github.com/refinery/refinerycms", branch: "3-0-stable" do
   gem 'refinerycms'
 
   group :development, :test do
