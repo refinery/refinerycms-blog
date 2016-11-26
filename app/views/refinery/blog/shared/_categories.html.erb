@@ -1,8 +1,8 @@
 <% if @categories.any? %>
   <h2><%= t('.title') %></h2>
-  <ul id='categories'>
+  <ul id="categories">
     <% @categories.each do |category| %>
-      <li<%= " class='selected'" if @category.present? and @category.id == category.id %>>
+      <li<%= " class='selected'" if @category.present? && @category.id == category.id %>>
         <%= link_to "#{category.title} (#{category.post_count})", refinery.blog_category_path(category) %>
       </li>
     <% end %>
