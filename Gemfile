@@ -4,12 +4,10 @@ gem "refinerycms-authentication-devise", '~> 1.0.4'
 
 gemspec
 
-git "https://github.com/refinery/refinerycms", branch: "3-0-stable" do
-  gem 'refinerycms'
+gem 'refinerycms', '~> 3.0.5'
 
-  group :development, :test do
-    gem 'refinerycms-testing'
-  end
+group :development, :test do
+  gem 'refinerycms-testing', '~> 3.0.5'
 end
 
 # Add the default visual editor, for now.
