@@ -102,7 +102,7 @@
           <%= f.label :user_id, t('.author') %>
           <%= refinery_help_tag t('.author_help') %>
           <br/>
-          <%= f.collection_select :user_id, ::Refinery::User.all, :id, :username %>
+          <%= f.collection_select :user_id, Refinery::Blog.user_class.all, :id, :username %>
         </span>
       </div>
 
