@@ -11,7 +11,7 @@ FactoryGirl.define do
     end
 
     factory :blog_post_authentication_devise_refinery_user_author do
-      author { FactoryGirl.create(:authentication_devise_refinery_user) }
+      author { FactoryGirl.create(:blog_test_user) }
     end
   end
 end
