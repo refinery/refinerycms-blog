@@ -162,14 +162,6 @@ module Refinery
           end
         end
 
-        context "when not logged in as an admin" do
-
-          it "should not display the blog post" do
-            visit refinery.blog_post_path(blog_post)
-
-            expect(page).to have_content("The page you requested was not found.")
-          end
-        end
       end
     end
   end
