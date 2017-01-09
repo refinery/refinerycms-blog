@@ -28,7 +28,7 @@ module Refinery
 
         @canonical = refinery.url_for(:locale => Refinery::I18n.current_frontend_locale) if canonical?
 
-        @post.increment!(:access_count, 1)
+        Post.increment_counter(:access_count, @post.id)
 
         respond_with (@post) do |format|
           format.html { present(@post) }
