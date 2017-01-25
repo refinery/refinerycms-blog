@@ -5,7 +5,7 @@ shared_context "with_user_class" do
   # This context changes the user class and updates the author association on Post.
   before :each do
     @old_user_class = Refinery::Blog.user_class
-    allow(Refinery::Blog).to receive(:user_class).and_return(Refinery::Authentication::Devise::User)
+    allow(Refinery::Blog).to receive(:user_class).and_return(Refinery::Blog::TestUser)
     Refinery::Blog::Post.reflections['author'].instance_variable_set(:@class_name, Refinery::Blog.user_class.to_s)
   end
 
@@ -166,7 +166,7 @@ module Refinery
         context "with multiple users" do
           include_context "with_user_class"
 
-          let!(:other_guy) { FactoryGirl.create(:authentication_devise_refinery_user, :username => "Other Guy") }
+          let!(:other_guy) { FactoryGirl.create(:blog_test_user, :username => "Other Guy") }
 
           describe "create blog post with alternate author" do
             before do
