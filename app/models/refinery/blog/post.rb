@@ -33,7 +33,10 @@ module Refinery
       class Translation
         is_seo_meta
       end
-      
+
+      def foo
+        p "bar"
+      end
       # Override this to disable required authors
       def author_required?
         true
