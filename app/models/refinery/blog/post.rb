@@ -18,7 +18,10 @@ module Refinery
       has_many :comments, :dependent => :destroy, :foreign_key => :blog_post_id
       has_many :categorizations, :dependent => :destroy, :foreign_key => :blog_post_id
       has_many :categories, :through => :categorizations, :source => :blog_category
-      has_many :readtime_categories
+
+      has_many :readtime_categories_refinery_blog_posts, :dependent => :destroy, :foreign_key => :post_id
+
+      has_many :readtime_categories, :through => :readtime_categories_refinery_blog_posts
 
       validates :title, :presence => true, :uniqueness => true
       validates :body,  :presence => true
@@ -34,9 +37,6 @@ module Refinery
         is_seo_meta
       end
 
-      def foo
-        p "bar"
-      end
       # Override this to disable required authors
       def author_required?
         true
