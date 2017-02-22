@@ -11,6 +11,33 @@
     <%= f.text_field :title, :class => 'larger widest' -%>
   </div>
 
+  <div class='field'>
+    <%= f.label :cat_type do %>
+      <%= f.radio_button(:cat_type, "read_time") %>
+      Article Reading Time
+    <%end%>
+    <%= f.label :cat_type do %>
+      <%= f.radio_button(:cat_type, "topic") %>
+      Financial Topics
+    <%end%>
+    <%= f.label :cat_type do %>
+      <%= f.radio_button(:cat_type, "expertise_level") %>
+      Reader's Expertise Level
+    <%end%>
+    <%= f.label :cat_type do %>
+      <%= f.radio_button(:cat_type, "health_score") %>
+      Reader's Health Score Range
+    <%end%>
+
+  </div>
+
+  <div class='field'>
+    <%= f.label :value do%>
+    Category Type Description
+    <%= f.text_field :value, :class => 'larger widest' -%>
+    <%end%>
+  </div>
+
   <%= render "/refinery/admin/form_actions",
              :f => f,
              :continue_editing => false,

@@ -2,12 +2,15 @@ module Refinery
   module Blog
     module Admin
       class PostsController < ::Refinery::AdminController
-
         crudify :'refinery/blog/post',
                 :order => 'published_at DESC',
                 :include => [:translations, :author]
 
         before_filter :find_all_categories,
+                      :find_all_topic_categories,
+                      :find_all_readtime_categories,
+                      :find_all_expertise_categories,
+                      :find_all_score_categories,
                       :only => [:new, :edit, :create, :update]
 
         before_filter :check_category_ids, :only => :update
@@ -87,7 +90,7 @@ module Refinery
         def post_params
           params.require(:post).permit(permitted_post_params)
         end
-        
+
         def permitted_post_params
           [
             :title, :body, :custom_teaser, :tag_list,
@@ -104,6 +107,22 @@ module Refinery
 
         def find_all_categories
           @categories = Refinery::Blog::Category.all
+        end
+
+        def find_all_topic_categories
+          @topic_categories = Refinery::Blog::Category.where("cat_type = 'topic'")
+        end
+
+        def find_all_readtime_categories
+          @readtime_categories = Refinery::Blog::Category.where("cat_type = 'read_time'")
+        end
+
+        def find_all_expertise_categories
+          @expertise_categories = Refinery::Blog::Category.where("cat_type = 'read_time'")
+        end
+
+        def find_all_score_categories
+          @score_categories = Refinery::Blog::Category.where("cat_type = 'read_time'")
         end
 
         def check_category_ids

@@ -62,9 +62,66 @@
           </li>
         <% end %>
       </ul>
+      <h3><%= ('Financial Topics') %></h3>
+      <ul class='blog_categories'>
+        <% @topic_categories.each do |category| %>
+          <li>
+             <%= check_box_tag 'post[category_ids][]', category.id,
+                               @post.categories.include?(category),
+                               :id => (id="post_category_ids_#{category.id}") %>
+             <%= label_tag 'post[category_ids][]', category.title,
+                           :class => 'stripped',
+                           :for => id %>
+          </li>
+        <% end %>
+      </ul>
+
+      <h3><%= ('Article Reading Time') %></h3>
+      <ul class='blog_categories'>
+        <% @readtime_categories.each do |category| %>
+          <li>
+             <%= check_box_tag 'post[category_ids][]', category.id,
+                               @post.categories.include?(category),
+                               :id => (id="post_category_ids_#{category.id}") %>
+             <%= label_tag 'post[category_ids][]', category.title,
+                           :class => 'stripped',
+                           :for => id %>
+          </li>
+        <% end %>
+      </ul>
+
+      <h3><%= ("Reader's Expertise Level") %></h3>
+      <ul class='blog_categories'>
+        <% @expertise_categories.each do |category| %>
+          <li>
+             <%= check_box_tag 'post[category_ids][]', category.id,
+                               @post.categories.include?(category),
+                               :id => (id="post_category_ids_#{category.id}") %>
+             <%= label_tag 'post[category_ids][]', category.title,
+                           :class => 'stripped',
+                           :for => id %>
+          </li>
+        <% end %>
+      </ul>
+
+      <h3><%= ("Reader's Health Score Range") %></h3>
+      <ul class='blog_categories'>
+        <% @score_categories.each do |category| %>
+          <li>
+             <%= check_box_tag 'post[category_ids][]', category.id,
+                               @post.categories.include?(category),
+                               :id => (id="post_category_ids_#{category.id}") %>
+             <%= label_tag 'post[category_ids][]', category.title,
+                           :class => 'stripped',
+                           :for => id %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class='hemisquare right_side'>
       <h3><%= t('.published_at') %></h3>
       <%= f.datetime_select :published_at %>
-
       <div class='field'>
         <span class='label_with_help'>
           <%= f.label :custom_url, t('.custom_url') %>
@@ -72,7 +129,6 @@
         </span>
         <%= f.text_field :custom_url, :class => "widest" %>
       </div>
-
       <div class='field'>
         <span class='label_with_help'>
           <%= f.label :source_url_title, t('.source_url_title') %>
@@ -80,7 +136,6 @@
         </span>
         <%= f.text_field :source_url_title, :class => "widest" %>
       </div>
-
       <div class='field'>
         <span class='label_with_help'>
           <%= f.label :source_url, t('.source_url') %>
@@ -88,7 +143,6 @@
         </span>
         <%= f.text_field :source_url, :class => "widest" %>
       </div>
-
       <div class='field'>
         <span class='label_with_help'>
           <%= f.label :user_id, t('.author') %>
@@ -97,9 +151,6 @@
           <%= f.collection_select :user_id, Refinery::Blog.user_class.all, :id, :username %>
         </span>
       </div>
-
-    </div>
-    <div class='hemisquare right_side'>
       <%= render '/seo_meta/form', :form => f %>
     </div>
   </div>
