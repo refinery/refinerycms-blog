@@ -50,6 +50,26 @@
   <div id='more_options'>
     <div class="hemisquare">
 
+      <h3><%= ("Reader's Financial Health Score Range") %></h3>
+      <ul class='blog_categories'>
+        <% @score_categories.each do |category| %>
+        <li>
+          <%= check_box_tag 'post[category_ids][]', category.id,
+          @post.categories.include?(category),
+          :id => (id="post_category_ids_#{category.id}") %>
+          <%= label_tag 'post[category_ids][]', category.title,
+          :class => 'stripped',
+          :for => id %>
+        </li>
+        <% end %>
+      </ul>
+
+
+
+        <!-- <%= score_cat_array = Refinery::Blog::Category.all.map {|category| [category.id, category.cat_type, category.value] }%>
+        <%=options_for_select(score_cat_array)%> -->
+        <%=collection_select(:category, :id, @score_categories, :id, :title, {:prompt =>"select score suitability"})%>
+
 
 
 
@@ -95,19 +115,6 @@
         <% end %>
       </ul>
 
-      <h3><%= ("Reader's Financial Health Score Range") %></h3>
-      <ul class='blog_categories'>
-        <% @score_categories.each do |category| %>
-          <li>
-             <%= check_box_tag 'post[category_ids][]', category.id,
-                               @post.categories.include?(category),
-                               :id => (id="post_category_ids_#{category.id}") %>
-             <%= label_tag 'post[category_ids][]', category.title,
-                           :class => 'stripped',
-                           :for => id %>
-          </li>
-        <% end %>
-      </ul>
     </div>
 
     <div class='hemisquare right_side'>

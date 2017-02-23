@@ -61,23 +61,6 @@
                   :class => 'folder_add_icon' %>
     </li>
   </ul>
-<!-- readtime category menu -->
-  <ul class='collapsible_menu'>
-    <li class='not_a_link'>
-      <%= link_to ('Read Time'), '#',
-                  :class => 'folder_icon' %>
-    </li>
-    <li>
-      <%= link_to t('.categories.manage'), refinery.blog_admin_categories_path,
-                  :class => 'folder_edit_icon' %>
-                  <!-- blog_admin_categories GET /refinery/blog/categories(.:format)                       refinery/blog/admin/categories#index -->
-    </li>
-    <li>
-      <%= link_to t('.categories.new'), refinery.new_blog_admin_category_path,
-                  :class => 'folder_add_icon' %>
-                  <!-- new_blog_admin_category GET    /refinery/blog/categories/new(.:format)                   refinery/blog/admin/categories#new -->
-    </li>
-  </ul>
 
   <ul class='collapsible_menu'>
     <li class='not_a_link'>
