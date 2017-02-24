@@ -64,14 +64,9 @@
         <% end %>
       </ul>
 
-
-
         <!-- <%= score_cat_array = Refinery::Blog::Category.all.map {|category| [category.id, category.cat_type, category.value] }%>
         <%=options_for_select(score_cat_array)%> -->
-        <%=collection_select(:category, :id, @score_categories, :id, :title, {:prompt =>"select score suitability"})%>
-
-
-
+        <!-- <%=collection_select(:category, :id, @score_categories, :id, :title, {:prompt =>"select score suitability"})%> -->
 
       <h3><%= ('Financial Topics') %></h3>
       <ul class='blog_categories'>
