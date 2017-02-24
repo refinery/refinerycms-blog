@@ -16,6 +16,10 @@ module Refinery
         joins(:translations).find_by(title: title)
       end
 
+      def self.by_type(type)
+        joins(:translations).find_by(type: type)
+      end
+
       def self.translated
         with_translations(::Globalize.locale)
       end

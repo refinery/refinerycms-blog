@@ -2,11 +2,17 @@
 <%= render 'refinery/admin/search_header', :url => request.path %>
 <div id='records'>
   <% if @categories.any? %>
-    <%= will_paginate @categories %>
+    <h3><%= ('Manage Topics') %></h3>
+    <%= will_paginate @categories.where(cat_type: 'topic') %>
+    <%= render "topic_sortable_list" %>
+    <%= will_paginate @categories.where(cat_type: 'topic') %>
+    <br/>
+    
+    <h3><%= ('Manage Expertise Levels') %></h3>
+    <%= will_paginate @categories.where(cat_type: 'expertise_level') %>
+    <%= render "expertise_sortable_list" %>
+    <%= will_paginate @categories.where(cat_type: 'expertise_level') %>
 
-    <%= render "sortable_list" %>
-
-    <%= will_paginate @categories %>
   <% else %>
     <% if searching? %>
       <%= t('no_results', :scope => 'refinery.admin.search') %>

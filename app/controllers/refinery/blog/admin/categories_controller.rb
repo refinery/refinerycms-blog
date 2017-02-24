@@ -10,7 +10,7 @@ module Refinery
         private
 
         def category_params
-          params.require(:category).permit(:title)
+          params.require(:category).permit(:title, :cat_type, :value)
         end
       end
     end

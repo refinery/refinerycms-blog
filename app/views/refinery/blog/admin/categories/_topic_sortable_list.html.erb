@@ -1,5 +1,5 @@
 <ul id='sortable_list'>
-  <%= render :partial => 'category', :collection => @categories %>
+  <%= render :partial => 'category', :collection => @categories.where(cat_type: 'topic') %>
 </ul>
 <%= render "/refinery/admin/sortable_list",
            :continue_reordering => (defined?(continue_reordering) ? continue_reordering : true) %>

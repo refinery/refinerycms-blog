@@ -2,15 +2,20 @@ module Refinery
   module Blog
     module Admin
       class PostsController < ::Refinery::AdminController
-
         crudify :'refinery/blog/post',
                 :order => 'published_at DESC',
                 :include => [:translations, :author]
 
         before_filter :find_all_categories,
+                      :find_all_topic_categories,
+                      :find_all_readtime_categories,
+                      :find_all_expertise_categories,
+                      :find_all_score_categories,
+                      # :add_score_category,
                       :only => [:new, :edit, :create, :update]
 
         before_filter :check_category_ids, :only => :update
+
 
         def uncategorized
           @posts = Refinery::Blog::Post.uncategorized.page(params[:page])
@@ -75,6 +80,7 @@ module Refinery
           end
         end
 
+
         def delete_translation
           find_post
           @post.translations.find_by_locale(params[:locale_to_delete]).destroy
@@ -87,7 +93,7 @@ module Refinery
         def post_params
           params.require(:post).permit(permitted_post_params)
         end
-        
+
         def permitted_post_params
           [
             :title, :body, :custom_teaser, :tag_list,
@@ -105,6 +111,33 @@ module Refinery
         def find_all_categories
           @categories = Refinery::Blog::Category.all
         end
+
+        def find_all_topic_categories
+          @topic_categories = Refinery::Blog::Category.where("cat_type = 'topic'")
+        end
+
+        def find_all_readtime_categories
+          @readtime_categories = Refinery::Blog::Category.where("cat_type = 'read_time'")
+        end
+
+        def find_all_expertise_categories
+          @expertise_categories = Refinery::Blog::Category.where("cat_type = 'expertise_level'")
+        end
+
+        def find_all_score_categories
+          @score_categories = Refinery::Blog::Category.where("cat_type = 'health_score'")
+        end
+
+        # def add_score_category
+        #   @post = Refinery::Blog::Post.friendly.find(params[:id])
+        #   # @new_score = Category.create(cat_type: "read_time")
+        #   # @post.categories << @new_score
+        #   @new_health_cat = Category.find_or_create_by_cat_type_and_value('health_score', params[:category][:value])
+        #   # unless Category.exists?(:cat_type => "read_time")
+        #   #   Category.create(cat_type: "read_time")
+        #   # end
+        #   # @post.categories.value << value
+        # end
 
         def check_category_ids
           params[:post][:category_ids] ||= []

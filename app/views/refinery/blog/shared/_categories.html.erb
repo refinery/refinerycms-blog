@@ -1,7 +1,18 @@
 <% if @categories.any? %>
   <h2><%= t('.title') %></h2>
   <ul id="categories">
-    <% @categories.each do |category| %>
+    <h4><%= ('By Topics') %></h4>
+    <% @categories.where(cat_type: 'topic').each do |category| %>
+      <li<%= " class='selected'" if @category.present? && @category.id == category.id %>>
+
+        <%= link_to "#{category.title} (#{category.post_count})", refinery.blog_category_path(category) %>
+      </li>
+    <% end %>
+  </ul>
+
+  <ul id="categories">
+    <h4><%= ('By Expertise') %></h4>
+    <% @categories.where(cat_type: 'expertise_level').each do |category| %>
       <li<%= " class='selected'" if @category.present? && @category.id == category.id %>>
         <%= link_to "#{category.title} (#{category.post_count})", refinery.blog_category_path(category) %>
       </li>
