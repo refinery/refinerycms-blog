@@ -1,4 +1,4 @@
-class CreateBlogTranslations < ActiveRecord::Migration
+class CreateBlogTranslations < ActiveRecord::Migration[4.2]
   def up
     Refinery::Blog::Post.create_translation_table!({
       :body => :text,
