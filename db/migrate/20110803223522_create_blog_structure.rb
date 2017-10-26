@@ -1,4 +1,4 @@
-class CreateBlogStructure < ActiveRecord::Migration
+class CreateBlogStructure < ActiveRecord::Migration[4.2]
 
   def up
     create_table :refinery_blog_posts do |t|
