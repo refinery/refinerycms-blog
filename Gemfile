@@ -1,13 +1,14 @@
 source "https://rubygems.org"
 
-gem "refinerycms-authentication-devise", '~> 1.0.4'
+gem "refinerycms-authentication-devise", '~> 2.0'
 
 gemspec
 
-gem 'refinerycms', '~> 3.0.5'
+gem 'refinerycms', '~> 4.0'
+
 
 group :development, :test do
-  gem 'refinerycms-testing', '~> 3.0.5'
+  gem 'refinerycms-testing', '~> 4.0'
 end
 
 # Add the default visual editor, for now.
@@ -17,6 +18,7 @@ group :test do
   gem 'pry'
   gem 'launchy'
   gem 'poltergeist'
+  gem 'listen'
 end
 
 # Database Configuration
