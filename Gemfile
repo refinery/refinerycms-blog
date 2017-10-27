@@ -6,9 +6,6 @@ gemspec
 
 gem 'refinerycms', '~> 4.0'
 
-# these should go back into gemspec when ?
-gem 'globalize', git: 'https://github.com/globalize/globalize'
-gem 'activemodel-serializers-xml'
 
 group :development, :test do
   gem 'refinerycms-testing', '~> 4.0'
