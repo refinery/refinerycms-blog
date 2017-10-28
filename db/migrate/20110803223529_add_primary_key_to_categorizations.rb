@@ -1,4 +1,4 @@
-class AddPrimaryKeyToCategorizations < ActiveRecord::Migration
+class AddPrimaryKeyToCategorizations < ActiveRecord::Migration[4.2]
   def up
     unless Refinery::Blog::Categorization.column_names.include?("id")
       add_column Refinery::Blog::Categorization.table_name, :id, :primary_key
