@@ -27,17 +27,12 @@
     </span>
   </span>
   <span class='actions'>
-    <%= link_to refinery_icon_tag("application_go.png"), refinery.blog_post_path(post),
-        :title => t('.view_live_html'),
-        :target => "_blank" %>
-    <%= link_to refinery_icon_tag("application_edit.png"), refinery.edit_blog_admin_post_path(post),
-         :title => t('.edit') %>
-    <%= link_to refinery_icon_tag("delete.png"), refinery.blog_admin_post_path(post),
-        :class => "cancel confirm-delete",
-        :title => t('.delete'),
-        :method => :delete,
-        :data => {
-          :confirm => t('message', :scope => 'refinery.admin.delete', :title => post.title)
-        } %>
+    <%= action_icon(:preview, refinery.blog_post_path(post), t('.view_live_html')) %>
+    <%= action_icon(:edit,    refinery.edit_blog_admin_post_path(post), t('.edit') ) %>
+    <%= action_icon(:delete,  refinery.blog_admin_post_path(post), t('.delete'),
+      { class: "cancel confirm-delete",
+        data: {confirm: t('message',  scope: 'refinery.admin.delete', title: post.title)}}  ) %>
   </span>
 </li>
+
+
