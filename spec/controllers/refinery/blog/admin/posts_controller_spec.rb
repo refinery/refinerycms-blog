@@ -15,17 +15,17 @@ module Refinery
           end
 
           it "destroys the translation" do
-            post :delete_translation, :id => blog_post.id, :locale_to_delete => :fr
+            post :delete_translation, params: { :id => blog_post.id, :locale_to_delete => :fr }
             expect(blog_post.translations.exists?(:locale => :fr)).to be_falsey
           end
 
           it "does not destroy other translations" do
-            post :delete_translation, :id => blog_post.id, :locale_to_delete => :fr
+            post :delete_translation, params: { :id => blog_post.id, :locale_to_delete => :fr }
             expect(blog_post.translations.exists?(:locale => :es)).to be_truthy
           end
 
           it "redirects on success" do
-            post :delete_translation, :id => blog_post.id, :locale_to_delete => :fr
+            post :delete_translation, params: { :id => blog_post.id, :locale_to_delete => :fr }
             expect(response).to be_redirect
           end
         end

@@ -15,7 +15,7 @@ module Refinery
       end
 
       it "should limit rss feed" do
-        get :index, :format => :rss, :max_results => 2
+        get :index, :format => :rss, params: { :max_results => 2 }
         expect(assigns[:posts].count).to eq(2)
       end
     end
