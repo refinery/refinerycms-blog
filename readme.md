@@ -2,7 +2,7 @@
 
 Simple blog engine for [Refinery CMS](http://refinerycms.com). It supports posts, categories and comments.
 
-This version of `refinerycms-blog` supports Refinery 3.x and Rails 4.1.x.  To use Rails 3.x / Refinery 2.1.x use the [refinerycms-blog "Refinery CMS 2-1 stable branch"](http://github.com/refinery/refinerycms-blog/tree/2-1-stable).
+This version of `refinerycms-blog` supports Refinery 4.x and Rails 5.1.x (Ruby 2.2+). To use Rails 4.x / Refinery 3.1.x / Ruby 2.1 or older use the [refinerycms-blog "Refinery CMS 3-0 stable branch"](http://github.com/refinery/refinerycms-blog/tree/3-0-stable).
 
 Options:
 
@@ -11,7 +11,7 @@ Options:
 
 ## Requirements
 
-Refinery CMS version 3.0.0 or above.
+Refinery CMS version 4.0.0 or above (Ruby 2.2 or above).
 
 ## Install
 
