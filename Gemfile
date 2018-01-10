@@ -12,7 +12,7 @@ group :development, :test do
 end
 
 # Add the default visual editor, for now.
-gem 'refinerycms-wymeditor', ['~> 1.0', '>= 1.0.6']
+gem 'refinerycms-wymeditor', ['~> 2.0', '>= 2.0.0']
 
 group :test do
   gem 'launchy'
