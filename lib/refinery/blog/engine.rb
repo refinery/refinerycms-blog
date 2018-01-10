@@ -14,6 +14,7 @@ module Refinery
         end
 
         Rails.application.config.assets.precompile += %w(
+          refinery/blog/backend.js
           refinery/blog/backend.css
           refinery/blog/frontend.css
           refinery/blog/**/*.css
