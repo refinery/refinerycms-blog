@@ -5,7 +5,7 @@ module Refinery
     module Admin
       describe CommentsController, type: :controller do
         refinery_login_with_devise [:refinery, :superuser]
-        
+
         before do
           logged_in_user.plugins = logged_in_user.plugins | %w(refinerycms_blog)
         end
@@ -44,12 +44,12 @@ module Refinery
           let!(:comment) { FactoryGirl.create(:blog_comment) }
 
           it "redirects on success" do
-            post :approve, :id => comment.id
+            post :approve, params: { id: comment.id }
             expect(response).to be_redirect
           end
 
           it "approves the comment" do
-            post :approve, :id => comment.id
+            post :approve, params: { :id => comment.id }
             expect(Refinery::Blog::Comment.approved.count).to eq(1)
           end
         end
@@ -73,12 +73,12 @@ module Refinery
           let!(:comment) { FactoryGirl.create(:blog_comment) }
 
           it "redirects on success" do
-            post :reject, :id => comment.id
+            post :reject, params: { :id => comment.id }
             expect(response).to be_redirect
           end
 
           it "rejects the comment" do
-            post :reject, :id => comment.id
+            post :reject, params:{ :id => comment.id }
             expect(Refinery::Blog::Comment.rejected.count).to eq(1)
           end
         end

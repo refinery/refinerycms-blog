@@ -2,9 +2,9 @@ module Refinery
   module Blog
     class PostsController < BlogController
 
-      before_filter :find_all_blog_posts, :except => [:archive]
-      before_filter :find_blog_post, :only => [:show, :comment, :update_nav]
-      before_filter :find_tags
+      before_action :find_all_blog_posts, :except => [:archive]
+      before_action :find_blog_post, :only => [:show, :comment, :update_nav]
+      before_action :find_tags
 
       respond_to :html, :js, :rss
 
@@ -78,7 +78,7 @@ module Refinery
       def tagged
         @tag = ActsAsTaggableOn::Tag.find(params[:tag_id])
         @tag_name = @tag.name
-        @posts = Post.live.newest_first.uniq.tagged_with(@tag_name).page(params[:page])
+        @posts = Post.live.newest_first.distinct.tagged_with(@tag_name).page(params[:page])
       end
 
     private

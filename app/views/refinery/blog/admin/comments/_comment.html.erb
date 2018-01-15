@@ -4,19 +4,9 @@
     <span class="preview"> - <%= truncate(comment.message, :length => 75) %></span>
   </span>
   <span class='actions'>
-    <%= link_to refinery_icon_tag("application_go.png"),
-                refinery.blog_post_path(comment.post, :anchor => "comment-#{comment.to_param}"),
-                :title => t('.view_live_html'),
-                :target => "_blank" unless comment.unmoderated? %>
-    <%= link_to refinery_icon_tag('zoom.png'), refinery.blog_admin_comment_path(comment),
-                :title => t('.read') %>
-    <%= link_to refinery_icon_tag("cross.png"),
-                refinery.reject_blog_admin_comment_path(comment),
-                :method => :post,
-                :title => t('.reject') unless comment.rejected? %>
-    <%= link_to refinery_icon_tag("tick.png"),
-                refinery.approve_blog_admin_comment_path(comment),
-                :method => :post,
-                :title => t('.approve') unless comment.approved? %>
+    <%= action_icon(:preview, refinery.blog_post_path(comment.post, :anchor => "comment-#{comment.to_param}"), t('.view_live_html')) unless comment.unmoderated? %>
+    <%= action_icon(:search, refinery.blog_admin_comment_path(comment), t('.read')) %>
+    <%= action_icon(:failure, refinery.reject_blog_admin_comment_path(comment), t('.reject'), method: 'post') unless comment.rejected? %>
+    <%= action_icon(:success, refinery.approve_blog_admin_comment_path(comment), t('.approve'), method: 'post') unless comment.approved? %>
   </span>
 </li>
