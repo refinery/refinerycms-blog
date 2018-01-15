@@ -133,8 +133,11 @@ module Refinery
 
           it "should increment access count" do
             expect(blog_post.reload.access_count).to eq(1)
+            last_updated = blog_post.reload.updated_at
+
             visit refinery.blog_post_path(blog_post)
             expect(blog_post.reload.access_count).to eq(2)
+            expect(blog_post.reload.updated_at).to eq(last_updated)
           end
 
           it "should be most popular" do
