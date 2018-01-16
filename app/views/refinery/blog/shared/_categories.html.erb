@@ -2,7 +2,7 @@
   <h2><%= t('.title') %></h2>
   <ul id="categories">
     <% @categories.each do |category| %>
-      <%= content_tag(:li, class: ("selected" if @category.present? && @category.id == category.id)) do %>
+      <%= content_tag(:li, class: ('selected' if @category.present? && @category.id == category.id)) do %>
         <%= link_to "#{category.title} (#{category.post_count})", refinery.blog_category_path(category) %>
       <% end %>
     <% end %>

@@ -50,7 +50,7 @@ module Refinery
             it "shows locale for category" do
               click_link "Manage"
               within "#category_#{@c.id}" do
-                expect(page).to have_css(".locale_icon.en")
+                expect(page).to have_css(".locale .en")
               end
             end
 
@@ -84,21 +84,21 @@ module Refinery
             end
 
             it "suceeds" do
-              expect(page).to have_content("'#{@c.title}' was successfully added.")
+              expect(page).to have_content("'#{@c.title_translations['ru']}' was successfully added.")
               expect(Refinery::Blog::Category.count).to eq(1)
             end
 
             it "shows locale for category" do
               click_link "Manage"
               within "#category_#{@c.id}" do
-                expect(page).to have_css(".locale_icon.ru")
+                expect(page).to have_css(".locale .ru")
               end
             end
 
             it "does not show locale for primary locale" do
               click_link "Manage"
               within "#category_#{@c.id}" do
-                expect(page).not_to have_css(".locale_icon.en")
+                expect(page).not_to have_css(".locale .en")
               end
             end
 

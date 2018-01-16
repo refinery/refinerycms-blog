@@ -219,7 +219,7 @@ module Refinery
             it "shows locale for post" do
 
               within "#post_#{@p.id}" do
-                expect(page).to have_css(".locale_icon.en")
+                expect(page).to have_css(".locale .en")
               end
             end
 
@@ -230,13 +230,13 @@ module Refinery
 
             it "does show locale for default locale" do
               within "#post_#{@p.id}" do
-                expect(page).to have_css(".locale_icon.en")
+                expect(page).to have_css(".locale .en")
               end
             end
 
             it "does not show locale for secondary locale" do
               within "#post_#{@p.id}" do
-                expect(page).not_to have_css(".locale_icon.ru")
+                expect(page).not_to have_css(".locale .ru")
               end
             end
 
@@ -271,19 +271,19 @@ module Refinery
 
             it "shows locale for post" do
               within "#post_#{@p.id}" do
-                expect(page).to have_css(".locale_icon.ru")
+                expect(page).to have_css(".locale .ru")
               end
             end
 
             it "does not show locale for primary locale" do
               within "#post_#{@p.id}" do
-                expect(page).not_to have_css(".locale_icon.en")
+                expect(page).not_to have_css(".locale .en")
               end
             end
 
             it "does show locale for secondary locale" do
               within "#post_#{@p.id}" do
-                expect(page).to have_css(".locale_icon.ru")
+                expect(page).to have_css(".locale .ru")
               end
             end
 
@@ -311,8 +311,8 @@ module Refinery
 
             it "shows both locales for post" do
               within "#post_#{blog_post.id}" do
-                expect(page).to have_css(".locale_icon.en")
-                expect(page).to have_css(".locale_icon.ru")
+                expect(page).to have_css(".locale .en")
+                expect(page).to have_css(".locale .ru")
               end
             end
 
@@ -340,7 +340,6 @@ module Refinery
                 fill_in "Title", :with => "Нов"
                 click_button "Save"
 
-                expect(page).not_to have_content(blog_post.title)
                 expect(page).to have_content("'Нов' was successfully updated.")
               end
             end
@@ -353,7 +352,7 @@ module Refinery
 
                 click_link "Remove this translation"
 
-                expect(page).not_to have_content(blog_post.title)
+                expect(page).not_to have_content('RU')
                 expect(page).to have_content("The translation was successfully removed.")
               end
             end

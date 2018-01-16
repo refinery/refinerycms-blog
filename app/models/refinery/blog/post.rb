@@ -6,7 +6,26 @@ module Refinery
     class Post < ActiveRecord::Base
       extend FriendlyId
 
-      translates :title, :body, :custom_url, :custom_teaser, :slug, :include => :seo_meta
+      translates :title, :body, :custom_url, :custom_teaser, :slug, include: :seo_meta
+
+      attribute :title
+      attribute :body
+      attribute :custom_url
+      attribute :custom_teaser
+      attribute :slug
+      after_save {translations.collect(&:save)}
+
+      class Translation
+        is_seo_meta
+
+        def self.seo_fields
+          ::SeoMeta.attributes.keys.map {|a| [a, :"#{a}="]}.flatten
+        end
+      end
+
+      def validating_source_urls?
+        Refinery::Blog.validate_source_url
+      end
 
       friendly_id :friendly_id_source, :use => [:slugged, :globalize]
 
@@ -14,21 +33,23 @@ module Refinery
 
       acts_as_taggable
 
-      belongs_to :author, proc { readonly(true) }, :class_name => Refinery::Blog.user_class.to_s, :foreign_key => :user_id
+      belongs_to :author, proc {readonly(true)}, :class_name => Refinery::Blog.user_class.to_s, :foreign_key => :user_id
       has_many :comments, :dependent => :destroy, :foreign_key => :blog_post_id
-      has_many :categorizations, :dependent => :destroy, :foreign_key => :blog_post_id
+      has_many :categorizations, :dependent => :destroy, :foreign_key => :blog_post_id, inverse_of: :blog_post
       has_many :categories, :through => :categorizations, :source => :blog_category
 
       validates :title, :presence => true, :uniqueness => true
-      validates :body,  :presence => true
+      validates :body, :presence => true
       validates :published_at, :presence => true
       validates :author, :presence => true, if: :author_required?
       validates :username, :presence => true, unless: :author_required?
-      validates :source_url, :url => { :if => 'Refinery::Blog.validate_source_url',
-                                      :update => true,
-                                      :allow_nil => true,
-                                      :allow_blank => true,
-                                      :verify => [:resolve_redirects]}
+      validates :source_url, url: {
+        if: :validating_source_urls?,
+        update: true,
+        allow_nil: true,
+        allow_blank: true,
+        verify: [:resolve_redirects]
+      }
 
       class Translation
         is_seo_meta
@@ -42,11 +63,11 @@ module Refinery
       # If custom_url or title changes tell friendly_id to regenerate slug when
       # saving record
       def should_generate_new_friendly_id?
-        custom_url_changed? || title_changed?
+        saved_change_to_attribute?(:custom_url) || saved_change_to_attribute?(:title)
       end
 
       # Delegate SEO Attributes to globalize translation
-      seo_fields = ::SeoMeta.attributes.keys.map{|a| [a, :"#{a}="]}.flatten
+      seo_fields = ::SeoMeta.attributes.keys.map {|a| [a, :"#{a}="]}.flatten
       delegate(*(seo_fields << {:to => :translation}))
 
       self.per_page = Refinery::Blog.posts_per_page
@@ -84,7 +105,7 @@ module Refinery
           end
           # A join implies readonly which we don't really want.
           where(conditions).joins(:translations).where(globalized_conditions)
-                           .readonly(false)
+            .readonly(false)
         end
 
         def by_month(date)
@@ -121,7 +142,7 @@ module Refinery
 
         def uncategorized
           newest_first.live.includes(:categories).where(
-            Refinery::Blog::Categorization.table_name => { :blog_category_id => nil }
+            Refinery::Blog::Categorization.table_name => {:blog_category_id => nil}
           )
         end
 
@@ -136,6 +157,7 @@ module Refinery
             .where(:draft => false)
             .with_globalize
         end
+
         alias_method :live, :published_before
 
         def comments_allowed?

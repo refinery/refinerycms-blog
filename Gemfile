@@ -1,22 +1,24 @@
 source "https://rubygems.org"
 
+gem "refinerycms-authentication-devise", '~> 2.0'
+
 gemspec
 
-git "https://github.com/refinery/refinerycms", branch: "3-0-stable" do
+git "https://github.com/refinery/refinerycms", branch: "master" do
   gem 'refinerycms'
 
-  group :development, :test do
+  group :test do
     gem 'refinerycms-testing'
   end
 end
 
 # Add the default visual editor, for now.
-gem 'refinerycms-wymeditor', ['~> 1.0', '>= 1.0.6']
+gem 'refinerycms-wymeditor', ['~> 2.0', '>= 2.0.0']
 
 group :test do
-  gem 'pry'
   gem 'launchy'
   gem 'poltergeist'
+  gem 'listen'
 end
 
 # Database Configuration
@@ -33,7 +35,7 @@ end
 
 if !ENV['TRAVIS'] || ENV['DB'] == 'postgresql'
   gem 'activerecord-jdbcpostgresql-adapter', :platform => :jruby
-  gem 'pg', :platform => :ruby
+  gem 'pg', '~> 0.18', :platform => :ruby
 end
 
 # Refinery/rails should pull in the proper versions of these

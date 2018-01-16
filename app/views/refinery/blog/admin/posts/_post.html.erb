@@ -2,14 +2,19 @@
   <span class='title'>
     <%= post.title.presence || post.translations.detect {|t| t.title.present?}.title %>
     <span class="preview">
-      <% post.translations.reject {|t| t.title.blank? }.each do |translation| %>
-        <%= link_to refinery.edit_blog_admin_post_path(post, :switch_locale => translation.locale),
-                    :class => 'locale' do %>
-          <div class="locale_icon <%= translation.locale %>">
-            <%= refinery_icon_tag('locale-blue.svg', :size => '24x24') %>
-            <span class="code"><%= translation.locale.upcase %></span>
-          </div>
-        <% end %>
+      <% if Refinery::I18n.frontend_locales.many? %>
+        <span class='locales'>
+          <% post.translations.sort_by{ |t| Refinery::I18n.frontend_locales.index(t.locale)}.each do |translation| %>
+            <% if translation.title.present? %>
+              <%= link_to refinery.edit_blog_admin_post_path(post, :switch_locale => translation.locale), :class => 'locale', title: translation.locale.upcase do %>
+
+                <div class="<%=translation.locale %> locale_marker">
+                  <%= locale_text_icon(translation.locale.upcase) %>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
+        </span>
       <% end %>
 
       <%= post.published_at.try(:strftime, '%b %d, %Y') || 'draft' %>
@@ -22,17 +27,12 @@
     </span>
   </span>
   <span class='actions'>
-    <%= link_to refinery_icon_tag("application_go.png"), refinery.blog_post_path(post),
-        :title => t('.view_live_html'),
-        :target => "_blank" %>
-    <%= link_to refinery_icon_tag("application_edit.png"), refinery.edit_blog_admin_post_path(post),
-         :title => t('.edit') %>
-    <%= link_to refinery_icon_tag("delete.png"), refinery.blog_admin_post_path(post),
-        :class => "cancel confirm-delete",
-        :title => t('.delete'),
-        :method => :delete,
-        :data => {
-          :confirm => t('message', :scope => 'refinery.admin.delete', :title => post.title)
-        } %>
+    <%= action_icon(:preview, refinery.blog_post_path(post), t('.view_live_html')) %>
+    <%= action_icon(:edit,    refinery.edit_blog_admin_post_path(post), t('.edit') ) %>
+    <%= action_icon(:delete,  refinery.blog_admin_post_path(post), t('.delete'),
+      { class: "cancel confirm-delete",
+        data: {confirm: t('message',  scope: 'refinery.admin.delete', title: post.title)}}  ) %>
   </span>
 </li>
+
+

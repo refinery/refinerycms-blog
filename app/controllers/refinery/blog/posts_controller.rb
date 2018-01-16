@@ -80,7 +80,7 @@ module Refinery
       def tagged
         @tag = ActsAsTaggableOn::Tag.find(params[:tag_id])
         @tag_name = @tag.name
-        @posts = Post.live.newest_first.uniq.tagged_with(@tag_name).page(params[:page])
+        @posts = Post.live.newest_first.distinct.tagged_with(@tag_name).page(params[:page])
       end
 
     private
