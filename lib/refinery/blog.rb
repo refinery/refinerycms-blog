@@ -3,6 +3,7 @@ require 'refinerycms-settings'
 require 'rails_autolink'
 require 'friendly_id'
 require 'jquery-ui-rails'
+require 'globalize'
 
 module Refinery
   autoload :BlogGenerator, 'generators/refinery/blog/blog_generator'
