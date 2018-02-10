@@ -3,15 +3,15 @@ require 'spec_helper'
 module Refinery
   module Blog
     describe Category, type: :model do
-      let(:category) { FactoryGirl.create(:blog_category) }
+      let(:category) { FactoryBot.create(:blog_category) }
 
       describe "validations" do
         it "requires title" do
-          expect(FactoryGirl.build(:blog_category, :title => "")).not_to be_valid
+          expect(FactoryBot.build(:blog_category, :title => "")).not_to be_valid
         end
 
         it "won't allow duplicate titles" do
-          expect(FactoryGirl.build(:blog_category, :title => category.title)).not_to be_valid
+          expect(FactoryBot.build(:blog_category, :title => category.title)).not_to be_valid
         end
       end
 
@@ -39,7 +39,7 @@ module Refinery
       describe "#post_count" do
         it "returns post count in category" do
           2.times do
-            category.posts << FactoryGirl.create(:blog_post)
+            category.posts << FactoryBot.create(:blog_post)
           end
           expect(category.post_count).to eq(2)
         end

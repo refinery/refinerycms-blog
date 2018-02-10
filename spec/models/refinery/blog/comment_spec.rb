@@ -4,7 +4,7 @@ module Refinery
   module Blog
     describe Comment, type: :model do
       context "wiring up" do
-        let(:comment) { FactoryGirl.create(:blog_comment) }
+        let(:comment) { FactoryBot.create(:blog_comment) }
 
         it "saves" do
           expect(comment).not_to be_nil

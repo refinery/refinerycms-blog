@@ -21,7 +21,7 @@ module Refinery
         refinery_login
 
         let!(:blog_category) do
-          Globalize.with_locale(:en) { FactoryGirl.create(:blog_category) }
+          Globalize.with_locale(:en) { FactoryBot.create(:blog_category) }
         end
 
         context "when no blog posts" do
@@ -104,7 +104,7 @@ module Refinery
 
         context "when has blog posts" do
           let!(:blog_post) do
-            Globalize.with_locale(:en) { FactoryGirl.create(:blog_post) }
+            Globalize.with_locale(:en) { FactoryBot.create(:blog_post) }
           end
 
           describe "blog post listing" do
@@ -166,7 +166,7 @@ module Refinery
         context "with multiple users" do
           include_context "with_user_class"
 
-          let!(:other_guy) { FactoryGirl.create(:blog_test_user, :username => "Other Guy") }
+          let!(:other_guy) { FactoryBot.create(:blog_test_user, :username => "Other Guy") }
 
           describe "create blog post with alternate author" do
             before do
@@ -193,7 +193,7 @@ module Refinery
           before do
             Globalize.locale = :en
             allow(Refinery::I18n).to receive(:frontend_locales).and_return([:en, :ru])
-            blog_page = FactoryGirl.create(:page, :link_url => "/blog", :title => "Blog")
+            blog_page = FactoryBot.create(:page, :link_url => "/blog", :title => "Blog")
             Globalize.with_locale(:ru) do
               blog_page.title = 'блог'
               blog_page.save
@@ -297,7 +297,7 @@ module Refinery
           context "with a blog post in both locales" do
 
             let!(:blog_post) do
-              _blog_post = Globalize.with_locale(:en) { FactoryGirl.create(:blog_post, :title => 'First Post') }
+              _blog_post = Globalize.with_locale(:en) { FactoryBot.create(:blog_post, :title => 'First Post') }
               Globalize.with_locale(:ru) do
                 _blog_post.title = 'Домашняя страница'
                 _blog_post.save

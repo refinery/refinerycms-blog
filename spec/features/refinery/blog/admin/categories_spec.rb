@@ -25,7 +25,7 @@ module Refinery
         context "with translations" do
           before do
             allow(Refinery::I18n).to receive(:frontend_locales).and_return([:en, :ru])
-            blog_page = Globalize.with_locale(:en) { FactoryGirl.create(:page, :link_url => "/blog", :title => "Blog") }
+            blog_page = Globalize.with_locale(:en) { FactoryBot.create(:page, :link_url => "/blog", :title => "Blog") }
             Globalize.with_locale(:ru) do
               blog_page.title = 'блог'
               blog_page.save

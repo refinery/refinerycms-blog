@@ -5,7 +5,7 @@ module Refinery
     describe Post, type: :feature do
       context "when has blog posts" do
         let!(:blog_post) do
-          Globalize.with_locale(:en) { FactoryGirl.create(:blog_post, :title => "Refinery CMS blog post") }
+          Globalize.with_locale(:en) { FactoryBot.create(:blog_post, :title => "Refinery CMS blog post") }
         end
 
         it "should display blog post" do
@@ -17,8 +17,8 @@ module Refinery
         describe "visit blog" do
 
           before do
-            FactoryGirl.create(:page, :link_url => "/")
-            FactoryGirl.create(:page, :link_url => "/blog", :title => "Blog")
+            FactoryBot.create(:page, :link_url => "/")
+            FactoryBot.create(:page, :link_url => "/blog", :title => "Blog")
           end
 
           it "shows blog link in menu" do
@@ -42,7 +42,7 @@ module Refinery
         context "when has tagged blog posts" do
           let!(:tag_name) { "chicago" }
           let!(:post) {
-            FactoryGirl.create(:blog_post,
+            FactoryBot.create(:blog_post,
               :title => "I Love my city",
               :tag_list => tag_name
             )
@@ -60,7 +60,7 @@ module Refinery
 
       describe "#show" do
         context "when has no comments" do
-          let!(:blog_post) { FactoryGirl.create(:blog_post) }
+          let!(:blog_post) { FactoryBot.create(:blog_post) }
 
           it "should display the blog post" do
             visit refinery.blog_post_path(blog_post)
@@ -69,7 +69,7 @@ module Refinery
           end
         end
         context "when has approved comments" do
-          let!(:approved_comment) { FactoryGirl.create(:approved_comment) }
+          let!(:approved_comment) { FactoryBot.create(:approved_comment) }
 
           it "should display the comments" do
             visit refinery.blog_post_path(approved_comment.post)
@@ -79,7 +79,7 @@ module Refinery
           end
         end
         context "when has rejected comments" do
-          let!(:rejected_comment) { FactoryGirl.create(:rejected_comment) }
+          let!(:rejected_comment) { FactoryBot.create(:rejected_comment) }
 
           it "should not display the comments" do
             visit refinery.blog_post_path(rejected_comment.post)
@@ -88,7 +88,7 @@ module Refinery
           end
         end
         context "when has new comments" do
-          let!(:blog_comment) { FactoryGirl.create(:blog_comment) }
+          let!(:blog_comment) { FactoryBot.create(:blog_comment) }
 
           it "should not display the comments" do
             visit refinery.blog_post_path(blog_comment.post)
@@ -98,7 +98,7 @@ module Refinery
         end
 
         context "when posting comments" do
-          let!(:blog_post) { FactoryGirl.create(:blog_post) }
+          let!(:blog_post) { FactoryBot.create(:blog_post) }
           let(:name) { "pete" }
           let(:email) { "pete@mcawesome.com" }
           let(:body) { "Witty comment." }
@@ -122,8 +122,8 @@ module Refinery
         end
 
         context "post popular" do
-          let!(:blog_post) { FactoryGirl.create(:blog_post) }
-          let!(:blog_post2) { FactoryGirl.create(:blog_post) }
+          let!(:blog_post) { FactoryBot.create(:blog_post) }
+          let!(:blog_post2) { FactoryBot.create(:blog_post) }
 
           before do
             visit refinery.blog_post_path(blog_post)
@@ -144,8 +144,8 @@ module Refinery
         end
 
         context "post recent" do
-          let!(:blog_post) { FactoryGirl.create(:blog_post, :published_at => Time.now - 5.minutes) }
-          let!(:blog_post2) { FactoryGirl.create(:blog_post, :published_at => Time.now - 2.minutes) }
+          let!(:blog_post) { FactoryBot.create(:blog_post, :published_at => Time.now - 5.minutes) }
+          let!(:blog_post2) { FactoryBot.create(:blog_post, :published_at => Time.now - 2.minutes) }
 
           it "should be the most recent" do
             expect(Refinery::Blog::Post.recent(2).first.id).to eq(blog_post2.id)
@@ -155,7 +155,7 @@ module Refinery
       end
 
       describe "#show draft preview" do
-        let!(:blog_post) { FactoryGirl.create(:blog_post_draft) }
+        let!(:blog_post) { FactoryBot.create(:blog_post_draft) }
 
         context "when logged in as admin" do
           it "should display the draft notification" do

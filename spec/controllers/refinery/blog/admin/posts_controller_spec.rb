@@ -7,7 +7,7 @@ module Refinery
         refinery_login
 
         describe "#delete_translation" do
-          let!(:blog_post) { FactoryGirl.create(:blog_post) }
+          let!(:blog_post) { FactoryBot.create(:blog_post) }
 
           before do
             blog_post.translations.create(:locale => :fr, :title => 'Un titre francais', :body => "La baguette, c'est bon. Mangez-en.")
