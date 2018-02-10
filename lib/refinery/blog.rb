@@ -4,6 +4,7 @@ require 'rails_autolink'
 require 'friendly_id'
 require 'jquery-ui-rails'
 require 'globalize'
+require 'seo_meta'
 
 module Refinery
   autoload :BlogGenerator, 'generators/refinery/blog/blog_generator'
