@@ -33,7 +33,8 @@ module Refinery
 
       acts_as_taggable
 
-      belongs_to :author, proc {readonly(true)}, :class_name => Refinery::Blog.user_class.to_s, :foreign_key => :user_id
+      belongs_to :author, proc { readonly(true) }, class_name: Refinery::Blog.user_class.to_s, foreign_key: :user_id, optional: true
+
       has_many :comments, :dependent => :destroy, :foreign_key => :blog_post_id
       has_many :categorizations, :dependent => :destroy, :foreign_key => :blog_post_id, inverse_of: :blog_post
       has_many :categories, :through => :categorizations, :source => :blog_category
