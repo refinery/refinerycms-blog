@@ -1,4 +1,4 @@
-class CreateMultiUserModel < ActiveRecord::Migration
+class CreateMultiUserModel < ActiveRecord::Migration[4.2]
   def up
     return unless Rails.env.test?
     create_table :refinery_blog_test_users do |t|
