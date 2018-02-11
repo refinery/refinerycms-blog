@@ -1,7 +1,5 @@
 source "https://rubygems.org"
 
-gem "refinerycms-authentication-devise", '~> 2.0'
-
 gemspec
 
 git "https://github.com/refinery/refinerycms", branch: "master" do
