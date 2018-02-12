@@ -1,5 +1,4 @@
 require 'acts-as-taggable-on'
-require 'seo_meta'
 
 module Refinery
   module Blog
