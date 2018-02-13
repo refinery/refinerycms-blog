@@ -4,13 +4,16 @@ module Refinery
       class PostsController < ::Refinery::AdminController
 
         crudify :'refinery/blog/post',
-                :order => 'published_at DESC',
-                :include => [:translations, :author]
+                order: 'published_at DESC',
+                include: [:translations, :author]
 
         before_action :find_all_categories,
-                      :only => [:new, :edit, :create, :update]
+                      only: [:new, :edit, :create, :update]
 
-        before_action :check_category_ids, :only => :update
+        before_action :find_all_authors,
+                      only: [:new, :edit, :create, :update]
+
+        before_action :check_category_ids, only: :update
 
         def uncategorized
           @posts = Refinery::Blog::Post.uncategorized.page(params[:page])
@@ -29,10 +32,6 @@ module Refinery
               ["tags.name #{op} ?", "#{wildcard}#{params[:term].to_s.downcase}#{wildcard}"]
             ).map { |tag| {:id => tag.id, :value => tag.name}}
           render :json => @tags.flatten
-        end
-
-        def new
-          @post = ::Refinery::Blog::Post.new(:author => current_refinery_user)
         end
 
         def create
@@ -91,7 +90,7 @@ module Refinery
         def permitted_post_params
           [
             :title, :body, :custom_teaser, :tag_list,
-            :draft, :published_at, :custom_url, :user_id, :browser_title,
+            :draft, :published_at, :custom_url, :user_id, :username, :browser_title,
             :meta_description, :source_url, :source_url_title, :category_ids => []
           ]
         end
@@ -104,6 +103,10 @@ module Refinery
 
         def find_all_categories
           @categories = Refinery::Blog::Category.all
+        end
+
+        def find_all_authors
+          @authors = Refinery::Blog.user_class.all if (!Refinery::Blog.user_class.nil? && Refinery::Blog.user_class.column_names.include?('username'))
         end
 
         def check_category_ids

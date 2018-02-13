@@ -1,14 +1,13 @@
 source "https://rubygems.org"
 
-gem "refinerycms-authentication-devise", '~> 2.0'
-
 gemspec
 
-gem 'refinerycms', '~> 4.0'
+git "https://github.com/refinery/refinerycms", branch: "master" do
+  gem 'refinerycms'
 
-
-group :development, :test do
-  gem 'refinerycms-testing', '~> 4.0'
+  group :test do
+    gem 'refinerycms-testing'
+  end
 end
 
 # Add the default visual editor, for now.

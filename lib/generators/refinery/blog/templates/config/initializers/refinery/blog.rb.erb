@@ -10,7 +10,8 @@ Refinery::Blog.configure do |config|
   # config.share_this_key = <%= Refinery::Blog.share_this_key.inspect %>
 
   # config.page_url = <%= Refinery::Blog.page_url.inspect %>
-  
+
   # If you're grafting onto an existing app, change this to your User class
+  # (eg: Refinery::Blog.user_class = "Refinery::Authentication::Devise::User" )
   # Refinery::Blog.user_class = <%= Refinery::Blog.user_class.to_s.inspect %>
 end

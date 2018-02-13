@@ -4,9 +4,9 @@ module Refinery
   module Blog
     describe PostsController, type: :controller do
       before do
-        FactoryGirl.create(:blog_post, :title => "blogpost_one")
-        FactoryGirl.create(:blog_post, :title => "blogpost_two")
-        FactoryGirl.create(:blog_post, :title => "blogpost_three")
+        FactoryBot.create(:blog_post, :title => "blogpost_one")
+        FactoryBot.create(:blog_post, :title => "blogpost_two")
+        FactoryBot.create(:blog_post, :title => "blogpost_three")
       end
 
       it "should not limit rss feed" do

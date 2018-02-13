@@ -32,7 +32,8 @@ module Refinery
 
       acts_as_taggable
 
-      belongs_to :author, proc {readonly(true)}, :class_name => Refinery::Blog.user_class.to_s, :foreign_key => :user_id
+      belongs_to :author, proc { readonly(true) }, class_name: Refinery::Blog.user_class.to_s, foreign_key: :user_id, optional: true
+
       has_many :comments, :dependent => :destroy, :foreign_key => :blog_post_id
       has_many :categorizations, :dependent => :destroy, :foreign_key => :blog_post_id, inverse_of: :blog_post
       has_many :categories, :through => :categorizations, :source => :blog_category
@@ -41,6 +42,7 @@ module Refinery
       validates :body, :presence => true
       validates :published_at, :presence => true
       validates :author, :presence => true, if: :author_required?
+      validates :username, :presence => true, unless: :author_required?
       validates :source_url, url: {
         if: :validating_source_urls?,
         update: true,
@@ -49,14 +51,13 @@ module Refinery
         verify: [:resolve_redirects]
       }
 
-
       class Translation
         is_seo_meta
       end
 
       # Override this to disable required authors
       def author_required?
-        true
+        !Refinery::Blog.user_class.nil?
       end
 
       # If custom_url or title changes tell friendly_id to regenerate slug when
@@ -85,6 +86,10 @@ module Refinery
 
       def friendly_id_source
         custom_url.presence || title
+      end
+
+      def author_username
+        author.try(:username) || username
       end
 
       class << self

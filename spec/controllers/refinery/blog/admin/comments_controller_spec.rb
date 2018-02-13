@@ -4,14 +4,10 @@ module Refinery
   module Blog
     module Admin
       describe CommentsController, type: :controller do
-        refinery_login_with_devise [:refinery, :superuser]
-
-        before do
-          logged_in_user.plugins = logged_in_user.plugins | %w(refinerycms_blog)
-        end
+        refinery_login
 
         describe "#index" do
-          let!(:comment) { FactoryGirl.create(:blog_comment) }
+          let!(:comment) { FactoryBot.create(:blog_comment) }
 
           it "succeeds" do
             get :index
@@ -26,7 +22,7 @@ module Refinery
         end
 
         describe "#approved" do
-          let!(:comment) { FactoryGirl.create(:approved_comment) }
+          let!(:comment) { FactoryBot.create(:approved_comment) }
 
           it "succeeds" do
             get :approved
@@ -41,7 +37,7 @@ module Refinery
         end
 
         describe "#approve" do
-          let!(:comment) { FactoryGirl.create(:blog_comment) }
+          let!(:comment) { FactoryBot.create(:blog_comment) }
 
           it "redirects on success" do
             post :approve, params: { id: comment.id }
@@ -55,7 +51,7 @@ module Refinery
         end
 
         describe "#rejected" do
-          let!(:comment) { FactoryGirl.create(:rejected_comment) }
+          let!(:comment) { FactoryBot.create(:rejected_comment) }
 
           it "succeeds" do
             get :rejected
@@ -70,7 +66,7 @@ module Refinery
         end
 
         describe "#reject" do
-          let!(:comment) { FactoryGirl.create(:blog_comment) }
+          let!(:comment) { FactoryBot.create(:blog_comment) }
 
           it "redirects on success" do
             post :reject, params: { :id => comment.id }

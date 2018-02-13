@@ -4,7 +4,7 @@ module Refinery
   module Blog
     module Admin
       describe Comment, type: :feature do
-        refinery_login_with_devise :authentication_devise_refinery_superuser
+        refinery_login
 
         describe "#index" do
           context "when has no new unapproved comments" do
@@ -20,7 +20,7 @@ module Refinery
             end
           end
           context "when has new unapproved comments" do
-            let!(:blog_comment) { FactoryGirl.create(:blog_comment) }
+            let!(:blog_comment) { FactoryBot.create(:blog_comment) }
             before { visit refinery.blog_admin_comments_path }
 
             it "should list comments" do
@@ -55,7 +55,7 @@ module Refinery
           end
           context "when has approved comments" do
             let!(:blog_comment) do
-              FactoryGirl.create(:blog_comment, :state => 'approved')
+              FactoryBot.create(:blog_comment, :state => 'approved')
             end
             before { visit refinery.approved_blog_admin_comments_path }
 
@@ -85,7 +85,7 @@ module Refinery
           end
           context "when has rejected comments" do
             let!(:blog_comment) do
-              FactoryGirl.create(:blog_comment, :state => 'rejected')
+              FactoryBot.create(:blog_comment, :state => 'rejected')
             end
             before { visit refinery.rejected_blog_admin_comments_path }
 
@@ -103,7 +103,7 @@ module Refinery
         end
 
         describe "#show" do
-          let!(:blog_comment) { FactoryGirl.create(:blog_comment) }
+          let!(:blog_comment) { FactoryBot.create(:blog_comment) }
           before { visit refinery.blog_admin_comment_path(blog_comment) }
           it "should display the comment" do
             expect(page).to have_content(blog_comment.body)

@@ -3,15 +3,14 @@ require "spec_helper"
 module Refinery
   module Blog
     describe Category, type: :feature do
-      refinery_login_with_devise :authentication_devise_refinery_user
 
       context "has one category and post" do
         before do
           post = Globalize.with_locale(:en) do
-            FactoryGirl.create(:blog_post, :title => "Refinery CMS blog post")
+            FactoryBot.create(:blog_post, :title => "Refinery CMS blog post")
           end
           @category = Globalize.with_locale(:en) do
-            FactoryGirl.create(:blog_category, :title => "Video Games")
+            FactoryBot.create(:blog_category, :title => "Video Games")
           end
           post.categories << @category
           post.save!

@@ -94,7 +94,11 @@
           <%= f.label :user_id, t('.author') %>
           <%= refinery_help_tag t('.author_help') %>
           <br/>
-          <%= f.collection_select :user_id, Refinery::Blog.user_class.all, :id, :username %>
+          <% if @authors.present? %>
+            <%= f.collection_select :user_id, @authors, :id, :username %>
+          <% else %>
+            <%= f.text_field :username, id: :post_user_id, :class => "widest" %>
+          <% end %>
         </span>
       </div>
 
