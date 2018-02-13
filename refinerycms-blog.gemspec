@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
   s.add_dependency    'seo_meta',              ['>=3.0.0', '~>3.0']
   s.add_dependency    'rails_autolink',        '~> 1.1.3'
   s.add_dependency    'friendly_id',           ['< 5.3', '>= 5.1.0']
-  s.add_dependency    'globalize',             ['>= 5.1.0.beta1', '< 5.2']
+  s.add_dependency    'globalize',             '~> 5.1.0'
   s.add_dependency    'activemodel-serializers-xml', '~> 1.0', '>= 1.0.1'
   s.add_dependency    'jquery-ui-rails',       '~> 5.0.0'
   s.add_dependency    'responders',            '~> 2.0'
