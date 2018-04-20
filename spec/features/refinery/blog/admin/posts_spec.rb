@@ -325,7 +325,6 @@ module Refinery
                 fill_in "Title", :with => "Нов"
                 click_button "Save"
 
-                expect(page).not_to have_content(blog_post.title)
                 expect(page).to have_content("'Нов' was successfully updated.")
               end
             end
@@ -338,7 +337,7 @@ module Refinery
 
                 click_link "Remove this translation"
 
-                expect(page).not_to have_content(blog_post.title)
+                expect(page).not_to have_content('RU')
                 expect(page).to have_content("The translation was successfully removed.")
               end
             end

@@ -84,7 +84,7 @@ module Refinery
             end
 
             it "suceeds" do
-              expect(page).to have_content("'#{@c.title}' was successfully added.")
+              expect(page).to have_content("'#{@c.title_translations['ru']}' was successfully added.")
               expect(Refinery::Blog::Category.count).to eq(1)
             end
 
