@@ -1,4 +1,4 @@
-class RemoveTranslatedColumnsToRefineryBlogCategories < ActiveRecord::Migration[5.1]
+class RemoveTranslatedColumnsToRefineryBlogCategories < ActiveRecord::Migration
   def change
     remove_column :refinery_blog_categories, :title
   end
