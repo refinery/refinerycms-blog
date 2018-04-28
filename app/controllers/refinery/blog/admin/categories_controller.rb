@@ -4,8 +4,8 @@ module Refinery
       class CategoriesController < ::Refinery::AdminController
 
         crudify :'refinery/blog/category',
-                :include => [:translations],
-                :order => 'title ASC'
+                include: [:translations],
+                order: 'refinery_blog_category_translations.title ASC'
 
         private
 

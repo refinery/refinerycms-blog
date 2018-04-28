@@ -46,6 +46,8 @@ capybara-*html
 
 # rvm
 .rvmrc
+.ruby-version
+.ruby-gemset
 
 #rbenv
 .rbenv-version
