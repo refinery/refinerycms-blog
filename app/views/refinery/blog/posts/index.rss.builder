@@ -14,11 +14,9 @@ xml.rss version: "2.0", 'xmlns:atom': 'http://www.w3.org/2005/Atom', 'xmlns:medi
         xml.pubDate post.published_at.to_s(:rfc822)
         xml.link refinery.blog_post_url(post)
         xml.guid refinery.blog_post_url(post)
-        if Refinery::Plugins.registered['page_images']
-          post.images.each do |image|
-            xml.media :content, url: refinery.root_url + image.url, medium: 'image'
-          end
-        end
+        post.images.each do |image|
+          xml.media :content, url: refinery.root_url + image.url, medium: 'image'
+        end if post.respond_to?(:images)
       end
     end
   end
