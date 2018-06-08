@@ -74,6 +74,38 @@ module Refinery
           end
         end
 
+        def update
+          if @post.update_attributes(post_params)
+            flash.notice = t('refinery.crudify.updated', what: "'#{@post.title}'")
+
+            if from_dialog?
+              self.index
+              @dialog_successful = true
+              render :index
+            else
+              if params[:continue_editing] =~ /true|on|1/
+                if request.xhr?
+                  render partial: 'save_and_continue_callback',
+                         locals: save_and_continue_locals(@post)
+                else
+                  redirect_to :back
+                end
+              else
+                redirect_back_or_default(refinery.blog_admin_posts_path())
+              end
+            end
+          else
+            if request.xhr?
+              render :partial => '/refinery/admin/error_messages', :locals => {
+                :object => @post,
+                :include_object_name => true
+              }
+            else
+              render 'edit'
+            end
+          end
+        end
+
         def delete_translation
           find_post
           @post.translations.find_by_locale(params[:locale_to_delete]).destroy
@@ -93,6 +125,14 @@ module Refinery
             :draft, :published_at, :custom_url, :user_id, :username, :browser_title,
             :meta_description, :source_url, :source_url_title, :category_ids => []
           ]
+        end
+
+        def save_and_continue_locals(post)
+          {
+            new_refinery_edit_post_path: refinery.edit_blog_admin_post_path(post),
+            new_refinery_post_path: refinery.blog_admin_post_path(post),
+            new_post_path: refinery.blog_post_path(post)
+          }
         end
 
       protected
