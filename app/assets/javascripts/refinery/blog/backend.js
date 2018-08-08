@@ -1,4 +1,4 @@
-//= require jquery-ui/autocomplete
+//= require jquery-ui/widgets/autocomplete
 
 $(document).ready(function(){
   $('#more_options').hide()
