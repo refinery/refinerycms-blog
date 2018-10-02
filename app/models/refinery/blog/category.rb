@@ -1,14 +1,11 @@
 module Refinery
   module Blog
     class Category < ActiveRecord::Base
-      extend FriendlyId
-
+      extend Mobility
       translates :title, :slug
-      attribute :title
-      attribute :slug
-      after_save {translations.collect(&:save)}
-
-      friendly_id :title, :use => [:slugged, :globalize]
+  
+      extend FriendlyId
+      friendly_id :title, :use => [:mobility, :slugged]
 
       has_many :categorizations, :dependent => :destroy, :foreign_key => :blog_category_id
       has_many :posts, :through => :categorizations, :source => :blog_post
@@ -20,11 +17,11 @@ module Refinery
       end
 
       def self.translated
-        with_translations(::Globalize.locale)
+        translations.in_locale(Mobility.locale)
       end
 
       def post_count
-        posts.live.with_globalize.count
+        posts.live.with_mobility.count
       end
 
       # how many items to show per page

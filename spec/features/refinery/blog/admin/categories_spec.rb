@@ -25,8 +25,8 @@ module Refinery
         context "with translations" do
           before do
             allow(Refinery::I18n).to receive(:frontend_locales).and_return([:en, :ru])
-            blog_page = Globalize.with_locale(:en) { FactoryBot.create(:page, :link_url => "/blog", :title => "Blog") }
-            Globalize.with_locale(:ru) do
+            blog_page = Mobility.with_locale(:en) { FactoryBot.create(:page, :link_url => "/blog", :title => "Blog") }
+            Mobility.with_locale(:ru) do
               blog_page.title = 'блог'
               blog_page.save
             end
@@ -34,7 +34,7 @@ module Refinery
 
           describe "add a category with title for default locale" do
             before do
-              Globalize.locale = :en
+              Mobility.locale = :en
               visit refinery.blog_admin_posts_path
               click_link "Create new category"
               fill_in "Title", :with => "Testing Category"

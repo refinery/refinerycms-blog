@@ -3,7 +3,7 @@ require 'refinerycms-settings'
 require 'rails_autolink'
 require 'friendly_id'
 require 'jquery-ui-rails'
-require 'globalize'
+require 'friendly_id/mobility'
 require 'seo_meta'
 
 module Refinery

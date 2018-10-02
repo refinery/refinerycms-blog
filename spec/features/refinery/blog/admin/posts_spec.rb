@@ -21,7 +21,7 @@ module Refinery
         refinery_login
 
         let!(:blog_category) do
-          Globalize.with_locale(:en) { FactoryBot.create(:blog_category) }
+          Mobility.with_locale(:en) { FactoryBot.create(:blog_category) }
         end
 
         context "when no blog posts" do
@@ -104,7 +104,7 @@ module Refinery
 
         context "when has blog posts" do
           let!(:blog_post) do
-            Globalize.with_locale(:en) { FactoryBot.create(:blog_post) }
+            Mobility.with_locale(:en) { FactoryBot.create(:blog_post) }
           end
 
           describe "blog post listing" do
@@ -191,10 +191,10 @@ module Refinery
 
         context "with translations" do
           before do
-            Globalize.locale = :en
+            Mobility.locale = :en
             allow(Refinery::I18n).to receive(:frontend_locales).and_return([:en, :ru])
             blog_page = FactoryBot.create(:page, :link_url => "/blog", :title => "Blog")
-            Globalize.with_locale(:ru) do
+            Mobility.with_locale(:ru) do
               blog_page.title = 'блог'
               blog_page.save
             end
@@ -297,8 +297,8 @@ module Refinery
           context "with a blog post in both locales" do
 
             let!(:blog_post) do
-              _blog_post = Globalize.with_locale(:en) { FactoryBot.create(:blog_post, :title => 'First Post') }
-              Globalize.with_locale(:ru) do
+              _blog_post = Mobility.with_locale(:en) { FactoryBot.create(:blog_post, :title => 'First Post') }
+              Mobility.with_locale(:ru) do
                 _blog_post.title = 'Домашняя страница'
                 _blog_post.save
               end
