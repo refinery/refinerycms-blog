@@ -5,9 +5,7 @@ module Refinery
     describe Post, type: :feature do
       context "when has blog posts" do
         let!(:blog_post) do
-          Mobility.with_locale(:en) {
-            FactoryBot.create(:blog_post, title: "Refinery CMS blog post")
-          }
+          Mobility.with_locale(:en) { FactoryBot.create(:blog_post, title: "Refinery CMS blog post") }
         end
 
         it "should display blog post" do
