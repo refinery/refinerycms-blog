@@ -15,7 +15,7 @@ gem 'refinerycms-wymeditor', ['~> 2.0', '>= 2.0.0']
 
 group :test do
   gem 'launchy'
-  gem 'poltergeist'
+  gem 'selenium-webdriver', require: false
   gem 'listen'
 end
 
