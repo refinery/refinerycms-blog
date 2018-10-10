@@ -11,7 +11,7 @@ module Refinery
 
           it "succeeds" do
             get :index
-            expect(response).to be_success
+            expect(response).to be_successful
             expect(response).to render_template(:index)
           end
 
@@ -26,7 +26,7 @@ module Refinery
 
           it "succeeds" do
             get :approved
-            expect(response).to be_success
+            expect(response).to be_successful
             expect(response).to render_template(:index)
           end
 
@@ -55,7 +55,7 @@ module Refinery
 
           it "succeeds" do
             get :rejected
-            expect(response).to be_success
+            expect(response).to be_successful
             expect(response).to render_template(:index)
           end
 
