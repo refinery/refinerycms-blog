@@ -1,0 +1,172 @@
+uk:
+  refinery:
+    plugins:
+      refinerycms_blog:
+        title: Блог
+    blog:
+      admin:
+        categories:
+          category:
+            edit: Редагувати цю категорію
+            delete: Видалити цю категорію назавжди
+          index:
+            no_items_yet: 'Категорії досі не створені. Натисніть "%{create}", щоб додати вашу першу категорію.'
+        comments:
+          approved: 'Коментар від "%{author}" було опубліковано.'
+          comment:
+            view_live_html: Дивитись коментар на сайті <br/><em>(відкриється у новому вікні)</em>
+            read: Прочитати кометар
+            reject: Відхилити коментар
+            approve: Прийняти коментар
+          rejected: 'Коментар від "%{author}" було відхилено.'
+          index:
+            no_items_yet: '%{type} коментарів: немає.'
+          show:
+            comment: Коментар
+            blog_post: Запис у блозі
+            from: Опублікував(ла)
+            date: Опубліковано
+            message: Коментар
+            details: Деталі
+            age: Вік
+            actions: Дії
+            back: Повернутися до списку коментарів
+            reject: Відхилити цей коментар
+            approve: Прийняти цей коментар
+        posts:
+          form:
+            toggle_advanced_options: 'Натисніть, щоб отримати доступ до налаштувать мета-тегів та меню'
+            published_at: Дата публікації
+            custom_url: Переадресувати на інший сайт або сторінку
+            custom_url_help: "Посилання буде взята з цього поля, замість генерації із назви запису."
+            source_url: URL джерела
+            source_url_help: Джерело матеріалу цього запису.
+            source_url_title: Назва джерела повідомлення
+            source_url_title_help: Назва джерела повідомлення у пості.
+            author: Автор
+            author_help: 'Встановіть, який користувач буде показаний як автор запису.'
+            copy_body: Копіювати основне повідомлення в коротке
+            copy_body_help: 'Копіює основне повідомлення в коротке. Залиште коротке повідомлення пустим, щоб Refinery склав його автоматично.'
+          index:
+            no_items_yet: 'Нема записів у блозі. Натисніть "%{create}", щоб додати перший запис.'
+          uncategorized:
+            no_items_yet: 'Нема записів без категорій.'
+          post:
+            view_live_html: Дивитися запис на сайті <br/><em>(відкриється в новому вікні)</em>
+            edit: Редагувати запис
+            delete: Видалити запис
+            delete_translation: Видалити цей переклад
+            delete_translation_confirmation: Ви дійсно бажаєте назавжди видалити цей переклад?
+            delete_translation_success: Переклад було успішно видалено.
+            draft: Чорнетка
+        settings:
+          notification_recipients:
+            value: Відправляти сповіщення
+            explanation: 'При появі нових коментарів Refinery надішле сповіщення на email.'
+            hint: 'При появі нових коментарів Refinery надішле сповіщення на email.'
+            example: "Введіть адреси ел. пошти, например: jack@work.com, jill@office.com"
+            updated: 'Одержувачем сповіщень є "%{recipients}"'
+        submenu:
+          categories:
+            title: Категорії
+            manage: Редагувати категорії
+            new: Створити нову категорію
+          comments:
+            title: Коментарі
+            title_with_count: 'Коментарі (%{new_count} нових)'
+            new: Нові
+            unmoderated: Немодеровані
+            approved: Прийняті
+            rejected: Відхилені
+          posts:
+            title: Записи
+            manage: Редагувати запис
+            new: Створити новий запис
+            uncategorized: Записи без категорій
+          settings:
+            title: Налаштування
+            moderation: Модерування
+            update_notified: Налаштувати сповіщення
+            comments: Коментарі
+            teasers: Короткі змісти
+      comment_mailer:
+        notification:
+          greeting: Вітаємо
+          you_recieved_new_comment: Новий коментар було опубліковано на вашому сайті.
+          comment_starts: --- початок коментаря ---
+          comment_ends: --- кінець коментаря ---
+          from: Від
+          email: Ел. пошта
+          message: Повідомлення
+          approve: Підтвердіть
+          or: " або "
+          reject: відхилите
+          this_comment: " цей коментар."
+          closing_line: З повагою
+          ps: P.S. Усі коментарі знаходятся в розділі "Блог" Refinery CMS у подменю "Коментарі".
+      shared:
+        categories:
+          title: Категорії
+        rss_feed:
+          title: RSS-стрічка
+          subscribe: Підписатися
+        posts:
+          other: Інші записи
+          created_at: 'Опубліковано %{when}'
+          read_more: Читати далі
+        tags:
+          title: "Теги"
+        comments:
+          singular: коментар
+          none: нема коментарів
+        archives: Архіви
+      categories:
+        show:
+          no_posts: Записів поки що немає.
+      posts:
+        post:
+          filled_in: Категорія
+        comment: коментар
+        comments:
+          by: 'Опублікував(ла) %{who}'
+          time_ago: '%{time} назад'
+          thank_you: 'Дякуємо за коментар.'
+          thank_you_moderated: 'Дякуємо за коментар. Ваше повідомлення модерується і скоро з’явиться на сайті.'
+        index:
+          no_blog_articles_yet: Поки що жодного запису не опубліковано. Слідкуйте за новинами.
+        show:
+          blog_home: Повернутися до списку записів
+          comments:
+            title: Коментарі
+            add: Написати коментар
+          other: Інші записи
+          filled_in: Категорія
+          tagged: Теги
+          submit: Відправити коментар
+          name: Ім’я
+          email: Пошта
+          message: Повідомлення
+          by: Автор
+          source: Джерело
+        tagged:
+          no_blog_articles_yet: Поки що жодного запису не опубліковано. Слідкуйте за новинами.
+          posts_tagged: Записи з тегом
+        archive:
+          blog_archive_for: 'Архів %{date}'
+          no_blog_articles_posted: 'Жодного запису за %{date} не опубліковано. Слідкуйте за новинами.'
+  activerecord:
+    models:
+      refinery/blog/category: Категорія
+      refinery/blog/comment: Коментарі
+      refinery/blog/post: Запис у блозі
+    attributes:
+      refinery/blog/category:
+        title: Назва
+      refinery/blog/comment:
+        name: Ім’я
+        email: Email
+        message: Повідомлення
+      refinery/blog/post:
+        title: Назва
+        body: Основне повідомлення
+        teaser: Короткий зміст
