@@ -19,10 +19,6 @@ module Refinery
         joins(:translations).find_by(title: title)
       end
 
-      def self.translated
-        with_translations(::Globalize.locale)
-      end
-
       def post_count
         posts.live.with_globalize.count
       end
