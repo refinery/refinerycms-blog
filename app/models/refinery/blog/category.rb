@@ -3,7 +3,7 @@ module Refinery
     class Category < ActiveRecord::Base
       extend Mobility
       translates :title, :slug
-  
+
       extend FriendlyId
       friendly_id :title, :use => [:mobility, :slugged]
 
@@ -14,10 +14,6 @@ module Refinery
 
       def self.by_title(title)
         joins(:translations).find_by(title: title)
-      end
-
-      def self.translated
-        translations.in_locale(Mobility.locale)
       end
 
       def post_count

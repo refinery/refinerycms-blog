@@ -8,7 +8,7 @@ module Refinery
       protected
 
       def find_all_blog_categories
-        @categories = Refinery::Blog::Category.translated
+        @categories = Refinery::Blog::Category.all
       end
 
       def find_blog_post
