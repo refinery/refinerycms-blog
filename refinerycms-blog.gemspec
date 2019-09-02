@@ -22,6 +22,6 @@ Gem::Specification.new do |s|
   s.add_dependency    'seo_meta',              '~> 2.0.0.rc.1'
   s.add_dependency    'rails_autolink',        '~> 1.1.3'
   s.add_dependency    'friendly_id',           ['>= 5.1.0', '< 6.0']
-  s.add_dependency    'globalize',             ['>= 4.0.0', '< 5.2']
+  s.add_dependency    'globalize',             ['>= 4.0.0', '< 5.4']
   s.add_dependency    'jquery-ui-rails',       '~> 5.0.0'
 end
