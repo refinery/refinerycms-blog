@@ -16,3 +16,4 @@ class CreateCategoryTranslations < ActiveRecord::Migration[4.2]
     add_index :refinery_blog_category_translations, [:refinery_blog_category_id, :locale], name: :index_refinery_b_c_t_on_refinery_blog_category_id_and_locale, unique: true
   end
 end
+

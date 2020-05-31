@@ -17,3 +17,6 @@ if defined?(Refinery::Page) and !Refinery::Page.exists?(:link_url => (url = Refi
     page.parts.create(:title => default_page_part[:title], :slug => default_page_part[:slug], :body => nil, :position => index)
   end
 end
+
+# Added by Refinery CMS Pages extension
+Refinery::Pages::Engine.load_seed

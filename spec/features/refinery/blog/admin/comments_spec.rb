@@ -52,10 +52,11 @@ module Refinery
             it "should list no comments" do
               expect(page).to have_content('There are no approved comments')
             end
+
           end
           context "when has approved comments" do
             let!(:blog_comment) do
-              FactoryBot.create(:blog_comment, :state => 'approved')
+              FactoryBot.create(:blog_comment, state: 'approved')
             end
             before { visit refinery.approved_blog_admin_comments_path }
 
