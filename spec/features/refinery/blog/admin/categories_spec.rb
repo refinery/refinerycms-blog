@@ -4,6 +4,8 @@ require 'spec_helper'
 module Refinery
   module Blog
     module Admin
+      describe Category, type: :feature do
+        refinery_login
 
       def create_a_blog_page(locales, titles, url)
         allow(Refinery::I18n).to receive(:frontend_locales).and_return(locales)
