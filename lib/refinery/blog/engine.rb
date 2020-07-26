@@ -17,7 +17,7 @@ module Refinery
           refinery/blog/backend.js
           refinery/blog/backend.css
           refinery/blog/frontend.css
-          refinery/blog/**/*.css
+          refinery/blog/ui-lightness/jquery-ui-1.8.13.custom.css
         )
       end
 

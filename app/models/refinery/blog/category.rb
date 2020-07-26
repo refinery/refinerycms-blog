@@ -1,3 +1,4 @@
+require 'refinery/pages/finder'
 module Refinery
   module Blog
     class Category < ActiveRecord::Base
@@ -18,6 +19,7 @@ module Refinery
       validates :title, presence: true, uniqueness: true
 
       def self.by_title(title)
+        # Pages::Finder.by_title(title)
         joins(:translations).find_by(title: title)
       end
 

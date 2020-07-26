@@ -7,24 +7,21 @@ module Refinery
   module Blog
     class Post < ActiveRecord::Base
       extend Mobility
-      extend FriendlyId
 
-      translates :title, :body, :custom_url, :custom_teaser, :slug, include: :seo_meta
+      translates :title, :body, :custom_url, :custom_teaser, :slug
       after_save { translations.in_locale(Mobility.locale).seo_meta.save! }
 
-      attribute :title
-      attribute :body
-      attribute :custom_url
-      attribute :custom_teaser
-      attribute :slug
-      # after_save {translations.collect(&:save)}
+      # attribute :title
+      # attribute :body
+      # attribute :custom_url
+      # attribute :custom_teaser
+      # attribute :slug
 
       class Translation
         is_seo_meta
-
-        def self.seo_fields
-          ::SeoMeta.attributes.keys.map {|a| [a, :"#{a}="]}.flatten
-        end
+        # def self.seo_fields
+        #   ::SeoMeta.attributes.keys.map {|a| [a, :"#{a}="]}.flatten
+        # end
       end
 
       class FriendlyIdOptions
@@ -43,6 +40,7 @@ module Refinery
         end
       end
 
+      extend FriendlyId
       friendly_id :custom_slug_or_title, FriendlyIdOptions.options
       # If custom_url or title changes tell friendly_id to regenerate slug when
       # saving record
@@ -57,7 +55,7 @@ module Refinery
 
       friendly_id :friendly_id_source, :use => [:slugged, :mobility]
 
-      is_seo_meta
+      # is_seo_meta
       acts_as_taggable
 
       belongs_to :author, proc { readonly(true) }, class_name: Refinery::Blog.user_class.to_s, foreign_key: :user_id, optional: true
@@ -88,9 +86,9 @@ module Refinery
         !Refinery::Blog.user_class.nil?
       end
 
-      # Delegate SEO Attributes to translation
-      seo_fields = ::SeoMeta.attributes.keys.map {|a| [a, :"#{a}="]}.flatten
-      delegate(*(seo_fields << {:to => :translation}))
+      # # Delegate SEO Attributes to translation
+      # seo_fields = ::SeoMeta.attributes.keys.map {|a| [a, :"#{a}="]}.flatten
+      #  delegate(*(seo_fields << {to: :translations}))
 
       self.per_page = Refinery::Blog.posts_per_page
 
