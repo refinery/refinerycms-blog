@@ -25,4 +25,9 @@ Gem::Specification.new do |s|
   s.add_dependency    'globalize',             '~> 5.3.0'
   s.add_dependency    'activemodel-serializers-xml', '~> 1.0', '>= 1.0.1'
   s.add_dependency    'responders',            '~> 3.0'
+
+  s.cert_chain = [File.expand_path('certs/parndt.pem', __dir__)]
+  if $PROGRAM_NAME =~ /gem\z/ && ARGV.include?('build') && ARGV.include?(__FILE__)
+    s.signing_key = File.expand_path('~/.ssh/gem-private_key.pem')
+  end
 end
