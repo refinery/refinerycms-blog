@@ -70,7 +70,7 @@ module Refinery
                 expect(page).to have_selector('.en.locale_marker')
               end
             end
-          
+
             it "shows up in blog page for default locale" do
               visit refinery.blog_root_path
               within "#categories" do
