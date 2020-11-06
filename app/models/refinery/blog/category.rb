@@ -6,7 +6,6 @@ module Refinery
       extend FriendlyId
 
       translates :title, :slug
-
       attribute :title
       attribute :slug
       after_save {translations.collect(&:save)}
