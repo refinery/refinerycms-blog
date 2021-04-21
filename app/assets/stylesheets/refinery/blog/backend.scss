@@ -20,3 +20,14 @@ a#copy_body_link {
   position: relative;
   right: auto;
 }
+.pagination li {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  .title {
+    flex-basis: 90%;
+    white-space   : nowrap;
+    overflow      : hidden;
+    text-overflow : ellipsis;
+  }
+}
