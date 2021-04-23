@@ -120,6 +120,7 @@ en:
         archives: Archives
         tags:
           title: "Tags"
+          help: Use comma (,) to separate tags
       categories:
         show:
           no_posts: There are no posts here yet.

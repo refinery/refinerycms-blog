@@ -13,6 +13,8 @@ module Refinery
       delegate :refinery, :params, :output_buffer, :output_buffer=, :t, to: :context
       delegate_missing_to :post
 
+      I18N_SCOPE = 'refinery.blog.admin.posts.post'
+
       def initialize(post, context)
         @context = context
         @created_at = post.created_at

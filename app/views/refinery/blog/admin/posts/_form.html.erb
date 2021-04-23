@@ -1,127 +1,55 @@
-<%= form_for [refinery, :blog_admin, @post] do |f| -%>
+<%= form_with(model: [refinery, :blog_admin, @post]) do |f| -%>
   <%= render "/refinery/admin/error_messages",
-             :object => f.object,
-             :include_object_name => true %>
+             object: f.object,
+             include_object_name: true %>
 
   <%= render '/refinery/admin/locale_picker',
-              :current_locale => Mobility.locale %>
+              current_locale: Mobility.locale %>
 
   <div class='field'>
     <%= f.label :title -%>
-    <%= f.text_field :title, :class => 'larger widest' -%>
+    <%= f.text_field :title, class: 'larger widest' -%>
   </div>
 
+  <%#= render '/refinery/blog/admin/tabbed_fields', f: f, tabs: Refinery::Blog.tabs, object: @post %>
   <div class='field'>
     <div id='page-tabs' class='clearfix ui-tabs ui-widget ui-widget-content ui-corner-all'>
       <ul id='page_parts'>
-        <li class='ui-state-default ui-state-active'>
-          <%= link_to t('body', :scope => 'activerecord.attributes.refinery/blog/post'), "#page_part_body" %>
-        </li>
-        <li class='ui-state-default'>
-          <%= link_to t('teaser', :scope => 'activerecord.attributes.refinery/blog/post'), "#page_part_teaser" %>
-        </li>
-        <% Refinery::Blog.tabs.each_with_index do |tab, tab_index| %>
-          <li class='ui-state-default' id="custom_<%= tab.name %>_tab">
-            <%= link_to tab.name.titleize, "#custom_tab_#{tab_index}" %>
+
+        <% Refinery::Blog.tabs.each_with_index do |tab, index| %>
+          <li class="ui-state-default <%= 'ui-state-active' if index == 0 %>">
+            <%= link_to tab.name, Refinery::TabHelper.to_id(tab.name,"editor") %>
           </li>
         <% end %>
       </ul>
 
       <div id='page_part_editors'>
-        <% part_index = -1 %>
-          <%= render 'form_part', :f => f, :part_index => (part_index += 1) -%>
-          <%= render 'teaser_part', :f => f, :part_index => (part_index += 1) if f.object.respond_to?(:custom_teaser) -%>
-        <% Refinery::Blog.tabs.each_with_index do |tab, tab_index| %>
-          <div class='page_part' id='<%= "custom_tab_#{tab_index}" %>'>
-            <%= render tab.partial, :f => f %>
+        <% Refinery::Blog.tabs.each do |tab| %>
+          <div class='page_part clearfix' id='<%= Refinery::TabHelper.to_slug(tab.name, "editor") %>'>
+            <%= render tab.partial, f:f, fields: tab.fields, object:@post %>
           </div>
         <% end %>
       </div>
     </div>
   </div>
 
-  <div class='field'>
-    <%= f.label :tag_list, t('refinery.blog.shared.tags.title') -%>
-    <%= f.text_field :tag_list, value: @post.tag_list.to_s, :class => 'larger' -%>
-  </div>
-
-  <%= render '/refinery/admin/form_advanced_options_menu', :f => f %>
-
-  <div id='more_options'>
-    <div class="hemisquare">
-      <h3><%= t('title', :scope => 'refinery.blog.admin.submenu.categories') %></h3>
-      <ul class='blog_categories'>
-        <% @categories.each do |category| %>
-          <li>
-             <%= check_box_tag 'post[category_ids][]', category.id,
-                               @post.categories.include?(category),
-                               :id => (id="post_category_ids_#{category.id}") %>
-             <%= label_tag 'post[category_ids][]', category.title,
-                           :class => 'stripped',
-                           :for => id %>
-          </li>
-        <% end %>
-      </ul>
-      <h3><%= t('.published_at') %></h3>
-      <%= f.datetime_select :published_at %>
-
-      <div class='field'>
-        <span class='label_with_help'>
-          <%= f.label :custom_url, t('.custom_url') %>
-          <%= refinery_help_tag t('.custom_url_help') %>
-        </span>
-        <%= f.text_field :custom_url, :class => "widest" %>
-      </div>
-
-      <div class='field'>
-        <span class='label_with_help'>
-          <%= f.label :source_url_title, t('.source_url_title') %>
-          <%= refinery_help_tag t('.source_url_title_help') %>
-        </span>
-        <%= f.text_field :source_url_title, :class => "widest" %>
-      </div>
-
-      <div class='field'>
-        <span class='label_with_help'>
-          <%= f.label :source_url, t('.source_url') %>
-          <%= refinery_help_tag t('.source_url_help') %>
-        </span>
-        <%= f.text_field :source_url, :class => "widest" %>
-      </div>
-
-      <div class='field'>
-        <span class='label_with_help'>
-          <%= f.label :user_id, t('.author') %>
-          <%= refinery_help_tag t('.author_help') %>
-          <br/>
-          <% if @authors.present? %>
-            <%= f.collection_select :user_id, @authors, :id, :username %>
-          <% else %>
-            <%= f.text_field :username, id: :post_user_id, :class => "widest" %>
-          <% end %>
-        </span>
-      </div>
-
-    </div>
-    <div class='hemisquare right_side'>
-      <%= render '/seo_meta/form', :form => f %>
-    </div>
-  </div>
   <%= render "/refinery/admin/form_actions",
-             :f => f,
-             :continue_editing => true,
-             :delete_title => t('delete', :scope => 'refinery.blog.admin.posts.post'),
-             :before_delete_button => (link_to(t('delete_translation', :scope => 'refinery.blog.admin.posts.post'),
-                                               refinery.delete_translation_blog_admin_post_path(@post, :locale_to_delete => Mobility.locale),
-                                               :method => :post,
-                                               :data => {
-                                                 :confirm => t('delete_translation_confirmation', :scope => 'refinery.blog.admin.posts.post')
-                                               },
-                                               :class => "button confirm-delete") if Refinery::I18n.frontend_locales.many? && @post.translations.size > 1) %>
+             f: f,
+             continue_editing: true,
+             delete_title: t('delete', scope: 'refinery.blog.admin.posts.post'),
+             before_delete_button: (link_to(t('delete_translation', scope: 'refinery.blog.admin.posts.post'),
+               refinery.delete_translation_blog_admin_post_path(@post, locale_to_delete: Mobility.locale),
+               method: :post,
+               data: {
+                 confirm: t('delete_translation_confirmation', scope: 'refinery.blog.admin.posts.post')
+               },
+               class: "button confirm-delete") if Refinery::I18n.frontend_locales.many? && @post.translations.size > 1)
+  %>
 <% end -%>
 
 <% content_for :stylesheets, stylesheet_link_tag('refinery/blog/backend') %>
 <% content_for :javascripts, javascript_include_tag('refinery/blog/backend') %>
 <%= render 'refinery/shared/admin/autocomplete',
-           :dom_id => '#post_tag_list',
-           :url => refinery.tags_blog_admin_posts_url %>
+           dom_id: '#post_tag_list',
+           url: refinery.tags_blog_admin_posts_url %>
+

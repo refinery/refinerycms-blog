@@ -22,8 +22,24 @@ module Refinery
       end
 
       config.after_initialize do
+        tabs = [
+          {title: 'Body',               partial: 'visual_editor_text',  fields: :body},
+          {title: 'Teaser',             partial: 'teaser',              fields: :custom_teaser},
+          {title: 'Tags & Categories',  partial: 'tags_and_categories', fields: [:tags, :categories]},
+          {title: 'SEO',                partial: 'seo'},
+          {title: 'Metadata',           partial: 'metadata',
+           fields:[ :published_at, :custom_url, :source_url_title, :source_url, :author]}
+        ]
+        tabs.each do |t|
+          Refinery::Blog::Tab.register do |tab|
+            tab.name = t[:title]
+            tab.partial = "/refinery/blog/admin/posts/tabs/#{t[:partial]}"
+            tab.fields = t[:fields]
+          end
+        end
         Refinery.register_engine(Refinery::Blog)
       end
+
     end
   end
 end
