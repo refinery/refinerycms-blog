@@ -51,10 +51,6 @@ module Refinery
         verify: [:resolve_redirects]
       }
 
-      class Translation
-        is_seo_meta
-      end
-
       # Override this to disable required authors
       def author_required?
         !Refinery::Blog.user_class.nil?
@@ -104,7 +100,7 @@ module Refinery
             end
           end
           # A join implies readonly which we don't really want.
-          where(conditions).joins(:translations).where(globalized_conditions)
+          where(conditions).includes(:translations).where(globalized_conditions)
             .readonly(false)
         end
 
