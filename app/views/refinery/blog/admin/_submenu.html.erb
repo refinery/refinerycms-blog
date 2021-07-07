@@ -6,19 +6,19 @@
   <ul class='collapsible_menu'>
     <li class='not_a_link'>
       <%= link_to t('.posts.title'), '#',
-                   :class => 'page_copy_icon' %>
-    </li>
-    <li>
-      <%= link_to t('.posts.manage'), refinery.blog_admin_posts_path,
                    :class => 'page_icon' %>
     </li>
     <li>
+      <%= link_to t('.posts.manage'), refinery.blog_admin_posts_path,
+                   :class => 'edit_icon' %>
+    </li>
+    <li>
       <%= link_to t('.posts.uncategorized'), refinery.uncategorized_blog_admin_posts_path,
-                  :class => 'page_icon' %>
+                  :class => 'info_icon' %>
     </li>
     <li>
        <%= link_to t('.posts.new'), refinery.new_blog_admin_post_path,
-                   :class => 'page_add_icon' %>
+                   :class => 'add_icon' %>
     </li>
   </ul>
   <% if Refinery::Blog::Post.comments_allowed? %>
@@ -30,19 +30,19 @@
           <% title = t('.comments.title') %>
         <% end %>
         <%= link_to title, '#',
-                    :class => 'comments_icon' %>
+                    :class => 'user_comment_icon' %>
       </li>
       <li>
         <%= link_to t('.comments.new'), refinery.blog_admin_comments_path,
-                    :class => 'comment_icon' %>
+                    :class => 'add_icon' %>
       </li>
       <li>
         <%= link_to t('.comments.approved'), refinery.approved_blog_admin_comments_path,
-                    :class => 'comment_tick_icon' %>
+                    :class => 'success_icon' %>
       </li>
       <li>
         <%= link_to t('.comments.rejected'), refinery.rejected_blog_admin_comments_path,
-                    :class => 'comment_cross_icon' %>
+                    :class => 'failure_icon' %>
       </li>
     </ul>
   <% end %>
@@ -54,11 +54,11 @@
     </li>
     <li>
       <%= link_to t('.categories.manage'), refinery.blog_admin_categories_path,
-                  :class => 'folder_edit_icon' %>
+                  :class => 'edit_icon' %>
     </li>
     <li>
       <%= link_to t('.categories.new'), refinery.new_blog_admin_category_path,
-                  :class => 'folder_add_icon' %>
+                  :class => 'add_icon' %>
     </li>
   </ul>
 
