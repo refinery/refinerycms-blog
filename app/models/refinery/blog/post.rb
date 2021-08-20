@@ -60,10 +60,10 @@ module Refinery
         !Refinery::Blog.user_class.nil?
       end
 
-      # If custom_url or title changes tell friendly_id to regenerate slug when
+      # If custom_url, title or body changes tell friendly_id to regenerate slug when
       # saving record
       def should_generate_new_friendly_id?
-        saved_change_to_attribute?(:custom_url) || saved_change_to_attribute?(:title)
+        will_save_change_to_attribute?(:custom_url) || will_save_change_to_attribute?(:title) || will_save_change_to_attribute?(:body)
       end
 
       # Delegate SEO Attributes to globalize translation
