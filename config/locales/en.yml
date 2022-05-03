@@ -36,17 +36,11 @@ en:
         posts:
           form:
             toggle_advanced_options: Click to access meta tag settings and menu options
-            published_at: Publish Date
-            custom_url: Custom Url
-            custom_url_help: Generate the url for the blog post from this text instead of the title.
-            source_url: Source Url
-            source_url_help: Stores the url for the source of the post material.
-            source_url_title: Source Url Title
-            source_url_title_help: Title for the source url for the post.
             author: Author
             author_help: Set which user this post will show as the author.
             copy_body: Copy Post Body to Teaser
             copy_body_help: Copies the post body to the teaser.  Leave teaser blank to let Refinery automatically make the teaser.
+            save_as_draft: Save as Draft
           index:
             no_items_yet: 'There are no Blog Posts yet. Click "%{create}" to add your first blog post.'
           uncategorized:
@@ -59,6 +53,15 @@ en:
             delete_translation_confirmation: Are you sure you want to remove this translation forever ?
             delete_translation_success: The translation was successfully removed.
             draft: Draft
+          tabs:
+            metadata:
+              published_at: Publish Date
+              custom_url: Custom Url
+              custom_url_help: Generate the url for the blog post from this text instead of the title.
+              source_url: Source Url
+              source_url_help: Stores the url for the source of the post material.
+              source_url_title: Source Url Title
+              source_url_title_help: Title for the source url for the post.
         settings:
           notification_recipients:
             value: Send notifications to

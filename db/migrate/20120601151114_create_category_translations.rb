@@ -2,7 +2,7 @@ class CreateCategoryTranslations < ActiveRecord::Migration[4.2]
   def change
     create_table :refinery_blog_category_translations do |t|
 
-      # Translated attribute(s)
+            # Translated attribute(s)
       t.string :title
       t.string :slug
 
@@ -17,4 +17,3 @@ class CreateCategoryTranslations < ActiveRecord::Migration[4.2]
               name: :index_refinery_b_c_t_on_refinery_blog_category_id_and_locale, unique: true
   end
 end
-

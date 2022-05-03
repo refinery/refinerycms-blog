@@ -4,46 +4,45 @@
              include_object_name: true %>
 
   <%= render '/refinery/admin/locale_picker',
-              current_locale: Mobility.locale %>
+             current_locale: Mobility.locale %>
 
-  <div class='field'>
+  <div class='field' >
     <%= f.label :title -%>
     <%= f.text_field :title, class: 'larger widest' -%>
-  </div>
+  </div >
+  <div class='field' >
+    <span class='label_with_help' >
+      <%= f.label :user_id, t('.author') %>
+      <%= refinery_help_tag t('.author_help') %>
+      <br />
+      <% if @authors.present? %>
+        <%= f.collection_select :user_id, @authors, :id, :username %>
+      <% else %>
+        <%= f.text_field :username, id: :post_user_id, :class => "widest" %>
+      <% end %>
+    </span >
+  </div >
+  <%= render '/refinery/blog/admin/tabbed_fields', f: f, tabs: Refinery::Blog.tabs, object: @post %>
 
-  <%#= render '/refinery/blog/admin/tabbed_fields', f: f, tabs: Refinery::Blog.tabs, object: @post %>
-  <div class='field'>
-    <div id='page-tabs' class='clearfix ui-tabs ui-widget ui-widget-content ui-corner-all'>
-      <ul id='page_parts'>
-
-        <% Refinery::Blog.tabs.each_with_index do |tab, index| %>
-          <li class="ui-state-default <%= 'ui-state-active' if index == 0 %>">
-            <%= link_to tab.name, Refinery::TabHelper.to_id(tab.name,"editor") %>
-          </li>
-        <% end %>
-      </ul>
-
-      <div id='page_part_editors'>
-        <% Refinery::Blog.tabs.each do |tab| %>
-          <div class='page_part clearfix' id='<%= Refinery::TabHelper.to_slug(tab.name, "editor") %>'>
-            <%= render tab.partial, f:f, fields: tab.fields, object:@post %>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  </div>
+  <div id="draft_field" >
+    <p >
+      <%= f.check_box :draft %>
+      <%= f.label :draft, t('.save_as_draft'),
+                  :class => 'stripped' %>
+    </p >
+  </div >
 
   <%= render "/refinery/admin/form_actions",
              f: f,
              continue_editing: true,
              delete_title: t('delete', scope: 'refinery.blog.admin.posts.post'),
              before_delete_button: (link_to(t('delete_translation', scope: 'refinery.blog.admin.posts.post'),
-               refinery.delete_translation_blog_admin_post_path(@post, locale_to_delete: Mobility.locale),
-               method: :post,
-               data: {
-                 confirm: t('delete_translation_confirmation', scope: 'refinery.blog.admin.posts.post')
-               },
-               class: "button confirm-delete") if Refinery::I18n.frontend_locales.many? && @post.translations.size > 1)
+                                            refinery.delete_translation_blog_admin_post_path(@post, locale_to_delete: Mobility.locale),
+                                            method: :post,
+                                            data: {
+                                              confirm: t('delete_translation_confirmation', scope: 'refinery.blog.admin.posts.post')
+                                            },
+                                            class: "button confirm-delete") if Refinery::I18n.frontend_locales.many? && @post.translations.size > 1)
   %>
 <% end -%>
 

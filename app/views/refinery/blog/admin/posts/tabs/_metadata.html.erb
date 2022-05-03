@@ -27,15 +27,3 @@
   <%= f.text_field :source_url, :class => "widest" %>
 </div >
 
-<div class='field' >
-        <span class='label_with_help' >
-          <%= f.label :user_id, t('.author') %>
-          <%= refinery_help_tag t('.author_help') %>
-          <br />
-          <% if @authors.present? %>
-            <%= f.collection_select :user_id, @authors, :id, :username %>
-          <% else %>
-            <%= f.text_field :username, id: :post_user_id, :class => "widest" %>
-          <% end %>
-        </span >
-</div >

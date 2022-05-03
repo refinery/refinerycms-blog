@@ -87,7 +87,7 @@ module Refinery
                 click_button "Save"
               end
 
-              it "should succeed" do
+              it "will create a post" do
                 expect(page).to have_content("was successfully added.")
               end
 
@@ -224,7 +224,7 @@ module Refinery
             # end
 
             it "Increases the number of posts by 1 and returns a success message" do
-              expect(creating_a_new_post).to change(Refinery::Blog::Post, :count).by(1)
+              expect { creating_a_new_post }.to change(Refinery::Blog::Post, :count).by(1)
               expect(page).to have_content("'Post' was successfully added.")
             end
 

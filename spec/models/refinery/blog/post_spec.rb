@@ -243,13 +243,11 @@ module Refinery
 
       describe "#should_generate_new_friendly_id?" do
         context "when custom_url changes" do
-          it "regenerates slug upon save" do
-            post = FactoryBot.create(:blog_post, custom_url: "Test Url #{Time.new.usec}")
-
+          it "regenerates friendly_id upon save" do
             post.custom_url = "Test Url 2"
             post.save!
 
-            expect(post.slug).to eq("test-url-2")
+            expect(post.slug).to eq 'test-url-2'
           end
         end
 

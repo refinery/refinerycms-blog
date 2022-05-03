@@ -9,7 +9,7 @@
 
         <%= content_tag(:div, "#{t('by', :scope => 'refinery.blog.posts.show')} #{post.author_username}", :class => "blog_author") if post.author_username.present? %>
 
-        <% if (categories = post.categories.translated).present? %>
+        <% if (categories = post.categories).present? %>
           <aside class="filled_in">
             <%= t('filled_in', :scope => 'refinery.blog.posts.show') %>
             <%=raw categories.collect { |category| link_to category.title, refinery.blog_category_path(category) }.to_sentence %>

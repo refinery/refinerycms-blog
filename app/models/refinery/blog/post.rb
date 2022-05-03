@@ -7,7 +7,7 @@ module Refinery
   module Blog
     class Post < ActiveRecord::Base
       extend Mobility
-      translates :title, :body, :custom_url, :custom_teaser, :slug, include: :seo_meta
+      translates :title, :body, :custom_url, :custom_teaser, :slug, :browser_title, :meta_description
 
       after_save { translations.in_locale(Mobility.locale).seo_meta.save! }
 
@@ -15,6 +15,21 @@ module Refinery
         is_seo_meta
       end
 
+      class FriendlyIdOptions
+        def self.options
+          # Docs for friendly_id https://github.com/norman/friendly_id
+          friendly_id_options = {
+            use: [:mobility, :reserved],
+            reserved_words: Refinery::Pages.friendly_id_reserved_words
+          }
+          if ::Refinery::Blog.scope_slug_by_parent
+            friendly_id_options[:use] << :scoped
+            friendly_id_options.merge!(scope: :parent)
+          end
+
+          friendly_id_options
+        end
+      end
       extend FriendlyId
       friendly_id :friendly_id_source, use:  [:mobility, :slugged]
 

@@ -1,3 +1,7 @@
+<div class='field'>
+  <%= f.label :tag_list, t('refinery.blog.shared.tags.title') -%>
+  <%= f.text_field :tag_list, value: @post.tag_list.to_s, :class => 'larger' -%>
+</div>
 <div class='field' id='tags' >
     <span class='label_with_help' >
       <%= f.label :tag_list, t('refinery.blog.shared.tags.title') -%>

@@ -24,5 +24,5 @@ Gem::Specification.new do |s|
   s.add_dependency    'friendly_id',           ['>= 5.1.0', '< 5.3']
   s.add_dependency    'friendly_id-mobility',  '~> 0.5'
   s.add_dependency    'activemodel-serializers-xml', '~> 1.0', '>= 1.0.1'
-  s.add_dependency    'responders',            '~> 2.0'
+  s.add_dependency    'responders',            '~> 3.0'
 end

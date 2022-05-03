@@ -18,7 +18,7 @@ module Refinery
         end
       end
 
-      def create_a_category(locale, title)
+      def create_a_category(title, locale = :en)
         Mobility.locale = locale
         visit refinery.blog_admin_posts_path
         click_link "Create new category"
@@ -38,6 +38,7 @@ module Refinery
           end
           fill_in "Title", with: title
           click_button "Save"
+<<<<<<< HEAD
         }
       }
 
@@ -72,59 +73,124 @@ module Refinery
             Mobility.locale = :en
             create_a_category(:en, 'jokes')
           end
+        end
 
-          it "is available in blog page for default locale" do
-          visit refinery.blog_root_path
-          within "#categories" do
-            expect(page).to have_selector('li')
+          it "Categories are available in blog page for default locale" do
+            visit refinery.blog_root_path
+            expect(page).to have_selector('#categories')
+          end
+
+          it "Categories are not available in blog page for secondary locale" do
+            visit refinery.blog_root_path(locale: :ru)
+            expect(page).not_to have_selector('#categories')
+          end
+=======
+>>>>>>> 5a1a4d0 (WIP. Testing needs more work)
+        end
+
+        def create_page(title, url, locales = [:en])
+          allow(Refinery::I18n).to receive(:frontend_locales).and_return(locales)
+          Mobility.with_locale(locales.first) { FactoryBot.create(:page, link_url: "/blog", title: "Blog") }
+        end
+
+        def add_locale_to_page(page, title, locale)
+          Mobility.with_locale(locale) do
+            page.title = title
+            page.save
           end
         end
 
-        it "is not available in blog page for secondary locale" do
-          visit refinery.blog_root_path(:locale => :ru)
-          expect(page).not_to have_selector('#categories')
-        end
-      end
-
-      describe "add a category with title for secondary locale" do
-
-        let(:ru_category_title) { 'категория' }
-        let(:locale) { 'RU'}
-        expect { creating_a_category }.to change(Refinery::Blog::Category, :count).by(1)
-
-
-        it "succeeds" do
-          expect(page).to have_content("'#{@c.title_translations['ru']}' was successfully added.")
-          expect(Refinery::Blog::Category.count).to eq(1)
-        end
-
-        it "shows locale for category" do
-          click_link "Manage"
-          within "#category_#{@c.id}" do
-            expect(page).to have_css(".locale .ru")
+        describe "Creating Categories" do
+          describe 'creating a category' do
+            subject(:perform) do
+              create_category('lol')
+            end
+            include_examples 'creates a new object', Refinery::Blog::Category
           end
-        end
 
-        it "does not show locale for primary locale" do
-          click_link "Manage"
-          within "#category_#{@c.id}" do
-            expect(page).not_to have_css(".locale .en")
-          end
-        end
+          context "with translations" do
+            before do
+              blog_page = create_page('Blog', '/blog', [:en, :ru])
+              add_locale_to_page(blog_page, 'блог', :ru)
+            end
 
-        it "does not shows up in blog page for default locale" do
-          visit refinery.blog_root_path
-          expect(page).not_to have_selector('#categories')
-        end
+            describe "add a category with title for default locale" do
+              subject(:perform) do
+                create_category('Testing Category')
+              end
+              include_examples 'creates a new object', Refinery::Blog::Category
 
-        it "shows up in blog page for secondary locale" do
-          visit refinery.blog_root_path(:locale => :ru)
-          within "#categories" do
-            expect(page).to have_selector('li')
+              it "the category is listed with the :en locale" do
+                visit refinery.blog_admin_categories_path
+                within('#category_1') do
+                  expect(page).to have_selector('a.local.en')
+                end
+              end
+
+              it "shows up in blog page for default locale" do
+                visit refinery.blog_root_path
+
+                within "#categories" do
+                  expect(page).to have_selector('li')
+                end
+              end
+
+              it "does not show up in blog page for secondary locale" do
+                visit refinery.blog_root_path(locale: :ru)
+                expect(page).not_to have_selector('#categories')
+              end
+
+            end
+
+            describe "add a category with title for secondary locale" do
+
+              let(:ru_category_title) { 'категория' }
+
+              before do
+                visit refinery.blog_admin_posts_path
+                click_link "Create new category"
+                within "#switch_locale_picker" do
+                  click_link "RU"
+                end
+                fill_in "Title", with: ru_category_title
+                expect { click_button "Save" }.to change(Refinery::Blog::Category, :count).by(1)
+                @c = Refinery::Blog::Category.by_title(ru_category_title)
+              end
+
+              it "suceeds" do
+                expect(page).to have_content("'#{@c.title_translations['ru']}' was successfully added.")
+                expect(Refinery::Blog::Category.count).to eq(1)
+              end
+
+              it "shows locale for category" do
+                click_link "Manage"
+                within "#category_#{@c.id}" do
+                  expect(page).to have_css(".locale .ru")
+                end
+              end
+
+              it "does not show locale for primary locale" do
+                click_link "Manage"
+                within "#category_#{@c.id}" do
+                  expect(page).not_to have_css(".locale .en")
+                end
+              end
+
+              it "does not shows up in blog page for default locale" do
+                visit refinery.blog_root_path
+                expect(page).not_to have_selector('#categories')
+              end
+
+              it "shows up in blog page for secondary locale" do
+                visit refinery.blog_root_path(locale: :ru)
+                within "#categories" do
+                  expect(page).to have_selector('li')
+                end
+              end
+            end
           end
         end
       end
     end
   end
-end
 end
