@@ -1,9 +1,6 @@
 <ul id='sortable_list'>
-  <%= Refinery::Admin::PostPresenter.collection(@posts, self).to_html  %>
+  <%= render partial: 'post', collection: @posts %>
 </ul>
-<%=
-
-
-   render "/refinery/admin/sortable_list",
+<%= render "/refinery/admin/sortable_list",
            :continue_reordering => (defined?(continue_reordering) ? continue_reordering : true)
 %>
