@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :blog_comment, class: 'Refinery::Blog::Comment' do
+  factory :blog_comment, class: Refinery::Blog::Comment do
     name { 'Joe Commenter' }
     sequence(:email) { |n| "person#{n}@example.com" }
     body { 'Which one is the best for picking up new shoes?' }
