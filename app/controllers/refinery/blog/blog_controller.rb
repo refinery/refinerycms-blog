@@ -8,11 +8,11 @@ module Refinery
       protected
 
       def find_all_blog_categories
-        @categories = Refinery::Blog::Category.translated
+        @categories = Refinery::Blog::Category.all
       end
 
       def find_blog_post
-        unless (@post = post_finder_scope.with_globalize.friendly.find(params[:id])).try(:live?)
+        unless (@post = post_finder_scope.with_mobility.friendly.find(params[:id])).try(:live?)
           if current_refinery_user && current_refinery_user.has_plugin?("refinerycms_blog")
             @post = post_finder_scope.friendly.find(params[:id])
           else
@@ -24,7 +24,7 @@ module Refinery
       def find_all_blog_posts
         @posts = post_finder_scope.live.includes(
           :comments, :categories, :translations
-        ).with_globalize.newest_first.page(params[:page])
+        ).with_mobility.newest_first.page(params[:page])
       end
 
       def find_page

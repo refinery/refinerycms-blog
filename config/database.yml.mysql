@@ -1,0 +1,20 @@
+development: &development
+  adapter: mysql2
+  host: localhost
+  username: root
+  password:
+  database: <%= Rails.application.engine_name.gsub(/_application/,'').downcase %>_development
+
+test: &test
+  adapter: mysql2
+  host: localhost
+  username: root
+  password:
+  database: <%= Rails.application.engine_name.gsub(/_application/,'').downcase %>_test
+
+production: &production
+  adapter: mysql2
+  host: localhost
+  database: <%= Rails.application.engine_name.gsub(/_application/,'').downcase %>_production
+  username: your_production_database_login
+  password: your_production_database_password

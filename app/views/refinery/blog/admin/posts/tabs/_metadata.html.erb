@@ -1,0 +1,29 @@
+<div id="published_date" class="field" >
+  <h3 ><%= t('.published_at') %></h3 >
+  <%= f.datetime_select :published_at %>
+</div >
+
+<div class='field' >
+  <span class='label_with_help' >
+    <%= f.label :custom_url, t('.custom_url') %>
+    <%= refinery_help_tag t('.custom_url_help') %>
+  </span >
+  <%= f.text_field :custom_url, :class => "widest" %>
+</div >
+
+<div class='field' >
+        <span class='label_with_help' >
+          <%= f.label :source_url_title, t('.source_url_title') %>
+          <%= refinery_help_tag t('.source_url_title_help') %>
+        </span >
+  <%= f.text_field :source_url_title, :class => "widest" %>
+</div >
+
+<div class='field' >
+        <span class='label_with_help' >
+          <%= f.label :source_url, t('.source_url') %>
+          <%= refinery_help_tag t('.source_url_help') %>
+        </span >
+  <%= f.text_field :source_url, :class => "widest" %>
+</div >
+

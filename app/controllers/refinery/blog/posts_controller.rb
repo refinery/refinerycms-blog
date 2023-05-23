@@ -19,7 +19,7 @@ module Refinery
             Post.newest_first.live.includes(:comments, :categories)
           end
         end
-        respond_with (@posts) do |format|
+        respond_with(@posts) do |format|
           format.html
           format.rss { render layout: false }
         end
@@ -32,7 +32,7 @@ module Refinery
 
         Post.increment_counter(:access_count, @post.id)
 
-        respond_with (@post) do |format|
+        respond_with(@post) do |format|
           format.html { present(@post) }
           format.js { render partial: 'post', layout: false }
         end
@@ -74,7 +74,7 @@ module Refinery
           @date_title = ::I18n.l(archive_date, format: '%Y')
           @posts = Post.live.by_year(archive_date).page(params[:page])
         end
-        respond_with (@posts)
+        respond_with(@posts)
       end
 
       def tagged

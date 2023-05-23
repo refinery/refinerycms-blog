@@ -1,4 +1,0 @@
-#!/usr/bin/env ruby
-
-ENGINE_PATH = File.expand_path('../..',  __FILE__)
-load File.expand_path('../../spec/dummy/bin/rails',  __FILE__)

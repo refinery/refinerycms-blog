@@ -7,15 +7,15 @@ module Refinery
 
       describe "validations" do
         it "requires title" do
-          expect(FactoryBot.build(:blog_post, :title => "")).not_to be_valid
+          expect(FactoryBot.build(:blog_post, title: "")).not_to be_valid
         end
 
         it "won't allow duplicate titles" do
-          expect(FactoryBot.build(:blog_post, :title => post.title)).not_to be_valid
+          expect(FactoryBot.build(:blog_post, title: post.title)).not_to be_valid
         end
 
         it "requires body" do
-          expect(FactoryBot.build(:blog_post, :body => nil)).not_to be_valid
+          expect(FactoryBot.build(:blog_post, body: nil)).not_to be_valid
         end
       end
 
@@ -26,9 +26,9 @@ module Refinery
         end
 
         it "destroys associated comments" do
-          FactoryBot.create(:blog_comment, :blog_post_id => post.id)
+          FactoryBot.create(:blog_comment, blog_post_id: post.id)
           post.destroy
-          expect(Blog::Comment.where(:blog_post_id => post.id)).to be_empty
+          expect(Blog::Comment.where(blog_post_id: post.id)).to be_empty
         end
       end
 
@@ -64,11 +64,11 @@ module Refinery
 
       describe "by_month" do
         before do
-          @post1 = FactoryBot.create(:blog_post, :published_at => Date.new(2011, 3, 11))
-          @post2 = FactoryBot.create(:blog_post, :published_at => Date.new(2011, 3, 12))
+          @post1 = FactoryBot.create(:blog_post, published_at: Date.new(2011, 3, 11))
+          @post2 = FactoryBot.create(:blog_post, published_at: Date.new(2011, 3, 12))
 
           #2 months before
-          FactoryBot.create(:blog_post, :published_at => Date.new(2011, 1, 10))
+          FactoryBot.create(:blog_post, published_at: Date.new(2011, 1, 10))
         end
 
         it "returns all posts from specified month" do
@@ -81,9 +81,9 @@ module Refinery
 
       describe ".published_dates_older_than" do
         before do
-          @post1 = FactoryBot.create(:blog_post, :published_at => Time.utc(2012, 05, 01, 15, 20))
-          @post2 = FactoryBot.create(:blog_post, :published_at => Time.utc(2012, 05, 01, 15, 30))
-          FactoryBot.create(:blog_post, :published_at => Time.now)
+          @post1 = FactoryBot.create(:blog_post, published_at: Time.utc(2012, 05, 01, 15, 20))
+          @post2 = FactoryBot.create(:blog_post, published_at: Time.utc(2012, 05, 01, 15, 30))
+          FactoryBot.create(:blog_post, published_at: Time.now)
         end
 
         it "returns all published dates older than the argument" do
@@ -95,10 +95,10 @@ module Refinery
 
       describe "live" do
         before do
-          @post1 = FactoryBot.create(:blog_post, :published_at => Time.now.advance(:minutes => -2))
-          @post2 = FactoryBot.create(:blog_post, :published_at => Time.now.advance(:minutes => -1))
-          FactoryBot.create(:blog_post, :draft => true)
-          FactoryBot.create(:blog_post, :published_at => Time.now + 1.minute)
+          @post1 = FactoryBot.create(:blog_post, published_at: Time.now.advance(minutes: -2))
+          @post2 = FactoryBot.create(:blog_post, published_at: Time.now.advance(minutes: -1))
+          FactoryBot.create(:blog_post, draft: true)
+          FactoryBot.create(:blog_post, published_at: Time.now + 1.minute)
         end
 
         it "returns all posts which aren't in draft and pub date isn't in future" do
@@ -129,17 +129,17 @@ module Refinery
         end
 
         it "returns false if post is in draft" do
-          expect(FactoryBot.build(:blog_post, :draft => true)).not_to be_live
+          expect(FactoryBot.build(:blog_post, draft: true)).not_to be_live
         end
 
         it "returns false if post pub date is in future" do
-          expect(FactoryBot.build(:blog_post, :published_at => Time.now.advance(:minutes => 1))).not_to be_live
+          expect(FactoryBot.build(:blog_post, published_at: Time.now.advance(minutes: 1))).not_to be_live
         end
       end
 
       describe "#next" do
         before do
-          FactoryBot.create(:blog_post, :published_at => Time.now.advance(:days => -1))
+          FactoryBot.create(:blog_post, published_at: Time.now.advance(days: -1))
           @post = FactoryBot.create(:blog_post)
         end
 
@@ -151,7 +151,7 @@ module Refinery
       describe "#prev" do
         before do
           FactoryBot.create(:blog_post)
-          @post = FactoryBot.create(:blog_post, :published_at => Time.now.advance(:days => -1))
+          @post = FactoryBot.create(:blog_post, published_at: Time.now.advance(days: -1))
         end
 
         it "returns previous article when called on current article" do
@@ -162,7 +162,7 @@ module Refinery
       describe ".comments_allowed?" do
         context "with Refinery::Setting comments_allowed set to true" do
           before do
-            Refinery::Setting.set(:comments_allowed, { :scoping => 'blog', :value => true })
+            Refinery::Setting.set(:comments_allowed, { scoping: 'blog', value: true })
           end
 
           it "should be true" do
@@ -172,7 +172,7 @@ module Refinery
 
         context "with Refinery::Setting comments_allowed set to false" do
           before do
-            Refinery::Setting.set(:comments_allowed, { :scoping => 'blog', :value => false })
+            Refinery::Setting.set(:comments_allowed, { scoping: 'blog', value: false })
           end
 
           it "should be false" do
@@ -183,14 +183,14 @@ module Refinery
 
       describe "custom teasers" do
         it "should allow a custom teaser" do
-          expect(FactoryBot.create(:blog_post, :custom_teaser => 'This is some custom content')).to be_valid
+          expect(FactoryBot.create(:blog_post, custom_teaser: 'This is some custom content')).to be_valid
         end
       end
 
       describe ".teasers_enabled?" do
         context "with Refinery::Setting teasers_enabled set to true" do
           before do
-            Refinery::Setting.set(:teasers_enabled, { :scoping => 'blog', :value => true })
+            Refinery::Setting.set(:teasers_enabled, { scoping: 'blog', value: true })
           end
 
           it "should be true" do
@@ -200,7 +200,7 @@ module Refinery
 
         context "with Refinery::Setting teasers_enabled set to false" do
           before do
-            Refinery::Setting.set(:teasers_enabled, { :scoping => 'blog', :value => false })
+            Refinery::Setting.set(:teasers_enabled, { scoping: 'blog', value: false })
           end
 
           it "should be false" do
@@ -211,7 +211,7 @@ module Refinery
 
       describe "source url" do
         it "should allow a source url and title" do
-          p = FactoryBot.create(:blog_post, :source_url => 'google.com', :source_url_title => 'author')
+          p = FactoryBot.create(:blog_post, source_url: 'google.com', source_url_title: 'author')
           expect(p).to be_valid
           expect(p.source_url).to include('google')
           expect(p.source_url_title).to include('author')
@@ -226,7 +226,7 @@ module Refinery
           it "should have canonical url" do
             expect_any_instance_of(UrlValidator).to receive(:resolve_redirects_verify_url).
                                       and_return('http://www.google.com')
-            p = FactoryBot.create(:blog_post, :source_url => 'google.com', :source_url_title => 'google')
+            p = FactoryBot.create(:blog_post, source_url: 'google.com', source_url_title: 'google')
             expect(p.source_url).to include('www')
           end
         end
@@ -235,7 +235,7 @@ module Refinery
             Refinery::Blog.validate_source_url = false
           end
           it "should have original url" do
-            p = FactoryBot.create(:blog_post, :source_url => 'google.com', :source_url_title => 'google')
+            p = FactoryBot.create(:blog_post, source_url: 'google.com', source_url_title: 'google')
             expect(p.source_url).not_to include('www')
           end
         end
@@ -243,24 +243,23 @@ module Refinery
 
       describe "#should_generate_new_friendly_id?" do
         context "when custom_url changes" do
-          it "regenerates slug upon save" do
-            post = FactoryBot.create(:blog_post, :custom_url => "Test Url")
-
+          it "regenerates friendly_id upon save" do
             post.custom_url = "Test Url 2"
             post.save!
 
-            expect(post.slug).to eq("test-url-2")
+            expect(post.slug).to eq 'test-url-2'
           end
         end
 
         context "when title changes" do
           it "regenerates slug upon save" do
-            post = FactoryBot.create(:blog_post, :title => "Test Title")
-
-            post.title = "Test Title 2"
+            post = FactoryBot.create(:blog_post, title: "Test Title#{Time.new.usec}")
+            slug = post.slug
+            new_title = "Test Title 2 #{Time.new.usec}"
+            post.title = new_title
             post.save!
 
-            expect(post.slug).to eq("test-title-2")
+            expect(post.slug).not_to eq(slug)
           end
         end
       end

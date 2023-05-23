@@ -1,0 +1,4 @@
+<% # for the visual text editor only one field should be sent %>
+<%  fields = fields.first if fields.is_a?(Array) %>
+<%= f.text_area fields, class: %w(visual_editor widest), rows: 20 -%>
+

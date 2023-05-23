@@ -8,7 +8,7 @@
             <% if translation.title.present? %>
               <%= link_to refinery.edit_blog_admin_category_path(category,
                   :switch_locale => translation.locale),
-                  :class => 'locale',
+                  :class => ['locale', translation.locale ],
                   :title => translation.locale.upcase do %>
                 <div class="<%=translation.locale %> locale_marker">
                   <%= locale_text_icon(translation.locale.upcase) %>

@@ -5,7 +5,9 @@ module Refinery
     describe Post, type: :feature do
       context "when has blog posts" do
         let!(:blog_post) do
-          Globalize.with_locale(:en) { FactoryBot.create(:blog_post, :title => "Refinery CMS blog post") }
+          Mobility.with_locale(:en) {
+            FactoryBot.create(:blog_post, title: "Refinery CMS blog post")
+          }
         end
 
         it "should display blog post" do
@@ -17,8 +19,8 @@ module Refinery
         describe "visit blog" do
 
           before do
-            FactoryBot.create(:page, :link_url => "/")
-            FactoryBot.create(:page, :link_url => "/blog", :title => "Blog")
+            FactoryBot.create(:page, link_url: "/")
+            FactoryBot.create(:page, link_url: "/blog", title: "Blog")
           end
 
           it "shows blog link in menu" do
@@ -33,9 +35,7 @@ module Refinery
             visit refinery.blog_root_path
             expect(page).to have_content blog_post.title
           end
-
         end
-
       end
 
       describe "list tagged posts" do
@@ -43,8 +43,8 @@ module Refinery
           let!(:tag_name) { "chicago" }
           let!(:post) {
             FactoryBot.create(:blog_post,
-              :title => "I Love my city",
-              :tag_list => tag_name
+                              title: "I Love my city",
+                              tag_list: tag_name
             )
           }
           let!(:tag) { ::Refinery::Blog::Post.tag_counts_on(:tags).first }
@@ -106,9 +106,9 @@ module Refinery
           before do
             visit refinery.blog_post_path(blog_post)
 
-            fill_in "Name", :with => name
-            fill_in "Email", :with => email
-            fill_in "Message", :with => body
+            fill_in "Name", with: name
+            fill_in "Email", with: email
+            fill_in "Message", with: body
             click_button "Send comment"
           end
 
@@ -144,8 +144,8 @@ module Refinery
         end
 
         context "post recent" do
-          let!(:blog_post) { FactoryBot.create(:blog_post, :published_at => Time.now - 5.minutes) }
-          let!(:blog_post2) { FactoryBot.create(:blog_post, :published_at => Time.now - 2.minutes) }
+          let!(:blog_post) { FactoryBot.create(:blog_post, published_at: Time.now - 5.minutes) }
+          let!(:blog_post2) { FactoryBot.create(:blog_post, published_at: Time.now - 2.minutes) }
 
           it "should be the most recent" do
             expect(Refinery::Blog::Post.recent(2).first.id).to eq(blog_post2.id)

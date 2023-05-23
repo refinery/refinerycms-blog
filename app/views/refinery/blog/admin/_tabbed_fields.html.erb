@@ -1,0 +1,24 @@
+<div class='field' >
+  <div id='page-tabs' class='clearfix ui-tabs ui-widget ui-widget-content ui-corner-all' >
+    <ul id='page_parts' >
+
+      <% tabs.each_with_index do |tab, index| %>
+        <li class="ui-state-default <%= 'ui-state-active' if index == 0 %>" >
+          <%= link_to tab.name, Refinery::TabHelper.to_id(tab.name, "editor") %>
+        </li >
+      <% end %>
+    </ul >
+
+    <div id='page_part_editors' >
+      <% tabs.each do |tab| %>
+        <div class='page_part clearfix' id='<%= Refinery::TabHelper.to_slug(tab.name, "editor") %>' >
+          <div class="wym_skin_refinery" >
+            <%= render tab.partial, f: f, fields: tab.fields, object: object %>
+          </div >
+        </div >
+      <% end %>
+    </div >
+  </div >
+</div >
+
+

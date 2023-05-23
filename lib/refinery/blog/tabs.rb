@@ -1,7 +1,7 @@
 module Refinery
-  module Blog    
+  module Blog
     class Tab
-      attr_accessor :name, :partial
+      attr_accessor :name, :partial, :fields
 
       def self.register(&block)
         tab = self.new
@@ -10,6 +10,9 @@ module Refinery
 
         raise "A tab MUST have a name!: #{tab.inspect}" if tab.name.blank?
         raise "A tab MUST have a partial!: #{tab.inspect}" if tab.partial.blank?
+
+        tab.fields = [] if tab.fields.blank?
+        tab
       end
 
       protected

@@ -1,14 +1,24 @@
 language: ruby
+sudo: false
+addons:
+  apt:
+    packages:
+      - chromium-chromedriver
 cache: bundler
 bundler_args: --without development
-before_script: "bundle exec rake refinery:testing:dummy_app"
+before_script:
+  - export RETRY_COUNT=3
+  - export PATH=$PATH:/usr/lib/chromium-browser/
+  - bin/rake refinery:testing:dummy_app
+script:
+  - "DISPLAY=:99.0 bundle exec rspec spec"
 env:
   - DB=postgresql
   - DB=mysql
 notifications:
+  email: true
   webhooks:
     - https://webhooks.gitter.im/e/b5d48907cdc89864b874
 rvm:
-  - 2.3.1
-  - 2.2
-sudo: false
+  - 2.5
+  - 2.4

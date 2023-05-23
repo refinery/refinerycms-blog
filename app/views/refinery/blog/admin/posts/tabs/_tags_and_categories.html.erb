@@ -1,0 +1,27 @@
+<div class='field'>
+  <%= f.label :tag_list, t('refinery.blog.shared.tags.title') -%>
+  <%= f.text_field :tag_list, value: @post.tag_list.to_s, :class => 'larger' -%>
+</div>
+<div class='field' id='tags' >
+    <span class='label_with_help' >
+      <%= f.label :tag_list, t('refinery.blog.shared.tags.title') -%>
+      <%= refinery_help_tag t('refinery.blog.shared.tags.help') %>
+    </span >
+  <%= f.text_field :tag_list, value: @post.tag_list.to_s, class: 'larger' -%>
+</div >
+
+<div class="field" id='categories' >
+  <h3 ><%= t('title', scope: 'refinery.blog.admin.submenu.categories') %></h3 >
+  <ul class='blog_categories' >
+    <% @categories.each do |category| %>
+      <li >
+        <%= check_box_tag 'post[category_ids][]', category.id,
+                          @post.categories.include?(category),
+                          id: (id = "post_category_ids_#{category.id}") %>
+        <%= label_tag 'post[category_ids][]', category.title,
+                      class: 'stripped',
+                      for: id %>
+      </li >
+    <% end %>
+  </ul >
+</div >

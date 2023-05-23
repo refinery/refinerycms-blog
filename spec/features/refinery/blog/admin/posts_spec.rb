@@ -21,7 +21,7 @@ module Refinery
         refinery_login
 
         let!(:blog_category) do
-          Globalize.with_locale(:en) { FactoryBot.create(:blog_category) }
+          Mobility.with_locale(:en) { FactoryBot.create(:blog_category) }
         end
 
         context "when no blog posts" do
@@ -87,7 +87,7 @@ module Refinery
                 click_button "Save"
               end
 
-              it "should succeed" do
+              it "will create a post" do
                 expect(page).to have_content("was successfully added.")
               end
 
@@ -104,7 +104,7 @@ module Refinery
 
         context "when has blog posts" do
           let!(:blog_post) do
-            Globalize.with_locale(:en) { FactoryBot.create(:blog_post) }
+            Mobility.with_locale(:en) { FactoryBot.create(:blog_post) }
           end
 
           describe "blog post listing" do
@@ -191,10 +191,10 @@ module Refinery
 
         context "with translations" do
           before do
-            Globalize.locale = :en
+            Mobility.locale = :en
             allow(Refinery::I18n).to receive(:frontend_locales).and_return([:en, :ru])
             blog_page = FactoryBot.create(:page, :link_url => "/blog", :title => "Blog")
-            Globalize.with_locale(:ru) do
+            Mobility.with_locale(:ru) do
               blog_page.title = 'блог'
               blog_page.save
             end
@@ -202,40 +202,56 @@ module Refinery
           end
 
           describe "add a blog post with title for default locale" do
-            before do
-              click_link "Create new post"
-              fill_in "Title", with: "Post"
-              fill_in "post_body", with: "One post in my blog"
-              fill_in "post_user_id", with: "John Doe"
-              click_button "Save"
-              @p = Refinery::Blog::Post.by_title("Post")
-            end
+            let(:creating_a_new_post) {
+              -> {
+                visit refinery.blog_admin_posts_path
+                click_link "Create new post"
+                fill_in "Title", with: "Post"
+                fill_in "post_body", with: "One post in my blog"
+                fill_in "post_user_id", with: "John Doe"
+                click_button "Save" }
+            }
 
-            it "succeeds" do
+            let(:first_post) { Refinery::Blog::Post.by_title('Post') }
+
+            # before do
+            #   click_link "Create new post"
+            #   fill_in "Title", with: "Post"
+            #   fill_in "post_body", with: "One post in my blog"
+            #   fill_in "post_user_id", with: "John Doe"
+            #   click_button "Save"
+            #   @p = Refinery::Blog::Post.by_title("Post")
+            # end
+
+            it "Increases the number of posts by 1 and returns a success message" do
+              expect { creating_a_new_post }.to change(Refinery::Blog::Post, :count).by(1)
               expect(page).to have_content("'Post' was successfully added.")
-              expect(Refinery::Blog::Post.count).to eq(1)
             end
 
             it "shows locale for post" do
+              visit refinery.blog_admin_root_path
 
-              within "#post_#{@p.id}" do
+              puts  first_post.nil? ? "first post is nil" : "first post id is #{first_post.id}"
+              post_id = first_post.id
+              selector = "#post_#{post_id}"
+              within selector do
                 expect(page).to have_css(".locale .en")
               end
             end
 
             it "shows up in blog page for default locale" do
               visit refinery.blog_admin_root_path
-              expect(page).to have_selector("#post_#{@p.id}")
+              expect(page).to have_selector("#post_#{first_post.id}")
             end
 
-            it "does show locale for default locale" do
-              within "#post_#{@p.id}" do
+            it "shows the locale for the default locale" do
+              within "#post_#{first_post.id}" do
                 expect(page).to have_css(".locale .en")
               end
             end
 
             it "does not show locale for secondary locale" do
-              within "#post_#{@p.id}" do
+              within "#post_#{first_post.id}" do
                 expect(page).not_to have_css(".locale .ru")
               end
             end
@@ -297,8 +313,8 @@ module Refinery
           context "with a blog post in both locales" do
 
             let!(:blog_post) do
-              _blog_post = Globalize.with_locale(:en) { FactoryBot.create(:blog_post, :title => 'First Post') }
-              Globalize.with_locale(:ru) do
+              _blog_post = Mobility.with_locale(:en) { FactoryBot.create(:blog_post, :title => 'First Post') }
+              Mobility.with_locale(:ru) do
                 _blog_post.title = 'Домашняя страница'
                 _blog_post.save
               end

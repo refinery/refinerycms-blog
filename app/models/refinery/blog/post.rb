@@ -1,34 +1,22 @@
 require 'acts-as-taggable-on'
+require 'friendly_id'
+require 'friendly_id/mobility'
+require 'mobility'
 
 module Refinery
   module Blog
     class Post < ActiveRecord::Base
-      extend FriendlyId
+      extend Mobility
+      translates :title, :body, :custom_url, :custom_teaser, :slug, :browser_title, :meta_description
 
-      translates :title, :body, :custom_url, :custom_teaser, :slug, include: :seo_meta
-
-      attribute :title
-      attribute :body
-      attribute :custom_url
-      attribute :custom_teaser
-      attribute :slug
-      after_save {translations.collect(&:save)}
+      after_save { translations.in_locale(Mobility.locale).seo_meta.save! }
 
       class Translation
         is_seo_meta
-
-        def self.seo_fields
-          ::SeoMeta.attributes.keys.map {|a| [a, :"#{a}="]}.flatten
-        end
       end
 
-      def validating_source_urls?
-        Refinery::Blog.validate_source_url
-      end
-
-      friendly_id :friendly_id_source, :use => [:slugged, :globalize]
-
-      is_seo_meta
+      extend FriendlyId
+      friendly_id :friendly_id_source, use:  [:mobility, :slugged]
 
       acts_as_taggable
 
@@ -51,8 +39,8 @@ module Refinery
         verify: [:resolve_redirects]
       }
 
-      class Translation
-        is_seo_meta
+      def validating_source_urls?
+        Refinery::Blog.validate_source_url
       end
 
       # Override this to disable required authors
@@ -65,10 +53,6 @@ module Refinery
       def should_generate_new_friendly_id?
         will_save_change_to_attribute?(:custom_url) || will_save_change_to_attribute?(:title) || will_save_change_to_attribute?(:body)
       end
-
-      # Delegate SEO Attributes to globalize translation
-      seo_fields = ::SeoMeta.attributes.keys.map {|a| [a, :"#{a}="]}.flatten
-      delegate(*(seo_fields << {:to => :translation}))
 
       self.per_page = Refinery::Blog.posts_per_page
 
@@ -95,16 +79,16 @@ module Refinery
       class << self
 
         # Wrap up the logic of finding the pages based on the translations table.
-        def with_globalize(conditions = {})
-          conditions = {:locale => ::Globalize.locale}.merge(conditions)
-          globalized_conditions = {}
+        def with_mobility(conditions = {})
+          conditions = {:locale => ::Mobility.locale}.merge(conditions)
+          mobilitized_conditions = {}
           conditions.keys.each do |key|
             if (translated_attribute_names.map(&:to_s) | %w(locale)).include?(key.to_s)
-              globalized_conditions["#{self.translation_class.table_name}.#{key}"] = conditions.delete(key)
+              mobilitized_conditions["#{Post::Translation.table_name}.#{key}"] = conditions.delete(key)
             end
           end
           # A join implies readonly which we don't really want.
-          where(conditions).joins(:translations).where(globalized_conditions)
+          where(conditions).joins(:translations).where(mobilitized_conditions)
             .readonly(false)
         end
 
@@ -113,7 +97,7 @@ module Refinery
         end
 
         def by_year(date)
-          newest_first.where(:published_at => date.beginning_of_year..date.end_of_year).with_globalize
+          newest_first.where(:published_at => date.beginning_of_year..date.end_of_year).with_mobility
         end
 
         def by_title(title)
@@ -133,7 +117,7 @@ module Refinery
         end
 
         def popular(count)
-          order("access_count DESC").limit(count).with_globalize
+          order("access_count DESC").limit(count).with_mobility
         end
 
         def previous(item)
@@ -149,13 +133,13 @@ module Refinery
         def next(current_record)
           where(arel_table[:published_at].gt(current_record.published_at))
             .where(:draft => false)
-            .order('published_at ASC').with_globalize.first
+            .order('published_at ASC').with_mobility.first
         end
 
         def published_before(date=Time.now)
           where(arel_table[:published_at].lt(date))
             .where(:draft => false)
-            .with_globalize
+            .with_mobility
         end
 
         alias_method :live, :published_before

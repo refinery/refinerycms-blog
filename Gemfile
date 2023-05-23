@@ -15,14 +15,18 @@ gem 'refinerycms-wymeditor', ['~> 2.0', '>= 2.0.0']
 
 group :test do
   gem 'launchy'
-  gem 'poltergeist'
+  gem 'selenium-webdriver', require: false
   gem 'listen'
 end
-
+# gem 'refinerycms-settings', path: '/private/var/www/refinerycms-settings'
 # Database Configuration
+
 unless ENV['TRAVIS']
-  gem 'activerecord-jdbcsqlite3-adapter', :platform => :jruby
-  gem 'sqlite3', :platform => :ruby
+  gem 'activerecord-jdbcsqlite3-adapter', platform: :jruby
+  group :development, :test do
+    gem 'sqlite3', platform: :ruby
+  end
+
 end
 
 if !ENV['TRAVIS'] || ENV['DB'] == 'mysql'

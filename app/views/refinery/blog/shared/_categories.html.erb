@@ -1,4 +1,5 @@
-<% if @categories.any? %>
+
+<% if @categories.present? && @categories.any? %>
   <h2><%= t('.title') %></h2>
   <ul id="categories">
     <% @categories.each do |category| %>
