@@ -242,6 +242,15 @@ module Refinery
       end
 
       describe "#should_generate_new_friendly_id?" do
+
+        context "when a new record is saved" do
+          let(:post) { FactoryBot.build(:blog_post, title: 'A Sluggish Post', slug: nil) }
+          it "creates a slug based on the title" do
+            post.save!
+            expect(post).to have_attributes(slug: 'a-sluggish-post')
+          end
+        end
+
         context "when custom_url changes" do
           it "regenerates friendly_id upon save" do
             post.custom_url = "Test Url 2"
@@ -260,6 +269,13 @@ module Refinery
             post.save!
 
             expect(post.slug).not_to eq(slug)
+          end
+        end
+
+        context "when a post doesn't have a slug" do
+          let(:post) { FactoryBot.create(:blog_post, title: 'slippy slimy slug', slug: nil) }
+          it "adds a slug based on the title" do
+            expect(post).to have_attributes(slug: 'slippy-slimy-slug')
           end
         end
       end

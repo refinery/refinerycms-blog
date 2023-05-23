@@ -16,7 +16,9 @@ module Refinery
       end
 
       extend FriendlyId
-      friendly_id :friendly_id_source, use:  [:mobility, :slugged]
+      friendly_id :friendly_id_source,
+                  use:  [:mobility, :slugged],
+                  reserved_words: Refinery::Pages.friendly_id_reserved_words
 
       acts_as_taggable
 
@@ -48,10 +50,10 @@ module Refinery
         !Refinery::Blog.user_class.nil?
       end
 
-      # If custom_url, title or body changes tell friendly_id to regenerate slug when
-      # saving record
+      # If custom_url or title changes, tell friendly_id to regenerate slug when saving record
+      # Call to super (as recommended) ensures that posts without a slug will be given one
       def should_generate_new_friendly_id?
-        will_save_change_to_attribute?(:custom_url) || will_save_change_to_attribute?(:title) || will_save_change_to_attribute?(:body)
+        saved_change_to_title? || saved_change_to_custom_url? || super
       end
 
       self.per_page = Refinery::Blog.posts_per_page
